@@ -595,27 +595,22 @@ function self_command(command)
 			idle()
 		elseif tp_mode == "DPS" or tp_mode == "AoETank" or tp_mode == "SingleTank" or tp_mode == "MagicEva" or tp_mode == "MagicAettir" then
 			tp_mode = "Hybrid"
-			send_command('console_echo "Hybrid Mode"')
 			idle()
 		end
 	elseif command == "ToggleTank" then
 		if tp_mode == "AoETank" then
 			tp_mode = "SingleTank"
-			send_command('console_echo "Single Tank Mode"')
 			idle()
 		elseif tp_mode == "Hybrid" or tp_mode == "DPS" or tp_mode == "SingleTank" or tp_mode == "MagicEva" or tp_mode == "MagicAettir" then
 			tp_mode = "AoETank"
-			send_command('console_echo "AoE Tank Mode"')
 			idle()
 		end
 	elseif command == "ToggleMagic" then
 		if tp_mode == "MagicEva" then
 			tp_mode = "MagicAettir"
-			send_command('console_echo "Magic Evasion Mode (Aettir)"')
 			idle()
 		elseif tp_mode == "Hybrid" or tp_mode == "DPS" or tp_mode == "AoETank" or tp_mode == "SingleTank" or tp_mode == "MagicAettir" then
 			tp_mode = "MagicEva"
-			send_command('console_echo "Magic Evasion Mode"')
 			idle()
 		end
 	elseif command == "ToggleSIR" then
@@ -629,16 +624,12 @@ function self_command(command)
 	elseif command == "ToggleWeapon" then
 		if player.equipment.main == "Epeolatry" then
 			send_command ('input /equip Main "Lionheart"')
-			send_command('console_echo "Lionheart Equipped"')
 		elseif player.equipment.main == "Lionheart" then
 			send_command ('input /equip Main "Aettir"')
-			send_command('console_echo "Aettir Equipped"')
 		elseif player.equipment.main == "Aettir" then
 			send_command ('input /equip Main "Epeolatry"')
-			send_command('console_echo "Epeolatry Equipped"')
 		else
 			send_command ('input /equip Main "Epeolatry"')
-			send_command('console_echo "Epeolatry Equipped"')
 		end
 	end
 	gearswap_jobbox:text(gearswap_box())		
