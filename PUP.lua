@@ -67,7 +67,7 @@ send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
 
-send_command('bind f12 input //lua l AutoPUP')
+
 
 --[[
 ^ = Ctrl
