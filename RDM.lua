@@ -270,7 +270,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
 		feet={ name="Vitiation Boots +3", augments={'Immunobreak Chance',}},
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
-		waist="Luminary Sash",
+		waist="Null Belt",
 		left_ear="Malignance Earring",
 		right_ear="Snotra Earring",
 		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
