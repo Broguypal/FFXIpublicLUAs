@@ -274,6 +274,7 @@ sword_mode = "Burtgang"
 	}
 	
 	sets.ja.shieldbash = {
+		hands={ name="Cab. Gauntlets +2", augments={'Enhances "Chivalry" effect',}},
 		left_ear="Knightly Earring",
 	}
 	
@@ -287,6 +288,7 @@ sword_mode = "Burtgang"
 	}
 	
 	sets.ja.chivalry = {
+		hands={ name="Cab. Gauntlets +2", augments={'Enhances "Chivalry" effect',}},
 	}
 	
 	sets.ja.divineemblem = {
