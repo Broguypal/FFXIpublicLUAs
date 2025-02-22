@@ -1408,7 +1408,7 @@ function self_command(command)
 			elseif player.equipment.main == "Naegling" then
 				send_command ('input /equip Main "Tauret"')
 			elseif player.equipment.main == "Tauret" then 
-				send_command ('input /equip Main "Crocea Mors"')
+				send_command ('input /equip Main "Maxentius"')
 			else
 				send_command ('input /equip Main "Crocea Mors"')
 			end
