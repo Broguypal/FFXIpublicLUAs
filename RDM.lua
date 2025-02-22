@@ -9,6 +9,11 @@
 -- 						RED MAGE LUA
 
 
+--[[
+^ = Ctrl
+! = Alt Key
+@ = Windows Key
+]]
 
 function file_unload()
     send_command('unbind numpad9')
@@ -18,6 +23,14 @@ function file_unload()
 	send_command('unbind numpad5')
 	send_command('unbind numpad4')
 	send_command('unbind numpad3')
+	send_command('unbind numpad2')
+	send_command('unbind numpad1')
+	send_command('unbind ^numpad3')
+	send_command('unbind ^numpad2')
+	send_command('unbind ^numpad1')
+	send_command('unbind !numpad3')
+	send_command('unbind !numpad2')
+	send_command('unbind !numpad1')
 	send_command('unbind f9')
 	send_command('unbind f10')
 	send_command('unbind f11')
@@ -71,6 +84,14 @@ send_command('bind numpad6 gs c ToggleWeapon')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
+
+-------- Easyspell Keybinds ---------- (Requires easyspell addon)
+send_command ('bind ^numpad1 input //es fire <t>')
+send_command ('bind ^numpad2 input //es aero <t>')
+send_command ('bind ^numpad3 input //es thunder <t>')
+send_command ('bind !numpad1 input //es blizzard <t>')
+send_command ('bind !numpad2 input //es stone <t>')
+send_command ('bind !numpad3 input //es water <t>')
 
 --------------- EQUIPMENT SETS ------------------
 
