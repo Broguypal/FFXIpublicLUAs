@@ -167,7 +167,7 @@ send_command ('bind !numpad3 input //es water <t>')
 	
 	sets.idle.ZeroTPEnspell = set_combine(sets.idle.hybrid,{
 		main="Qutrub Knife",
-		sub="Ceremonial Dagger",
+		sub="Ethereal Dagger",
 	})
 	
 
@@ -242,7 +242,7 @@ send_command ('bind !numpad3 input //es water <t>')
 
 	sets.engaged.hybrid.zeroTPenspell = {
 	    main="Qutrub Knife",
-		sub="Ceremonial Dagger",
+		sub="Ethereal Dagger",
 		range="Ullr",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
