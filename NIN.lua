@@ -63,8 +63,10 @@ send_command('bind numpad8 gs c ToggleTank')
 send_command('bind numpad7 gs c ToggleDPS')
 send_command('bind numpad6 gs c ToggleHaste')
 
+
 send_command('bind numpad5 gs c ToggleSub')
 send_command('bind numpad4 gs c ToggleMain')
+send_command('bind numpad1 gs c ToggleGreatKatana')
 
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
@@ -790,6 +792,23 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
+	
+	--Tachi:Ageha Weaponskill
+	sets.ws.ageha = {
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		neck="Null Loop",
+		waist="Null Belt",
+		left_ear="Digni. Earring",
+		right_ear="Crep. Earring",
+		left_ring="Stikini Ring +1",
+		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		back={ name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
+	}
+	
 
 ---------------------------	ITEM SETS	---------------------------
 	sets.items.holywater = {
@@ -873,106 +892,114 @@ function idle()
 	if Mode == "Hybrid" or Mode == "Malignance" or Mode == "DPS" then
 		if Haste == "Haste2" then
 			if player.status == "Engaged" then 
-				if ( ( (buffactive[33] or buffactive[580] or buffactive.embrava) and (buffactive.march or buffactive[604]) ) or
-				( buffactive[33] and (buffactive[580] or buffactive.embrava) ) or
-				( buffactive.march == 2 and buffactive[604] ) ) then
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.hastecap)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.hastecap)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.hastecap)
-						end
+				if player.equipment.main == "Hachimonji" then
+					if buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+						equip(sets.engaged.malignance.hastecap)
 					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.hastecapdef)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.hastecapyonin)
-							else
-								equip(sets.engaged.hybrid.hastecapdef)
-							end
-						end
-					end
-				elseif ( (buffactive[33] or buffactive.march == 2 or buffactive[580]) and buffactive['haste samba'] ) then
-					if Mode == "DPS" then
-							equip(sets.engaged.DPS.haste35)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste35)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste35)
-						end
-					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste35def)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste35yonin)
-							else
-								equip(sets.engaged.hybrid.haste35def)
-							end
-						end
-					end
-				elseif ( ( buffactive[580] or buffactive[33] or buffactive.march == 2 ) or
-				( buffactive.march == 1 and buffactive[604] ) ) then
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.haste30)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste30)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste30)
-						end
-					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste30)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste30yonin)
-							else
-								equip(sets.engaged.hybrid.haste30def)
-							end
-						end
-					end
-				elseif ( buffactive.march == 1 or buffactive[604] ) then
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.haste15)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste15)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste15)
-						end
-					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste15def)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste15yonin)
-							else
-								equip(sets.engaged.hybrid.haste15def)
-							end
-						end
+						equip(sets.engaged.malignance.hastecapdef)
 					end
 				else
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.haste0)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste0)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste0)
+					if ( ( (buffactive[33] or buffactive[580] or buffactive.embrava) and (buffactive.march or buffactive[604]) ) or
+					( buffactive[33] and (buffactive[580] or buffactive.embrava) ) or
+					( buffactive.march == 2 and buffactive[604] ) ) then
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.hastecap)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.hastecap)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.hastecap)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.hastecapdef)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.hastecapyonin)
+								else
+									equip(sets.engaged.hybrid.hastecapdef)
+								end
+							end
+						end
+					elseif ( (buffactive[33] or buffactive.march == 2 or buffactive[580]) and buffactive['haste samba'] ) then
+						if Mode == "DPS" then
+								equip(sets.engaged.DPS.haste35)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste35)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste35)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste35def)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste35yonin)
+								else
+									equip(sets.engaged.hybrid.haste35def)
+								end
+							end
+						end
+					elseif ( ( buffactive[580] or buffactive[33] or buffactive.march == 2 ) or
+					( buffactive.march == 1 and buffactive[604] ) ) then
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.haste30)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste30)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste30)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste30)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste30yonin)
+								else
+									equip(sets.engaged.hybrid.haste30def)
+								end
+							end
+						end
+					elseif ( buffactive.march == 1 or buffactive[604] ) then
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.haste15)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste15)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste15)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste15def)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste15yonin)
+								else
+									equip(sets.engaged.hybrid.haste15def)
+								end
+							end
 						end
 					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste0def)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste0yonin)
-							else
-								equip(sets.engaged.hybrid.haste0def)
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.haste0)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste0)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste0)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste0def)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste0yonin)
+								else
+									equip(sets.engaged.hybrid.haste0def)
+								end
 							end
 						end
 					end
@@ -994,111 +1021,119 @@ function idle()
 			end
 		elseif Haste == "Haste1" then
 			if player.status == "Engaged" then 
-				if ( buffactive[580] and ( buffactive.march or buffactive[33] or buffactive.embrava or buffactive[604]) ) or  -- geo haste + anything
-				( buffactive.embrava and (buffactive.march or buffactive[33] or buffactive[604]) ) or  -- embrava + anything
-				( buffactive.march == 2 and (buffactive[33] or buffactive[604]) ) or  -- two marches + anything
-				( buffactive[33] and buffactive[604] and buffactive.march ) then -- haste + mighty guard + any marches
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.hastecap)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.hastecap)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.hastecap)
-						end
+				if player.equipment.main == "Hachimonji" then
+					if buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+						equip(sets.engaged.malignance.hastecap)
 					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.hastecapdef)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.hastecapyonin)
-							else
-								equip(sets.engaged.hybrid.hastecapdef)
-							end
-						end
-					end
-				elseif ( (buffactive[604] or buffactive[33]) and buffactive['haste samba'] and buffactive.march == 1) or -- MG or haste + samba with 1 march
-				( buffactive.march == 2 and buffactive['haste samba'] ) or
-				( buffactive[580] and buffactive['haste samba'] ) then 
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.haste35)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste35)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste35)
-						end
-					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste35def)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste35yonin)
-							else
-								equip(sets.engaged.hybrid.haste35def)
-							end
-						end
-					end
-				elseif ( buffactive.march == 2 ) or -- two marches from ghorn
-				( (buffactive[33] or buffactive[604]) and buffactive.march == 1 ) or  -- MG or haste + 1 march
-				( buffactive[580] ) or  -- geo haste
-				( buffactive[33] and buffactive[604] ) then -- haste with MG
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.haste30)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste30)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste30)
-						end
-					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste30)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste30yonin)
-							else
-								equip(sets.engaged.hybrid.haste30def)
-							end
-						end
-					end
-				elseif buffactive[33] or buffactive[604] or buffactive.march == 1 then
-					if Mode == "DPS" then
-						equip(sets.engaged.DPS.haste15)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste15)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste15)
-						end
-					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste15def)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste15yonin)
-							else
-								equip(sets.engaged.hybrid.haste15def)
-							end
-						end
+						equip(sets.engaged.malignance.hastecapdef)
 					end
 				else
-					if Mode == "DPS" then
-							equip(sets.engaged.DPS.haste0)
-					elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-						if Mode == "Hybrid" then
-							equip(sets.engaged.hybrid.haste0)
-						elseif Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste0)
+					if ( buffactive[580] and ( buffactive.march or buffactive[33] or buffactive.embrava or buffactive[604]) ) or  -- geo haste + anything
+					( buffactive.embrava and (buffactive.march or buffactive[33] or buffactive[604]) ) or  -- embrava + anything
+					( buffactive.march == 2 and (buffactive[33] or buffactive[604]) ) or  -- two marches + anything
+					( buffactive[33] and buffactive[604] and buffactive.march ) then -- haste + mighty guard + any marches
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.hastecap)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.hastecap)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.hastecap)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.hastecapdef)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.hastecapyonin)
+								else
+									equip(sets.engaged.hybrid.hastecapdef)
+								end
+							end
+						end
+					elseif ( (buffactive[604] or buffactive[33]) and buffactive['haste samba'] and buffactive.march == 1) or -- MG or haste + samba with 1 march
+					( buffactive.march == 2 and buffactive['haste samba'] ) or
+					( buffactive[580] and buffactive['haste samba'] ) then 
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.haste35)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste35)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste35)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste35def)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste35yonin)
+								else
+									equip(sets.engaged.hybrid.haste35def)
+								end
+							end
+						end
+					elseif ( buffactive.march == 2 ) or -- two marches from ghorn
+					( (buffactive[33] or buffactive[604]) and buffactive.march == 1 ) or  -- MG or haste + 1 march
+					( buffactive[580] ) or  -- geo haste
+					( buffactive[33] and buffactive[604] ) then -- haste with MG
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.haste30)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste30)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste30)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste30)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste30yonin)
+								else
+									equip(sets.engaged.hybrid.haste30def)
+								end
+							end
+						end
+					elseif buffactive[33] or buffactive[604] or buffactive.march == 1 then
+						if Mode == "DPS" then
+							equip(sets.engaged.DPS.haste15)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste15)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste15)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste15def)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste15yonin)
+								else
+									equip(sets.engaged.hybrid.haste15def)
+								end
+							end
 						end
 					else
-						if Mode == "Malignance" then
-							equip(sets.engaged.malignance.haste0def)
-						elseif Mode == "Hybrid" then
-							if buffactive['Yonin'] then
-								equip(sets.engaged.hybrid.haste0yonin)
-							else
-								equip(sets.engaged.hybrid.haste0def)
+						if Mode == "DPS" then
+								equip(sets.engaged.DPS.haste0)
+						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
+							if Mode == "Hybrid" then
+								equip(sets.engaged.hybrid.haste0)
+							elseif Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste0)
+							end
+						else
+							if Mode == "Malignance" then
+								equip(sets.engaged.malignance.haste0def)
+							elseif Mode == "Hybrid" then
+								if buffactive['Yonin'] then
+									equip(sets.engaged.hybrid.haste0yonin)
+								else
+									equip(sets.engaged.hybrid.haste0def)
+								end
 							end
 						end
 					end
@@ -1209,6 +1244,8 @@ function precast(spell)
 			end
 		elseif spell.english == "Savage Blade" then
 			equip(sets.ws.savageblade)
+		elseif spell.english == "Tachi: Ageha" then
+			equip(sets.ws.ageha)
 		else
 			equip(sets.ws.normal)
 		end
@@ -1325,6 +1362,8 @@ function midcast(spell)
 			end
 		elseif spell.english == "Savage Blade" then
 			equip(sets.ws.savageblade)
+		elseif spell.english == "Tachi: Ageha" then
+			equip(sets.ws.ageha)
 		else
 			equip(sets.ws.normal)
 		end
@@ -1417,6 +1456,8 @@ function self_command(command)
 		else
 			send_command ('input /equip Sub "Kunimitsu"')
 		end
+	elseif command == "ToggleGreatKatana" then
+		send_command ('input /equip Main "Hachimonji"')
 	end
 end
 
