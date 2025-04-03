@@ -1457,7 +1457,7 @@ function self_command(command)
 			send_command ('input /equip Sub "Kunimitsu"')
 		end
 	elseif command == "ToggleGreatKatana" then
-		send_command ('input /equip Main "Hachimonji"')
+		send_command ('input /equip Main "Hachimonji"; wait 1; input /equip Sub "Bloodrain strap"')
 	end
 end
 
