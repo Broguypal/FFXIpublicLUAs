@@ -66,7 +66,7 @@ send_command('bind numpad6 gs c ToggleHaste')
 
 send_command('bind numpad5 gs c ToggleSub')
 send_command('bind numpad4 gs c ToggleMain')
-send_command('bind numpad1 gs c ToggleGreatKatana')
+send_command('bind numpad1 gs c ToggleSpecial')
 
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
@@ -1456,8 +1456,12 @@ function self_command(command)
 		else
 			send_command ('input /equip Sub "Kunimitsu"')
 		end
-	elseif command == "ToggleGreatKatana" then
-		send_command ('input /equip Main "Hachimonji"; wait 1; input /equip Sub "Bloodrain strap"')
+	elseif command == "ToggleSpecial" then
+		if player.equipment.main == "Hachimonji" then
+			send_command ('input /equip Main "Tauret"; wait 1; input /equip Sub "Gleti\'s Knife"')
+		else
+			send_command ('input /equip Main "Hachimonji"; wait 1; input /equip Sub "Bloodrain strap"')
+		end
 	end
 end
 
