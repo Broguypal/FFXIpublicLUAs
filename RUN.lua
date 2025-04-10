@@ -375,6 +375,16 @@ function get_sets()
 		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
 		}
 		
+	sets.midcast.temper = set_combine(sets.midcast.SIR,{
+		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
+		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+		neck="Incanter's Torque",
+		waist="Olympus Sash",
+		left_ear="Mimir Earring",
+		left_ring="Stikini Ring +1",
+		right_ring="Stikini Ring +1",
+	})
+		
 	sets.midcast.phalanx = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Fu. Bandeau +2", augments={'Enhances "Battuta" effect',}},
@@ -444,6 +454,22 @@ function get_sets()
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Ogma's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
+	}
+	
+	sets.ws.ruinator = {
+		ammo="Knobkierrie",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		left_ear="Sherida Earring",
+		right_ear="Ishvara Earring",
+		left_ring="Sroda Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 end
 
@@ -517,6 +543,8 @@ function precast(spell)
 			equip(sets.ws.dimidiation)	
 		elseif spell.english == "Savage Blade" then
 			equip(sets.ws.savageblade)
+		elseif spell.english == "Ruinator" then
+			equip(sets.ws.ruinator)
 		else
 			equip(sets.ws.dimidiation)
 		end
@@ -546,6 +574,8 @@ function midcast(spell)
 			equip(sets.ws.dimidiation)	
 		elseif spell.english == "Savage Blade" then
 			equip(sets.ws.savageblade)
+		elseif spell.english == "Ruinator" then
+			equip(sets.ws.ruinator)
 		else
 			equip(sets.ws.dimidiation)
 		end
@@ -566,7 +596,11 @@ function midcast(spell)
 			equip(sets.midcast.SIR)
 		end
 	elseif spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then 
-		equip(sets.midcast.SIR)
+		if spell.english == "Temper" then
+			equip(sets.midcast.temper)
+		else
+			equip(sets.midcast.SIR)
+		end
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
 	else
@@ -627,7 +661,7 @@ function self_command(command)
 		elseif player.equipment.main == "Lionheart" then
 			send_command ('input /equip Main "Aettir"')
 		elseif player.equipment.main == "Aettir" then
-			send_command ('input /equip Main "Epeolatry"')
+			send_command ('input /equip Main "Lycurgos"')
 		else
 			send_command ('input /equip Main "Epeolatry"')
 		end
