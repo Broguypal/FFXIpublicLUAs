@@ -680,7 +680,7 @@ send_command ('bind !numpad3 input //es water <t>')
 		left_ear="Friomisi Earring",
 		right_ear="Malignance Earring",
 		left_ring="Freke Ring",
-		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Fenrir Ring +1",
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +8','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 
