@@ -635,7 +635,7 @@ send_command ('bind !numpad3 input //es water <t>')
 
 	sets.midcast.enhancePHALANXSELFweapons = set_combine(sets.midcast.enhancePHALANXSELF,{
 		main="Sakpata's Sword",
-		sub="Ammurapi Shield",
+		sub="Egeking",
 	})
 	
 ---- HEALING MAGIC SETS ----
