@@ -461,10 +461,10 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
-	sets.midcast.bluemagic.Buff = set_combine(sets.midcast.bluemagic.Magical{
+	sets.midcast.bluemagic.Buff = set_combine(sets.midcast.bluemagic.Magical,{
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-	}
+	})
 	
 	sets.midcast.bluemagic.BuffSkillBased = {
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
