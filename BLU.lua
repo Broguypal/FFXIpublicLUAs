@@ -658,7 +658,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Sroda Ring",
 		right_ring="Fickblix's Ring",
-		back={ name="Rosmerta's Cape", augments={'Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	sets.ws.expiacion = {
@@ -674,7 +674,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Ishvara Earring",
 		left_ring="Sroda Ring",
 		right_ring="Epaminondas's Ring",
-		back={ name="Rosmerta's Cape", augments={'Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	sets.ws.chantducygne = {
@@ -690,7 +690,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Begrudging Ring",
 		right_ring="Epona's Ring",
-		back={ name="Rosmerta's Cape", augments={'Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	sets.ws.requiescat = {
@@ -706,7 +706,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Ishvara Earring",
 		left_ring="Persis Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Rosmerta's Cape", augments={'Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	sets.ws.savageblade = {
@@ -722,7 +722,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Ishvara Earring",
 		left_ring="Sroda Ring",
 		right_ring="Epaminondas's Ring",
-		back={ name="Rosmerta's Cape", augments={'Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	sets.ws.sanguineblade = {
@@ -738,7 +738,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Friomisi Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Archon Ring",
-		back={ name="Rosmerta's Cape", augments={'Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	sets.ws.blackhalo = {
@@ -754,7 +754,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Ishvara Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Rosmerta's Cape", augments={'Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 ---------------------------	ITEM SETS	---------------------------
