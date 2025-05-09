@@ -473,6 +473,13 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
+	sets.midcast.bluemagic.HealingHP = set_combine(sets.midcast.bluemagic.Healing,{
+		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
+		waist="Plat. Mog. Belt",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		back="Moonbeam Cape",
+	})
+	
 	sets.midcast.bluemagic.Buff = set_combine(sets.midcast.bluemagic.Magical,{
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
@@ -1057,6 +1064,8 @@ function midcast(spell)
 				elseif spell.english == "Healing Breeze" or spell.english == "Magic Fruit" or spell.english == "Plenilune Embrace" or spell.english == "Pollen"
 					or spell.english == "Restoral" or spell.english == "Wild Carrot" then
 					equip(sets.midcast.bluemagic.Healing)
+				elseif spell.english == "White Wind" then
+					equip(sets.midcast.bluemagic.HealingHP)
 				elseif spell.english == "Amplification" or spell.english == "Animating Wail" or spell.english == "Carcharian Verve" or spell.english == "Cocoon"
 					or spell.english == "Erratic Flutter" or spell.english == "Exuviation"  or spell.english == "Fantod" or spell.english == "Feather Barrier"
 					or spell.english == "Harden Shell" or spell.english == "Memento Mori" or spell.english == "Nat. Meditation" or spell.english == "Orcish Counterstance" 
