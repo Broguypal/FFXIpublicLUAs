@@ -179,7 +179,8 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Epona's Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		--back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
 ----DUAL WIELD SETS ----
@@ -485,10 +486,16 @@ send_command('bind f12 input //fillmode')
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 	})
 	
-	sets.midcast.bluemagic.BuffSkillBased = {
+	sets.midcast.bluemagic.BuffSkillBased = set_combine(sets.midcast.bluemagic.Magical,{
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-	}
+		hands="Rawhide Gloves",
+		legs="Hashishin Tayt +2",
+		feet={ name="Luhlaza Charuqs +1", augments={'Enhances "Diffusion" effect',}},
+		neck="Mirage Stole +1",
+		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
+		left_ring="Stikini Ring +1",
+		right_ring="Stikini Ring +1",
+	})
 	
 	sets.midcast.bluemagic.Refresh = {}
 
