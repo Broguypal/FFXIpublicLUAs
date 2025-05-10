@@ -69,8 +69,9 @@ function user_setup()
 end
 
 -----------------------GEAR SETS------------------------------
-
 function get_sets()
+user_setup()
+
 ---------------- KEYBINDS -----------------------
 send_command('bind numpad9 gs c ToggleMelee')
 send_command('bind numpad8 gs c ToggleTank')
@@ -249,7 +250,7 @@ send_command ('bind !numpad3 input //es water <t>')
 		hands="Aya. Manopolas +2",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		neck={ name="Dls. Torque +2", augments={'Path: A',}},
+		neck="Null loop",
 		waist="Orpheus's Sash",
 		left_ear="Sherida Earring",
 		right_ear="Suppanomimi",
