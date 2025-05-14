@@ -179,8 +179,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Epona's Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
-		--back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
 ----DUAL WIELD SETS ----
@@ -273,7 +272,7 @@ send_command('bind f12 input //fillmode')
 	})
 	
 	sets.precast.diffusion = {
-		feet="Luhlaza Charuqs +1",
+		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
 	}
 
 ---- TANK PRECAST SETS----
@@ -429,7 +428,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.bluemagic.MagicalAcc = {
 		ammo="Pemphredo Tathlum",
-		head="Hashishin Kavuk +2",
+		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		body="Hashishin Mintan +2",
 		hands="Hashi. Bazu. +2",
 		legs="Hashishin Tayt +2",
@@ -487,14 +486,19 @@ send_command('bind f12 input //fillmode')
 	})
 	
 	sets.midcast.bluemagic.BuffSkillBased = set_combine(sets.midcast.bluemagic.Magical,{
+		ammo="Staunch Tathlum +1",
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+		body="Assim. Jubbah +3",
 		hands="Rawhide Gloves",
 		legs="Hashishin Tayt +2",
-		feet={ name="Luhlaza Charuqs +1", augments={'Enhances "Diffusion" effect',}},
+		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
 		neck="Mirage Stole +1",
+		waist="Plat. Mog. Belt",
+		left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	})
 	
 	sets.midcast.bluemagic.Refresh = {}
@@ -964,7 +968,7 @@ function midcast(spell)
 			elseif spell.english == "Cruel Joke" then
 				equip(sets.midcast.tank.magicaccuracy)
 			elseif spell.english == "Reaving Wind" or spell.english == "Feather Tickle" then
-				equip(sets.midcast.tpdrain)
+				equip(sets.midcast.bluemagic.MagicalAcc)
 			elseif spell.english == "Holy Water" then
 				equip(sets.items.holywater)
 			elseif spell.type == "Trust" then
