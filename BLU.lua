@@ -156,7 +156,7 @@ send_command('bind f12 input //fillmode')
 		hands="Malignance Gloves",
 		legs={ name="Herculean Trousers", augments={'"Drain" and "Aspir" potency +1','Pet: Accuracy+27 Pet: Rng. Acc.+27','"Treasure Hunter"+2','Accuracy+12 Attack+12','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
 		feet={ name="Herculean Boots", augments={'Pet: Phys. dmg. taken -1%','STR+4','"Treasure Hunter"+2','Accuracy+18 Attack+18',}},
-		neck="Mirage Stole +1",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Suppanomimi",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
@@ -173,7 +173,7 @@ send_command('bind f12 input //fillmode')
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		neck="Null Loop",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
@@ -203,7 +203,7 @@ send_command('bind f12 input //fillmode')
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		neck="Null loop",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		right_ear="Telos Earring",
@@ -300,7 +300,7 @@ send_command('bind f12 input //fillmode')
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Rep. Plat. Medal",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Mache Earring +1",
 		right_ear="Telos Earring",
@@ -320,7 +320,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.bluemagic.PhysicalStr = set_combine(sets.midcast.bluemagic.Physical,{
 		ammo="Aurgelmir Orb",
-		neck="Rep. Plat. Medal",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		right_ring="Sroda Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
@@ -328,7 +328,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.bluemagic.PhysicalDex = set_combine(sets.midcast.bluemagic.Physical,{
 		ammo="Aurgelmir Orb",
-		neck="Mirage Stole +1",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Null Belt",
 		left_ear="Mache Earring +1",
 		left_ring="Apate Ring",
@@ -418,6 +418,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.bluemagic.MagicalDex = set_combine(sets.midcast.bluemagic.Magical,{
 		ammo="Aurgelmir Orb",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		left_ear="Mache Earring +1",
 		left_ring="Ilabrat Ring",
 	})
@@ -492,7 +493,7 @@ send_command('bind f12 input //fillmode')
 		hands="Rawhide Gloves",
 		legs="Hashishin Tayt +2",
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
-		neck="Mirage Stole +1",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Plat. Mog. Belt",
 		left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
@@ -501,7 +502,8 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	})
 	
-	sets.midcast.bluemagic.Refresh = {}
+	sets.midcast.bluemagic.Refresh = set_combine(sets.midcast.bluemagic.Buff,{
+	})
 
 
 ---- MIDCAST NON BLU SETS ----
@@ -633,7 +635,7 @@ send_command('bind f12 input //fillmode')
 		hands={ name="Taeon Gloves", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		legs={ name="Taeon Tights", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		feet={ name="Taeon Boots", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		neck="Mirage Stole +1",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Plat. Mog. Belt",
 		left_ear="Genmei Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
@@ -649,7 +651,7 @@ send_command('bind f12 input //fillmode')
 		hands="Malignance Gloves",
 		legs="Hashishin Tayt +2",
 		feet="Malignance Boots",
-		neck="Mirage Stole +1",
+		neck="Null Loop",
 		waist="Austerity Belt +1",
 		left_ear="Magnetic Earring",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
@@ -682,7 +684,7 @@ send_command('bind f12 input //fillmode')
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Rep. Plat. Medal",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Ishvara Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
@@ -698,7 +700,7 @@ send_command('bind f12 input //fillmode')
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Mirage Stole +1",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
@@ -714,7 +716,7 @@ send_command('bind f12 input //fillmode')
 		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
 		legs="Gleti's Breeches",
 		feet="Gleti's Boots",
-		neck="Mirage Stole +1",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Fotia Belt",
 		left_ear="Mache Earring +1",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
@@ -746,7 +748,7 @@ send_command('bind f12 input //fillmode')
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Mirage Stole +1",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
@@ -778,7 +780,7 @@ send_command('bind f12 input //fillmode')
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Rep. Plat. Medal",
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
