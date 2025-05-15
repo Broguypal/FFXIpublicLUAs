@@ -84,7 +84,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.idle.tank = {
@@ -121,7 +121,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
 ---- ENGAGED SETS ---- (NOTE - DPS Sets assume Dual Wield 3)
@@ -162,7 +162,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Epona's Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
 ----HYBRID ENGAGED SETS ----
@@ -179,7 +179,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Epona's Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
 ----DUAL WIELD SETS ----
@@ -209,14 +209,14 @@ send_command('bind f12 input //fillmode')
 		right_ear="Telos Earring",
 		left_ring="Defending Ring",
 		right_ring="Fickblix's Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
 --35 Magic Haste (22 DW to cap with DW3)
 	sets.engaged.dualwield.haste35 = set_combine(sets.engaged.dualwield.hastecap,{
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
 --30 Magic Haste (31DW to cap with DW3)
@@ -225,7 +225,7 @@ send_command('bind f12 input //fillmode')
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
 		right_ear="Eabani Earring", -- 4 DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 
 	})
 
@@ -236,7 +236,7 @@ send_command('bind f12 input //fillmode')
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
 		right_ear="Eabani Earring", -- 4 DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
 -- 0 Magic Haste (49DW to cap with DW3)
@@ -248,7 +248,7 @@ send_command('bind f12 input //fillmode')
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
 		right_ear="Eabani Earring", -- 4 DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
 
@@ -333,7 +333,7 @@ send_command('bind f12 input //fillmode')
 		left_ear="Mache Earring +1",
 		left_ring="Apate Ring",
 		right_ring="Ilabrat Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	})
 	
 	sets.midcast.bluemagic.PhysicalVit = set_combine(sets.midcast.bluemagic.Physical,{
@@ -392,7 +392,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Friomisi Earring",
 		left_ring="Fenrir Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
 	sets.midcast.bluemagic.MagicalDark = set_combine(sets.midcast.bluemagic.Magical,{
@@ -471,7 +471,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Lebeche Ring",
 		right_ring="Evanescence Ring",
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
 	sets.midcast.bluemagic.HealingHP = set_combine(sets.midcast.bluemagic.Healing,{
@@ -499,7 +499,7 @@ send_command('bind f12 input //fillmode')
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	})
 	
 	sets.midcast.bluemagic.Refresh = set_combine(sets.midcast.bluemagic.Buff,{
@@ -553,7 +553,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Friomisi Earring",
 		left_ring="Fenrir Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 
 	}
 	
@@ -570,7 +570,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Halasz Earring",
 		left_ring="Lebeche Ring",
 		right_ring="Evanescence Ring",
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
 	sets.midcast.elemental = {
@@ -586,7 +586,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Friomisi Earring",
 		left_ring="Fenrir Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
 	sets.midcast.enfeebling = {
@@ -624,7 +624,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Etiolation Earring",
 		left_ring="Defending Ring",
 		right_ring="Evanescence Ring",
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 
 ---- Tank Midcast Sets ----
