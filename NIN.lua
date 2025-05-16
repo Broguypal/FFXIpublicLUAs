@@ -1259,17 +1259,21 @@ end
 function midcast(spell)
 	if spell.name:match('Utsusemi') then
 		if spell.english == "Utsusemi: Ichi" or spell.english == "Utsusemi: Ni" then
-			if buffactive['Copy Image'] then
-				send_command('cancel Copy Image')
-				equip(sets.midcast.utsusemi)
-			elseif buffactive['Copy Image (2)'] then
-				send_command('cancel 444')
-				equip(sets.midcast.utsusemi)
-			elseif buffactive['Copy Image (3)'] then
-				send_command('cancel 445')
-				equip(sets.midcast.utsusemi)
-			elseif buffactive['Copy Image (4+)'] then
-				send_command('cancel 446')
+			if player.equipment.sub ~= "Yagyu Darkblade" then
+				if buffactive['Copy Image'] then
+					send_command('cancel Copy Image')
+					equip(sets.midcast.utsusemi)
+				elseif buffactive['Copy Image (2)'] then
+					send_command('cancel 444')
+					equip(sets.midcast.utsusemi)
+				elseif buffactive['Copy Image (3)'] then
+					send_command('cancel 445')
+					equip(sets.midcast.utsusemi)
+				elseif buffactive['Copy Image (4+)'] then
+					send_command('cancel 446')
+					equip(sets.midcast.utsusemi)
+				end
+			else
 				equip(sets.midcast.utsusemi)
 			end
 		else
