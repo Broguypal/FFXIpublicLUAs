@@ -1434,27 +1434,29 @@ function self_command(command)
 		end
 	elseif command == "ToggleMain" then
 		if player.equipment.main == "Heishi Shorinken" then
+			send_command ('input /equip Main "Fudo Masamune"')
+		elseif player.equipment.main == "Fudo Masamune" then
 			send_command ('input /equip Main "Naegling"')
 		elseif player.equipment.main == "Naegling" then
 			send_command ('input /equip Main "Gokotai"')
 		elseif player.equipment.main == "Gokotai" then
-			send_command ('input /equip Main "Fudo Masamune"')
-		elseif player.equipment.main == "Fudo Masamune" then
 			send_command ('input /equip Main "Heishi Shorinken"')
 		else
 			send_command ('input /equip Main "Heishi Shorinken"')
 		end
 	elseif command == "ToggleSub" then
-		if player.equipment.sub == "Kunimitsu" then
+		if player.equipment.sub == "Yagyu Darkblade" then
+			send_command ('input /equip Sub "Kunimitsu"')
+		elseif player.equipment.sub == "Kunimitsu" then
 			send_command ('input /equip Sub "Gleti\'s Knife"')
 		elseif player.equipment.sub == "Gleti\'s Knife" then
 			send_command ('input /equip Sub "Hitaki"')
 		elseif player.equipment.sub == "Hitaki" then
 			send_command ('input /equip Sub "Tsuru"')
 		elseif player.equipment.sub == "Tsuru" then
-			send_command ('input /equip Sub "Kunimitsu"')
+			send_command ('input /equip Sub "Yagyu Darkblade"')
 		else
-			send_command ('input /equip Sub "Kunimitsu"')
+			send_command ('input /equip Sub "Yagyu Darkblade"')
 		end
 	elseif command == "ToggleSpecial" then
 		if player.equipment.main == "Hachimonji" then
