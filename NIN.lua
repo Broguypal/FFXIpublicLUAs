@@ -1383,7 +1383,14 @@ function midcast(spell)
 end
 
 function aftercast(spell)
-	idle()
+	if spell.type == "Ninjutsu" then	
+		idle()
+		check_tool_count()
+		gearswap_jobbox:text(gearswap_box())		
+		gearswap_jobbox:show()
+	else
+		idle()
+	end
 end
 
 
