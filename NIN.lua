@@ -836,44 +836,14 @@ end)
 
 -- Recognizing when losing utsusemi or haste related buffs to trigger automatic equipment change
 windower.register_event('lose buff', function(buff_id)
-	if buff_id == 66 then
-		idle()
-	end
-	if buff_id == 33 then
-		idle()
-	end
-	if buff_id == 580 then
-		idle()
-	end
-	if buff_id == 604 then
-		idle()
-	end
-	if buff_id == 214 then
-		idle()
-	end
-	if buff_id == 228 then
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
 		idle()
 	end
 end)
 
 -- Recognizing when gaining utsusemi or haste related buffs to trigger automatic equipment change
 windower.register_event('gain buff', function(buff_id)
-	if buff_id == 66 then
-		idle()
-	end
-	if buff_id == 33 then
-		idle()
-	end
-	if buff_id == 580 then
-		idle()
-	end
-	if buff_id == 604 then
-		idle()
-	end
-	if buff_id == 214 then
-		idle()
-	end
-	if buff_id == 228 then
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
 		idle()
 	end
 end)
