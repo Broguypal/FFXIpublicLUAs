@@ -544,9 +544,9 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	    ammo="Pemphredo Tathlum",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
-		hands="Malignance Gloves",
+		hands="Hattori Tekko +3",
 		legs="Malignance Tights",
-		feet="Malignance Boots",
+		feet="Hattori Kyahan +3",
 		neck="Null Loop",
 		waist="Null Belt",
 		left_ear="Hermetic Earring",
@@ -580,7 +580,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	
 	-- Midcast elemental - Futae up
 	sets.midcast.elementalfutae = set_combine(sets.midcast.elemental, {
-		hands="Hattori Tekko +2",
+		hands="Hattori Tekko +3",
 	})
 	
 	--Midcast elemental - Futae Up + Obi
@@ -619,7 +619,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	    ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
 		body="Malignance Tabard",
-		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		hands="Hattori Tekko +3",
 		legs="Mpaca's Hose",
 		feet="Hattori Kyahan +3",
 		neck="Fotia Gorget",
