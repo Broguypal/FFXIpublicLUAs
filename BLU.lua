@@ -339,7 +339,8 @@ send_command('bind f12 input //fillmode')
 	sets.midcast.bluemagic.PhysicalVit = set_combine(sets.midcast.bluemagic.Physical,{
 		ammo="Aurgelmir Orb",
 		neck="Elite Royal Collar",
-		left_ring="Petrov Ring",
+		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
+		right_ring="Petrov Ring",
 	})
 	
 	sets.midcast.bluemagic.PhysicalAgi = set_combine(sets.midcast.bluemagic.Physical,{
@@ -414,6 +415,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.bluemagic.MagicalVit = set_combine(sets.midcast.bluemagic.Magical,{
 		ammo="Aurgelmir Orb",
+		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 	})
 	
 	sets.midcast.bluemagic.MagicalDex = set_combine(sets.midcast.bluemagic.Magical,{
@@ -478,6 +480,7 @@ send_command('bind f12 input //fillmode')
 		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
 		waist="Plat. Mog. Belt",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back="Moonbeam Cape",
 	})
 	
@@ -758,7 +761,7 @@ send_command('bind f12 input //fillmode')
 	}
 	
 	sets.ws.sanguineblade = {
-	    ammo="Pemphredo Tathlum",
+	    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head="Pixie Hairpin +1",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
@@ -770,7 +773,7 @@ send_command('bind f12 input //fillmode')
 		right_ear="Friomisi Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Archon Ring",
-		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
 	sets.ws.blackhalo = {
