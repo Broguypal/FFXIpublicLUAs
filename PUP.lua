@@ -30,17 +30,20 @@ function file_unload()
 end
 
 --------------------------- SETTING UP TEXTBOX ------------------------------------------
-Mode = "Normal"
-
+Mode = "Hybrid"
 Pet_Mode = "NA"
+Pet_Distance = "Melee"
+
  
-Modes = {'Normal','DualTank','Master','Overdrive','OverdriveDEF','PetTank','PetDEF','MasterDEF'}
-Pet_Modes = {'NA','Bruiser','Tank','Sharpshot','Ranged','WHM','BLM','RDM','Unknown'}
+Modes = {'Hybrid','HybridDEF','Master','MasterDEF','Overdrive','OverdriveDEF','Pet','PetDEF','Emergency-DT'}
+Pet_Modes = {'NA','Bruiser','Tank','Sharpshot','Ranged','WHM','BLM','RDM','Other'}
+Pet_Distances = {'Melee', 'Ranged'}
 
 gearswap_box = function()
   str = '           \\cs(246,102,13)PUPPETMASTER\\cr\n'
   str = str..' Current Mode:\\cs(200,100,200)   '..Mode..'\\cr\n'
   str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
+  str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
     return str
 end
 
@@ -52,49 +55,26 @@ function user_setup()
 	gearswap_jobbox:show()
 end
 
+
+function get_sets()
 --------------------------- Commands ----------------------------------
 --------Required Commands Below ----------
 
-send_command('bind numpad9 gs c ToggleNormal')
+send_command('bind numpad9 gs c ToggleHybrid')
 send_command('bind numpad8 gs c ToggleOverdrive')
-send_command('bind numpad7 gs c ToggleTank')
-send_command('bind numpad6 gs c ToggleMasterDEF')
-send_command('bind numpad5 gs c TogglePetDEF')
-send_command('bind numpad4 gs c ToggleWeapons')
+send_command('bind numpad7 gs c TogglePet')
+send_command('bind numpad6 gs c ToggleMaster')
+send_command('bind numpad5 gs c ToggleEmergency')
+send_command('bind numpad4 gs c ToggleWeapon')
+send_command('bind numpad3 gs c ToggleDistance')
 
 --------- Personal Commands ---------------
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
+send_command('bind f12 input //lua l AutoPUP')
 
-
-
---[[
-^ = Ctrl
-! = Alt Key
-@ = Windows Key
-]]
-
-send_command ('bind numpad3 input //acon equipset standard')
-send_command ('bind ^numpad3 input //acon equipset sharpshot')
-send_command ('bind !numpad3 input //acon equipset fu')
-
-send_command ('bind numpad2 input //acon equipset boneslayer')
-send_command ('bind ^numpad2 input //acon equipset valoredge')
-send_command ('bind !numpad2 input //acon equipset caitsith')
-
-send_command ('bind numpad1 input //acon equipset bruisertank')
-send_command ('bind ^numpad1 input //acon equipset sortie')
-send_command ('bind !numpad1 input //acon equipset turtle')
-
-send_command ('bind numpad0 input //acon equipset zerg')
-send_command ('bind ^numpad0 input //acon equipset nuke')
-send_command ('bind !numpad0 input //acon equipset ranged')
-
-
----------------------------	INIT. SETS		---------------------------	
-function get_sets()
-
+--------- GEAR DEFINED ------------------
 
     sets.idle = {}	
 	sets.engaged = {}
@@ -118,7 +98,6 @@ function get_sets()
 
 ---------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
 -- Master Damage taken --
-
 	sets.idle.tank = {
 		ammo="Automat. Oil +3",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -134,7 +113,6 @@ function get_sets()
 		right_ring="Defending Ring",
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
-
 
 -- Pet Damage Taken / Regen --
 	sets.idle.pettank = {
@@ -173,7 +151,7 @@ function get_sets()
 ---------------------------	ENGAGED SETS	---------------------------
 
 ---------------------------	HYRBRID ENGAGED SETS	---------------------------
--- Normal 
+-- Hybrid 
 	sets.engaged.hybrid.normal = {
 	    range="Animator P +1",
 		ammo="Automat. Oil +3",
@@ -190,15 +168,22 @@ function get_sets()
 		right_ring="Fickblix's Ring",
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
+	
+	sets.engaged.hybrid.normalranged = set_combine(sets.engaged.hybrid.normal,{
+		range="Animator P II +1",
+	})
 
 -- Normal - Godhands/Xiucoatl equipped --
 	sets.engaged.hybrid.godhands = set_combine(sets.engaged.hybrid.normal,{
 		left_ear="Mache Earring +1",
 	})
-
+	
+	sets.engaged.hybrid.godhandsranged = set_combine(sets.engaged.hybrid.godhands,{
+		range="Animator P II +1",
+	})
 
 --Hybrid Dual Tank set
-	sets.engaged.hybrid.dualtank = {
+	sets.engaged.hybrid.defence = {
 		range="Animator P +1",
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
@@ -206,19 +191,31 @@ function get_sets()
 		hands="Karagoz Guanti +3",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		neck="Empath Necklace",
+		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
-		left_ear="Burana Earring",
+		left_ear="Crep. Earring",
 		right_ear={ name="Kara. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Store TP"+5',}},
 		left_ring="C. Palug Ring",
 		right_ring="Defending Ring",
-		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
+		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','Pet: Phys. dmg. taken-10%',}},
 	}
+
+	sets.engaged.hybrid.defenceranged = set_combine(sets.engaged.hybrid.defence,{
+		range="Animator P II +1",
+	})
+
+	sets.engaged.hybrid.defencegodhands = set_combine(sets.engaged.hybrid.defence,{
+		left_ear="Mache Earring +1",
+	})
+
+	sets.engaged.hybrid.defencegodhandsranged = set_combine(sets.engaged.hybrid.defencegodhands,{
+		range="Animator P II +1",
+	})
+
 ---------------------------	PET ONLY ENGAGED SETS	---------------------------
 
 -- Normal
 	sets.engaged.pet.normal = {
-	    range="Animator P +1",
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
 		body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
@@ -241,7 +238,6 @@ function get_sets()
 
 --Bruiser tank 
 	sets.engaged.pet.bruiser = {
-		range="Animator P +1",
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
 		body={ name="Taeon Tabard", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -264,7 +260,6 @@ function get_sets()
 
 -- ranged dps (use xiucoatl)
 	sets.engaged.pet.ranged = {
-		--range="Animator P II +1",
 		ammo="Automat. Oil +3",
 		head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},
 		body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
@@ -282,8 +277,6 @@ function get_sets()
 
 --Turtle Tank
 	sets.engaged.pet.turtle = {
---		main="Gnafron's Adargas",
---	    range="Animator P +1",
 		ammo="Automat. Oil +3",
        	head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
 		body={ name="Rao Togi +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
@@ -303,7 +296,6 @@ function get_sets()
 ---------------------------	OVERDRIVE ENGAGED SETS	---------------------------
 --Sharpshot overdrive
 	sets.engaged.overdrive.sharpshot = {
- 		--main={ name="Xiucoatl", augments={'Path: C',}},
 		range="Animator P +1",
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
@@ -322,7 +314,6 @@ function get_sets()
 
 --Sharpshot overdrive Defence
 	sets.engaged.overdrive.sharpshotDEF = {
- 		--main={ name="Xiucoatl", augments={'Path: C',}},
 		range="Animator P +1",
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
@@ -341,7 +332,6 @@ function get_sets()
 
 --valoredge overdrive
 	sets.engaged.overdrive.valoredge = {
-		--main={ name="Xiucoatl", augments={'Path: C',}},
 		range="Animator P +1",
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -360,7 +350,6 @@ function get_sets()
 
 --Valoredge overdrive Defence
 	sets.engaged.overdrive.valoredgeDEF = {
-		--main={ name="Xiucoatl", augments={'Path: C',}},
 		range="Animator P +1",
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3", 
@@ -378,9 +367,9 @@ function get_sets()
 	}
 
 ---------------------------	MASTER ONLY ENGAGED SETS	---------------------------
--- Normal
+-- Master sets for master mode
 	sets.engaged.master.normal = {
-        range="Animator P +1",
+        range="Neo Animator",
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
 		body="Mpaca's Doublet",
@@ -400,7 +389,65 @@ function get_sets()
 	sets.engaged.master.godhands = set_combine(sets.engaged.master.normal,{
 		left_ear="Mache Earring +1",
 	})
+	
+-- Defence
+	sets.engaged.master.defence = {
+		range="Neo Animator",
+		ammo="Automat. Oil +3",
+		head="Malignance Chapeau",
+		body="Malignance Tabard",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Schere Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Gere Ring",
+		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	}
 
+--Defence - Godhands/xiucoatl equipped
+	sets.engaged.master.defencegodhands = set_combine(sets.engaged.master.defence,{
+		left_ear="Mache Earring +1",
+	})
+
+---- Master Sets for Hybrid Mode (For when pet dies or is not engaged - you shouldn't need to change below) 
+--Hybrid Master
+	sets.engaged.master.hybrid = set_combine(sets.engaged.master.normal,{
+		range="Animator P +1",
+	})
+
+	sets.engaged.master.hybridranged = set_combine(sets.engaged.master.normal,{
+		range="Animator P II +1",
+	})
+	
+	sets.engaged.master.hybridgodhands = set_combine(sets.engaged.master.godhands,{
+		range="Animator P +1",
+	})
+	
+	sets.engaged.master.hybridgodhandsranged = set_combine(sets.engaged.master.godhands,{
+		range="Animator P II +1",
+	})
+	
+	
+-- Defence Master
+	sets.engaged.master.hybriddefence = set_combine(sets.engaged.master.defence,{
+		range="Animator P +1",
+	})
+	
+	sets.engaged.master.hybriddefenceranged = set_combine(sets.engaged.master.defence,{
+		range="Animator P II +1",
+	})
+
+	sets.engaged.master.hybriddefencegodhands = set_combine(sets.engaged.master.defencegodhands,{
+		range="Animator P +1",
+	})
+
+	sets.engaged.master.hybriddefencegodhandsranged = set_combine(sets.engaged.master.defencegodhands,{
+		range="Animator P II +1",
+	})
 ---------------------------	PRECAST SETS	---------------------------
 
 ---------------------------	PRECAST / JOB ABILITY MASTER SETS	---------------------------
@@ -428,7 +475,11 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
---  individual spells
+-- Provoke (you want an enmity set for your provoke)
+	sets.ja.enmity = {
+	}
+
+--  individual abilities
     sets.ja.optimization = {
 		head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},
 	}
@@ -468,7 +519,6 @@ function get_sets()
 		right_ring="Thur. Ring +1",
 	}
 
-
 ---------------------------	MIDCAST MASTER SETS	---------------------------
 -- Master Midcast
 	sets.midcast.master.spelldamage = {
@@ -507,8 +557,6 @@ function get_sets()
 	
 -- pet midcast BLM
 	sets.midcast.pet.nuke = {
---	    main="Sakpata's Fists",
---		range="Animator P II +1",
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
 		body="Udug Jacket",
@@ -526,8 +574,6 @@ function get_sets()
 
 -- pet midcast WHM
 	sets.midcast.pet.cure = {
-		--main="Gnafron's Adargas",
-		--range="Animator P II +1",
 		ammo="Automat. Oil +3",
 		head={ name="Naga Somen", augments={'Pet: MP+80','Automaton: "Cure" potency +4%','Automaton: "Fast Cast"+3',}},
 		body={ name="Naga Samue", augments={'Pet: MP+80','Automaton: "Cure" potency +4%','Automaton: "Fast Cast"+3',}},
@@ -541,8 +587,6 @@ function get_sets()
 
 -- Pet midcast RDM
 	sets.midcast.pet.buff = {
-	    --main="Sakpata's Fists",
-		--range="Animator P II +1",
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
 		body="Kara. Farsetto +2",
@@ -715,7 +759,7 @@ end
 -- Registering event for pet changes -- Essentially, this checks the Pet TP every second, and if it reaches 850+ it automatically swaps to the appropriate pet weaponskill set.
 windower.register_event('time change', function(new, old)
 	if new > old and pet.isvalid and pet.status == "Engaged" then 
-		if ( Mode == "Normal" or Mode == "DualTank" ) and pet.tp >= 850 and player.tp <= 400 then
+		if ( Mode == "Hybrid" or Mode == "HybridDEF" ) and pet.tp >= 850 and player.tp <= 400 then
 			if pet.frame == "Sharpshot Frame" then
 				equip(sets.ws.pet.arcuballista)
 			end
@@ -732,94 +776,108 @@ end)
 
 -- How swaps are calculated --
 function idle()
-	if Mode == "MasterDEF" then
+	if Mode == "Emergency-DT" then
 		equip(sets.idle.tank)
-	elseif Mode == "PetDEF" then
-		equip(sets.idle.pettank)
-	elseif Mode == "Master" then
-		if player.status == "Engaged" then
-			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then
-				equip(sets.engaged.master.godhands)
-			else
-				equip(sets.engaged.master.normal)
-			end
-		else
-			equip(sets.idle.normal)
-		end
-	elseif Mode == "PetTank" or Mode == "DualTank" then
+	elseif Mode == "Hybrid" or Mode == "HybridDEF" then
 		if player.status == "Idle" and pet.status == "Engaged" then
-			equip(sets.engaged.pet.turtle)
-		elseif player.status == "Engaged" and pet.status == "Engaged" then
-			if Mode == "PetTank" then
-				equip(sets.engaged.pet.turtle)
-			elseif Mode == "DualTank" then
-				equip(sets.engaged.hybrid.dualtank)
-			end
-		elseif player.status == "Engaged" and pet.status == "Idle" then
-			if Mode == "Tank" then
-				equip(sets.engaged.pet.turtle)
-			elseif Mode == "DualTank" then
-				equip(sets.engaged.hybrid.dualtank)
-			end
-		elseif player.status == "Engaged" and pet.isvalid == false then
-			equip(sets.engaged.master.normal)
-		else
-			equip(sets.idle.normal)
-		end
-	elseif Mode == "Normal" then
-		if player.status == "Idle" and pet.status == "Engaged" then
-			if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" then
+			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
 				if player.equipment.main == "Ohtas" then
 					equip(sets.engaged.pet.bruiserohtas)
 				else
 					equip(sets.engaged.pet.bruiser)
 				end
-			elseif pet.head == "Valoredge Head" and pet.frame == "Valoredge Frame" then
-				if player.equipment.main == "Ohtas" then
-					equip(sets.engaged.pet.bruiserohtas)
-				else
-					equip(sets.engaged.pet.bruiser)
+			elseif pet.frame == "Sharpshot Frame" then
+				if pet.head == "Sharpshot Head" then
+					equip(sets.engaged.pet.ranged)
+				elseif pet.head ~= "Sharpshot Head" then
+					if player.equipment.main == "Ohtas" then
+						equip(sets.engaged.pet.normalohtas)
+					else
+						equip(sets.engaged.pet.normal)
+					end
 				end
-			elseif pet.frame == "Harlequin Frame" then
-				if player.equipment.main == "Ohtas" then
-					equip(sets.engaged.pet.bruiserohtas)
-				else
-					equip(sets.engaged.pet.bruiser)
-				end
-			elseif pet.head == "Valoredge Head" and pet.frame == "Sharpshot Frame" then
-				if player.equipment.main == "Ohtas" then
-					equip(sets.engaged.pet.normalohtas)
-				else
-					equip(sets.engaged.pet.normal)
-				end
-			elseif pet.head == "Sharpshot Head" and pet.frame == "Sharpshot Frame" then
-				equip(sets.engaged.pet.ranged)
-			elseif pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
-				equip(sets.precast.pet.fastcast)
-			elseif pet.head == "Soulsoother Head" and pet.frame == "Stormwaker Frame" then
-				equip(sets.precast.pet.fastcast)
-			elseif pet.head == "Stormwaker Head" and pet.frame == "Stormwaker Frame" then
+			elseif pet.frame == "Stormwaker Frame" then
 				equip(sets.precast.pet.fastcast)
 			end
 		elseif player.status == "Engaged" and pet.status == "Engaged" then
-			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then
-				equip(sets.engaged.hybrid.godhands)
+			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
+				if Mode == "Hybrid" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.hybrid.godhands)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.hybrid.godhandsranged)
+					end
+				elseif Mode == "HybridDEF" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.hybrid.defencegodhands)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.hybrid.defencegodhandsranged)
+					end
+				end
 			else
-				equip(sets.engaged.hybrid.normal)
+				if Mode == "Hybrid" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.hybrid.normal)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.hybrid.normalranged)
+					end
+				elseif Mode == "HybridDEF" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.hybrid.defence)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.hybrid.defenceranged)
+					end
+				end
 			end
-		elseif player.status == "Engaged" and pet.status == "Idle" then
-			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then
-				equip(sets.engaged.master.godhands)
+		elseif player.status == "Engaged" and (pet.status == "Idle" or pet.isvalid == false) then
+			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
+				if Mode == "Hybrid" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.master.hybridgodhands)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.master.hybridgodhandsranged)
+					end
+				elseif Mode == "HybridDEF" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.master.hybriddefencegodhands)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.master.hybriddefencegodhandsranged)
+					end
+				end
 			else
-				equip(sets.engaged.master.normal)
-			end
-		elseif player.status == "Engaged" and pet.isvalid == false then
-			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then
-				equip(sets.engaged.master.godhands)
-			else
-				equip(sets.engaged.master.normal)
+				if Mode == "Hybrid" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.master.hybrid)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.master.hybridranged)
+					end
+				elseif Mode == "HybridDEF" then
+					if Pet_Distance == "Melee" then
+						equip(sets.engaged.master.hybriddefence)
+					elseif Pet_Distance == "Ranged" then
+						equip(sets.engaged.master.hybriddefenceranged)
+					end
+				end
 			end
 		else  
+			equip(sets.idle.normal)
+		end
+	elseif Mode == "Master" or Mode == "MasterDEF" then
+		if player.status == "Engaged" then
+			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
+				if Mode == "Master" then
+					equip(sets.engaged.master.godhands)
+				elseif Mode == "MasterDEF" then
+					equip(sets.engaged.master.defencegodhands)
+				end
+			else
+				if Mode == "Master" then
+					equip(sets.engaged.master.normal)
+				elseif Mode == "MasterDEF" then
+					equip(sets.engaged.master.godhands)
+				end
+			end
+		else
 			equip(sets.idle.normal)
 		end
 	elseif Mode == "Overdrive" or Mode == "OverdriveDEF" then
@@ -837,20 +895,34 @@ function idle()
 					equip(sets.engaged.overdrive.valoredgeDEF)
 				end
 			end
-		elseif player.status == "Engaged" and pet.status == "Idle" then
-			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then
-				equip(sets.engaged.master.godhands)
-			else
-				equip(sets.engaged.master.normal)
-			end
-		elseif player.status == "Engaged" and pet.isvalid == false then
-			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then
-				equip(sets.engaged.master.godhands)
-			else
-				equip(sets.engaged.master.normal)
-			end
-		else  
+		else
 			equip(sets.idle.normal)
+		end
+	elseif Mode == "PetDEF" then
+		equip(sets.engaged.pet.turtle)
+	elseif Mode == "Pet" then
+		if pet.status == "Engaged" then
+			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
+				if player.equipment.main == "Ohtas" then
+					equip(sets.engaged.pet.bruiserohtas)
+				else
+					equip(sets.engaged.pet.bruiser)
+				end
+			elseif pet.frame == "Sharpshot Frame" then
+				if pet.head == "Sharpshot Head" then
+					equip(sets.engaged.pet.ranged)
+				elseif pet.head ~= "Sharpshot Head" then
+					if player.equipment.main == "Ohtas" then
+						equip(sets.engaged.pet.normalohtas)
+					else
+						equip(sets.engaged.pet.normal)
+					end
+				end
+			elseif pet.frame == "Stormwaker Frame" then
+				equip(sets.precast.pet.fastcast)
+			end
+		else
+			equip(sets.engaged.pet.turtle)
 		end
 	end
 end
@@ -872,7 +944,7 @@ function pet_status_change(new,old)
 end
 
 function precast(spell)
-	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Trust" then 
+	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" or spell.type == "Trust" then 
 		equip(sets.precast.master.fastcast)
 	elseif spell.type == "WeaponSkill" then 
 		if spell.english == "Stringing Pummel" then
@@ -890,6 +962,8 @@ function precast(spell)
 		else
 			equip(sets.ws.master.weaponskill)
 		end
+	elseif spell.english == "Provoke" then
+		equip(sets.ja.enmity)
 	elseif spell.english == "Fire Maneuver" or spell.english == "Ice Maneuver" or 
 	spell.english == "Wind Maneuver" or spell.english == "Earth Maneuver" or 
 	spell.english == "Thunder Maneuver" or spell.english == "Water Maneuver" or 
@@ -911,8 +985,6 @@ function precast(spell)
 		equip(sets.ja.ventriloquy)
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
-	else
-		idle()
 	end
 end
 
@@ -922,52 +994,11 @@ function midcast(spell)
 		equip(sets.midcast.master.spelldamage)
 	elseif spell.type == "Trust" then
 		equip(sets.midcast.master.trust)
-	elseif spell.type == "WeaponSkill" then 
-		if spell.english == "Stringing Pummel" then
-			equip(sets.ws.master.stringingpummel)
-		elseif spell.english == "Victory Smite" then
-			equip(sets.ws.master.victorysmite)
-		elseif spell.english == "Shijin Spiral" or spell.english == "Evisceration" then
-			equip(sets.ws.master.shijinspiral)
-		elseif spell.english == "Howling Fist" then
-			equip(sets.ws.master.howlingfist)
-		elseif spell.english == "Raging Fists" then
-			equip(sets.ws.master.ragingfists)
-		elseif spell.english == "Asuran Fists" then
-			equip(sets.ws.master.asuranfists)
-		else
-			equip(sets.ws.master.weaponskill)
-		end
-	elseif spell.english == "Fire Maneuver" or spell.english == "Ice Maneuver" or 
-	spell.english == "Wind Maneuver" or spell.english == "Earth Maneuver" or 
-	spell.english == "Thunder Maneuver" or spell.english == "Water Maneuver" or 
-	spell.english == "Light Maneuver" or spell.english == "Dark Maneuver" then
-		if buffactive["Overdrive"] then
-			idle()
-		else
-			equip(sets.ja.overload)
-		end
-	elseif spell.english == "Tactical Switch" then
-		equip(sets.ja.tacticalswitch)
-	elseif spell.english == "Overdrive" then
-		equip(sets.ja.overdrive)
-	elseif spell.english == "Role Reversal" then
-		equip(sets.ja.rolereversal)
-	elseif spell.english == "Repair" or spell.english == "Maintenance" then
-		equip(sets.ja.repair)
-	elseif spell.english == "Ventriloquy" then
-		equip(sets.ja.ventriloquy)
-	elseif spell.english == "Activate" or spell.english == "Deus Ex Automata" then
-		check_pet_status()
-	elseif spell.english == "Holy Water" then
-		equip(sets.items.holywater)
-	else
-		idle()
 	end
 end
 
 function pet_midcast(spell)
-	if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" then
+	if pet.frame == "Valoredge Frame" then
 		equip(sets.midcast.pet.enmity)
 	elseif pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
 		equip(sets.midcast.pet.nuke)
@@ -994,106 +1025,142 @@ function pet_aftercast(spell)
 end
 
 function self_command(command)
-	if command == "ToggleNormal" then
-		if Mode == "Master" or Mode == "DualTank" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "PetTank" or Mode == "PetDEF" or Mode == "MasterDEF" then
-			Mode = "Normal"
+	if command == "ToggleHybrid" then
+		if Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
+			Mode = "Hybrid"
 			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
-		elseif Mode == "Normal" then
+		elseif Mode == "Hybrid" then
+			Mode = "HybridDEF"
+			idle()
+		end
+	elseif command == "ToggleMaster" then
+		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT"then
 			Mode = "Master"
+			Pet_Distance = "Melee"
+			if player.equipment.Range ~= "Neo Animator" then
+				send_command ('input /equip Range "Neo Animator"')
+			end
 			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
-
+		elseif Mode == "Master" then
+			Mode = "MasterDEF"
+			Pet_Distance = "Melee"
+			if player.equipment.Range ~= "Neo Animator" then
+				send_command ('input /equip Range "Neo Animator"')
+			end
+			idle()
 		end
 	elseif command == "ToggleOverdrive" then
-		if Mode == "Normal" or Mode == "DualTank" or Mode == "Master" or Mode == "OverdriveDEF" or Mode == "PetTank" or Mode == "PetDEF" or Mode == "MasterDEF" then
+		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
 			Mode = "Overdrive"
+			Pet_Distance = "Melee"
+			if player.equipment.Range ~= "Animator P +1" then
+				send_command ('input /equip Range "Animator P +1"')
+			end
 			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
-
 		elseif Mode == "Overdrive" then
-			Mode = "OverdriveDEF"
+			Mode = "OverdriveDEF"  
+			Pet_Distance = "Melee"
+			if player.equipment.Range ~= "Animator P +1" then
+				send_command ('input /equip Range "Animator P +1"')
+			end
 			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
 		end
-	elseif command == "ToggleTank" then
-		if Mode == "Normal" or Mode == "DualTank" or Mode == "Master" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "PetDEF" or Mode == "MasterDEF" then
-			Mode = "PetTank"
-			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
-		elseif Mode == "PetTank" then
-			Mode = "DualTank"
-			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
-
-		end
-	elseif command == "ToggleMasterDEF" then
-		if Mode == "Normal" or Mode == "DualTank" or Mode == "Master" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "PetTank" or Mode == "PetDEF" then
-			Mode = "MasterDEF"
-			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
-		end
-	elseif command == "TogglePetDEF" then
-		if Mode == "Normal" or Mode == "DualTank" or Mode == "Master" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "PetTank" or Mode == "MasterDEF" then
+	elseif command == "TogglePet" then
+		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "Emergency-DT" then
 			Mode = "PetDEF"
 			idle()
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
+		elseif Mode == "PetDEF" then
+			Mode = "Pet"
+			idle()
+		end
+	elseif command == "ToggleEmergency" then
+		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
+			Mode = "Emergency-DT"
+			idle()
+		end
+	elseif command == "ToggleDistance" then
+		if Pet_Distance == "Melee" then
+			Pet_Distance = "Ranged"
+			send_command ('input /equip Range "Animator P II +1"')
+			idle()
+		elseif Pet_Distance == "Ranged" then
+			Pet_Distance = "Melee"
+			send_command ('input /equip Range "Animator P +1"')
+			idle()
+		end
+	elseif command == "ToggleWeapon" then
+		if Mode == "Hybrid" or Mode == "HybridDEF" then
+			if player.equipment.Main == "Kenkonken" then
+				send_command ('input /equip Main "Xiucoatl"')
+			elseif player.equipment.Main == "Xiucoatl" then
+				send_command ('input /equip Main "Godhands"')
+			elseif player.equipment.Main == "Godhands" then
+				send_command ('input /equip Main "Verethragna"')
+			elseif player.equipment.Main == "Verethragna" then
+				send_command ('input /equip Main "Ohtas"')
+			else
+				send_command ('input /equip Main "Kenkonken"')
+			end
+		elseif Mode == "Master" or Mode == "MasterDEF" or Mode == "Emergency-DT"  then
+			if player.equipment.Main == "Godhands" then
+				send_command ('input /equip Main "Verethragna"')
+			elseif player.equipment.Main == "Verethragna" then
+				send_command ('input /equip Main "Kenkonken"')
+			else
+				send_command ('input /equip Main "Godhands"')
+			end
+		elseif Mode == "Overdrive" or Mode == "OverdriveDEF" then
+			if player.equipment.Main == "Xiucoatl" then
+				send_command ('input /equip Main "Kenkonken"')
+			else
+				send_command ('input /equip Main "Xiucoatl"')
+			end
+		elseif Mode == "Pet" then
+			if player.equipment.Main == "Xiucoatl" then
+				send_command ('input /equip Main "Sakpata\'s Fists"')
+			elseif player.equipment.Main == "Sakpata's Fists" then
+				send_command ('input /equip Main "Ohtas"')
+			else
+				send_command ('input /equip Main "Xiucoatl"')
+			end
+		elseif Mode == "PetDEF" then
+			if player.equipment.Main == "Gnafron's Adargas" then
+				send_command ('input /equip Main "Ohtas"')
+			else
+				send_command ('input /equip Main "Gnafron\'s Adargas"')
+			end
 		end
 	end
+	gearswap_jobbox:text(gearswap_box())
+	gearswap_jobbox:show()
 end
 
 function check_pet_status()
 	if pet.isvalid then
 		if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" then
 			Pet_Mode = "Tank"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
 		elseif pet.head == "Valoredge Head" and pet.frame == "Valoredge Frame" then
-			Pet_Mode = "Bruiser"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
+				Pet_Mode = "Bruiser"
 		elseif pet.frame == "Harlequin Frame" then
 			Pet_Mode = "Bruiser"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
 		elseif pet.head == "Valoredge Head" and pet.frame == "Sharpshot Frame" then
-			Pet_Mode = "Sharpshot"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
+				Pet_Mode = "Sharpshot"
 		elseif pet.head == "Sharpshot Head" and pet.frame == "Sharpshot Frame" then
 			Pet_Mode = "Ranged"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
 		elseif pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
 			Pet_Mode = "BLM"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
 		elseif pet.head == "Soulsoother Head" and pet.frame == "Stormwaker Frame" then
 			Pet_Mode = "WHM"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
 		elseif pet.head == "Stormwaker Head" and pet.frame == "Stormwaker Frame" then
 			Pet_Mode = "RDM"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
 		else
-			Pet_Mode = "Unknown"
-			gearswap_jobbox:text(gearswap_box())
-			gearswap_jobbox:show()
+			Pet_Mode = "Other"
 		end
 	else
 		Pet_Mode = "NA"
-		gearswap_jobbox:text(gearswap_box())
-		gearswap_jobbox:show()
 	end
+	gearswap_jobbox:text(gearswap_box())
+	gearswap_jobbox:show()
 end
 
 user_setup()
