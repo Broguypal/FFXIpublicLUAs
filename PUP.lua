@@ -72,6 +72,7 @@ send_command('bind numpad3 gs c ToggleDistance')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
+send_command('bind f12 input //lua l AutoPUP')
 
 --------- GEAR DEFINED ------------------
 
@@ -1027,13 +1028,18 @@ function self_command(command)
 	if command == "ToggleHybrid" then
 		if Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
 			Mode = "Hybrid"
+			if Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
+				send_command ('input /equip Range "Animator P +1"')
+			elseif Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
+				send_command ('input /equip Range "Animator P II +1"') 
+			end
 			idle()
 		elseif Mode == "Hybrid" then
 			Mode = "HybridDEF"
 			idle()
 		end
 	elseif command == "ToggleMaster" then
-		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT"then
+		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
 			Mode = "Master"
 			Pet_Distance = "Melee"
 			if player.equipment.Range ~= "Neo Animator" then
@@ -1043,9 +1049,6 @@ function self_command(command)
 		elseif Mode == "Master" then
 			Mode = "MasterDEF"
 			Pet_Distance = "Melee"
-			if player.equipment.Range ~= "Neo Animator" then
-				send_command ('input /equip Range "Neo Animator"')
-			end
 			idle()
 		end
 	elseif command == "ToggleOverdrive" then
@@ -1059,14 +1062,16 @@ function self_command(command)
 		elseif Mode == "Overdrive" then
 			Mode = "OverdriveDEF"  
 			Pet_Distance = "Melee"
-			if player.equipment.Range ~= "Animator P +1" then
-				send_command ('input /equip Range "Animator P +1"')
-			end
 			idle()
 		end
 	elseif command == "TogglePet" then
 		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "Emergency-DT" then
 			Mode = "PetDEF"
+			if Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
+				send_command ('input /equip Range "Animator P +1"')
+			elseif Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
+				send_command ('input /equip Range "Animator P II +1"')
+			end
 			idle()
 		elseif Mode == "PetDEF" then
 			Mode = "Pet"
