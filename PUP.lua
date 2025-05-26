@@ -33,17 +33,19 @@ end
 Mode = "Hybrid"
 Pet_Mode = "NA"
 Pet_Distance = "Melee"
-
+Lock_Mode = "Unlocked"
  
 Modes = {'Hybrid','HybridDEF','Master','MasterDEF','Overdrive','OverdriveDEF','Pet','PetDEF','Emergency-DT'}
 Pet_Modes = {'NA','Bruiser','Tank','Sharpshot','Ranged','WHM','BLM','RDM','Other'}
 Pet_Distances = {'Melee', 'Ranged'}
+Weapon_Modes = {'Locked','Unlocked'}
 
 gearswap_box = function()
   str = '           \\cs(246,102,13)PUPPETMASTER\\cr\n'
   str = str..' Current Mode:\\cs(200,100,200)   '..Mode..'\\cr\n'
   str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
   str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
+  str = str..' Weapon Mode:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
     return str
 end
 
@@ -66,7 +68,9 @@ send_command('bind numpad7 gs c TogglePet')
 send_command('bind numpad6 gs c ToggleMaster')
 send_command('bind numpad5 gs c ToggleEmergency')
 send_command('bind numpad4 gs c ToggleWeapon')
-send_command('bind numpad3 gs c ToggleDistance')
+send_command('bind numpad3 gs c ToggleLock')
+send_command('bind numpad2 gs c ToggleDistance')
+
 
 --------- Personal Commands ---------------
 send_command('bind f9 input /item "Remedy" <me>')
@@ -98,7 +102,7 @@ send_command('bind f12 input //lua l AutoPUP')
 
 ---------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
 -- Master Damage taken --
-	sets.idle.tank = {
+	sets.idle.Tank = {
 		ammo="Automat. Oil +3",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -115,7 +119,7 @@ send_command('bind f12 input //lua l AutoPUP')
 	}
 
 -- Pet Damage Taken / Regen --
-	sets.idle.pettank = {
+	sets.idle.PetTank = {
 		ammo="Automat. Oil +3",
        	head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
 		body={ name="Rao Togi +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
@@ -132,7 +136,7 @@ send_command('bind f12 input //lua l AutoPUP')
 	}
 
 ---------------------------	IDLE / TOWN SET	---------------------------	
-	sets.idle.normal = {
+	sets.idle.Normal = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -152,8 +156,7 @@ send_command('bind f12 input //lua l AutoPUP')
 
 ---------------------------	HYRBRID ENGAGED SETS	---------------------------
 -- Hybrid 
-	sets.engaged.hybrid.normal = {
-	    range="Animator P +1",
+	sets.engaged.hybrid.Normal = {
 		ammo="Automat. Oil +3",
 		head="Heyoka Cap +1",
 		body="Mpaca's Doublet",
@@ -169,22 +172,29 @@ send_command('bind f12 input //lua l AutoPUP')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 	
-	sets.engaged.hybrid.normalranged = set_combine(sets.engaged.hybrid.normal,{
+	sets.engaged.hybrid.NormalMelee = set_combine(sets.engaged.hybrid.Normal,{
+		range="Animator P +1",
+	})
+	
+	sets.engaged.hybrid.NormalRanged = set_combine(sets.engaged.hybrid.Normal,{
 		range="Animator P II +1",
 	})
 
 -- Normal - Godhands/Xiucoatl equipped --
-	sets.engaged.hybrid.godhands = set_combine(sets.engaged.hybrid.normal,{
+	sets.engaged.hybrid.Godhands = set_combine(sets.engaged.hybrid.Normal,{
 		left_ear="Mache Earring +1",
 	})
 	
-	sets.engaged.hybrid.godhandsranged = set_combine(sets.engaged.hybrid.godhands,{
+	sets.engaged.hybrid.GodhandsMelee = set_combine(sets.engaged.hybrid.Godhands,{
+		range="Animator P +1",
+	})
+	
+	sets.engaged.hybrid.GodhandsRanged = set_combine(sets.engaged.hybrid.Godhands,{
 		range="Animator P II +1",
 	})
 
 --Hybrid Dual Tank set
-	sets.engaged.hybrid.defence = {
-		range="Animator P +1",
+	sets.engaged.hybrid.Defence = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
@@ -200,22 +210,129 @@ send_command('bind f12 input //lua l AutoPUP')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','Pet: Phys. dmg. taken-10%',}},
 	}
 
-	sets.engaged.hybrid.defenceranged = set_combine(sets.engaged.hybrid.defence,{
+	sets.engaged.hybrid.DefenceMelee = set_combine(sets.engaged.hybrid.Defence,{
+		range="Animator P +1",
+	})
+
+	sets.engaged.hybrid.DefenceRanged = set_combine(sets.engaged.hybrid.Defence,{
 		range="Animator P II +1",
 	})
 
-	sets.engaged.hybrid.defencegodhands = set_combine(sets.engaged.hybrid.defence,{
+-- Hybrid - Godhands/Xiucoatl equipped --
+
+	sets.engaged.hybrid.DefenceGodhands = set_combine(sets.engaged.hybrid.Defence,{
 		left_ear="Mache Earring +1",
 	})
 
-	sets.engaged.hybrid.defencegodhandsranged = set_combine(sets.engaged.hybrid.defencegodhands,{
+	sets.engaged.hybrid.DefenceGodhandsMelee = set_combine(sets.engaged.hybrid.DefenceGodhands,{
+		range="Animator P +1",
+	})
+
+	sets.engaged.hybrid.DefenceGodhandsRanged = set_combine(sets.engaged.hybrid.DefenceGodhands,{
+		range="Animator P II +1",
+	})
+
+---------------------------	MASTER ONLY ENGAGED SETS	---------------------------
+-- Master sets for master mode
+	sets.engaged.master.Normal = {
+		ammo="Automat. Oil +3",
+		head="Malignance Chapeau",
+		body="Mpaca's Doublet",
+		hands="Karagoz Guanti +3",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck="Shulmanu Collar",
+		waist="Moonbow Belt +1",
+		left_ear="Schere Earring",
+		right_ear={ name="Kara. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Store TP"+5',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Gere Ring",
+		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	}
+
+	sets.engaged.master.NormalUnlocked = set_combine(sets.engaged.master.Normal,{
+		range="Neo Animator",
+	})
+
+--Normal - Godhands/xiucoatl equipped
+	sets.engaged.master.Godhands = set_combine(sets.engaged.master.Normal,{
+		left_ear="Mache Earring +1",
+	})
+	
+	sets.engaged.master.GodhandsUnlocked = set_combine(sets.engaged.master.Godhands,{
+		range="Neo Animator",
+	})
+	
+-- Defence
+	sets.engaged.master.Defence = {
+		ammo="Automat. Oil +3",
+		head="Malignance Chapeau",
+		body="Malignance Tabard",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Schere Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Gere Ring",
+		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	}
+
+	sets.engaged.master.DefenceUnlocked = set_combine(sets.engaged.master.Defence,{
+		range="Neo Animator",
+	})
+
+--Defence - Godhands/xiucoatl equipped
+	sets.engaged.master.DefenceGodhands = set_combine(sets.engaged.master.Defence,{
+		left_ear="Mache Earring +1",
+	})
+	
+	sets.engaged.master.DefenceGodhandsUnlocked = set_combine(sets.engaged.master.DefenceGodhands,{
+		range="Neo Animator",
+	})
+
+---- Master Sets for Hybrid Mode (For when pet dies or is not engaged  
+--Hybrid Master
+	sets.engaged.master.HybridMelee = set_combine(sets.engaged.master.Normal,{
+		range="Animator P +1",
+	})
+
+	sets.engaged.master.HybridRanged = set_combine(sets.engaged.master.Normal,{
+		range="Animator P II +1",
+	})
+	
+	sets.engaged.master.HybridGodhandsMelee = set_combine(sets.engaged.master.Godhands,{
+		range="Animator P +1",
+	})
+	
+	sets.engaged.master.HybridGodhandsRanged = set_combine(sets.engaged.master.Godhands,{
+		range="Animator P II +1",
+	})
+	
+	
+-- Defence Master
+	sets.engaged.master.HybridDefenceMelee = set_combine(sets.engaged.master.Defence,{
+		range="Animator P +1",
+	})
+	
+	sets.engaged.master.HybridDefenceRanged = set_combine(sets.engaged.master.Defence,{
+		range="Animator P II +1",
+	})
+
+	sets.engaged.master.HybridDefenceGodhandsMelee = set_combine(sets.engaged.master.DefenceGodhands,{
+		range="Animator P +1",
+	})
+
+	sets.engaged.master.HybridDefenceGodhandsRanged = set_combine(sets.engaged.master.DefenceGodhands,{
 		range="Animator P II +1",
 	})
 
 ---------------------------	PET ONLY ENGAGED SETS	---------------------------
 
 -- Normal
-	sets.engaged.pet.normal = {
+	sets.engaged.pet.Normal = {
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
 		body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
@@ -232,12 +349,12 @@ send_command('bind f12 input //lua l AutoPUP')
 	}
 
 --Normal Ohtas equiped
-	sets.engaged.pet.normalohtas = set_combine(sets.engaged.pet.normal,{
+	sets.engaged.pet.NormalOhtas = set_combine(sets.engaged.pet.Normal,{
 		waist="Incarnation Sash",
 	})
 
 --Bruiser tank 
-	sets.engaged.pet.bruiser = {
+	sets.engaged.pet.Bruiser = {
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
 		body={ name="Taeon Tabard", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -254,12 +371,12 @@ send_command('bind f12 input //lua l AutoPUP')
 	}
 
 -- Bruiser tank Ohtas equipped
-	sets.engaged.pet.bruiserohtas = set_combine(sets.engaged.pet.bruiser,{
+	sets.engaged.pet.BruiserOhtas = set_combine(sets.engaged.pet.Bruiser,{
 		waist="Incarnation Sash",
 	})
 
 -- ranged dps (use xiucoatl)
-	sets.engaged.pet.ranged = {
+	sets.engaged.pet.Ranged = {
 		ammo="Automat. Oil +3",
 		head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},
 		body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
@@ -275,28 +392,10 @@ send_command('bind f12 input //lua l AutoPUP')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
---Turtle Tank
-	sets.engaged.pet.turtle = {
-		ammo="Automat. Oil +3",
-       	head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
-		body={ name="Rao Togi +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
-		hands={ name="Rao Kote +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
-		legs={ name="Rao Haidate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
-		feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
-		neck="Shepherd's Chain",
-		waist="Isa Belt",
-		left_ear="Rimeice Earring",
-		right_ear="Hypaspist Earring",
-		left_ring="C. Palug Ring",
-		right_ring="Thur. Ring +1",
-		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
-	}
-
 
 ---------------------------	OVERDRIVE ENGAGED SETS	---------------------------
 --Sharpshot overdrive
-	sets.engaged.overdrive.sharpshot = {
-		range="Animator P +1",
+	sets.engaged.overdrive.Sharpshot = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
 		body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
@@ -311,10 +410,13 @@ send_command('bind f12 input //lua l AutoPUP')
 		right_ring="Thur. Ring +1",
 		back={ name="Dispersal Mantle", augments={'STR+2','DEX+4','Pet: TP Bonus+500',}},
 	}
+	
+	sets.engaged.overdrive.SharpshotUnlocked = set_combine(sets.engaged.overdrive.Sharpshot,{
+		range="Animator P +1",
+	})
 
 --Sharpshot overdrive Defence
-	sets.engaged.overdrive.sharpshotDEF = {
-		range="Animator P +1",
+	sets.engaged.overdrive.SharpshotDEF = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
 		body={ name="Rao Togi +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
@@ -330,9 +432,12 @@ send_command('bind f12 input //lua l AutoPUP')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
---valoredge overdrive
-	sets.engaged.overdrive.valoredge = {
+	sets.engaged.overdrive.SharpshotDEFUnlocked = set_combine(sets.engaged.overdrive.SharpshotDEF,{
 		range="Animator P +1",
+	})
+
+--Valoredge overdrive
+	sets.engaged.overdrive.Valoredge = {
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
 		body={ name="Taeon Tabard", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -348,9 +453,12 @@ send_command('bind f12 input //lua l AutoPUP')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
---Valoredge overdrive Defence
-	sets.engaged.overdrive.valoredgeDEF = {
+	sets.engaged.overdrive.ValoredgeUnlocked = set_combine(sets.engaged.overdrive.Valoredge,{
 		range="Animator P +1",
+	})
+
+--Valoredge overdrive Defence
+	sets.engaged.overdrive.ValoredgeDEF = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3", 
 		body={ name="Rao Togi +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
@@ -366,88 +474,10 @@ send_command('bind f12 input //lua l AutoPUP')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
----------------------------	MASTER ONLY ENGAGED SETS	---------------------------
--- Master sets for master mode
-	sets.engaged.master.normal = {
-        range="Neo Animator",
-		ammo="Automat. Oil +3",
-		head="Malignance Chapeau",
-		body="Mpaca's Doublet",
-		hands="Karagoz Guanti +3",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-		neck="Shulmanu Collar",
-		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear={ name="Kara. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Store TP"+5',}},
-		left_ring="Niqmaddu Ring",
-		right_ring="Gere Ring",
-		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
-	}
-
---Normal - Godhands/xiucoatl equipped
-	sets.engaged.master.godhands = set_combine(sets.engaged.master.normal,{
-		left_ear="Mache Earring +1",
-	})
-	
--- Defence
-	sets.engaged.master.defence = {
-		range="Neo Animator",
-		ammo="Automat. Oil +3",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Niqmaddu Ring",
-		right_ring="Gere Ring",
-		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
-	}
-
---Defence - Godhands/xiucoatl equipped
-	sets.engaged.master.defencegodhands = set_combine(sets.engaged.master.defence,{
-		left_ear="Mache Earring +1",
-	})
-
----- Master Sets for Hybrid Mode (For when pet dies or is not engaged - you shouldn't need to change below) 
---Hybrid Master
-	sets.engaged.master.hybrid = set_combine(sets.engaged.master.normal,{
+	sets.engaged.overdrive.ValoredgeDEFUnlocked = set_combine(sets.engaged.overdrive.ValoredgeDEF,{
 		range="Animator P +1",
 	})
 
-	sets.engaged.master.hybridranged = set_combine(sets.engaged.master.normal,{
-		range="Animator P II +1",
-	})
-	
-	sets.engaged.master.hybridgodhands = set_combine(sets.engaged.master.godhands,{
-		range="Animator P +1",
-	})
-	
-	sets.engaged.master.hybridgodhandsranged = set_combine(sets.engaged.master.godhands,{
-		range="Animator P II +1",
-	})
-	
-	
--- Defence Master
-	sets.engaged.master.hybriddefence = set_combine(sets.engaged.master.defence,{
-		range="Animator P +1",
-	})
-	
-	sets.engaged.master.hybriddefenceranged = set_combine(sets.engaged.master.defence,{
-		range="Animator P II +1",
-	})
-
-	sets.engaged.master.hybriddefencegodhands = set_combine(sets.engaged.master.defencegodhands,{
-		range="Animator P +1",
-	})
-
-	sets.engaged.master.hybriddefencegodhandsranged = set_combine(sets.engaged.master.defencegodhands,{
-		range="Animator P II +1",
-	})
 ---------------------------	PRECAST SETS	---------------------------
 
 ---------------------------	PRECAST / JOB ABILITY MASTER SETS	---------------------------
@@ -785,23 +815,23 @@ end)
 -- How swaps are calculated --
 function idle()
 	if Mode == "Emergency-DT" then
-		equip(sets.idle.tank)
+		equip(sets.idle.Tank)
 	elseif Mode == "Hybrid" or Mode == "HybridDEF" then
 		if player.status == "Idle" and pet.status == "Engaged" then
 			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
 				if player.equipment.main == "Ohtas" then
-					equip(sets.engaged.pet.bruiserohtas)
+					equip(sets.engaged.pet.BruiserOhtas)
 				else
-					equip(sets.engaged.pet.bruiser)
+					equip(sets.engaged.pet.Bruiser)
 				end
 			elseif pet.frame == "Sharpshot Frame" then
 				if pet.head == "Sharpshot Head" then
-					equip(sets.engaged.pet.ranged)
+					equip(sets.engaged.pet.Ranged)
 				elseif pet.head ~= "Sharpshot Head" then
 					if player.equipment.main == "Ohtas" then
-						equip(sets.engaged.pet.normalohtas)
+						equip(sets.engaged.pet.NormalOhtas)
 					else
-						equip(sets.engaged.pet.normal)
+						equip(sets.engaged.pet.Normal)
 					end
 				end
 			elseif pet.frame == "Stormwaker Frame" then
@@ -810,127 +840,191 @@ function idle()
 		elseif player.status == "Engaged" and pet.status == "Engaged" then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
 				if Mode == "Hybrid" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.hybrid.godhands)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.hybrid.godhandsranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.hybrid.GodhandsMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.hybrid.GodhandsRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.hybrid.Godhands)
 					end
 				elseif Mode == "HybridDEF" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.hybrid.defencegodhands)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.hybrid.defencegodhandsranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.hybrid.DefenceGodhandsMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.hybrid.DefenceGodhandsRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.hybrid.DefenceGodhands)
 					end
 				end
 			else
 				if Mode == "Hybrid" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.hybrid.normal)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.hybrid.normalranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.hybrid.NormalMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.hybrid.NormalRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.hybrid.Normal)
 					end
 				elseif Mode == "HybridDEF" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.hybrid.defence)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.hybrid.defenceranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.hybrid.DefenceMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.hybrid.DefenceRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.hybrid.Defence)
 					end
 				end
 			end
 		elseif player.status == "Engaged" and (pet.status == "Idle" or pet.isvalid == false) then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
 				if Mode == "Hybrid" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.master.hybridgodhands)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.master.hybridgodhandsranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.master.HybridGodhandsMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.master.HybridGodhandsRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.Godhands)
 					end
 				elseif Mode == "HybridDEF" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.master.hybriddefencegodhands)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.master.hybriddefencegodhandsranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.master.HybridDefenceGodhandsMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.master.HybridDefenceGodhandsRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.Defence)
 					end
 				end
 			else
 				if Mode == "Hybrid" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.master.hybrid)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.master.hybridranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.master.HybridMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.master.HybridRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.Normal)
 					end
 				elseif Mode == "HybridDEF" then
-					if Pet_Distance == "Melee" then
-						equip(sets.engaged.master.hybriddefence)
-					elseif Pet_Distance == "Ranged" then
-						equip(sets.engaged.master.hybriddefenceranged)
+					if Lock_Mode == "Unlocked" then
+						if Pet_Distance == "Melee" then
+							equip(sets.engaged.master.HybridDefenceMelee)
+						elseif Pet_Distance == "Ranged" then
+							equip(sets.engaged.master.HybridDefenceRanged)
+						end
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.Defence)
 					end
 				end
 			end
 		else  
-			equip(sets.idle.normal)
+			equip(sets.idle.Normal)
 		end
 	elseif Mode == "Master" or Mode == "MasterDEF" then
 		if player.status == "Engaged" then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
 				if Mode == "Master" then
-					equip(sets.engaged.master.godhands)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.master.GodhandsUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.Godhands)
+					end
 				elseif Mode == "MasterDEF" then
-					equip(sets.engaged.master.defencegodhands)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.master.DefenceGodhandsUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.DefenceGodhands)
+					end
 				end
 			else
 				if Mode == "Master" then
-					equip(sets.engaged.master.normal)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.master.NormalUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.Normal)
+					end
 				elseif Mode == "MasterDEF" then
-					equip(sets.engaged.master.godhands)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.master.DefenceUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.master.Defence)
+					end
 				end
 			end
 		else
-			equip(sets.idle.normal)
+			equip(sets.idle.Normal)
 		end
 	elseif Mode == "Overdrive" or Mode == "OverdriveDEF" then
 		if pet.status == "Engaged" then
 			if Mode == "Overdrive" then
 				if pet.frame == "Sharpshot Frame" then
-					equip(sets.engaged.overdrive.sharpshot)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.overdrive.SharpshotUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.overdrive.Sharpshot)
+					end
 				elseif pet.frame == "Valoredge Frame" then
-					equip(sets.engaged.overdrive.valoredge)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.overdrive.ValoredgeUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.overdrive.Valoredge)
+					end
 				end
 			elseif Mode == "OverdriveDEF" then
 				if pet.frame == "Sharpshot Frame" then
-					equip(sets.engaged.overdrive.sharpshotDEF)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.overdrive.SharpshotDEFUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.overdrive.SharpshotDEF)
+					end
 				elseif pet.frame == "Valoredge Frame" then
-					equip(sets.engaged.overdrive.valoredgeDEF)
+					if Lock_Mode == "Unlocked" then
+						equip(sets.engaged.overdrive.ValoredgeDEFUnlocked)
+					elseif Lock_Mode == "Locked" then
+						equip(sets.engaged.overdrive.ValoredgeDEF)
+					end
 				end
 			end
 		else
-			equip(sets.idle.normal)
+			equip(sets.idle.Normal)
 		end
 	elseif Mode == "PetDEF" then
-		equip(sets.engaged.pet.turtle)
+		equip(sets.idle.PetTank)
 	elseif Mode == "Pet" then
 		if pet.status == "Engaged" then
 			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
 				if player.equipment.main == "Ohtas" then
-					equip(sets.engaged.pet.bruiserohtas)
+					equip(sets.engaged.pet.BruiserOhtas)
 				else
-					equip(sets.engaged.pet.bruiser)
+					equip(sets.engaged.pet.Bruiser)
 				end
 			elseif pet.frame == "Sharpshot Frame" then
 				if pet.head == "Sharpshot Head" then
-					equip(sets.engaged.pet.ranged)
+					equip(sets.engaged.pet.Ranged)
 				elseif pet.head ~= "Sharpshot Head" then
 					if player.equipment.main == "Ohtas" then
-						equip(sets.engaged.pet.normalohtas)
+						equip(sets.engaged.pet.NormalOhtas)
 					else
-						equip(sets.engaged.pet.normal)
+						equip(sets.engaged.pet.Normal)
 					end
 				end
 			elseif pet.frame == "Stormwaker Frame" then
 				equip(sets.precast.pet.fastcast)
 			end
 		else
-			equip(sets.engaged.pet.turtle)
+			equip(sets.idle.PetTank)
 		end
 	end
 end
@@ -1036,12 +1130,12 @@ function self_command(command)
 	if command == "ToggleHybrid" then
 		if Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
 			Mode = "Hybrid"
-			if Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
+			idle()
+			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
 				send_command ('input /equip Range "Animator P +1"')
-			elseif Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
+			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
 				send_command ('input /equip Range "Animator P II +1"') 
 			end
-			idle()
 		elseif Mode == "Hybrid" then
 			Mode = "HybridDEF"
 			idle()
@@ -1049,11 +1143,11 @@ function self_command(command)
 	elseif command == "ToggleMaster" then
 		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
 			Mode = "Master"
-			Pet_Distance = "Melee"
-			if player.equipment.Range ~= "Neo Animator" then
+			idle()
+			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Neo Animator" then
+				Pet_Distance = "Melee"
 				send_command ('input /equip Range "Neo Animator"')
 			end
-			idle()
 		elseif Mode == "Master" then
 			Mode = "MasterDEF"
 			Pet_Distance = "Melee"
@@ -1062,11 +1156,11 @@ function self_command(command)
 	elseif command == "ToggleOverdrive" then
 		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
 			Mode = "Overdrive"
-			Pet_Distance = "Melee"
-			if player.equipment.Range ~= "Animator P +1" then
+			idle()
+			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Animator P +1" then
+				Pet_Distance = "Melee"
 				send_command ('input /equip Range "Animator P +1"')
 			end
-			idle()
 		elseif Mode == "Overdrive" then
 			Mode = "OverdriveDEF"  
 			Pet_Distance = "Melee"
@@ -1075,12 +1169,12 @@ function self_command(command)
 	elseif command == "TogglePet" then
 		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "Emergency-DT" then
 			Mode = "PetDEF"
-			if Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
+			idle()
+			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
 				send_command ('input /equip Range "Animator P +1"')
-			elseif Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
+			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
 				send_command ('input /equip Range "Animator P II +1"')
 			end
-			idle()
 		elseif Mode == "PetDEF" then
 			Mode = "Pet"
 			idle()
@@ -1099,6 +1193,12 @@ function self_command(command)
 			Pet_Distance = "Melee"
 			send_command ('input /equip Range "Animator P +1"')
 			idle()
+		end
+	elseif command == "ToggleLock" then
+		if Lock_Mode == "Unlocked" then
+			Mode = "Locked"
+		elseif Lock_Mode == "Locked" then
+			Mode = "Unlocked"
 		end
 	elseif command == "ToggleWeapon" then
 		if Mode == "Hybrid" or Mode == "HybridDEF" then
