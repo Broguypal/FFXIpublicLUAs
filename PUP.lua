@@ -76,6 +76,7 @@ send_command('bind numpad2 gs c ToggleDistance')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
+send_command('bind f12 input //lua l AutoPUP')
 
 --------- GEAR DEFINED ------------------
 
@@ -96,8 +97,15 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		sets.midcast.master = {}
 		sets.midcast.pet = {} 
 	sets.items = {}
+	sets.animators = {}
  	
 ---------------------------	GEAR SETS	---------------------------	
+------------- Animator Swaps - Put in your applicable animators here ---------------
+-- Note: Please buy a "left_ear="Mache Earring +1"" to make a lot of the swaps work
+
+sets.animators.Ranged = {range="Animator P II +1",}
+sets.animators.Melee = {range="Animator P +1",}
+sets.animators.Master = {range="Neo Animator",}
 
 ---------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
 -- Master Damage taken --
@@ -154,7 +162,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 ---------------------------	ENGAGED SETS	---------------------------
 
 ---------------------------	HYRBRID ENGAGED SETS	---------------------------
--- Hybrid 
+-- Normal Hybrid
 	sets.engaged.hybrid.Normal = {
 		ammo="Automat. Oil +3",
 		head="Heyoka Cap +1",
@@ -171,26 +179,13 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 	
-	sets.engaged.hybrid.NormalMelee = set_combine(sets.engaged.hybrid.Normal,{
-		range="Animator P +1",
-	})
-	
-	sets.engaged.hybrid.NormalRanged = set_combine(sets.engaged.hybrid.Normal,{
-		range="Animator P II +1",
-	})
+	sets.engaged.hybrid.NormalMelee = set_combine(sets.engaged.hybrid.Normal,{sets.animators.Melee,})
+	sets.engaged.hybrid.NormalRanged = set_combine(sets.engaged.hybrid.Normal,{sets.animators.Ranged,})
 
 -- Normal - Godhands/Xiucoatl equipped --
-	sets.engaged.hybrid.Godhands = set_combine(sets.engaged.hybrid.Normal,{
-		left_ear="Mache Earring +1",
-	})
-	
-	sets.engaged.hybrid.GodhandsMelee = set_combine(sets.engaged.hybrid.Godhands,{
-		range="Animator P +1",
-	})
-	
-	sets.engaged.hybrid.GodhandsRanged = set_combine(sets.engaged.hybrid.Godhands,{
-		range="Animator P II +1",
-	})
+	sets.engaged.hybrid.Godhands = set_combine(sets.engaged.hybrid.Normal,{left_ear="Mache Earring +1",})
+	sets.engaged.hybrid.GodhandsMelee = set_combine(sets.engaged.hybrid.Godhands,{sets.animators.Melee,})
+	sets.engaged.hybrid.GodhandsRanged = set_combine(sets.engaged.hybrid.Godhands,{sets.animators.Ranged,})
 
 --Hybrid Dual Tank set
 	sets.engaged.hybrid.Defence = {
@@ -208,31 +203,17 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Defending Ring",
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','Pet: Phys. dmg. taken-10%',}},
 	}
-
-	sets.engaged.hybrid.DefenceMelee = set_combine(sets.engaged.hybrid.Defence,{
-		range="Animator P +1",
-	})
-
-	sets.engaged.hybrid.DefenceRanged = set_combine(sets.engaged.hybrid.Defence,{
-		range="Animator P II +1",
-	})
+	
+	sets.engaged.hybrid.DefenceMelee = set_combine(sets.engaged.hybrid.Defence,{sets.animators.Melee,})
+	sets.engaged.hybrid.DefenceRanged = set_combine(sets.engaged.hybrid.Defence,{sets.animators.Ranged,})
 
 -- Hybrid - Godhands/Xiucoatl equipped --
-
-	sets.engaged.hybrid.DefenceGodhands = set_combine(sets.engaged.hybrid.Defence,{
-		left_ear="Mache Earring +1",
-	})
-
-	sets.engaged.hybrid.DefenceGodhandsMelee = set_combine(sets.engaged.hybrid.DefenceGodhands,{
-		range="Animator P +1",
-	})
-
-	sets.engaged.hybrid.DefenceGodhandsRanged = set_combine(sets.engaged.hybrid.DefenceGodhands,{
-		range="Animator P II +1",
-	})
+	sets.engaged.hybrid.DefenceGodhands = set_combine(sets.engaged.hybrid.Defence,{left_ear="Mache Earring +1",})
+	sets.engaged.hybrid.DefenceGodhandsMelee = set_combine(sets.engaged.hybrid.DefenceGodhands,{sets.animators.Melee,})
+	sets.engaged.hybrid.DefenceGodhandsRanged = set_combine(sets.engaged.hybrid.DefenceGodhands,{sets.animators.Ranged,})
 
 ---------------------------	MASTER ONLY ENGAGED SETS	---------------------------
--- Master sets for master mode
+-- Normal Master Mode
 	sets.engaged.master.Normal = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
@@ -249,18 +230,11 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
-	sets.engaged.master.NormalUnlocked = set_combine(sets.engaged.master.Normal,{
-		range="Neo Animator",
-	})
+	sets.engaged.master.NormalUnlocked = set_combine(sets.engaged.master.Normal,{sets.animators.Master,})
 
 --Normal - Godhands/xiucoatl equipped
-	sets.engaged.master.Godhands = set_combine(sets.engaged.master.Normal,{
-		left_ear="Mache Earring +1",
-	})
-	
-	sets.engaged.master.GodhandsUnlocked = set_combine(sets.engaged.master.Godhands,{
-		range="Neo Animator",
-	})
+	sets.engaged.master.Godhands = set_combine(sets.engaged.master.Normal,{left_ear="Mache Earring +1",})
+	sets.engaged.master.GodhandsUnlocked = set_combine(sets.engaged.master.Godhands,{sets.animators.Master,})
 	
 -- Defence
 	sets.engaged.master.Defence = {
@@ -279,54 +253,24 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
-	sets.engaged.master.DefenceUnlocked = set_combine(sets.engaged.master.Defence,{
-		range="Neo Animator",
-	})
+	sets.engaged.master.DefenceUnlocked = set_combine(sets.engaged.master.Defence,{sets.animators.Master,})
 
 --Defence - Godhands/xiucoatl equipped
-	sets.engaged.master.DefenceGodhands = set_combine(sets.engaged.master.Defence,{
-		left_ear="Mache Earring +1",
-	})
-	
-	sets.engaged.master.DefenceGodhandsUnlocked = set_combine(sets.engaged.master.DefenceGodhands,{
-		range="Neo Animator",
-	})
+	sets.engaged.master.DefenceGodhands = set_combine(sets.engaged.master.Defence,{left_ear="Mache Earring +1",})
+	sets.engaged.master.DefenceGodhandsUnlocked = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Master,})
 
----- Master Sets for Hybrid Mode (For when pet dies or is not engaged  
+---- Master Sets for Hybrid Mode (For when pet dies or is not engaged during Hybrid bode
 --Hybrid Master
-	sets.engaged.master.HybridMelee = set_combine(sets.engaged.master.Normal,{
-		range="Animator P +1",
-	})
-
-	sets.engaged.master.HybridRanged = set_combine(sets.engaged.master.Normal,{
-		range="Animator P II +1",
-	})
-	
-	sets.engaged.master.HybridGodhandsMelee = set_combine(sets.engaged.master.Godhands,{
-		range="Animator P +1",
-	})
-	
-	sets.engaged.master.HybridGodhandsRanged = set_combine(sets.engaged.master.Godhands,{
-		range="Animator P II +1",
-	})
-	
+	sets.engaged.master.HybridMelee = set_combine(sets.engaged.master.Normal,{sets.animators.Melee,})
+	sets.engaged.master.HybridRanged = set_combine(sets.engaged.master.Normal,{sets.animators.Ranged,})
+	sets.engaged.master.HybridGodhandsMelee = set_combine(sets.engaged.master.Godhands,{sets.animators.Melee,})
+	sets.engaged.master.HybridGodhandsRanged = set_combine(sets.engaged.master.Godhands,{sets.animators.Ranged,})
 	
 -- Defence Master
-	sets.engaged.master.HybridDefenceMelee = set_combine(sets.engaged.master.Defence,{
-		range="Animator P +1",
-	})
-	
-	sets.engaged.master.HybridDefenceRanged = set_combine(sets.engaged.master.Defence,{
-		range="Animator P II +1",
-	})
-
-	sets.engaged.master.HybridDefenceGodhandsMelee = set_combine(sets.engaged.master.DefenceGodhands,{
-		range="Animator P +1",
-	})
-
-	sets.engaged.master.HybridDefenceGodhandsRanged = set_combine(sets.engaged.master.DefenceGodhands,{
-		range="Animator P II +1",
-	})
+	sets.engaged.master.HybridDefenceMelee = set_combine(sets.engaged.master.Defence,{sets.animators.Melee,})
+	sets.engaged.master.HybridDefenceRanged = set_combine(sets.engaged.master.Defence,{sets.animators.Ranged,})
+	sets.engaged.master.HybridDefenceGodhandsMelee = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Melee,})
+	sets.engaged.master.HybridDefenceGodhandsRanged = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Ranged,})
 
 ---------------------------	PET ONLY ENGAGED SETS	---------------------------
 
@@ -410,9 +354,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Dispersal Mantle", augments={'STR+2','DEX+4','Pet: TP Bonus+500',}},
 	}
 	
-	sets.engaged.overdrive.SharpshotUnlocked = set_combine(sets.engaged.overdrive.Sharpshot,{
-		range="Animator P +1",
-	})
+	sets.engaged.overdrive.SharpshotUnlocked = set_combine(sets.engaged.overdrive.Sharpshot,{sets.animators.Melee,})
 
 --Sharpshot overdrive Defence
 	sets.engaged.overdrive.SharpshotDEF = {
@@ -431,9 +373,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.SharpshotDEFUnlocked = set_combine(sets.engaged.overdrive.SharpshotDEF,{
-		range="Animator P +1",
-	})
+	sets.engaged.overdrive.SharpshotDEFUnlocked = set_combine(sets.engaged.overdrive.SharpshotDEF,{sets.animators.Melee,})
 
 --Valoredge overdrive
 	sets.engaged.overdrive.Valoredge = {
@@ -452,9 +392,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.ValoredgeUnlocked = set_combine(sets.engaged.overdrive.Valoredge,{
-		range="Animator P +1",
-	})
+	sets.engaged.overdrive.ValoredgeUnlocked = set_combine(sets.engaged.overdrive.Valoredge,{sets.animators.Melee,})
 
 --Valoredge overdrive Defence
 	sets.engaged.overdrive.ValoredgeDEF = {
@@ -473,9 +411,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.ValoredgeDEFUnlocked = set_combine(sets.engaged.overdrive.ValoredgeDEF,{
-		range="Animator P +1",
-	})
+	sets.engaged.overdrive.ValoredgeDEFUnlocked = set_combine(sets.engaged.overdrive.ValoredgeDEF,{sets.animators.Melee,})
 
 ---------------------------	PRECAST SETS	---------------------------
 
@@ -579,7 +515,6 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
 	}
-
 
 ---------------------------	MIDCAST PET SETS	---------------------------
 --pet midcast Enmity gain
@@ -788,7 +723,6 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring="Purity Ring",
 		right_ring="Blenmot's Ring",
 	}
-
 end
 
 ---------------------------	LOGIC	---------------------------
