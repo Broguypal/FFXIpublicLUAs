@@ -35,7 +35,7 @@ Pet_Mode = "NA"
 Pet_Distance = "Melee"
 Lock_Mode = "Unlocked"
  
-Modes = {'Hybrid','HybridDEF','Master','MasterDEF','Overdrive','OverdriveDEF','Pet','PetDEF','Emergency-DT'}
+TP_Modes = {'Hybrid','HybridDEF','Master','MasterDEF','Overdrive','OverdriveDEF','Pet','PetDEF','Emergency-DT'}
 Pet_Modes = {'NA','Bruiser','Tank','Sharpshot','Ranged','WHM','BLM','RDM','Other'}
 Pet_Distances = {'Melee', 'Ranged'}
 Weapon_Modes = {'Locked','Unlocked'}
@@ -76,6 +76,7 @@ send_command('bind numpad2 gs c ToggleDistance')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
+send_command('bind f12 input //lua l AutoPUP')
 
 --------- GEAR DEFINED ------------------
 
