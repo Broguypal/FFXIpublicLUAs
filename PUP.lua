@@ -45,7 +45,7 @@ gearswap_box = function()
   str = str..' Current Mode:\\cs(200,100,200)   '..TP_Mode..'\\cr\n'
   str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
   str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
-  str = str..' Weapon Mode:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
+  str = str..' Animator Mode:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
     return str
 end
 
