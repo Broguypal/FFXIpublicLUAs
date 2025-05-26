@@ -30,7 +30,7 @@ function file_unload()
 end
 
 --------------------------- SETTING UP TEXTBOX ------------------------------------------
-Mode = "Hybrid"
+TP_Mode = "Hybrid"
 Pet_Mode = "NA"
 Pet_Distance = "Melee"
 Lock_Mode = "Unlocked"
@@ -42,7 +42,7 @@ Weapon_Modes = {'Locked','Unlocked'}
 
 gearswap_box = function()
   str = '           \\cs(246,102,13)PUPPETMASTER\\cr\n'
-  str = str..' Current Mode:\\cs(200,100,200)   '..Mode..'\\cr\n'
+  str = str..' Current Mode:\\cs(200,100,200)   '..TP_Mode..'\\cr\n'
   str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
   str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
   str = str..' Weapon Mode:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
@@ -797,7 +797,7 @@ end
 -- Registering event for pet changes -- Essentially, this checks the Pet TP every second, and if it reaches 850+ it automatically swaps to the appropriate pet weaponskill set.
 windower.register_event('time change', function(new, old)
 	if new > old and pet.isvalid and pet.status == "Engaged" then 
-		if ( Mode == "Hybrid" or Mode == "HybridDEF" ) and pet.tp >= 850 and player.tp <= 400 then
+		if ( TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" ) and pet.tp >= 850 and player.tp <= 400 then
 			if pet.frame == "Sharpshot Frame" then
 				equip(sets.ws.pet.arcuballista)
 			end
@@ -814,9 +814,9 @@ end)
 
 -- How swaps are calculated --
 function idle()
-	if Mode == "Emergency-DT" then
+	if TP_Mode == "Emergency-DT" then
 		equip(sets.idle.Tank)
-	elseif Mode == "Hybrid" or Mode == "HybridDEF" then
+	elseif TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" then
 		if player.status == "Idle" and pet.status == "Engaged" then
 			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
 				if player.equipment.main == "Ohtas" then
@@ -839,7 +839,7 @@ function idle()
 			end
 		elseif player.status == "Engaged" and pet.status == "Engaged" then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
-				if Mode == "Hybrid" then
+				if TP_Mode == "Hybrid" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.hybrid.GodhandsMelee)
@@ -849,7 +849,7 @@ function idle()
 					elseif Lock_Mode == "Locked" then
 						equip(sets.engaged.hybrid.Godhands)
 					end
-				elseif Mode == "HybridDEF" then
+				elseif TP_Mode == "HybridDEF" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.hybrid.DefenceGodhandsMelee)
@@ -861,7 +861,7 @@ function idle()
 					end
 				end
 			else
-				if Mode == "Hybrid" then
+				if TP_Mode == "Hybrid" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.hybrid.NormalMelee)
@@ -871,7 +871,7 @@ function idle()
 					elseif Lock_Mode == "Locked" then
 						equip(sets.engaged.hybrid.Normal)
 					end
-				elseif Mode == "HybridDEF" then
+				elseif TP_Mode == "HybridDEF" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.hybrid.DefenceMelee)
@@ -885,7 +885,7 @@ function idle()
 			end
 		elseif player.status == "Engaged" and (pet.status == "Idle" or pet.isvalid == false) then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
-				if Mode == "Hybrid" then
+				if TP_Mode == "Hybrid" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.master.HybridGodhandsMelee)
@@ -895,7 +895,7 @@ function idle()
 					elseif Lock_Mode == "Locked" then
 						equip(sets.engaged.master.Godhands)
 					end
-				elseif Mode == "HybridDEF" then
+				elseif TP_Mode == "HybridDEF" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.master.HybridDefenceGodhandsMelee)
@@ -907,7 +907,7 @@ function idle()
 					end
 				end
 			else
-				if Mode == "Hybrid" then
+				if TP_Mode == "Hybrid" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.master.HybridMelee)
@@ -917,7 +917,7 @@ function idle()
 					elseif Lock_Mode == "Locked" then
 						equip(sets.engaged.master.Normal)
 					end
-				elseif Mode == "HybridDEF" then
+				elseif TP_Mode == "HybridDEF" then
 					if Lock_Mode == "Unlocked" then
 						if Pet_Distance == "Melee" then
 							equip(sets.engaged.master.HybridDefenceMelee)
@@ -932,16 +932,16 @@ function idle()
 		else  
 			equip(sets.idle.Normal)
 		end
-	elseif Mode == "Master" or Mode == "MasterDEF" then
+	elseif TP_Mode == "Master" or TP_Mode == "MasterDEF" then
 		if player.status == "Engaged" then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
-				if Mode == "Master" then
+				if TP_Mode == "Master" then
 					if Lock_Mode == "Unlocked" then
 						equip(sets.engaged.master.GodhandsUnlocked)
 					elseif Lock_Mode == "Locked" then
 						equip(sets.engaged.master.Godhands)
 					end
-				elseif Mode == "MasterDEF" then
+				elseif TP_Mode == "MasterDEF" then
 					if Lock_Mode == "Unlocked" then
 						equip(sets.engaged.master.DefenceGodhandsUnlocked)
 					elseif Lock_Mode == "Locked" then
@@ -949,13 +949,13 @@ function idle()
 					end
 				end
 			else
-				if Mode == "Master" then
+				if TP_Mode == "Master" then
 					if Lock_Mode == "Unlocked" then
 						equip(sets.engaged.master.NormalUnlocked)
 					elseif Lock_Mode == "Locked" then
 						equip(sets.engaged.master.Normal)
 					end
-				elseif Mode == "MasterDEF" then
+				elseif TP_Mode == "MasterDEF" then
 					if Lock_Mode == "Unlocked" then
 						equip(sets.engaged.master.DefenceUnlocked)
 					elseif Lock_Mode == "Locked" then
@@ -966,9 +966,9 @@ function idle()
 		else
 			equip(sets.idle.Normal)
 		end
-	elseif Mode == "Overdrive" or Mode == "OverdriveDEF" then
+	elseif TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" then
 		if pet.status == "Engaged" then
-			if Mode == "Overdrive" then
+			if TP_Mode == "Overdrive" then
 				if pet.frame == "Sharpshot Frame" then
 					if Lock_Mode == "Unlocked" then
 						equip(sets.engaged.overdrive.SharpshotUnlocked)
@@ -982,7 +982,7 @@ function idle()
 						equip(sets.engaged.overdrive.Valoredge)
 					end
 				end
-			elseif Mode == "OverdriveDEF" then
+			elseif TP_Mode == "OverdriveDEF" then
 				if pet.frame == "Sharpshot Frame" then
 					if Lock_Mode == "Unlocked" then
 						equip(sets.engaged.overdrive.SharpshotDEFUnlocked)
@@ -1000,9 +1000,9 @@ function idle()
 		else
 			equip(sets.idle.Normal)
 		end
-	elseif Mode == "PetDEF" then
+	elseif TP_Mode == "PetDEF" then
 		equip(sets.idle.PetTank)
-	elseif Mode == "Pet" then
+	elseif TP_Mode == "Pet" then
 		if pet.status == "Engaged" then
 			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
 				if player.equipment.main == "Ohtas" then
@@ -1128,60 +1128,60 @@ end
 
 function self_command(command)
 	if command == "ToggleHybrid" then
-		if Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
-			Mode = "Hybrid"
+		if TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
+			TP_Mode = "Hybrid"
 			idle()
 			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
 				send_command ('input /equip Range "Animator P +1"')
 			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
 				send_command ('input /equip Range "Animator P II +1"') 
 			end
-		elseif Mode == "Hybrid" then
-			Mode = "HybridDEF"
+		elseif TP_Mode == "Hybrid" then
+			TP_Mode = "HybridDEF"
 			idle()
 		end
 	elseif command == "ToggleMaster" then
-		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
-			Mode = "Master"
+		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
+			TP_Mode = "Master"
 			idle()
 			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Neo Animator" then
 				Pet_Distance = "Melee"
 				send_command ('input /equip Range "Neo Animator"')
 			end
-		elseif Mode == "Master" then
-			Mode = "MasterDEF"
+		elseif TP_Mode == "Master" then
+			TP_Mode = "MasterDEF"
 			Pet_Distance = "Melee"
 			idle()
 		end
 	elseif command == "ToggleOverdrive" then
-		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
-			Mode = "Overdrive"
+		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
+			TP_Mode = "Overdrive"
 			idle()
 			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Animator P +1" then
 				Pet_Distance = "Melee"
 				send_command ('input /equip Range "Animator P +1"')
 			end
-		elseif Mode == "Overdrive" then
-			Mode = "OverdriveDEF"  
+		elseif TP_Mode == "Overdrive" then
+			TP_Mode = "OverdriveDEF"  
 			Pet_Distance = "Melee"
 			idle()
 		end
 	elseif command == "TogglePet" then
-		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "Emergency-DT" then
-			Mode = "PetDEF"
+		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "Emergency-DT" then
+			TP_Mode = "PetDEF"
 			idle()
 			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
 				send_command ('input /equip Range "Animator P +1"')
 			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
 				send_command ('input /equip Range "Animator P II +1"')
 			end
-		elseif Mode == "PetDEF" then
-			Mode = "Pet"
+		elseif TP_Mode == "PetDEF" then
+			TP_Mode = "Pet"
 			idle()
 		end
 	elseif command == "ToggleEmergency" then
-		if Mode == "Hybrid" or Mode == "HybridDEF" or Mode == "Master" or Mode == "MasterDEF" or Mode == "Overdrive" or Mode == "OverdriveDEF" or Mode == "Pet" or Mode == "PetDEF" or Mode == "Emergency-DT" then
-			Mode = "Emergency-DT"
+		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
+			TP_Mode = "Emergency-DT"
 			idle()
 		end
 	elseif command == "ToggleDistance" then
@@ -1196,12 +1196,12 @@ function self_command(command)
 		end
 	elseif command == "ToggleLock" then
 		if Lock_Mode == "Unlocked" then
-			Mode = "Locked"
+			Lock_Mode = "Locked"
 		elseif Lock_Mode == "Locked" then
-			Mode = "Unlocked"
+			Lock_Mode = "Unlocked"
 		end
 	elseif command == "ToggleWeapon" then
-		if Mode == "Hybrid" or Mode == "HybridDEF" then
+		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" then
 			if player.equipment.Main == "Kenkonken" then
 				send_command ('input /equip Main "Xiucoatl"')
 			elseif player.equipment.Main == "Xiucoatl" then
@@ -1213,7 +1213,7 @@ function self_command(command)
 			else
 				send_command ('input /equip Main "Kenkonken"')
 			end
-		elseif Mode == "Master" or Mode == "MasterDEF" or Mode == "Emergency-DT"  then
+		elseif TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Emergency-DT"  then
 			if player.equipment.Main == "Godhands" then
 				send_command ('input /equip Main "Verethragna"')
 			elseif player.equipment.Main == "Verethragna" then
@@ -1221,13 +1221,13 @@ function self_command(command)
 			else
 				send_command ('input /equip Main "Godhands"')
 			end
-		elseif Mode == "Overdrive" or Mode == "OverdriveDEF" then
+		elseif TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" then
 			if player.equipment.Main == "Xiucoatl" then
 				send_command ('input /equip Main "Kenkonken"')
 			else
 				send_command ('input /equip Main "Xiucoatl"')
 			end
-		elseif Mode == "Pet" then
+		elseif TP_Mode == "Pet" then
 			if player.equipment.Main == "Xiucoatl" then
 				send_command ('input /equip Main "Sakpata\'s Fists"')
 			elseif player.equipment.Main == "Sakpata's Fists" then
@@ -1235,7 +1235,7 @@ function self_command(command)
 			else
 				send_command ('input /equip Main "Xiucoatl"')
 			end
-		elseif Mode == "PetDEF" then
+		elseif TP_Mode == "PetDEF" then
 			if player.equipment.Main == "Gnafron's Adargas" then
 				send_command ('input /equip Main "Ohtas"')
 			else
