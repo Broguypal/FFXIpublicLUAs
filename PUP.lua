@@ -72,6 +72,7 @@ send_command('bind numpad3 gs c ToggleDistance')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
+send_command('bind f12 input //lua l AutoPUP')
 
 --------- GEAR DEFINED ------------------
 
@@ -476,6 +477,13 @@ send_command('bind f11 input /item "Holy Water" <me>')
 
 -- Provoke (you want an enmity set for your provoke)
 	sets.ja.enmity = {
+		hands="Kurys Gloves",
+		feet="Ahosi Leggings",
+		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
+		left_ear="Friomisi Earring",
+		right_ear="Trux Earring",
+		left_ring="Begrudging Ring",
+		right_ring="Eihwaz Ring",
 	}
 
 --  individual abilities
