@@ -1,4 +1,4 @@
-The above luas are completed versions of the LUAs I use for the above classes. They do not use motes or rely on any external libraries.
+The above luas are completed versions of the LUAs I use for the above classes. So long as I play the game, however, they will remain works in progress. They do not use motes or rely on any external libraries.
 
 These will be updated from time to time and more lua's will be uploaded once finalized. 
 
