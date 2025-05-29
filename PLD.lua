@@ -101,7 +101,6 @@ Modes = {'Hybrid','DPS','AoETank','BlockTank','SingleTank','MagicEva','MPAbsorb'
 
 shield_mode = "Aegis"
 
-
 sword_mode = "Burtgang"
 
 
@@ -115,6 +114,23 @@ sword_mode = "Burtgang"
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}					-- Leave this empty
 
+ -- Weapon definitions
+weapons = {
+    Burtgang = { main = "Burtgang" },
+    Malignance = { main = "Malignance Sword" },
+    Naegling = { main = "Naegling" },
+    Open = {}
+}
+
+-- Shield definitions
+shields = {
+    Aegis = { sub = "Aegis" },
+    Ochain = { sub = "Ochain" },
+    Duban = { sub = "Duban" },
+    Blurred = { sub = "Blurred Shield +1" },
+    Open = {}
+}
+ 
  
  ---- IDLE SETS ----
  
@@ -678,50 +694,14 @@ function midcast(spell)
 end
 
 function aftercast(spell)
-	if spell.english:startswith('Phalanx') then
-		if sword_mode == "Burtgang" and shield_mode == "Aegis" then
-			send_command('input /equip Sub "Aegis"; wait 1; input /equip Main "Burtgang"')
-			idle()
-		elseif sword_mode == "Burtgang" and shield_mode == "Ochain" then
-			send_command('input /equip Sub "Ochain"; wait 1; input /equip Main "Burtgang"')
-			idle()
-		elseif sword_mode == "Burtgang" and shield_mode == "Duban" then
-			send_command('input /equip Sub "Duban"; wait 1; input /equip Main "Burtgang"')
-			idle()
-		elseif sword_mode == "Burtgang" and shield_mode == "Blurred" then
-			send_command('input /equip Sub "Blurred Shield +1"; wait 1; input /equip Main "Burtgang"')
-			idle()
-		elseif sword_mode == "Malignance" and shield_mode == "Aegis" then
-			send_command('input /equip Sub "Aegis"; wait 1; input /equip Main "Malignance Sword"')
-			idle()
-		elseif sword_mode == "Malignance" and shield_mode == "Ochain" then
-			send_command('input /equip Sub "Ochain"; wait 1; input /equip Main "Malignance Sword"')
-			idle()
-		elseif sword_mode == "Malignance" and shield_mode == "Duban" then
-			send_command('input /equip Sub "Duban"; wait 1; input /equip Main "Malignance Sword"')
-			idle()
-		elseif sword_mode == "Malignance" and shield_mode == "Blurred" then
-			send_command('input /equip Sub "Blurred Shield +1"; wait 1; input /equip Main "Malignance Sword"')
-			idle()
-		elseif sword_mode == "Naegling" and shield_mode == "Aegis" then
-			send_command('input /equip Sub "Aegis"; wait 1; input /equip Main "Naegling"')
-			idle()
-		elseif sword_mode == "Naegling" and shield_mode == "Ochain" then
-			send_command('input /equip Sub "Ochain"; wait 1; input /equip Main "Naegling"')
-			idle()
-		elseif sword_mode == "Naegling" and shield_mode == "Duban" then
-			send_command('input /equip Sub "Duban"; wait 1; input /equip Main "Naegling"')
-			idle()
-		elseif sword_mode == "Naegling" and shield_mode == "Blurred" then 
-			send_command('input /equip Sub "Blurred Shield +1"; wait 1; input /equip Main "Naegling"')
-			idle()
-		else
-			idle()
-		end
-	else
-		idle()
-	end
+    if spell.english:startswith('Phalanx') then
+        local weapon_set = weapons[sword_mode] or {}
+        local shield_set = shields[shield_mode] or {}
+        equip(set_combine(shield_set, weapon_set))
+    end
+    idle()
 end
+
 
 function self_command(command)
 	if command == "ToggleHybrid" then
@@ -753,37 +733,26 @@ function self_command(command)
 			idle()
 		end
 	elseif command == "ToggleShield" then
-		if shield_mode == "Aegis" then
-			shield_mode = "Ochain"
-			send_command('input /equip Sub "Ochain"')
-			idle()
-		elseif shield_mode == "Ochain" then
-			shield_mode = "Duban"
-			send_command('input /equip Sub "Duban"')
-			idle()
-		elseif shield_mode == "Duban" then
-			shield_mode = "Blurred"
-			send_command('input /equip Sub "Blurred Shield +1"')
-			idle()
-		elseif shield_mode == "Blurred" or shield_mode == "Open" then
-			shield_mode = "Aegis"
-			send_command('input /equip Sub "Aegis"')
-			idle()
-		end
+		local next_mode = {
+			Aegis = "Ochain",
+			Ochain = "Duban",
+			Duban = "Blurred",
+			Blurred = "Aegis",
+			Open = "Aegis"
+		}
+		shield_mode = next_mode[shield_mode] or "Aegis"
+		equip(shields[shield_mode])
+		idle()
 	elseif command == "ToggleWeapon" then
-		if sword_mode == "Burtgang" then
-			sword_mode = "Malignance"
-			send_command('input /equip Main "Malignance Sword"')
-			idle()
-		elseif sword_mode == "Malignance" then
-			sword_mode = "Naegling"
-			send_command('input /equip Main "Naegling"')
-			idle()
-		elseif sword_mode == "Naegling" or sword_mode == "Open" then
-			sword_mode = "Burtgang"
-			send_command('input /equip Main "Burtgang"')
-			idle()
-		end
+		local next_weapon = {
+			Burtgang = "Malignance",
+			Malignance = "Naegling",
+			Naegling = "Burtgang",
+			Open = "Burtgang"
+		}
+		sword_mode = next_weapon[sword_mode] or "Burtgang"
+		equip(weapons[sword_mode])
+		idle()
 	elseif command == "ToggleOpen" then
 		sword_mode = "Open"
 		shield_mode = "Open"
