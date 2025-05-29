@@ -986,8 +986,7 @@ function midcast(spell)
 					or spell.english == "Smite of Rage" or spell.english == "Terror Touch" or spell.english == "Thrashing Assault" or spell.english == "Vanity Dive"  then
 					equip(sets.midcast.bluemagic.PhysicalDex)
 				elseif spell.english == "Body Slam" or spell.english == "Cannonball" or spell.english == "Delta Thrust" or spell.english == "Glutinous Dart"
-					or spell.english == "Grand Slam" or spell.english == "Power Attack"  or spell.english == "Quad. Continuum" or spell.english == "Sprout Smack"
-					or spell.english == "Sub-zero Smash" then
+					or spell.english == "Grand Slam" or spell.english == "Power Attack"  or spell.english == "Quad. Continuum" or spell.english == "Sprout Smack" then
 					equip(sets.midcast.bluemagic.PhysicalVit)
 				elseif spell.english == "Benthic Typhoon" or spell.english == "Feather Storm" or spell.english == "Helldive" or spell.english == "Hydro Shot"
 					or spell.english == "Jet Stream" or spell.english == "Pinecone Bomb"  or spell.english == "Spiral Spin" or spell.english == "Wild Oats" then
@@ -1011,7 +1010,8 @@ function midcast(spell)
 				elseif spell.english == "Dark Orb" or spell.english == "Death Ray" or spell.english == "Eyes On Me" or spell.english == "Evryone. Grudge"
 					or spell.english == "Palling Salvo" or spell.english == "Tenebral Crush" or spell.english == "Polar Roar" then
 					equip(sets.midcast.bluemagic.MagicalDark)
-				elseif spell.english == "Blinding Fulgor" or spell.english == "Diffusion Ray" or spell.english == "Radiant Breath" or spell.english == "Retinal Glare" or spell.english == "Uproot" then
+				elseif spell.english == "Blinding Fulgor" or spell.english == "Diffusion Ray" or spell.english == "Radiant Breath" or spell.english == "Retinal Glare" 
+				or spell.english == "Rail Cannon" or spell.english == "Uproot" then
 					equip(sets.midcast.bluemagic.MagicalLight)
 				elseif spell.english == "Acrid Stream" or spell.english == "Magic Hammer" or spell.english == "Mind Blast" then
 					equip(sets.midcast.bluemagic.MagicalMnd)
@@ -1026,8 +1026,8 @@ function midcast(spell)
 					or spell.english == "Blood Saber" or spell.english == "Chaotic Eye" or spell.english == "Cimicine Discharge" or spell.english == "Cold Wave" 
 					or spell.english == "Corrosive Ooze" or spell.english == "Demoralizing Roar" or spell.english == "Digest" or spell.english == "Dream Flower"  
 					or spell.english == "Enervation" or spell.english == "Feather Tickle"  or spell.english == "Filamented Hold" or spell.english == "Frightful Roar"
-					or spell.english == "Geist Wall" or spell.english == "Hecatomb Wave" or spell.english == "Infrasonics" or spell.english == "Jettatura" 
-					or spell.english == "Light of Penance" or spell.english == "Lowing" or spell.english == "Mind Blast" or spell.english == "Mortal Ray" 
+					or spell.english == "Geist Wall" or spell.english == "Infrasonics" or spell.english == "Jettatura" 
+					or spell.english == "Light of Penance" or spell.english == "Lowing" or spell.english == "Mortal Ray" 
 					or spell.english == "MP Drainkiss" or spell.english == "Osmosis"  or spell.english == "Reaving Wind" or spell.english == "Sandspin"
 					or spell.english == "Sandspray" or spell.english == "Sheep Song" or spell.english == "Soporific" or spell.english == "Sound Blast" 
 					or spell.english == "Stinking Gas" or spell.english == "Sub-zero Smash" or spell.english == "Venom Shell" or spell.english == "Voracious Trunk"
