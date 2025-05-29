@@ -33,11 +33,8 @@ function user_setup()
 	gearswap_jobbox:show()
 end
 
-
 -----------------------GEAR SETS------------------------------
 function get_sets()
-user_setup()
-
 --Mode Commands
 send_command('bind numpad9 gs c ToggleHybrid')
 send_command('bind numpad8 gs c ToggleTank')
@@ -54,7 +51,6 @@ send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
 send_command('bind f12 input //fillmode')
-
 
     sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- Leave this empty
@@ -802,47 +798,16 @@ end
 
 
 windower.register_event('lose buff', function(buff_id)
-	if buff_id == 66 then
-		idle()
-	end
-	if buff_id == 33 then
-		idle()
-	end
-	if buff_id == 580 then
-		idle()
-	end
-	if buff_id == 604 then
-		idle()
-	end
-	if buff_id == 214 then
-		idle()
-	end
-	if buff_id == 228 then
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
 		idle()
 	end
 end)
 
 windower.register_event('gain buff', function(buff_id)
-	if buff_id == 66 then
-		idle()
-	end
-	if buff_id == 33 then
-		idle() 
-	end
-	if buff_id == 580 then
-		idle()
-	end
-	if buff_id == 604 then
-		idle()
-	end
-	if buff_id == 214 then
-		idle()
-	end
-	if buff_id == 228 then
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
 		idle()
 	end
 end)
-
 
 function idle()
 	if Player_Mode == "OmenTank" then
@@ -1191,3 +1156,5 @@ function file_unload()
 	send_command('unbind f12')
     enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
+
+user_setup()
