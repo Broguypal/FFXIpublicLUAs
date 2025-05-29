@@ -33,20 +33,20 @@ end
 TP_Mode = "Hybrid"
 Pet_Mode = "NA"
 Pet_Distance = "Melee"
-Lock_Mode = "Unlocked"
+Lock_Mode = "Locked"
  
 TP_Modes = {'Hybrid','HybridDEF','Master','MasterDEF','Overdrive','OverdriveDEF','Pet','PetDEF','Emergency-DT'}
 Pet_Modes = {'NA','Bruiser','Tank','Sharpshot','Ranged','WHM','BLM','RDM','Other'}
 Pet_Distances = {'Melee', 'Ranged'}
-Weapon_Modes = {'Locked','Unlocked'}
+Lock_Modes = {'Locked','Unlocked'}
 
 gearswap_box = function()
   str = '           \\cs(246,102,13)PUPPETMASTER\\cr\n'
   str = str..' Current Mode:\\cs(200,100,200)   '..TP_Mode..'\\cr\n'
   str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
   str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
-  str = str..' Animator Mode:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
-    return str
+  str = str..' Animator Lock:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
+  return str
 end
 
 gearswap_box_config = {pos={x=1250,y=525},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
@@ -76,8 +76,9 @@ send_command('bind numpad2 gs c ToggleDistance')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
+send_command('bind f12 input //lua l AutoPUP')
 send_command('bind numpad1 input /jump')
-	
+
 --------- GEAR DEFINED ------------------
 
     sets.idle = {}	
@@ -98,6 +99,7 @@ send_command('bind numpad1 input /jump')
 		sets.midcast.pet = {} 
 	sets.items = {}
 	sets.animators = {}
+	sets.weapons = {}
  	
 ---------------------------	GEAR SETS	---------------------------	
 ------------- Animator Swaps - Put in your applicable animators here ---------------
@@ -106,6 +108,15 @@ send_command('bind numpad1 input /jump')
 sets.animators.Ranged = {range="Animator P II +1",}
 sets.animators.Melee = {range="Animator P +1",}
 sets.animators.Master = {range="Neo Animator",}
+
+-- Weapon sets 
+sets.weapons.Kenkonken   = {main="Kenkonken"}
+sets.weapons.Xiucoatl    = {main="Xiucoatl"}
+sets.weapons.Godhands    = {main="Godhands"}
+sets.weapons.Verethragna = {main="Verethragna"}
+sets.weapons.Ohtas       = {main="Ohtas"}
+sets.weapons.Sakpata     = {main="Sakpata's Fists"}
+sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
 ---------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
 -- Master Damage taken --
@@ -1134,46 +1145,35 @@ function self_command(command)
 			Lock_Mode = "Unlocked"
 		end
 	elseif command == "ToggleWeapon" then
-		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" then
-			if player.equipment.Main == "Kenkonken" then
-				send_command ('input /equip Main "Xiucoatl"')
-			elseif player.equipment.Main == "Xiucoatl" then
-				send_command ('input /equip Main "Godhands"')
-			elseif player.equipment.Main == "Godhands" then
-				send_command ('input /equip Main "Verethragna"')
-			elseif player.equipment.Main == "Verethragna" then
-				send_command ('input /equip Main "Ohtas"')
-			else
-				send_command ('input /equip Main "Kenkonken"')
+		local weapon_cycle = {
+			Hybrid     = {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
+			HybridDEF  = {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
+			Master     = {"Godhands", "Verethragna", "Kenkonken"},
+			MasterDEF  = {"Godhands", "Verethragna", "Kenkonken"},
+			Emergency  = {"Godhands", "Verethragna", "Kenkonken"},
+			Overdrive  = {"Xiucoatl", "Kenkonken"},
+			OverdriveDEF = {"Xiucoatl", "Kenkonken"},
+			Pet        = {"Xiucoatl", "Sakpata", "Ohtas"},
+			PetDEF     = {"Gnafron", "Ohtas"}
+		}
+		
+		local mode_key = TP_Mode
+		if TP_Mode == "Emergency-DT" then mode_key = "Emergency" end
+
+		local cycle = weapon_cycle[mode_key] or {}
+		local current = player.equipment.main
+		local next_index = 1
+
+		for i, weapon in ipairs(cycle) do
+			if current == sets.weapons[weapon].main then
+				next_index = (i % #cycle) + 1
+				break
 			end
-		elseif TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Emergency-DT"  then
-			if player.equipment.Main == "Godhands" then
-				send_command ('input /equip Main "Verethragna"')
-			elseif player.equipment.Main == "Verethragna" then
-				send_command ('input /equip Main "Kenkonken"')
-			else
-				send_command ('input /equip Main "Godhands"')
-			end
-		elseif TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" then
-			if player.equipment.Main == "Xiucoatl" then
-				send_command ('input /equip Main "Kenkonken"')
-			else
-				send_command ('input /equip Main "Xiucoatl"')
-			end
-		elseif TP_Mode == "Pet" then
-			if player.equipment.Main == "Xiucoatl" then
-				send_command ('input /equip Main "Sakpata\'s Fists"')
-			elseif player.equipment.Main == "Sakpata's Fists" then
-				send_command ('input /equip Main "Ohtas"')
-			else
-				send_command ('input /equip Main "Xiucoatl"')
-			end
-		elseif TP_Mode == "PetDEF" then
-			if player.equipment.Main == "Gnafron's Adargas" then
-				send_command ('input /equip Main "Ohtas"')
-			else
-				send_command ('input /equip Main "Gnafron\'s Adargas"')
-			end
+		end
+
+		local next_weapon = sets.weapons[cycle[next_index]]
+		if next_weapon then
+			send_command('input /equip Main "' .. next_weapon.main .. '"')
 		end
 	end
 	gearswap_jobbox:text(gearswap_box())
