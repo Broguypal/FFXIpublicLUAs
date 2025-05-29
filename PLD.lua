@@ -34,7 +34,6 @@ spell_mode = 'Normal'
 sword_mode = 'Burtgang'
 shield_mode = 'Aegis'
 
-
 tp_modes = {'Hybrid','DPS','AoETank','SingleTank','MagicEva','MagicAettir'}
 spell_modes = {'Normal','SIR'}
 sword_modes = {'Burtgang','Malignance','Naegling','Open'}
@@ -61,14 +60,6 @@ end
 user_setup()
 
 ----				KEYBINDS			----
-
---[[ NOTE:
-^ = Ctrl
-! = Alt Key
-@ = Windows Key
-]]
-
-
 -- Equipset toggles
 send_command('bind numpad9 gs c ToggleHybrid')
 send_command('bind numpad8 gs c ToggleTank')
@@ -92,19 +83,6 @@ send_command('bind f11 input /item "Holy Water" <me>')
 --- 			EQUIPMENT SETS			----
 
 function get_sets()
-
-
-
--- Mode/Stance settings
-tp_mode = "Hybrid"
-Modes = {'Hybrid','DPS','AoETank','BlockTank','SingleTank','MagicEva','MPAbsorb'}
-
-shield_mode = "Aegis"
-
-sword_mode = "Burtgang"
-
-
-
     sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- leave this empty   
     sets.precast = {}               -- leave this empty  
@@ -130,7 +108,6 @@ shields = {
     Blurred = { sub = "Blurred Shield +1" },
     Open = {}
 }
- 
  
  ---- IDLE SETS ----
  
