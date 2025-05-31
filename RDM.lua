@@ -70,8 +70,6 @@ end
 
 -----------------------GEAR SETS------------------------------
 function get_sets()
-user_setup()
-
 ---------------- KEYBINDS -----------------------
 send_command('bind numpad9 gs c ToggleMelee')
 send_command('bind numpad8 gs c ToggleTank')
