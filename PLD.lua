@@ -515,9 +515,6 @@ shields = {
 
 end
 
-
-
-
 function idle()
 	if tp_mode == "Hybrid" then
 		if player.status == "Engaged" then
@@ -532,8 +529,6 @@ function idle()
 			equip(sets.idle.normal)
 		end
 	elseif tp_mode == "AoETank" then
-		
-		
 		equip(sets.idle.aoetank)
 	elseif tp_mode == "SingleTank" then
 		equip(sets.idle.singletank)
@@ -710,24 +705,27 @@ function self_command(command)
 			idle()
 		end
 	elseif command == "ToggleShield" then
-		local next_mode = {
-			Aegis = "Ochain",
-			Ochain = "Duban",
-			Duban = "Blurred",
-			Blurred = "Aegis",
-			Open = "Aegis"
-		}
-		shield_mode = next_mode[shield_mode] or "Aegis"
+		local shield_cycle = {"Aegis", "Ochain", "Duban", "Blurred"}
+		local index = 1
+		for i, name in ipairs(shield_cycle) do
+			if shield_mode == name then
+				index = (i % #shield_cycle) + 1
+				break
+			end
+		end
+		shield_mode = shield_cycle[index]
 		equip(shields[shield_mode])
 		idle()
 	elseif command == "ToggleWeapon" then
-		local next_weapon = {
-			Burtgang = "Malignance",
-			Malignance = "Naegling",
-			Naegling = "Burtgang",
-			Open = "Burtgang"
-		}
-		sword_mode = next_weapon[sword_mode] or "Burtgang"
+		local weapon_cycle = {"Burtgang", "Malignance", "Naegling"}
+		local index = 1
+		for i, name in ipairs(weapon_cycle) do
+			if sword_mode == name then
+				index = (i % #weapon_cycle) + 1
+				break
+			end
+		end
+		sword_mode = weapon_cycle[index]
 		equip(weapons[sword_mode])
 		idle()
 	elseif command == "ToggleOpen" then
