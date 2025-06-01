@@ -11,17 +11,17 @@
 ----------------- MODES / UI TEXT BOX -----------------------------
 Player_Mode = "Hybrid"
 Casting_Mode = "Normal"
-Weapon_Mode = "Locked"
+Lock_Mode = "Locked"
 
 Player_Modes = {'Hybrid','TreasureHunter','DualWield','DualWieldHaste1','OmenTank'}
 Casting_Modes = {'Normal','SIR'}
-Weapon_Modes = {'Unlocked','Locked'}
+Lock_Modes = {'Unlocked','Locked'}
 
 gearswap_box = function()
   str = '           \\cs(0,0,204)BLUE MAGE\\cr\n'
   str = str..' Offense Mode:\\cs(255,150,100)   '..Player_Mode..'\\cr\n'
   str = str..' Casting Mode:\\cs(255,0,102)   '..Casting_Mode..'\\cr\n'
-  str = str..' Weapon Mode:\\cs(128,128,128)   '..Weapon_Mode..'\\cr\n'
+  str = str..' Lock Mode:\\cs(128,128,128)   '..Lock_Mode..'\\cr\n'
     return str
 end
 
@@ -40,7 +40,7 @@ send_command('bind numpad9 gs c ToggleHybrid')
 send_command('bind numpad8 gs c ToggleTank')
 send_command('bind numpad7 gs c ToggleDualWield')
 send_command('bind numpad6 gs c ToggleSIR')
-send_command('bind numpad3 gs c ToggleWEAPONS')
+send_command('bind numpad3 gs c ToggleLOCK')
 send_command('bind numpad4 gs c ToggleMAIN')
 send_command('bind numpad5 gs c ToggleSUB')
 
@@ -64,6 +64,18 @@ send_command('bind f12 input //fillmode')
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
+ 	sets.main = {}
+	sets.sub = {}
+ 
+ ---- Weapons -----
+ -- Main Weapons 
+	sets.main["Tizona"] 	= {main="Tizona"}
+	sets.main["Maxentius"]  = {main="Maxentius"}
+ 
+ -- Sub Weapons
+	sets.sub["Thibron"]		= {sub="Thibron"}
+	sets.sub["Zantetsuken"]	= {sub="Zantetsuken"}
+	sets.sub["Bunzi's Rod"]	= {sub="Bunzi's Rod"}
  
  
  ---- IDLE SETS ----
@@ -811,7 +823,7 @@ end)
 
 function idle()
 	if Player_Mode == "OmenTank" then
-		if Weapon_Mode == "Locked" then
+		if Lock_Mode == "Locked" then
 			if player.status == "Engaged" then 
 				equip(sets.engaged.tank) 
 			else
@@ -1097,25 +1109,39 @@ function self_command(command)
 		elseif Casting_Mode == "SIR" then
 			Casting_Mode = "Normal"
 		end
-	elseif command == "ToggleWEAPONS" then
-		if Weapon_Mode == "Locked" then
-			Weapon_Mode = "Unlocked"
-		elseif Weapon_Mode == "Unlocked" then
-			Weapon_Mode = "Locked"
+	elseif command == "ToggleLOCK" then
+		if Lock_Mode == "Locked" then
+			Lock_Mode = "Unlocked"
+		elseif Lock_Mode == "Unlocked" then
+			Lock_Mode = "Locked"
 		end
 	elseif command == "ToggleMAIN" then
-		if player.equipment.main == "Tizona" then
-			send_command ('input /equip Main "Maxentius"')
-		else
-			send_command ('input /equip Main "Tizona"')
-		end
+		local main_cycle = {"Tizona","Maxentius"}
+        local current = player.equipment.main
+		local next_index = 1
+        for i, main in ipairs(main_cycle) do
+            if current == sets.main[main].main then
+                next_index = (i % #main_cycle) + 1
+                break  
+            end
+        end
+		local next_weapon = main_cycle[next_index]
+        if next_weapon then
+            send_command('input /equip Main "' .. next_weapon .. '"')
+        end
 	elseif command == "ToggleSUB" then
-		if player.equipment.sub == "Zantetsuken" then
-			send_command ('input /equip Sub "Thibron"')
-		elseif player.equipment.sub == "Thibron" then
-			send_command ('input /equip Sub "Bunzi\'s Rod"')
-		else
-			send_command ('input /equip Sub "Zantetsuken"')
+		local sub_cycle = {"Zantetsuken","Thibron","Bunzi's Rod"}
+		local current = player.equipment.sub
+		local next_index = 1
+		for i, sub in ipairs(sub_cycle) do
+			if current == sub then
+				next_index = (i % #sub_cycle) + 1
+				break
+			end
+		end
+		local next_sub = sub_cycle[next_index]
+		if next_sub then
+			send_command('input /equip Sub "' .. next_sub .. '"')
 		end
 	end
 	gearswap_jobbox:text(gearswap_box())
