@@ -8,26 +8,6 @@
 --                  |___/       |___/|_|    
 --  
 ---------------------------	PUPPETMASTER LUA---------------------------
-                       
-
----------------------------	UNLOAD COMMAND	---------------------------		
-function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
-	send_command('unbind numpad5')
-	send_command('unbind numpad4')
-	send_command('unbind numpad3')
-	send_command('unbind numpad2')
-	send_command('unbind numpad1')
-	send_command('unbind f8')
-	send_command('unbind f9')
-	send_command('unbind f10')
-	send_command('unbind f11')
-	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
-end
 
 --------------------------- SETTING UP TEXTBOX ------------------------------------------
 TP_Mode = "Hybrid"
@@ -57,7 +37,6 @@ function user_setup()
 	gearswap_jobbox:show()
 end
 
-
 function get_sets()
 --------------------------- Commands ----------------------------------
 --------Required Commands Below ----------
@@ -76,7 +55,7 @@ send_command('bind numpad2 gs c ToggleDistance')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
-
+send_command('bind f12 input //lua l AutoPUP')
 send_command('bind numpad1 input /jump')
 
 --------- GEAR DEFINED ------------------
@@ -1206,6 +1185,41 @@ function check_pet_status()
 	end
 	gearswap_jobbox:text(gearswap_box())
 	gearswap_jobbox:show()
+end
+
+function file_unload()
+    send_command('unbind numpad9')
+    send_command('unbind numpad8')
+    send_command('unbind numpad7')
+    send_command('unbind numpad6')
+	send_command('unbind numpad5')
+	send_command('unbind numpad4')
+	send_command('unbind numpad3')
+	send_command('unbind numpad2')
+	send_command('unbind numpad1')
+    send_command('unbind ^numpad9')
+    send_command('unbind ^numpad8')
+    send_command('unbind ^numpad7')
+    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad5')
+	send_command('unbind ^numpad4')
+	send_command('unbind ^numpad3')
+	send_command('unbind ^numpad2')
+	send_command('unbind ^numpad1')
+    send_command('unbind !numpad9')
+    send_command('unbind !numpad8')
+    send_command('unbind !numpad7')
+    send_command('unbind !numpad6')
+	send_command('unbind !numpad5')
+	send_command('unbind !numpad4')
+	send_command('unbind !numpad3')
+	send_command('unbind !numpad2')
+	send_command('unbind !numpad1')
+	send_command('unbind f9')
+	send_command('unbind f10')
+	send_command('unbind f11')
+	send_command('unbind f12')
+    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()

@@ -9,36 +9,6 @@
 -- 						RED MAGE LUA
 
 
---[[
-^ = Ctrl
-! = Alt Key
-@ = Windows Key
-]]
-
-function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
-	send_command('unbind numpad5')
-	send_command('unbind numpad4')
-	send_command('unbind numpad3')
-	send_command('unbind numpad2')
-	send_command('unbind numpad1')
-	send_command('unbind ^numpad3')
-	send_command('unbind ^numpad2')
-	send_command('unbind ^numpad1')
-	send_command('unbind !numpad3')
-	send_command('unbind !numpad2')
-	send_command('unbind !numpad1')
-	send_command('unbind f9')
-	send_command('unbind f10')
-	send_command('unbind f11')
-	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
-	send_command('console_displayactivity 1')
-end
-
 ----------------- MODES / UI TEXT BOX -----------------------------
 Player_Mode = "Melee"
 Casting_Mode = "Burst"
@@ -68,7 +38,6 @@ function user_setup()
 	gearswap_jobbox:show()
 end
 
------------------------GEAR SETS------------------------------
 function get_sets()
 ---------------- KEYBINDS -----------------------
 send_command('bind numpad9 gs c ToggleMelee')
@@ -1465,6 +1434,41 @@ function self_command(command)
 	end
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
+end
+
+function file_unload()
+    send_command('unbind numpad9')
+    send_command('unbind numpad8')
+    send_command('unbind numpad7')
+    send_command('unbind numpad6')
+	send_command('unbind numpad5')
+	send_command('unbind numpad4')
+	send_command('unbind numpad3')
+	send_command('unbind numpad2')
+	send_command('unbind numpad1')
+    send_command('unbind ^numpad9')
+    send_command('unbind ^numpad8')
+    send_command('unbind ^numpad7')
+    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad5')
+	send_command('unbind ^numpad4')
+	send_command('unbind ^numpad3')
+	send_command('unbind ^numpad2')
+	send_command('unbind ^numpad1')
+    send_command('unbind !numpad9')
+    send_command('unbind !numpad8')
+    send_command('unbind !numpad7')
+    send_command('unbind !numpad6')
+	send_command('unbind !numpad5')
+	send_command('unbind !numpad4')
+	send_command('unbind !numpad3')
+	send_command('unbind !numpad2')
+	send_command('unbind !numpad1')
+	send_command('unbind f9')
+	send_command('unbind f10')
+	send_command('unbind f11')
+	send_command('unbind f12')
+    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()

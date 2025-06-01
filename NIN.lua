@@ -11,20 +11,6 @@
 -- requires Dressup (to stop blinking "//du blinking self combat on")
 
 
-function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
-	send_command('unbind numpad5')
-	send_command('unbind numpad4')
-	send_command('unbind numpad3')
-	send_command('unbind f9')
-	send_command('unbind f10')
-	send_command('unbind f11')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
-end
-
 TP_Mode = "Hybrid"
 Haste_Mode = "Haste2"
 
@@ -50,6 +36,71 @@ end
 -- Change position coordinates
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
+
+function buff_change(buff, gain)
+	if buffactive['Copy Image'] then
+		utsubuff = "\\cs(255,127,0)1"	
+	elseif buffactive['Copy Image (2)'] then 
+		utsubuff = "\\cs(255,255,0)2"
+	elseif buffactive['Copy Image (3)'] then
+		utsubuff = "\\cs(127,255,0)3"
+	elseif buffactive['Copy Image (4+)'] then
+		utsubuff = "\\cs(0,255,0)4+"
+	else 
+		utsubuff = "\\cs(255,0,0)0" 
+	end
+	gearswap_jobbox:text(gearswap_box())
+	gearswap_jobbox:show()
+end	
+
+function check_tool_count()
+	ctool = {'Shikanofuda',
+		'Shihei',
+		'Chonofuda',
+		'Inoshishinofuda'}
+
+	for t =1,4  do
+
+		if not player.inventory[ctool[t]] then
+			curCount = 0
+		elseif player.inventory[ctool[t]].count then
+			curCount = player.inventory[ctool[t]].count
+		end
+		a = ''
+
+		--defined green = 99
+		cMax = 99
+		cColorR = 0
+		if curCount > cMax then
+			cColorR = 0
+			cColorG = 255
+		else
+			percent = (curCount/cMax * 100)
+			if percent >=50 then
+				cColorG = 255
+				cColorR =math.floor(5 * (100-percent))
+			else 
+				cColorR = 255
+				cColorG = 255-math.floor(5 * (50-percent))
+			end
+		end
+		if curCount == 0 then
+			a = "\\cs(255,0,0)" .. '0'
+		else 
+			a = "\\cs("..cColorR..","..cColorG..",0)" .. (curCount) 
+		end
+
+		if t == 1 then
+			shika = a
+		elseif t == 2 then
+			shihei = a
+		elseif t == 3 then
+			chono = a 
+		elseif t == 4 then
+			inofu = a 
+		end
+	end
+end
 
 function user_setup()
 	check_tool_count()
@@ -1465,69 +1516,39 @@ function self_command(command)
 	end
 end
 
-function buff_change(buff, gain)
-	if buffactive['Copy Image'] then
-		utsubuff = "\\cs(255,127,0)1"	
-	elseif buffactive['Copy Image (2)'] then 
-		utsubuff = "\\cs(255,255,0)2"
-	elseif buffactive['Copy Image (3)'] then
-		utsubuff = "\\cs(127,255,0)3"
-	elseif buffactive['Copy Image (4+)'] then
-		utsubuff = "\\cs(0,255,0)4+"
-	else 
-		utsubuff = "\\cs(255,0,0)0" 
-	end
-	gearswap_jobbox:text(gearswap_box())
-	gearswap_jobbox:show()
-end	
-
-function check_tool_count()
-	ctool = {'Shikanofuda',
-		'Shihei',
-		'Chonofuda',
-		'Inoshishinofuda'}
-
-	for t =1,4  do
-
-		if not player.inventory[ctool[t]] then
-			curCount = 0
-		elseif player.inventory[ctool[t]].count then
-			curCount = player.inventory[ctool[t]].count
-		end
-		a = ''
-
-		--defined green = 99
-		cMax = 99
-		cColorR = 0
-		if curCount > cMax then
-			cColorR = 0
-			cColorG = 255
-		else
-			percent = (curCount/cMax * 100)
-			if percent >=50 then
-				cColorG = 255
-				cColorR =math.floor(5 * (100-percent))
-			else 
-				cColorR = 255
-				cColorG = 255-math.floor(5 * (50-percent))
-			end
-		end
-		if curCount == 0 then
-			a = "\\cs(255,0,0)" .. '0'
-		else 
-			a = "\\cs("..cColorR..","..cColorG..",0)" .. (curCount) 
-		end
-
-		if t == 1 then
-			shika = a
-		elseif t == 2 then
-			shihei = a
-		elseif t == 3 then
-			chono = a 
-		elseif t == 4 then
-			inofu = a 
-		end
-	end
+function file_unload()
+    send_command('unbind numpad9')
+    send_command('unbind numpad8')
+    send_command('unbind numpad7')
+    send_command('unbind numpad6')
+	send_command('unbind numpad5')
+	send_command('unbind numpad4')
+	send_command('unbind numpad3')
+	send_command('unbind numpad2')
+	send_command('unbind numpad1')
+    send_command('unbind ^numpad9')
+    send_command('unbind ^numpad8')
+    send_command('unbind ^numpad7')
+    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad5')
+	send_command('unbind ^numpad4')
+	send_command('unbind ^numpad3')
+	send_command('unbind ^numpad2')
+	send_command('unbind ^numpad1')
+    send_command('unbind !numpad9')
+    send_command('unbind !numpad8')
+    send_command('unbind !numpad7')
+    send_command('unbind !numpad6')
+	send_command('unbind !numpad5')
+	send_command('unbind !numpad4')
+	send_command('unbind !numpad3')
+	send_command('unbind !numpad2')
+	send_command('unbind !numpad1')
+	send_command('unbind f9')
+	send_command('unbind f10')
+	send_command('unbind f11')
+	send_command('unbind f12')
+    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()
