@@ -25,11 +25,11 @@ function file_unload()
     enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
-Mode = "Hybrid"
-Haste = "Haste2"
+TP_Mode = "Hybrid"
+Haste_Mode = "Haste2"
 
-Modes = {'Hybrid','HybridHaste1','Malignance','MalignanceHaste1','AoETank','EvasionTank','MagicEvasionTank','DPS','DPSHaste1'}
-Hastes = {'Haste1','Haste2'}
+TP_Modes = {'Hybrid','HybridHaste1','Malignance','MalignanceHaste1','AoETank','EvasionTank','MagicEvasionTank','DPS','DPSHaste1'}
+Haste_Modes = {'Haste1','Haste2'}
 
 shika = 0
 inofu = 0
@@ -39,8 +39,8 @@ utsubuff = "\\cs(255,0,0)0"
 
 gearswap_box = function()
   str = '           \\cs(130,130,130)NINJA\\cr\n'
-  str = str..' Offense Mode:\\cs(255,150,100)   '..Mode..'\\cr\n'
-  str = str..' Haste Mode:\\cs(255,150,100)   '..Haste..'\\cr\n'
+  str = str..' Offense Mode:\\cs(255,150,100)   '..TP_Mode..'\\cr\n'
+  str = str..' Haste Mode:\\cs(255,150,100)   '..Haste_Mode..'\\cr\n'
   str = str..'  Ino(E): '..inofu..'\\cs(255,255,255)   Shika(B): '..shika..'\\cr\n'
   str = str..'Cho(D): '..chono.."\\cs(255,255,255)  Shihei(U): "..shihei.."\\cr\n"
   str = str..'Utsusemi Shadows: '..utsubuff.."\\cr\n"
@@ -63,7 +63,6 @@ send_command('bind numpad8 gs c ToggleTank')
 send_command('bind numpad7 gs c ToggleDPS')
 send_command('bind numpad6 gs c ToggleHaste')
 
-
 send_command('bind numpad5 gs c ToggleSub')
 send_command('bind numpad4 gs c ToggleMain')
 send_command('bind numpad1 gs c ToggleSpecial')
@@ -72,7 +71,7 @@ send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
 
-
+---------- Weapon Sets --------------
     sets.idle = {}               	-- Leave this empty.   
 	sets.engaged = {}				-- Leave this empty.
 		sets.engaged.hybrid = {}
@@ -85,6 +84,22 @@ send_command('bind f11 input /item "Holy Water" <me>')
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
+	sets.main = {}
+	sets.sub = {}
+ ---- Weapons Defined ----
+ 
+-- Main Weapons
+	sets.main["Heishi Shorinken"] = {main = "Heishi Shorinken"}
+	sets.main["Fudo Masamune"]    = {main = "Fudo Masamune"}
+	sets.main["Naegling"]         = {main = "Naegling"}
+	sets.main["Gokotai"]          = {main = "Gokotai"}
+
+-- Sub Weapons
+	sets.sub["Yagyu Darkblade"] = {sub = "Yagyu Darkblade"}
+	sets.sub["Kunimitsu"]       = {sub = "Kunimitsu"}
+	sets.sub["Gleti's Knife"]   = {sub = "Gleti's Knife"}
+	sets.sub["Hitaki"]          = {sub = "Hitaki"}
+	sets.sub["Tsuru"]           = {sub = "Tsuru"}
  
  -------------- IDLE SETS ---------------------
     --Hybrid/DPS IDLE--
@@ -859,8 +874,8 @@ end
 
 
 function idle()
-	if Mode == "Hybrid" or Mode == "Malignance" or Mode == "DPS" then
-		if Haste == "Haste2" then
+	if TP_Mode == "Hybrid" or TP_Mode == "Malignance" or TP_Mode == "DPS" then
+		if Haste_Mode == "Haste2" then
 			if player.status == "Engaged" then 
 				if player.equipment.main == "Hachimonji" then
 					if buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
@@ -872,18 +887,18 @@ function idle()
 					if ( ( (buffactive[33] or buffactive[580] or buffactive.embrava) and (buffactive.march or buffactive[604]) ) or
 					( buffactive[33] and (buffactive[580] or buffactive.embrava) ) or
 					( buffactive.march == 2 and buffactive[604] ) ) then
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.hastecap)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.hastecap)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.hastecap)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.hastecapdef)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.hastecapyonin)
 								else
@@ -892,18 +907,18 @@ function idle()
 							end
 						end
 					elseif ( (buffactive[33] or buffactive.march == 2 or buffactive[580]) and buffactive['haste samba'] ) then
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 								equip(sets.engaged.DPS.haste35)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste35)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste35)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste35def)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste35yonin)
 								else
@@ -913,18 +928,18 @@ function idle()
 						end
 					elseif ( ( buffactive[580] or buffactive[33] or buffactive.march == 2 ) or
 					( buffactive.march == 1 and buffactive[604] ) ) then
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.haste30)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste30)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste30)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste30)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste30yonin)
 								else
@@ -933,18 +948,18 @@ function idle()
 							end
 						end
 					elseif ( buffactive.march == 1 or buffactive[604] ) then
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.haste15)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste15)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste15)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste15def)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste15yonin)
 								else
@@ -953,18 +968,18 @@ function idle()
 							end
 						end
 					else
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.haste0)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste0)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste0)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste0def)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste0yonin)
 								else
@@ -976,20 +991,20 @@ function idle()
 				end
 			else
 				if world.time >= (17*60) or world.time < (7*60) then
-					if Mode == "Hybrid" or Mode == "DPS" then
+					if TP_Mode == "Hybrid" or TP_Mode == "DPS" then
 						equip(sets.idle.night)
-					elseif Mode == "Malignance" then
+					elseif TP_Mode == "Malignance" then
 						equip(sets.idle.malignancenight)
 					end
 				else
-					if Mode == "Hybrid" or Mode == "DPS" then
+					if TP_Mode == "Hybrid" or TP_Mode == "DPS" then
 						equip(sets.idle.normal)
-					elseif Mode == "Malignance" then
+					elseif TP_Mode == "Malignance" then
 						equip(sets.idle.malignance)
 					end
 				end
 			end
-		elseif Haste == "Haste1" then
+		elseif Haste_Mode == "Haste1" then
 			if player.status == "Engaged" then 
 				if player.equipment.main == "Hachimonji" then
 					if buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
@@ -1002,18 +1017,18 @@ function idle()
 					( buffactive.embrava and (buffactive.march or buffactive[33] or buffactive[604]) ) or  -- embrava + anything
 					( buffactive.march == 2 and (buffactive[33] or buffactive[604]) ) or  -- two marches + anything
 					( buffactive[33] and buffactive[604] and buffactive.march ) then -- haste + mighty guard + any marches
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.hastecap)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.hastecap)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.hastecap)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.hastecapdef)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.hastecapyonin)
 								else
@@ -1024,18 +1039,18 @@ function idle()
 					elseif ( (buffactive[604] or buffactive[33]) and buffactive['haste samba'] and buffactive.march == 1) or -- MG or haste + samba with 1 march
 					( buffactive.march == 2 and buffactive['haste samba'] ) or
 					( buffactive[580] and buffactive['haste samba'] ) then 
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.haste35)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste35)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste35)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste35def)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste35yonin)
 								else
@@ -1047,18 +1062,18 @@ function idle()
 					( (buffactive[33] or buffactive[604]) and buffactive.march == 1 ) or  -- MG or haste + 1 march
 					( buffactive[580] ) or  -- geo haste
 					( buffactive[33] and buffactive[604] ) then -- haste with MG
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.haste30)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste30)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste30)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste30)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste30yonin)
 								else
@@ -1067,18 +1082,18 @@ function idle()
 							end
 						end
 					elseif buffactive[33] or buffactive[604] or buffactive.march == 1 then
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.haste15)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste15)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste15)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste15def)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste15yonin)
 								else
@@ -1087,18 +1102,18 @@ function idle()
 							end
 						end
 					else
-						if Mode == "DPS" then
+						if TP_Mode == "DPS" then
 								equip(sets.engaged.DPS.haste0)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-							if Mode == "Hybrid" then
+							if TP_Mode == "Hybrid" then
 								equip(sets.engaged.hybrid.haste0)
-							elseif Mode == "Malignance" then
+							elseif TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste0)
 							end
 						else
-							if Mode == "Malignance" then
+							if TP_Mode == "Malignance" then
 								equip(sets.engaged.malignance.haste0def)
-							elseif Mode == "Hybrid" then
+							elseif TP_Mode == "Hybrid" then
 								if buffactive['Yonin'] then
 									equip(sets.engaged.hybrid.haste0yonin)
 								else
@@ -1110,51 +1125,51 @@ function idle()
 				end
 			else
 				if world.time >= (17*60) or world.time < (7*60) then
-					if Mode == "Hybrid" or Mode == "DPS" then
+					if TP_Mode == "Hybrid" or TP_Mode == "DPS" then
 						equip(sets.idle.night)
-					elseif Mode == "Malignance" then
+					elseif TP_Mode == "Malignance" then
 						equip(sets.idle.malignancenight)
 					end
 				else
-					if Mode == "Hybrid" or Mode == "DPS" then
+					if TP_Mode == "Hybrid" or TP_Mode == "DPS" then
 						equip(sets.idle.normal)
-					elseif Mode == "Malignance" then
+					elseif TP_Mode == "Malignance" then
 						equip(sets.idle.malignance)
 					end
 				end
 			end
 		end
-	elseif Mode == "AoETank" or Mode == "EvasionTank" then
+	elseif TP_Mode == "AoETank" or TP_Mode == "EvasionTank" then
 		if player.status == "Engaged" then
 			if buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-				if Mode == "AoETank" then
+				if TP_Mode == "AoETank" then
 					equip(sets.engaged.tank.normal)
-				elseif Mode == "EvasionTank" then
+				elseif TP_Mode == "EvasionTank" then
 					equip(sets.engaged.evasion.normal)
 				end
 			else
 				if buffactive['Yonin'] then	
-					if Mode == "AoETank" then
+					if TP_Mode == "AoETank" then
 						equip(sets.engaged.tank.yonin)
-					elseif Mode == "EvasionTank" then
+					elseif TP_Mode == "EvasionTank" then
 						equip(sets.engaged.evasion.yonin)
 					end
 				else
-					if Mode == "AoETank" then
+					if TP_Mode == "AoETank" then
 						equip(sets.engaged.tank.counter)
-					elseif Mode == "EvasionTank" then
+					elseif TP_Mode == "EvasionTank" then
 						equip(sets.engaged.evasion.counter)
 					end
 				end	
 			end
 		else
-			if Mode == "AoETank" then
+			if TP_Mode == "AoETank" then
 				equip(sets.idle.AOEtank)
-			elseif Mode == "EvasionTank" then
+			elseif TP_Mode == "EvasionTank" then
 				equip(sets.idle.evasion)
 			end
 		end
-	elseif Mode == "MagicEvasionTank" then
+	elseif TP_Mode == "MagicEvasionTank" then
 		if player.status == "Engaged" then
 			equip(sets.engaged.evasion.magic)
 		else
@@ -1366,78 +1381,80 @@ end
 
 function self_command(command)
 	if command == "ToggleHybrid" then
-		if Mode == "Hybrid" then
-			Mode = "Malignance"
+		if TP_Mode == "Hybrid" then
+			TP_Mode = "Malignance"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
-		elseif Mode == "Malignance" or Mode == "AoETank" or Mode == "EvasionTank" or Mode == "MagicEvasionTank" or Mode == "DPS" then
-			Mode = "Hybrid"
+		elseif TP_Mode == "Malignance" or TP_Mode == "AoETank" or TP_Mode == "EvasionTank" or TP_Mode == "MagicEvasionTank" or TP_Mode == "DPS" then
+			TP_Mode = "Hybrid"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
 		end
 	elseif command == "ToggleTank" then
-		if Mode == "Hybrid" or Mode == "Malignance" or Mode == "MagicEvasionTank" or Mode == "DPS" then
-			Mode = "AoETank"
+		if TP_Mode == "Hybrid" or TP_Mode == "Malignance" or TP_Mode == "MagicEvasionTank" or TP_Mode == "DPS" then
+			TP_Mode = "AoETank"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
-		elseif Mode == "AoETank" then
-			Mode = "EvasionTank"
+		elseif TP_Mode == "AoETank" then
+			TP_Mode = "EvasionTank"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
-		elseif Mode == "EvasionTank" then
-			Mode = "MagicEvasionTank"
+		elseif TP_Mode == "EvasionTank" then
+			TP_Mode = "MagicEvasionTank"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
 		end
 	elseif command == "ToggleHaste" then
-		if Haste == "Haste1" then
-			Haste = "Haste2"
+		if Haste_Mode == "Haste1" then
+			Haste_Mode = "Haste2"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
-		elseif Haste == "Haste2" then
-			Haste = "Haste1"
+		elseif Haste_Mode == "Haste2" then
+			Haste_Mode = "Haste1"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
 		end
 	elseif command == "ToggleDPS" then
-		if Mode == "Hybrid" or Mode == "Malignance" or Mode == "AoETank" or Mode == "EvasionTank" or Mode == "MagicEvasionTank" then
-			Mode = "DPS"
+		if TP_Mode == "Hybrid" or TP_Mode == "Malignance" or TP_Mode == "AoETank" or TP_Mode == "EvasionTank" or TP_Mode == "MagicEvasionTank" then
+			TP_Mode = "DPS"
 			idle()
 			gearswap_jobbox:text(gearswap_box())
 			gearswap_jobbox:show()
 		end
 	elseif command == "ToggleMain" then
-		if player.equipment.main == "Heishi Shorinken" then
-			send_command ('input /equip Main "Fudo Masamune"')
-		elseif player.equipment.main == "Fudo Masamune" then
-			send_command ('input /equip Main "Naegling"')
-		elseif player.equipment.main == "Naegling" then
-			send_command ('input /equip Main "Gokotai"')
-		elseif player.equipment.main == "Gokotai" then
-			send_command ('input /equip Main "Heishi Shorinken"')
-		else
-			send_command ('input /equip Main "Heishi Shorinken"')
-		end
+		local main_cycle ={"Heishi Shorinken","Fudo Masamune","Naegling","Gokotai"}
+        local current = player.equipment.main
+		local next_index = 1
+        for i, main in ipairs(main_cycle) do
+            if current == main then
+                next_index = (i % #main_cycle) + 1
+                break  
+            end
+        end
+		local next_weapon = main_cycle[next_index]
+        if next_weapon then
+            send_command('input /equip Main "' .. next_weapon .. '"')
+        end
 	elseif command == "ToggleSub" then
-		if player.equipment.sub == "Yagyu Darkblade" then
-			send_command ('input /equip Sub "Kunimitsu"')
-		elseif player.equipment.sub == "Kunimitsu" then
-			send_command ('input /equip Sub "Gleti\'s Knife"')
-		elseif player.equipment.sub == "Gleti\'s Knife" then
-			send_command ('input /equip Sub "Hitaki"')
-		elseif player.equipment.sub == "Hitaki" then
-			send_command ('input /equip Sub "Tsuru"')
-		elseif player.equipment.sub == "Tsuru" then
-			send_command ('input /equip Sub "Yagyu Darkblade"')
-		else
-			send_command ('input /equip Sub "Yagyu Darkblade"')
+		local sub_cycle = {"Yagyu Darkblade","Kunimitsu","Gleti's Knife","Hitaki","Tsuru"}
+		local current = player.equipment.sub
+		local next_index = 1
+		for i, sub in ipairs(sub_cycle) do
+			if current == sub then
+				next_index = (i % #sub_cycle) + 1
+				break
+			end
+		end
+		local next_offhand = sub_cycle[next_index] 
+		if next_offhand then
+			send_command('input /equip Sub "' .. next_offhand .. '"')
 		end
 	elseif command == "ToggleSpecial" then
 		if player.equipment.main == "Hachimonji" then
