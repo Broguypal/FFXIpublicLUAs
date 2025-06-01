@@ -114,7 +114,7 @@ sets.main["Daybreak"]    = {main="Daybreak"}
 sets.main["Naegling"]    = {main="Naegling"}
 sets.main["Tauret"]      = {main="Tauret"}
 sets.main["Maxentius"]   = {main="Maxentius"}
-sets.main["Thibron"]     = {main="Thibron"}
+
 
 -- Sub weapons
 sets.sub["Ammurapi Shield"] = {sub="Ammurapi Shield"}
@@ -122,6 +122,7 @@ sets.sub["Culminus"]        = {sub="Culminus"}
 sets.sub["Pukulatmuj +1"]   = {sub="Pukulatmuj +1"}
 sets.sub["Ethereal Dagger"] = {sub="Ethereal Dagger"}
 sets.sub["Genmei Shield"]   = {sub="Genmei Shield"}
+sets.sub["Thibron"]    		= {sub="Thibron"}
  
  -------------- IDLE SETS ---------------------
     --Hybrid/DPS IDLE--
@@ -1427,7 +1428,7 @@ function self_command(command)
         local current = player.equipment.main
 		local next_index = 1
         for i, main in ipairs(main_cycle) do
-            if current == sets.main[main].main then
+            if current == main then
                 next_index = (i % #main_cycle) + 1
                 break  
             end
@@ -1457,9 +1458,9 @@ function self_command(command)
 				break
 			end
 		end
-		local next_sub = sub_cycle[next_index]
-		if next_sub then
-			send_command('input /equip Sub "' .. next_sub .. '"')
+		local next_offhand = sub_cycle[next_index] 
+		if next_offhand then
+			send_command('input /equip Sub "' .. next_offhand .. '"')
 		end
 	end
 	gearswap_jobbox:text(gearswap_box())		
