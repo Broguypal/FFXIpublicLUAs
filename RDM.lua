@@ -20,20 +20,42 @@ Casting_Modes = {'Burst','Freecast'}
 Enfeeble_Modes = {'Normal','Accuracy'}
 Lock_Modes = {'Unlocked','Locked'}
 
+shihei = 0
 
 gearswap_box = function()
   str = '           \\cs(204,0,0)RED MAGE\\cr\n'
   str = str..' Offense Mode:\\cs(255,150,100)   '..Player_Mode..'\\cr\n'
   str = str..' Casting Mode:\\cs(255,0,102)   '..Casting_Mode..'\\cr\n'
   str = str..' Enfeeble Mode:\\cs(0,153,51)   '..Enfeeble_Mode..'\\cr\n'
-  str = str..' Weapon Mode:\\cs(128,128,128)   '..Lock_Mode..'\\cr\n'
+  str = str..' Weapon Lock:\\cs(128,128,128)   '..Lock_Mode..'\\cr\n'
+  str = str..' Shihei Amount: '..shihei..'\n'
     return str
 end
 
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+function check_shihei()
+    local count = 0
+    if player.inventory['Shihei'] and player.inventory['Shihei'].count then
+        count = player.inventory['Shihei'].count
+    end
+
+    local color = "\\cs(255,255,255)"
+    if count == 0 then
+        color = "\\cs(255,0,0)"
+    elseif count < 50 then
+        color = "\\cs(255,165,0)"
+    elseif count < 99 then
+        color = "\\cs(255,255,0)"
+    else
+        color = "\\cs(0,255,0)"
+    end
+    shihei = color .. tostring(count) .. "\\cr"
+end
+
 function user_setup()
+	check_shihei()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
@@ -1342,7 +1364,14 @@ function midcast(spell)
 end
 
 function aftercast(spell)
-	idle()
+	if spell.type == "Ninjutsu" then
+		check_shihei()
+		gearswap_jobbox:text(gearswap_box())		
+		gearswap_jobbox:show()
+		idle()
+	else
+		idle()
+	end
 end
 
 function self_command(command)
@@ -1432,6 +1461,7 @@ function self_command(command)
 			send_command('input /equip Sub "' .. next_offhand .. '"')
 		end
 	end
+	check_shihei()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
