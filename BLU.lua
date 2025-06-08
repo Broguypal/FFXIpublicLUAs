@@ -39,8 +39,8 @@ function get_sets()
 send_command('bind numpad9 gs c ToggleHybrid')
 send_command('bind numpad8 gs c ToggleTank')
 send_command('bind numpad7 gs c ToggleDualWield')
-send_command('bind numpad6 gs c ToggleSIR')
-send_command('bind numpad3 gs c ToggleLOCK')
+send_command('bind numpad3 gs c ToggleSIR')
+send_command('bind numpad6 gs c ToggleLOCK')
 send_command('bind numpad4 gs c ToggleMAIN')
 send_command('bind numpad5 gs c ToggleSUB')
 
@@ -82,17 +82,17 @@ send_command('bind f12 input //fillmode')
     sets.idle.hybrid = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
-		body="Hashishin Mintan +2",
+		body="Shamash Robe",
 		hands="Hashi. Bazu. +2",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Sibyl Scarf",
+		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Carrier's Sash",
-		left_ear="Genmei Earring",
+		left_ear="Etiolation Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
 	}
 	
 	sets.idle.tank = {
