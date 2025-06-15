@@ -262,7 +262,7 @@ send_command('bind f12 input //fillmode')
 
 ---- PRECAST SETS ----
     sets.precast.fastcast = {
-		ammo="Amar Cluster",
+		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		body={ name="Adhemar Jacket +1", augments={'HP+105','"Fast Cast"+10','Magic dmg. taken -4',}},
 		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
@@ -390,7 +390,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.bluemagic.Magical = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body="Hashishin Mintan +2",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
 		legs="Hashishin Tayt +2",
@@ -537,7 +537,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.treasurehunter = {
 		ammo="Per. Lucky Egg",
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body={ name="Herculean Vest", augments={'CHR+1','Attack+6','"Treasure Hunter"+2','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
 		hands="Hashi. Bazu. +2",
 		legs={ name="Herculean Trousers", augments={'"Drain" and "Aspir" potency +1','Pet: Accuracy+27 Pet: Rng. Acc.+27','"Treasure Hunter"+2','Accuracy+12 Attack+12','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
@@ -586,7 +586,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.elemental = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body="Hashishin Mintan +2",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
 		legs="Hashishin Tayt +2",
@@ -602,7 +602,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.midcast.enfeebling = {
 		ammo="Pemphredo Tathlum",
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body="Hashishin Mintan +2",
 		hands="Hashi. Bazu. +2",
 		legs="Hashishin Tayt +2",
@@ -690,7 +690,7 @@ send_command('bind f12 input //fillmode')
 ---- WEAPONSKILL SETS ----
 	sets.ws.normal = {
 		ammo="Oshasha's Treatise",
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -706,7 +706,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.ws.expiacion = {
 	    ammo="Coiste Bodhar",
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -738,7 +738,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.ws.requiescat = {
 	    ammo="Coiste Bodhar",
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -754,7 +754,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.ws.savageblade = {
 		ammo="Coiste Bodhar",
-		head="Hashishin Kavuk +2",
+		head="Hashishin Kavuk +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -786,7 +786,7 @@ send_command('bind f12 input //fillmode')
 	
 	sets.ws.blackhalo = {
 		ammo="Coiste Bodhar",
-		head={ name="Nyame Helm", augments={'Path: B',}},
+		head="Hashishin Kavuk +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},

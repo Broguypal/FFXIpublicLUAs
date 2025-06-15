@@ -625,7 +625,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	--Elemental Midcast
     sets.midcast.elemental = {
 	    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		head={ name="Mochi. Hatsuburi +3", augments={'Enhances "Yonin" and "Innin" effect',}},
+		head={ name="Mochi. Hatsu. +4", augments={'Enhances "Yonin" and "Innin" effect',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -802,7 +802,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	-- Yu Weaponskill
 	sets.ws.yu = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		head={ name="Mochi. Hatsuburi +3", augments={'Enhances "Yonin" and "Innin" effect',}},
+		head={ name="Mochi. Hatsu. +4", augments={'Enhances "Yonin" and "Innin" effect',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -823,7 +823,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	--chi/teki/to Weaponskill
 	sets.ws.elemental = {
 	    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
-		head={ name="Mochi. Hatsuburi +3", augments={'Enhances "Yonin" and "Innin" effect',}},
+		head={ name="Mochi. Hatsu. +4", augments={'Enhances "Yonin" and "Innin" effect',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
