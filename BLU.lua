@@ -773,7 +773,7 @@ send_command('bind f12 input //fillmode')
 		head="Pixie Hairpin +1",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		legs={ name="Luhlaza Shalwar +3", augments={'Enhances "Assimilation" effect',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
@@ -798,6 +798,22 @@ send_command('bind f12 input //fillmode')
 		left_ring="Epaminondas's Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+	}
+	
+	sets.ws.elemental = {
+		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
+		head="Hashishin Kavuk +3",
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands="Jhakri Cuffs +2",
+		legs={ name="Luhlaza Shalwar +3", augments={'Enhances "Assimilation" effect',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		neck="Sibyl Scarf",
+		waist="Orpheus's Sash",
+		left_ear="Crematio Earring",
+		right_ear="Friomisi Earring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Fenrir Ring +1",
+		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 	
 ---------------------------	ITEM SETS	---------------------------
@@ -932,6 +948,9 @@ function precast(spell)
 			equip(sets.ws.sanguineblade)
 		elseif spell.english == "Black Halo" then
 			equip(sets.ws.blackhalo)
+		elseif spell.english == "Burning Blade" or spell.english == "Red Lotus Blade" or spell.english == "Shining Blade" 
+		or spell.english == "Seraph Blade" or spell.english == "Seraph Strike" or spell.english == "Shining Strike" or spell.english == "Flash Nova" then
+			equip(sets.ws.elemental)
 		else
 			equip(sets.ws.normal)	
 		end
