@@ -730,7 +730,7 @@ send_command('bind f12 input //fillmode')
 		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Fotia Belt",
 		left_ear="Mache Earring +1",
-		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
+		right_ear="Odr Earring",
 		left_ring="Begrudging Ring",
 		right_ring="Epona's Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
