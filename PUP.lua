@@ -38,27 +38,25 @@ function user_setup()
 end
 
 function get_sets()
---------------------------- Commands ----------------------------------
---------Required Commands Below ----------
+	--------------------------- Commands ----------------------------------
+	--------Required Commands Below ----------
+	send_command('bind numpad9 gs c ToggleHybrid')
+	send_command('bind numpad8 gs c ToggleOverdrive')
+	send_command('bind numpad7 gs c TogglePet')
+	send_command('bind numpad6 gs c ToggleMaster')
+	send_command('bind numpad5 gs c ToggleEmergency')
+	send_command('bind numpad4 gs c ToggleWeapon')
+	send_command('bind numpad3 gs c ToggleLock')
+	send_command('bind numpad2 gs c ToggleDistance')
 
-send_command('bind numpad9 gs c ToggleHybrid')
-send_command('bind numpad8 gs c ToggleOverdrive')
-send_command('bind numpad7 gs c TogglePet')
-send_command('bind numpad6 gs c ToggleMaster')
-send_command('bind numpad5 gs c ToggleEmergency')
-send_command('bind numpad4 gs c ToggleWeapon')
-send_command('bind numpad3 gs c ToggleLock')
-send_command('bind numpad2 gs c ToggleDistance')
+	--------- Personal Commands ---------------
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
+	send_command('bind f12 input //lua l AutoPUP')
+	send_command('bind numpad1 input /jump')
 
-
---------- Personal Commands ---------------
-send_command('bind f9 input /item "Remedy" <me>')
-send_command('bind f10 input /item "Panacea" <me>')
-send_command('bind f11 input /item "Holy Water" <me>')
-
-send_command('bind numpad1 input /jump')
-
---------- GEAR DEFINED ------------------
+	--------- GEAR DEFINED ------------------
 
     sets.idle = {}	
 	sets.engaged = {}
@@ -80,25 +78,24 @@ send_command('bind numpad1 input /jump')
 	sets.animators = {}
 	sets.weapons = {}
  	
----------------------------	GEAR SETS	---------------------------	
-------------- Animator Swaps - Put in your applicable animators here ---------------
--- Note: Please buy a "left_ear="Mache Earring +1"" to make a lot of the swaps work
+	---------------------------	GEAR SETS	---------------------------	
+	------------- Animator Swaps - Put in your applicable animators here ---------------
+	-- Note: Please buy a "left_ear="Mache Earring +1"" to make a lot of the swaps work
+	sets.animators.Ranged = {range="Animator P II +1",}
+	sets.animators.Melee = {range="Animator P +1",}
+	sets.animators.Master = {range="Neo Animator",}
 
-sets.animators.Ranged = {range="Animator P II +1",}
-sets.animators.Melee = {range="Animator P +1",}
-sets.animators.Master = {range="Neo Animator",}
+	-- Weapon sets 
+	sets.weapons.Kenkonken   = {main="Kenkonken"}
+	sets.weapons.Xiucoatl    = {main="Xiucoatl"}
+	sets.weapons.Godhands    = {main="Godhands"}
+	sets.weapons.Verethragna = {main="Verethragna"}
+	sets.weapons.Ohtas       = {main="Ohtas"}
+	sets.weapons.Sakpata     = {main="Sakpata's Fists"}
+	sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
--- Weapon sets 
-sets.weapons.Kenkonken   = {main="Kenkonken"}
-sets.weapons.Xiucoatl    = {main="Xiucoatl"}
-sets.weapons.Godhands    = {main="Godhands"}
-sets.weapons.Verethragna = {main="Verethragna"}
-sets.weapons.Ohtas       = {main="Ohtas"}
-sets.weapons.Sakpata     = {main="Sakpata's Fists"}
-sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
-
----------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
--- Master Damage taken --
+	---------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
+	-- Master Damage taken --
 	sets.idle.Tank = {
 		ammo="Automat. Oil +3",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -115,10 +112,10 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
--- Pet Damage Taken / Regen --
+	-- Pet Damage Taken / Regen --
 	sets.idle.PetTank = {
 		ammo="Automat. Oil +3",
-       	head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
+		head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
 		body={ name="Rao Togi +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
 		hands={ name="Rao Kote +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
 		legs={ name="Rao Haidate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
@@ -132,7 +129,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
----------------------------	IDLE / TOWN SET	---------------------------	
+	---------------------------	IDLE / TOWN SET	---------------------------	
 	sets.idle.Normal = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
@@ -149,10 +146,10 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
----------------------------	ENGAGED SETS	---------------------------
+	---------------------------	ENGAGED SETS	---------------------------
 
----------------------------	HYRBRID ENGAGED SETS	---------------------------
--- Normal Hybrid
+	---------------------------	HYRBRID ENGAGED SETS	---------------------------
+	-- Normal Hybrid
 	sets.engaged.hybrid.Normal = {
 		ammo="Automat. Oil +3",
 		head="Heyoka Cap +1",
@@ -172,12 +169,12 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 	sets.engaged.hybrid.NormalMelee = set_combine(sets.engaged.hybrid.Normal,{sets.animators.Melee,})
 	sets.engaged.hybrid.NormalRanged = set_combine(sets.engaged.hybrid.Normal,{sets.animators.Ranged,})
 
--- Normal - Godhands/Xiucoatl equipped --
+	-- Normal - Godhands/Xiucoatl equipped --
 	sets.engaged.hybrid.Godhands = set_combine(sets.engaged.hybrid.Normal,{left_ear="Mache Earring +1",})
 	sets.engaged.hybrid.GodhandsMelee = set_combine(sets.engaged.hybrid.Godhands,{sets.animators.Melee,})
 	sets.engaged.hybrid.GodhandsRanged = set_combine(sets.engaged.hybrid.Godhands,{sets.animators.Ranged,})
 
---Hybrid Dual Tank set
+	--Hybrid Dual Tank set
 	sets.engaged.hybrid.Defence = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
@@ -197,13 +194,13 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 	sets.engaged.hybrid.DefenceMelee = set_combine(sets.engaged.hybrid.Defence,{sets.animators.Melee,})
 	sets.engaged.hybrid.DefenceRanged = set_combine(sets.engaged.hybrid.Defence,{sets.animators.Ranged,})
 
--- Hybrid - Godhands/Xiucoatl equipped --
+	-- Hybrid - Godhands/Xiucoatl equipped --
 	sets.engaged.hybrid.DefenceGodhands = set_combine(sets.engaged.hybrid.Defence,{left_ear="Mache Earring +1",})
 	sets.engaged.hybrid.DefenceGodhandsMelee = set_combine(sets.engaged.hybrid.DefenceGodhands,{sets.animators.Melee,})
 	sets.engaged.hybrid.DefenceGodhandsRanged = set_combine(sets.engaged.hybrid.DefenceGodhands,{sets.animators.Ranged,})
 
----------------------------	MASTER ONLY ENGAGED SETS	---------------------------
--- Normal Master Mode
+	---------------------------	MASTER ONLY ENGAGED SETS	---------------------------
+	-- Normal Master Mode
 	sets.engaged.master.Normal = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
@@ -222,11 +219,11 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
 	sets.engaged.master.NormalUnlocked = set_combine(sets.engaged.master.Normal,{sets.animators.Master,})
 
---Normal - Godhands/xiucoatl equipped
+	--Normal - Godhands/xiucoatl equipped
 	sets.engaged.master.Godhands = set_combine(sets.engaged.master.Normal,{left_ear="Mache Earring +1",})
 	sets.engaged.master.GodhandsUnlocked = set_combine(sets.engaged.master.Godhands,{sets.animators.Master,})
-	
--- Defence
+
+	-- Defence
 	sets.engaged.master.Defence = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
@@ -245,26 +242,25 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
 	sets.engaged.master.DefenceUnlocked = set_combine(sets.engaged.master.Defence,{sets.animators.Master,})
 
---Defence - Godhands/xiucoatl equipped
+	--Defence - Godhands/xiucoatl equipped
 	sets.engaged.master.DefenceGodhands = set_combine(sets.engaged.master.Defence,{left_ear="Mache Earring +1",})
 	sets.engaged.master.DefenceGodhandsUnlocked = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Master,})
 
----- Master Sets for Hybrid Mode (For when pet dies or is not engaged during Hybrid bode
---Hybrid Master
+	---- Master Sets for Hybrid Mode (For when pet dies or is not engaged during Hybrid bode
+	--Hybrid Master
 	sets.engaged.master.HybridMelee = set_combine(sets.engaged.master.Normal,{sets.animators.Melee,})
 	sets.engaged.master.HybridRanged = set_combine(sets.engaged.master.Normal,{sets.animators.Ranged,})
 	sets.engaged.master.HybridGodhandsMelee = set_combine(sets.engaged.master.Godhands,{sets.animators.Melee,})
 	sets.engaged.master.HybridGodhandsRanged = set_combine(sets.engaged.master.Godhands,{sets.animators.Ranged,})
-	
--- Defence Master
+		
+	-- Defence Master
 	sets.engaged.master.HybridDefenceMelee = set_combine(sets.engaged.master.Defence,{sets.animators.Melee,})
 	sets.engaged.master.HybridDefenceRanged = set_combine(sets.engaged.master.Defence,{sets.animators.Ranged,})
 	sets.engaged.master.HybridDefenceGodhandsMelee = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Melee,})
 	sets.engaged.master.HybridDefenceGodhandsRanged = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Ranged,})
 
----------------------------	PET ONLY ENGAGED SETS	---------------------------
-
--- Normal
+	---------------------------	PET ONLY ENGAGED SETS	---------------------------
+	-- Normal
 	sets.engaged.pet.Normal = {
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -281,12 +277,12 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
---Normal Ohtas equiped
+	--Normal Ohtas equiped
 	sets.engaged.pet.NormalOhtas = set_combine(sets.engaged.pet.Normal,{
 		waist="Incarnation Sash",
 	})
 
---Bruiser tank 
+	--Bruiser tank 
 	sets.engaged.pet.Bruiser = {
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -303,12 +299,12 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
--- Bruiser tank Ohtas equipped
+	-- Bruiser tank Ohtas equipped
 	sets.engaged.pet.BruiserOhtas = set_combine(sets.engaged.pet.Bruiser,{
 		waist="Incarnation Sash",
 	})
 
--- ranged dps (use xiucoatl)
+	-- ranged dps (use xiucoatl)
 	sets.engaged.pet.Ranged = {
 		ammo="Automat. Oil +3",
 		head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},
@@ -325,9 +321,8 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-
----------------------------	OVERDRIVE ENGAGED SETS	---------------------------
---Sharpshot overdrive
+	---------------------------	OVERDRIVE ENGAGED SETS	---------------------------
+	--Sharpshot overdrive
 	sets.engaged.overdrive.Sharpshot = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
@@ -346,7 +341,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 	
 	sets.engaged.overdrive.SharpshotUnlocked = set_combine(sets.engaged.overdrive.Sharpshot,{sets.animators.Melee,})
 
---Sharpshot overdrive Defence
+	--Sharpshot overdrive Defence
 	sets.engaged.overdrive.SharpshotDEF = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
@@ -365,7 +360,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
 	sets.engaged.overdrive.SharpshotDEFUnlocked = set_combine(sets.engaged.overdrive.SharpshotDEF,{sets.animators.Melee,})
 
---Valoredge overdrive
+	--Valoredge overdrive
 	sets.engaged.overdrive.Valoredge = {
 		ammo="Automat. Oil +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -384,7 +379,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
 	sets.engaged.overdrive.ValoredgeUnlocked = set_combine(sets.engaged.overdrive.Valoredge,{sets.animators.Melee,})
 
---Valoredge overdrive Defence
+	--Valoredge overdrive Defence
 	sets.engaged.overdrive.ValoredgeDEF = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3", 
@@ -403,11 +398,9 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
 	sets.engaged.overdrive.ValoredgeDEFUnlocked = set_combine(sets.engaged.overdrive.ValoredgeDEF,{sets.animators.Melee,})
 
----------------------------	PRECAST SETS	---------------------------
-
----------------------------	PRECAST / JOB ABILITY MASTER SETS	---------------------------
-
--- fastcast	
+	---------------------------	PRECAST SETS	---------------------------
+	---------------------------	PRECAST / JOB ABILITY MASTER SETS	---------------------------
+	-- fastcast	
 	sets.precast.master.fastcast = {
 		ammo="Automat. Oil +3",
 		head={ name="Herculean Helm", augments={'"Fast Cast"+5','"Mag.Atk.Bns."+14',}},
@@ -420,8 +413,8 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back="Swith Cape",
 	}
 
---Job Abilities--
---  overload
+	--Job Abilities--
+	--  overload
 	sets.ja.overload = {
 		body="Kara. Farsetto +2",
 		hands="Foire Dastanas +1",
@@ -430,7 +423,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
--- Provoke (you want an enmity set for your provoke)
+	-- Provoke (you want an enmity set for your provoke)
 	sets.ja.enmity = {
 		hands="Kurys Gloves",
 		legs="Obatala Subligar",
@@ -442,33 +435,22 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		right_ring="Eihwaz Ring",
 	}
 
---  individual abilities
-    sets.ja.optimization = {
-		head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},
-	}
-	sets.ja.overdrive = {
-		body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
-	}
-	sets.ja.finetuning = {
-		hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},
-	}
-	sets.ja.ventriloquy = {
-		hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},
-	}
-	sets.ja.rolereversal = {
-		feet={ name="Pitre Babouches +3", augments={'Enhances "Role Reversal" effect',}},
-	}
-	sets.ja.tacticalswitch = {
-	    feet="Karagoz Scarpe +2",
-	}
+	--  individual abilities
+    sets.ja.optimization = {head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},}
+	sets.ja.overdrive = {body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},}
+	sets.ja.finetuning = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	sets.ja.rolereversal = {feet={ name="Pitre Babouches +3", augments={'Enhances "Role Reversal" effect',}},}
+	sets.ja.tacticalswitch = {feet="Karagoz Scarpe +2",}
+	
 	sets.ja.repair = {
 	    left_ear="Guignol Earring",
 		right_ear={ name="Kara. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Store TP"+5',}},
 		feet="Foire Bab. +1",
 	}
 
----------------------------	PRECAST PET SETS	---------------------------
----- Precast Pet ----
+	---------------------------	PRECAST PET SETS	---------------------------
+	---- Precast Pet ----
 	sets.precast.pet.fastcast = {
 		ammo="Automat. Oil +3",
 		head={ name="Naga Somen", augments={'Pet: MP+80','Automaton: "Cure" potency +4%','Automaton: "Fast Cast"+3',}},
@@ -482,8 +464,8 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		right_ring="Thur. Ring +1",
 	}
 
----------------------------	MIDCAST MASTER SETS	---------------------------
--- Master Midcast
+	---------------------------	MIDCAST MASTER SETS	---------------------------
+	-- Master Midcast
 	sets.midcast.master.spelldamage = {
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -497,7 +479,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		right_ring="Stikini Ring +1",
 	}
 
--- Midcast for trusts - want to have 119 gear in head,body,hands,legs,feet.
+	-- Midcast for trusts - want to have 119 gear in head,body,hands,legs,feet.
 	sets.midcast.master.trust = {
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -506,8 +488,8 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		feet="Nyame Sollerets",
 	}
 
----------------------------	MIDCAST PET SETS	---------------------------
---pet midcast Enmity gain
+	---------------------------	MIDCAST PET SETS	---------------------------
+	--pet midcast Enmity gain
 	sets.midcast.pet.enmity = {
 		head="Heyoka Cap +1",
 		body="Heyoka Harness",
@@ -516,8 +498,8 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		feet="Heyoka Leggings",
 		left_ear="Rimeice Earring",
 	}
-	
--- pet midcast BLM
+		
+	-- pet midcast BLM
 	sets.midcast.pet.nuke = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
@@ -534,7 +516,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
--- pet midcast WHM
+	-- pet midcast WHM
 	sets.midcast.pet.cure = {
 		ammo="Automat. Oil +3",
 		head={ name="Naga Somen", augments={'Pet: MP+80','Automaton: "Cure" potency +4%','Automaton: "Fast Cast"+3',}},
@@ -547,7 +529,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		right_ring="Thur. Ring +1",
 	}
 
--- Pet midcast RDM
+	-- Pet midcast RDM
 	sets.midcast.pet.buff = {
 		ammo="Automat. Oil +3",
 		head="Kara. Cappello +3",
@@ -563,13 +545,11 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-
----------------------------	WEAPONSKILL SETS	---------------------------
-
----------------------------	MASTER WS SETS	---------------------------
---  weaponskills
+	---------------------------	WEAPONSKILL SETS	---------------------------
+	---------------------------	MASTER WS SETS	---------------------------
+	--  weaponskills
      sets.ws.master.weaponskill = {
-	    head="Mpaca's Cap",
+		head="Mpaca's Cap",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -599,7 +579,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		}
 	
 	sets.ws.master.victorysmite = {
-	    head="Mpaca's Cap",
+		head="Mpaca's Cap",
 		body="Mpaca's Doublet",
 		hands="Mpaca's Gloves",
 		legs="Mpaca's Hose",
@@ -644,7 +624,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 	}
 
 	sets.ws.master.ragingfists = {
-	    head="Mpaca's Cap",
+		head="Mpaca's Cap",
 		body="Mpaca's Doublet",
 		hands="Mpaca's Gloves",
 		legs="Mpaca's Hose",
@@ -659,7 +639,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 	}
 
 	sets.ws.master.asuranfists = {
-	    head="Kara. Cappello +3",
+		head="Kara. Cappello +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs="Mpaca's Hose",
@@ -673,8 +653,8 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
----------------------------	PET WEAPONSKILL SETS	---------------------------
--- pet Arcubalista / Daze Weaponskill set
+	---------------------------	PET WEAPONSKILL SETS	---------------------------
+	-- pet Arcubalista / Daze Weaponskill set
 	sets.ws.pet.arcuballista = {
 		head="Kara. Cappello +3",
 		body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
@@ -690,7 +670,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Dispersal Mantle", augments={'STR+2','DEX+4','Pet: TP Bonus+500',}},
 	}
 
--- pet Bonecrusher Weaponskill set
+	-- pet Bonecrusher Weaponskill set
 	sets.ws.pet.bonecrusher = {
 		--head="Kara. Cappello +3",
 		head={ name="Taeon Chapeau", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}},
@@ -707,7 +687,7 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
----------------------------	ITEM SETS	---------------------------
+	---------------------------	ITEM SETS	---------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -716,7 +696,6 @@ sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 end
 
 ---------------------------	LOGIC	---------------------------
-
 -- Registering event for pet changes -- Essentially, this checks the Pet TP every second, and if it reaches 850+ it automatically swaps to the appropriate pet weaponskill set.
 windower.register_event('time change', function(new, old)
 	if new > old and pet.isvalid and pet.status == "Engaged" then 
@@ -733,7 +712,6 @@ windower.register_event('time change', function(new, old)
 		check_pet_status()
 	end
 end)
-
 
 -- How swaps are calculated --
 function idle()
@@ -1036,7 +1014,6 @@ function pet_midcast(spell)
 	end
 end
 
-
 function aftercast(spell)
 	if spell.english == "Deactivate" then
 		check_pet_status()
@@ -1188,28 +1165,28 @@ function check_pet_status()
 end
 
 function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
+	send_command('unbind numpad9')
+	send_command('unbind numpad8')
+	send_command('unbind numpad7')
+	send_command('unbind numpad6')
 	send_command('unbind numpad5')
 	send_command('unbind numpad4')
 	send_command('unbind numpad3')
 	send_command('unbind numpad2')
 	send_command('unbind numpad1')
-    send_command('unbind ^numpad9')
-    send_command('unbind ^numpad8')
-    send_command('unbind ^numpad7')
-    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad9')
+	send_command('unbind ^numpad8')
+	send_command('unbind ^numpad7')
+	send_command('unbind ^numpad6')
 	send_command('unbind ^numpad5')
 	send_command('unbind ^numpad4')
 	send_command('unbind ^numpad3')
 	send_command('unbind ^numpad2')
 	send_command('unbind ^numpad1')
-    send_command('unbind !numpad9')
-    send_command('unbind !numpad8')
-    send_command('unbind !numpad7')
-    send_command('unbind !numpad6')
+	send_command('unbind !numpad9')
+	send_command('unbind !numpad8')
+	send_command('unbind !numpad7')
+	send_command('unbind !numpad6')
 	send_command('unbind !numpad5')
 	send_command('unbind !numpad4')
 	send_command('unbind !numpad3')
@@ -1219,7 +1196,7 @@ function file_unload()
 	send_command('unbind f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()
