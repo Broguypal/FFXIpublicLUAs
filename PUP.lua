@@ -55,7 +55,7 @@ send_command('bind numpad2 gs c ToggleDistance')
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
-
+send_command('bind f12 input //lua l AutoPUP')
 send_command('bind numpad1 input /jump')
 
 --------- GEAR DEFINED ------------------
@@ -1046,7 +1046,7 @@ function aftercast(spell)
 end
 
 function pet_aftercast(spell)
-	idle()
+    coroutine.schedule(idle, 0.2)
 end
 
 function self_command(command)
