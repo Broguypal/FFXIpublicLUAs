@@ -1046,7 +1046,7 @@ function aftercast(spell)
 end
 
 function pet_aftercast(spell)
-    coroutine.schedule(idle, 0.2)
+    coroutine.schedule(idle, 0.5)
 end
 
 function self_command(command)
