@@ -707,6 +707,8 @@ windower.register_event('time change', function(new, old)
 				equip(sets.ws.pet.bonecrusher)
 			end
 		end
+		--Insert this command if you want your character to automatically cast repair if your pet falls below a certain health percentage while engaged (Delete the "--[[ ... ]]")
+		--[[if pet.hpp <= 40 then windower.send_command('input /ja "Repair" <me>') end ]]
 	end
 	if new > old then
 		check_pet_status()
