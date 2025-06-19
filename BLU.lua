@@ -35,22 +35,22 @@ end
 
 -----------------------GEAR SETS------------------------------
 function get_sets()
---Mode Commands
-send_command('bind numpad9 gs c ToggleHybrid')
-send_command('bind numpad8 gs c ToggleTank')
-send_command('bind numpad7 gs c ToggleDualWield')
-send_command('bind numpad3 gs c ToggleSIR')
-send_command('bind numpad6 gs c ToggleLOCK')
-send_command('bind numpad4 gs c ToggleMAIN')
-send_command('bind numpad5 gs c ToggleSUB')
+	--Mode Commands
+	send_command('bind numpad9 gs c ToggleHybrid')
+	send_command('bind numpad8 gs c ToggleTank')
+	send_command('bind numpad7 gs c ToggleDualWield')
+	send_command('bind numpad3 gs c ToggleSIR')
+	send_command('bind numpad6 gs c ToggleLOCK')
+	send_command('bind numpad4 gs c ToggleMAIN')
+	send_command('bind numpad5 gs c ToggleSUB')
 
---QOL commands
-send_command ('bind numpad1 input /mount "Noble Chocobo"')
-send_command ('bind numpad2 input /dismount')
-send_command('bind f9 input /item "Remedy" <me>')
-send_command('bind f10 input /item "Panacea" <me>')
-send_command('bind f11 input /item "Holy Water" <me>')
-send_command('bind f12 input //fillmode')
+	--QOL commands
+	send_command ('bind numpad1 input /mount "Noble Chocobo"')
+	send_command ('bind numpad2 input /dismount')
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
+	send_command('bind f12 input //fillmode')
 
     sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- Leave this empty
@@ -67,18 +67,16 @@ send_command('bind f12 input //fillmode')
  	sets.main = {}
 	sets.sub = {}
  
- ---- Weapons -----
- -- Main Weapons 
+	 -- Main Weapons 
 	sets.main["Tizona"] 	= {main="Tizona"}
 	sets.main["Maxentius"]  = {main="Maxentius"}
- 
- -- Sub Weapons
+	 
+	 -- Sub Weapons
 	sets.sub["Thibron"]		= {sub="Thibron"}
 	sets.sub["Zantetsuken"]	= {sub="Zantetsuken"}
 	sets.sub["Bunzi's Rod"]	= {sub="Bunzi's Rod"}
  
- 
- ---- IDLE SETS ----
+	 ---- IDLE SETS ----
     sets.idle.hybrid = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -132,8 +130,8 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
----- ENGAGED SETS ---- (NOTE - DPS Sets assume Dual Wield 3)
---Tank engaged
+	---- ENGAGED SETS ---- 
+	--Tank engaged
 	sets.engaged.tank = {
 		ammo="Amar Cluster",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -154,9 +152,8 @@ send_command('bind f12 input //fillmode')
 		main="Tizona",
 		sub={ name="Thibron", augments={'TP Bonus +1000',}},
 	})
-	
 
---Treasure hunter engaged.
+	--Treasure hunter engaged.
 	sets.engaged.treasure = {
 		ammo="Per. Lucky Egg",
 		head="Malignance Chapeau",
@@ -173,7 +170,7 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
-----HYBRID ENGAGED SETS ----
+	----HYBRID ENGAGED SETS ----
 	sets.engaged.hybrid.normal = {
 		ammo="Aurgelmir Orb",
 		head="Malignance Chapeau",
@@ -190,20 +187,19 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
-----DUAL WIELD SETS ----
+	----DUAL WIELD SETS ---- (Note: All sets assume DW3)
 
---[[ Key DW pieces:
--- Suppanomimi - 5 DW
--- Eabani earring - 4 DW
--- Ambu Cape - 10 DW
--- Adhemar Jacket +1 - 6 DW
--- Reiki Yotai - 7 DW
--- Taeon Boots - 9DW
--- Carmine Cuisses +1 - 6DW
--- Max = 48 DW
-]]
-----NOTE ** all sets asume DW3
--- Capped Haste (11 DW to Cap with DW3)
+	--[[Key DW pieces:
+	Suppanomimi - 5 DW
+	Eabani earring - 4 DW
+	Ambu Cape - 10 DW
+	-Adhemar Jacket +1 - 6 DW
+	Reiki Yotai - 7 DW
+	Taeon Boots - 9DW
+	Carmine Cuisses +1 - 6DW
+	Total = 48 DW]]
+	
+	-- Capped Haste (11 DW to Cap with DW3)
 	sets.engaged.dualwield.hastecap = {
 		ammo="Aurgelmir Orb",
 		head="Malignance Chapeau",
@@ -220,14 +216,14 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
---35 Magic Haste (22 DW to cap with DW3)
+	--35 Magic Haste (22 DW to cap with DW3)
 	sets.engaged.dualwield.haste35 = set_combine(sets.engaged.dualwield.hastecap,{
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
---30 Magic Haste (31DW to cap with DW3)
+	--30 Magic Haste (31DW to cap with DW3)
 	sets.engaged.dualwield.haste30 = set_combine(sets.engaged.dualwield.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6DW
 		waist="Reiki Yotai", --7DW
@@ -237,7 +233,7 @@ send_command('bind f12 input //fillmode')
 
 	})
 
--- 15 Magic Haste (42DW to cap with DW 3)
+	-- 15 Magic Haste (42DW to cap with DW 3)
 	sets.engaged.dualwield.haste15 = set_combine(sets.engaged.dualwield.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6DW
 		feet={ name="Taeon Boots", augments={'Accuracy+25','"Dual Wield"+5','DEX+10',}}, --9 DW
@@ -247,8 +243,7 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
--- 0 Magic Haste (49DW to cap with DW3)
-	
+	-- 0 Magic Haste (49DW to cap with DW3)
 	sets.engaged.dualwield.haste0 = set_combine(sets.engaged.dualwield.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6DW
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}}, --6DW
@@ -259,8 +254,7 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
-
----- PRECAST SETS ----
+	---- PRECAST SETS ----
     sets.precast.fastcast = {
 		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -283,7 +277,7 @@ send_command('bind f12 input //fillmode')
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
 	}
 
----- TANK PRECAST SETS----
+	---- TANK PRECAST SETS----
 	sets.precast.tank.dreamflower = {
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body="Hashishin Mintan +2",
@@ -299,8 +293,7 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 
-----BLUE MAGIC MIDCAST SETS ----
-
+	----BLUE MAGIC MIDCAST SETS ----
 	sets.midcast.bluemagic.Physical = {
 		ammo="Aurgelmir Orb",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -516,9 +509,7 @@ send_command('bind f12 input //fillmode')
 	sets.midcast.bluemagic.Refresh = set_combine(sets.midcast.bluemagic.Buff,{
 	})
 
-
----- MIDCAST NON BLU SETS ----
-
+	---- MIDCAST NON BLU SETS ----
 	sets.midcast.phalanx = {
 		ammo="Staunch Tathlum +1",
 		head="Malignance Chapeau",
@@ -638,7 +629,7 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 
----- Tank Midcast Sets ----
+	---- Tank Midcast Sets ----
 	sets.midcast.tank.phalanx = {
 		ammo="Sapience Orb",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -656,7 +647,7 @@ send_command('bind f12 input //fillmode')
 	}
 		
 	sets.midcast.tank.magicaccuracy = {
-	    ammo="Ombre Tathlum +1",
+		ammo="Ombre Tathlum +1",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
@@ -687,7 +678,7 @@ send_command('bind f12 input //fillmode')
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 
----- WEAPONSKILL SETS ----
+	---- WEAPONSKILL SETS ----
 	sets.ws.normal = {
 		ammo="Oshasha's Treatise",
 		head="Hashishin Kavuk +3",
@@ -705,7 +696,7 @@ send_command('bind f12 input //fillmode')
 	}
 	
 	sets.ws.expiacion = {
-	    ammo="Coiste Bodhar",
+		ammo="Coiste Bodhar",
 		head="Hashishin Kavuk +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -721,7 +712,7 @@ send_command('bind f12 input //fillmode')
 	}
 	
 	sets.ws.chantducygne = {
-	    ammo="Coiste Bodhar",
+		ammo="Coiste Bodhar",
 		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
 		body="Gleti's Cuirass",
 		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
@@ -737,7 +728,7 @@ send_command('bind f12 input //fillmode')
 	}
 	
 	sets.ws.requiescat = {
-	    ammo="Coiste Bodhar",
+		ammo="Coiste Bodhar",
 		head="Hashishin Kavuk +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -769,7 +760,7 @@ send_command('bind f12 input //fillmode')
 	}
 	
 	sets.ws.sanguineblade = {
-	    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
+		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head="Pixie Hairpin +1",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
@@ -815,8 +806,8 @@ send_command('bind f12 input //fillmode')
 		right_ring="Fenrir Ring +1",
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
-	
----------------------------	ITEM SETS	---------------------------
+		
+	-----	ITEM SETS	----
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -1168,28 +1159,28 @@ function self_command(command)
 end
 
 function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
+	send_command('unbind numpad9')
+	send_command('unbind numpad8')
+	send_command('unbind numpad7')
+	send_command('unbind numpad6')
 	send_command('unbind numpad5')
 	send_command('unbind numpad4')
 	send_command('unbind numpad3')
 	send_command('unbind numpad2')
 	send_command('unbind numpad1')
-    send_command('unbind ^numpad9')
-    send_command('unbind ^numpad8')
-    send_command('unbind ^numpad7')
-    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad9')
+	send_command('unbind ^numpad8')
+	send_command('unbind ^numpad7')
+	send_command('unbind ^numpad6')
 	send_command('unbind ^numpad5')
 	send_command('unbind ^numpad4')
 	send_command('unbind ^numpad3')
 	send_command('unbind ^numpad2')
 	send_command('unbind ^numpad1')
-    send_command('unbind !numpad9')
-    send_command('unbind !numpad8')
-    send_command('unbind !numpad7')
-    send_command('unbind !numpad6')
+	send_command('unbind !numpad9')
+	send_command('unbind !numpad8')
+	send_command('unbind !numpad7')
+	send_command('unbind !numpad6')
 	send_command('unbind !numpad5')
 	send_command('unbind !numpad4')
 	send_command('unbind !numpad3')
@@ -1199,7 +1190,7 @@ function file_unload()
 	send_command('unbind f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()
