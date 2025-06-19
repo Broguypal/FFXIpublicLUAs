@@ -61,29 +61,29 @@ function user_setup()
 end
 
 function get_sets()
----------------- KEYBINDS -----------------------
-send_command('bind numpad9 gs c ToggleMelee')
-send_command('bind numpad8 gs c ToggleTank')
-send_command('bind numpad7 gs c ToggleCaster')
-send_command('bind numpad3 gs c ToggleBurst')
-send_command('bind numpad1 gs c ToggleEnfeeble')
-send_command('bind numpad4 gs c ToggleMain')
-send_command('bind numpad5 gs c ToggleSub')
-send_command('bind numpad6 gs c ToggleLock')
+	---------------- KEYBINDS -----------------------
+	send_command('bind numpad9 gs c ToggleMelee')
+	send_command('bind numpad8 gs c ToggleTank')
+	send_command('bind numpad7 gs c ToggleCaster')
+	send_command('bind numpad3 gs c ToggleBurst')
+	send_command('bind numpad1 gs c ToggleEnfeeble')
+	send_command('bind numpad4 gs c ToggleMain')
+	send_command('bind numpad5 gs c ToggleSub')
+	send_command('bind numpad6 gs c ToggleLock')
 
-send_command('bind f9 input /item "Remedy" <me>')
-send_command('bind f10 input /item "Panacea" <me>')
-send_command('bind f11 input /item "Holy Water" <me>')
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
 
--------- Easyspell Keybinds ---------- (Requires easyspell addon)
-send_command ('bind ^numpad1 input //es fire <t>')
-send_command ('bind ^numpad2 input //es aero <t>')
-send_command ('bind ^numpad3 input //es thunder <t>')
-send_command ('bind !numpad1 input //es blizzard <t>')
-send_command ('bind !numpad2 input //es stone <t>')
-send_command ('bind !numpad3 input //es water <t>')
+	-------- Easyspell Keybinds ---------- (Requires easyspell addon)
+	send_command ('bind ^numpad1 input //es fire <t>')
+	send_command ('bind ^numpad2 input //es aero <t>')
+	send_command ('bind ^numpad3 input //es thunder <t>')
+	send_command ('bind !numpad1 input //es blizzard <t>')
+	send_command ('bind !numpad2 input //es stone <t>')
+	send_command ('bind !numpad3 input //es water <t>')
 
---------------- EQUIPMENT SETS ------------------
+	--------------- EQUIPMENT SETS ------------------
 
     sets.idle = {}               	-- Leave this empty 
 	sets.engaged = {}				-- Leave this empty
@@ -97,25 +97,23 @@ send_command ('bind !numpad3 input //es water <t>')
 	sets.main = {}
 	sets.sub = {}
  
- ------------ Weapon Sets ----------------
--- Main weapons
-sets.main["Crocea Mors"] = {main="Crocea Mors"}
-sets.main["Bunzi's Rod"] = {main="Bunzi's Rod"}
-sets.main["Daybreak"]    = {main="Daybreak"}
-sets.main["Naegling"]    = {main="Naegling"}
-sets.main["Tauret"]      = {main="Tauret"}
-sets.main["Maxentius"]   = {main="Maxentius"}
+	-- Main weapons
+	sets.main["Crocea Mors"] = {main="Crocea Mors"}
+	sets.main["Bunzi's Rod"] = {main="Bunzi's Rod"}
+	sets.main["Daybreak"]    = {main="Daybreak"}
+	sets.main["Naegling"]    = {main="Naegling"}
+	sets.main["Tauret"]      = {main="Tauret"}
+	sets.main["Maxentius"]   = {main="Maxentius"}
 
-
--- Sub weapons
-sets.sub["Ammurapi Shield"] = {sub="Ammurapi Shield"}
-sets.sub["Culminus"]        = {sub="Culminus"}
-sets.sub["Pukulatmuj +1"]   = {sub="Pukulatmuj +1"}
-sets.sub["Ethereal Dagger"] = {sub="Ethereal Dagger"}
-sets.sub["Genmei Shield"]   = {sub="Genmei Shield"}
-sets.sub["Thibron"]    		= {sub="Thibron"}
- 
- -------------- IDLE SETS ---------------------
+	-- Sub weapons
+	sets.sub["Ammurapi Shield"] = {sub="Ammurapi Shield"}
+	sets.sub["Culminus"]        = {sub="Culminus"}
+	sets.sub["Pukulatmuj +1"]   = {sub="Pukulatmuj +1"}
+	sets.sub["Ethereal Dagger"] = {sub="Ethereal Dagger"}
+	sets.sub["Genmei Shield"]   = {sub="Genmei Shield"}
+	sets.sub["Thibron"]    		= {sub="Thibron"}
+	 
+	 -------------- IDLE SETS ---------------------
     --Hybrid/DPS IDLE--
 	sets.idle.hybrid = {
 		ammo="Staunch Tathlum +1",
@@ -126,7 +124,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Sibyl Scarf",
 		waist="Carrier's Sash",
-		left_ear="Infused Earring",
+		left_ear="Etiolation Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Defending Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
@@ -154,7 +152,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 	
 	--Caster idle
 	sets.idle.caster = {
-		sub="Culminus",
+		sub="Ammurapi Shield",
 		ammo="Homiliary",
 		head="Malignance Chapeau",
 		body="Shamash Robe",
@@ -163,7 +161,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		feet="Malignance Boots",
 		neck="Sibyl Scarf",
 		waist="Carrier's Sash",
-		left_ear="Infused Earring",
+		left_ear="Etiolation Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Defending Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
@@ -179,11 +177,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		main="Qutrub Knife",
 		sub="Ethereal Dagger",
 	})
-	
-
-
---------------- ENGAGED SETS ------------------
-
+		
+	--------------- ENGAGED SETS ------------------
 	sets.engaged.hybrid.normal = {
 		ammo="Coiste Bodhar",
 		head="Malignance Chapeau",
@@ -200,7 +195,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
--- Normal Hybrid set dual wield
+	-- Normal Hybrid set dual wield
 	sets.engaged.hybrid.dualwield = {
 		ammo="Coiste Bodhar",
 		head="Malignance Chapeau",
@@ -217,14 +212,14 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
--- Normal Hybrid set dual wield + shadows up
+	-- Normal Hybrid set dual wield + shadows up
 	sets.engaged.hybrid.dualwieldenspellshadows = set_combine(sets.engaged.hybrid.dualwield,{
 		head="Umuthi Hat",
 		hands="Aya. Manopolas +2",
 		waist="Orpheus's Sash",
 	})
 
--- Enspell mode
+	-- Enspell mode
 	sets.engaged.hybrid.enspell = {
 		main={ name="Crocea Mors", augments={'Path: C',}},
 		sub={ name="Pukulatmuj +1", augments={'Path: A',}},
@@ -243,8 +238,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
--- Enspell mode + shadows up
-	
+	-- Enspell mode + shadows up
 	sets.engaged.hybrid.enspellshadows = set_combine(sets.engaged.hybrid.dualwieldenspellshadows,{
 		main={ name="Crocea Mors", augments={'Path: C',}},
 		sub={ name="Pukulatmuj +1", augments={'Path: A',}},
@@ -268,7 +262,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
---------------- PRECAST SETS ------------------
+	--------------- PRECAST SETS ------------------
 	--Fastcast Set
     sets.precast.fastcast = {
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -278,12 +272,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
 		waist="Plat. Mog. Belt",
 	}
-	
----- JOB ABILITY SETS ----
 
---------------- MIDCAST SETS ------------------
-	
-	-- Midcast for trusts - want to have 119 gear in head,body,hands,legs,feet.
+	--------------- MIDCAST SETS ------------------
 	sets.midcast.trust = {
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -292,8 +282,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		feet="Nyame Sollerets",
 	}
 
----- ENFEEBLE SETS ----
--- Max Accuracy
+	---- ENFEEBLE SETS ----
+	-- Max Accuracy
 	sets.midcast.enfeebleACCURACY = {
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Atrophy Tabard +3",
@@ -315,7 +305,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		range="Ullr",
 	})
 
---Frazzle or distract
+	--Frazzle or distract
 	sets.midcast.enfeebleFRAZDIST = {
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Lethargy Sayon +2",
@@ -337,7 +327,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		range="Ullr",
 	})
 
---gravity/dispel
+	--gravity/dispel
 	sets.midcast.enfeebleGRAVDISP = {
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Lethargy Sayon +2",
@@ -359,7 +349,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		range="Ullr",
 	})
 
--- Paralyze/Slow/Addle/poison
+	-- Paralyze/Slow/Addle/poison
 	sets.midcast.enfeeblePOTENCY = {
 		ammo="Hydrocera",
 		head="Leth. Chappel +2",
@@ -381,7 +371,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub="Ammurapi Shield",
 	})
 
--- Silence/Sleep/Break/Bind
+	-- Silence/Sleep/Break/Bind
 	sets.midcast.enfeebleDURATION = {
 		head="Leth. Chappel +2",
 		body="Lethargy Sayon +2",
@@ -403,7 +393,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		range="Ullr",
 	})
 
---Blind (int based)
+	--Blind (int based)
 	sets.midcast.enfeebleBLIND = {
 		ammo="Ombre Tathlum +1",
 		head="Ea Hat +1",
@@ -424,8 +414,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		main={ name="Crocea Mors", augments={'Path: C',}},
 		sub="Ammurapi Shield",
 	})
-	
---Dia/Inundation
+		
+	--Dia/Inundation
 	sets.midcast.enfeebleINUNDIA = {
 		head="Leth. Chappel +2",
 		body="Lethargy Sayon +2",
@@ -445,9 +435,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub="Ammurapi Shield",
 	})
 
----- DARK MAGIC SETS ----
-
---Bio
+	---- DARK MAGIC SETS ----
+	--Bio
 	sets.midcast.darkBIO = {
 		head="Leth. Chappel +2",
 		body="Lethargy Sayon +2",
@@ -469,7 +458,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		range="Ullr",
 	})
 
---Aspir / Drain
+	--Aspir / Drain
 	sets.midcast.darkASPIRDRAIN = {
 		head="Pixie Hairpin +1",
 		body="Lethargy Sayon +2",
@@ -491,8 +480,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		range="Ullr",
 	})
 
----- ENHANCING SETS ----
---Enspells / Temper
+	---- ENHANCING SETS ----
+	--Enspells / Temper
 	sets.midcast.enhanceSKILL = {
 		ammo="Staunch Tathlum +1",
 		head="Befouled Crown",
@@ -514,7 +503,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub={ name="Pukulatmuj +1", augments={'Path: A',}},	
 	})
 
---Haste/Flurry/Protect/Shell/Blink/Barspells (SELF)
+	--Haste/Flurry/Protect/Shell/Blink/Barspells (SELF)
 	sets.midcast.enhanceDURATION = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
@@ -555,7 +544,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub="Ammurapi Shield",
 	})
 
---Gain spells
+	--Gain spells
 	sets.midcast.enhanceGAIN = set_combine(sets.midcast.enhanceDURATION,{
 		hands={ name="Viti. Gloves +3", augments={'Enhancing Magic duration',}},
 	})
@@ -564,7 +553,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub="Ammurapi Shield",
 	})
 
-	
+	--Aquaveil
 	sets.midcast.enhanceAQUAVEIL = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Amalric Coif +1", augments={'MP+80','INT+12','Enmity-6',}},
@@ -584,7 +573,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 	sets.midcast.enhanceAQUAVEILweapons = set_combine(sets.midcast.enhanceAQUAVEIL,{
 		sub="Ammurapi Shield",
 	})
-
+	
+	--Refresh
 	sets.midcast.enhanceREFRESH = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Amalric Coif +1", augments={'MP+80','INT+12','Enmity-6',}},
@@ -606,6 +596,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub="Ammurapi Shield",
 	})
 	
+	--Stoneskin
 	sets.midcast.enhanceSTONESKIN = {
 		ammo="Staunch Tathlum +1",
 		head="Umuthi Hat",
@@ -626,7 +617,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub="Ammurapi Shield",
 	})
 
---self phalanx enhancements
+	--self phalanx enhancements
 	sets.midcast.enhancePHALANXSELF = {
 		ammo="Staunch Tathlum +1",
 		head="Leth. Chappel +2",
@@ -647,8 +638,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		main="Sakpata's Sword",
 		sub="Egeking",
 	})
-	
----- HEALING MAGIC SETS ----
+		
+	---- HEALING MAGIC SETS ----
 	sets.midcast.healingCURE = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Kaykaus Mitra +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}},
@@ -677,7 +668,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 	sets.midcast.healingCURSNAweapons = set_combine(sets.midcast.healingCURSNA,{
 	})
 
-----Elemental sets ----
+	----Elemental sets ----
 	sets.midcast.elementalFREECAST = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head="Leth. Chappel +2",
@@ -739,8 +730,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		sub="Ammurapi Shield",
 	})
 
----- OTHER MIDCAST ----
---invisible/sneak/deodorize/raise
+	---- OTHER MIDCAST ----
+	--invisible/sneak/deodorize/raise
 	sets.midcast.fastcast = {
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		body={ name="Merlinic Jubbah", augments={'Mag. Acc.+26','"Fast Cast"+6','MND+6',}},
@@ -750,7 +741,7 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		waist="Plat. Mog. Belt",
 	}
 
---Utsusemi
+	--Utsusemi
 	sets.midcast.utsusemi = {
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		body={ name="Merlinic Jubbah", augments={'Mag. Acc.+26','"Fast Cast"+6','MND+6',}},
@@ -760,8 +751,8 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		waist="Plat. Mog. Belt",
 	}
 	
---------------- Weaponskill SETS ------------------
-	--undefined Weaponskills
+	--------------- Weaponskill SETS ------------------
+		--undefined Weaponskills
 	sets.ws.normal = {
 		ammo="Oshasha's Treatise",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -938,17 +929,15 @@ sets.sub["Thibron"]    		= {sub="Thibron"}
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 
----------------------------	ITEM SETS	---------------------------
+	---------------------------	ITEM SETS	---------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
 		right_ring="Blenmot's Ring",
 	}
-
 end
 
 --------------- LOGIC - DO NOT TOUCH BELOW ------------------
-
 windower.register_event('gain buff', function(buff_id)
 	if buff_id == 66 then
 		idle()
@@ -961,7 +950,6 @@ windower.register_event('lose buff', function(buff_id)
 	end
 end)
 
-
 function status_change(new,old)
 	if new == "Engaged" then
 		idle()
@@ -969,7 +957,6 @@ function status_change(new,old)
 		idle()
 	end
 end
-
 
 function idle()
 	if Player_Mode == "Melee" or Player_Mode == "Enspell" then
@@ -1016,8 +1003,6 @@ function idle()
 	end
 end
 
-
-
 function precast(spell)
 	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" or spell.type == "Trust" then 
 		equip(sets.precast.fastcast)
@@ -1051,11 +1036,6 @@ function precast(spell)
 		idle()
 	end
 end
-
-
---[[
-if player.status == "Engaged" and Player_Mode == "Melee" and Enfeeble_Mode == "Normal" then
-]]
 
 function midcast(spell)
 	if spell.skill == "Elemental Magic" then
@@ -1467,28 +1447,28 @@ function self_command(command)
 end
 
 function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
+	send_command('unbind numpad9')
+	send_command('unbind numpad8')
+	send_command('unbind numpad7')
+	send_command('unbind numpad6')
 	send_command('unbind numpad5')
 	send_command('unbind numpad4')
 	send_command('unbind numpad3')
 	send_command('unbind numpad2')
 	send_command('unbind numpad1')
-    send_command('unbind ^numpad9')
-    send_command('unbind ^numpad8')
-    send_command('unbind ^numpad7')
-    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad9')
+	send_command('unbind ^numpad8')
+	send_command('unbind ^numpad7')
+	send_command('unbind ^numpad6')
 	send_command('unbind ^numpad5')
 	send_command('unbind ^numpad4')
 	send_command('unbind ^numpad3')
 	send_command('unbind ^numpad2')
 	send_command('unbind ^numpad1')
-    send_command('unbind !numpad9')
-    send_command('unbind !numpad8')
-    send_command('unbind !numpad7')
-    send_command('unbind !numpad6')
+	send_command('unbind !numpad9')
+	send_command('unbind !numpad8')
+	send_command('unbind !numpad7')
+	send_command('unbind !numpad6')
 	send_command('unbind !numpad5')
 	send_command('unbind !numpad4')
 	send_command('unbind !numpad3')
@@ -1498,7 +1478,7 @@ function file_unload()
 	send_command('unbind f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()
