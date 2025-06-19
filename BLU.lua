@@ -255,7 +255,7 @@ function get_sets()
 	})
 
 	---- PRECAST SETS ----
-    sets.precast.fastcast = {
+	sets.precast.fastcast = {
 		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		body={ name="Adhemar Jacket +1", augments={'HP+105','"Fast Cast"+10','Magic dmg. taken -4',}},
