@@ -791,7 +791,7 @@ function get_sets()
 		body="Ayanmo Corazza +2",
 		hands="Malignance Gloves",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet="Aya. Gambieras +2",
+		feet="Thereoid Greaves",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear="Mache Earring +1",

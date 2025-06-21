@@ -717,7 +717,7 @@ function get_sets()
 		body="Gleti's Cuirass",
 		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
 		legs="Gleti's Breeches",
-		feet="Gleti's Boots",
+		feet="Thereoid Greaves",
 		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Fotia Belt",
 		left_ear="Mache Earring +1",
