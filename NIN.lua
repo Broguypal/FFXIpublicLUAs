@@ -500,7 +500,7 @@ function get_sets()
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-    })
+	})
 	---- DPS ----
 	sets.engaged.DPS.haste15 = set_combine(sets.engaged.DPS.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -525,7 +525,7 @@ function get_sets()
 		hands="Malignance Gloves",
 		legs="Mpaca's Hose",
 		feet="Malignance Boots",
-    })
+	})
 	--yonin swap
 	sets.engaged.hybrid.haste0yonin = set_combine(sets.engaged.hybrid.haste0def,{
 		neck={ name="Bathy Choker +1", augments={'Path: A',}},
@@ -544,7 +544,7 @@ function get_sets()
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-    })
+	})
 	---- DPS ----
 	sets.engaged.DPS.haste0 = set_combine(sets.engaged.DPS.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
