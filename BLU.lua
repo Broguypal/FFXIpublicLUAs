@@ -317,6 +317,7 @@ function get_sets()
 		waist="Null Belt",
 		left_ear="Mache Earring +1",
 		right_ear="Telos Earring",
+		back="Null Shawl",
 	})
 	
 	sets.midcast.bluemagic.PhysicalStr = set_combine(sets.midcast.bluemagic.Physical,{
@@ -443,7 +444,7 @@ function get_sets()
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
-		back={ name="Aurist's Cape +1", augments={'Path: A',}},
+		back="Null Shawl",
 	}
 	
 	sets.midcast.bluemagic.StunPhysical = set_combine(sets.midcast.bluemagic.MagicalAcc,{
@@ -511,18 +512,18 @@ function get_sets()
 
 	---- MIDCAST NON BLU SETS ----
 	sets.midcast.phalanx = {
-		ammo="Staunch Tathlum +1",
-		head="Malignance Chapeau",
-		body={ name="Taeon Tabard", augments={'Phalanx +3',}},
-		hands={ name="Taeon Gloves", augments={'Phalanx +3',}},
-		legs={ name="Taeon Tights", augments={'Phalanx +3',}},
-		feet={ name="Taeon Boots", augments={'Phalanx +3',}},
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Aswang Sash",
-		left_ear="Magnetic Earring",
-		right_ear="Halasz Earring",
-		left_ring="Defending Ring",
-		right_ring="Evanescence Ring",
+		ammo="Sapience Orb",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Taeon Tabard", augments={'Spell interruption rate down -10%','Phalanx +3',}},
+		hands={ name="Taeon Gloves", augments={'Spell interruption rate down -10%','Phalanx +3',}},
+		legs={ name="Taeon Tights", augments={'Spell interruption rate down -10%','Phalanx +3',}},
+		feet={ name="Taeon Boots", augments={'Spell interruption rate down -10%','Phalanx +3',}},
+		neck={ name="Mirage Stole +2", augments={'Path: A',}},
+		waist="Plat. Mog. Belt",
+		left_ear="Genmei Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Stikini Ring",
+		right_ring="Stikini Ring",
 		back="Moonbeam Cape",
 	}
 	
@@ -630,39 +631,7 @@ function get_sets()
 	}
 
 	---- Tank Midcast Sets ----
-	sets.midcast.tank.phalanx = {
-		ammo="Sapience Orb",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Taeon Tabard", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		hands={ name="Taeon Gloves", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		legs={ name="Taeon Tights", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		feet={ name="Taeon Boots", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		neck={ name="Mirage Stole +2", augments={'Path: A',}},
-		waist="Plat. Mog. Belt",
-		left_ear="Genmei Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Stikini Ring",
-		right_ring="Stikini Ring",
-		back="Moonbeam Cape",
-	}
-		
-	sets.midcast.tank.magicaccuracy = {
-		ammo="Ombre Tathlum +1",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Hashishin Tayt +2",
-		feet="Malignance Boots",
-		neck="Null Loop",
-		waist="Austerity Belt +1",
-		left_ear="Magnetic Earring",
-		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
-		left_ring="Stikini Ring",
-		right_ring="Stikini Ring",
-		back="Moonbeam Cape",
-	}
-
-	sets.midcast.tank.defence = {
+	sets.midcast.tank.SleepSpells = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -954,11 +923,11 @@ function midcast(spell)
 	else
 		if Player_Mode == "OmenTank" then
 			if spell.english == "Phalanx" then
-				equip(sets.midcast.tank.phalanx)
+				equip(sets.midcast.phalanx)
 			elseif spell.english == "Dream Flower" or spell.english == "Sheep Song" then
-				equip(sets.midcast.tank.defence)
+				equip(sets.midcast.tank.SleepSpells)
 			elseif spell.english == "Cruel Joke" then
-				equip(sets.midcast.tank.magicaccuracy)
+				equip(sets.midcast.bluemagic.MagicalAcc)
 			elseif spell.english == "Reaving Wind" or spell.english == "Feather Tickle" then
 				equip(sets.midcast.bluemagic.MagicalAcc)
 			elseif spell.english == "Holy Water" then

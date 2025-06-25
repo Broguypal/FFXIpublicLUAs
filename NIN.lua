@@ -10,7 +10,6 @@
 -- Requires Gearswap Addon - "Cancel"
 -- requires Dressup (to stop blinking "//du blinking self combat on")
 
-
 TP_Mode = "Hybrid"
 Haste_Mode = "Haste2"
 
@@ -33,7 +32,6 @@ gearswap_box = function()
   return str
 end
 
--- Change position coordinates
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
@@ -109,20 +107,21 @@ function user_setup()
 end
 
 function get_sets()
-send_command('bind numpad9 gs c ToggleHybrid')
-send_command('bind numpad8 gs c ToggleTank')
-send_command('bind numpad7 gs c ToggleDPS')
-send_command('bind numpad6 gs c ToggleHaste')
+	---- Keybinds ----
+	send_command('bind numpad9 gs c ToggleHybrid')
+	send_command('bind numpad8 gs c ToggleTank')
+	send_command('bind numpad7 gs c ToggleDPS')
+	send_command('bind numpad6 gs c ToggleHaste')
 
-send_command('bind numpad5 gs c ToggleSub')
-send_command('bind numpad4 gs c ToggleMain')
-send_command('bind numpad1 gs c ToggleSpecial')
+	send_command('bind numpad5 gs c ToggleSub')
+	send_command('bind numpad4 gs c ToggleMain')
+	send_command('bind numpad1 gs c ToggleSpecial')
 
-send_command('bind f9 input /item "Remedy" <me>')
-send_command('bind f10 input /item "Panacea" <me>')
-send_command('bind f11 input /item "Holy Water" <me>')
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
 
----------- Weapon Sets --------------
+	---------- Gear Sets --------------
     sets.idle = {}               	-- Leave this empty.   
 	sets.engaged = {}				-- Leave this empty.
 		sets.engaged.hybrid = {}
@@ -137,22 +136,21 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	sets.items = {}
 	sets.main = {}
 	sets.sub = {}
- ---- Weapons Defined ----
  
--- Main Weapons
+	-- Main Weapons
 	sets.main["Heishi Shorinken"] = {main = "Heishi Shorinken"}
 	sets.main["Fudo Masamune"]    = {main = "Fudo Masamune"}
 	sets.main["Naegling"]         = {main = "Naegling"}
 	sets.main["Gokotai"]          = {main = "Gokotai"}
 
--- Sub Weapons
+	-- Sub Weapons
 	sets.sub["Yagyu Darkblade"] = {sub = "Yagyu Darkblade"}
 	sets.sub["Kunimitsu"]       = {sub = "Kunimitsu"}
 	sets.sub["Gleti's Knife"]   = {sub = "Gleti's Knife"}
 	sets.sub["Hitaki"]          = {sub = "Hitaki"}
 	sets.sub["Tsuru"]           = {sub = "Tsuru"}
  
- -------------- IDLE SETS ---------------------
+	-------------- IDLE SETS ---------------------
     --Hybrid/DPS IDLE--
 	sets.idle.normal = {
 		ammo="Date Shuriken",
@@ -210,7 +208,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		right_ring="Defending Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
-		}
+	}
 
 	--Evasion Tank Idle
 	sets.idle.evasion = {
@@ -227,7 +225,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring="Ilabrat Ring",
 		right_ring="Hizamaru Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
-		}
+	}
 	
 	--Magic Evasion Tank Idle
 	sets.idle.magicevasion = {
@@ -246,8 +244,8 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
 	}
 
---------------- ENGAGED SETS ------------------
----- TANK Engaged Sets ----
+	--------------- ENGAGED SETS ------------------
+	---- TANK Engaged Sets ----
 	sets.engaged.tank.normal = {
 		ammo="Date Shuriken",
 		head="Mpaca's Cap",
@@ -262,19 +260,19 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		right_ring="Defending Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
-		}
--- 0 shadows
+	}
+	-- 0 shadows
 	sets.engaged.tank.counter = set_combine(sets.engaged.tank.normal,{
 		ammo="Amar Cluster",
 		waist="Cornelia's Belt",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-		})
--- 0 Shadows + Yonin Active
+	})
+	-- 0 Shadows + Yonin Active
 	sets.engaged.tank.yonin = set_combine(sets.engaged.tank.counter,{
 		legs="Hattori Hakama +2",
-		})
+	})
 
-----Evasion Engaged Sets ----
+	----Evasion Engaged Sets ----
 	sets.engaged.evasion.normal = {
 		ammo="Date Shuriken",
 		head="Malignance Chapeau",
@@ -290,7 +288,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Hizamaru Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
 	}
--- 0 shadows
+	-- 0 shadows
 	sets.engaged.evasion.counter = set_combine(sets.engaged.evasion.normal,{
 		ammo="Amar Cluster",
 		body="Mpaca's Doublet",
@@ -300,13 +298,13 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		right_ring="Defending Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-		})
--- 0 Shadows + Yonin Active
+	})
+	-- 0 Shadows + Yonin Active
 	sets.engaged.evasion.yonin = set_combine(sets.engaged.evasion.counter,{
 		legs="Hattori Hakama +2",
-		})
+	})
 
----- Magic Evasion Engaged Set----
+	---- Magic Evasion Engaged Set----
 	sets.engaged.evasion.magic = {
 	    ammo="Date Shuriken",
 		head="Malignance Chapeau",
@@ -320,12 +318,11 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Defending Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
-		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
+		back="Null Shawl",
 	}
 	
-----Hybrid / Malignance / DPS engaged sets ----
-
----- Capped Haste (need 1 DW - negligible) ----
+	----Hybrid / Malignance / DPS engaged sets ----
+	---- Capped Haste (need 1 DW - negligible) ----
 	sets.engaged.hybrid.hastecap = {
 		ammo="Date Shuriken",
 		head="Malignance Chapeau",
@@ -340,7 +337,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
-		}
+	}
 	-- Cap haste 0 shadows
 	sets.engaged.hybrid.hastecapdef = set_combine(sets.engaged.hybrid.hastecap,{
 		head="Malignance Chapeau",
@@ -348,13 +345,13 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Mpaca's Hose",
 		feet="Malignance Boots",
-		})
+	})
 	--yonin swap
 	sets.engaged.hybrid.hastecapyonin = set_combine(sets.engaged.hybrid.hastecapdef,{
 		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		legs="Hattori Hakama +2",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-		})
+	})
 	---- Malignance ----
 	sets.engaged.malignance.hastecap = set_combine(sets.engaged.hybrid.hastecap,{
 		head="Malignance Chapeau",
@@ -362,14 +359,14 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		})
+	})
 	sets.engaged.malignance.hastecapdef = set_combine(sets.engaged.malignance.hastecap,{
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		})
+	})
 	---- DPS ----
 	sets.engaged.DPS.hastecap = {
 		ammo="Date Shuriken",
@@ -384,14 +381,14 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ear="Brutal Earring",
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
-		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
+		back="Null Shawl",
 	}
 
----- 35 Haste (need 12 DW) ----
+	---- 35 Haste (need 12 DW) ----
 	sets.engaged.hybrid.haste35 = set_combine(sets.engaged.hybrid.hastecap,{
 		waist="Reiki Yotai",
 		right_ear="Suppanomimi",
-		})
+	})
 	-- 35 haste 0 shadows
 	sets.engaged.hybrid.haste35def = set_combine(sets.engaged.hybrid.haste35,{
 		head="Malignance Chapeau",
@@ -399,13 +396,13 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Mpaca's Hose",
 		feet="Malignance Boots",
-		})
+	})
 	--yonin swap
 	sets.engaged.hybrid.haste35yonin = set_combine(sets.engaged.hybrid.haste35def,{
 		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		legs="Hattori Hakama +2",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-		})
+	})
 	---- Malignance ----
 	sets.engaged.malignance.haste35 = set_combine(sets.engaged.hybrid.haste35,{
 		head="Malignance Chapeau",
@@ -413,26 +410,26 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		})
+	})
 	sets.engaged.malignance.haste35def = set_combine(sets.engaged.malignance.haste35,{
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		})
+	})
 	----DPS---- 	
 	sets.engaged.DPS.haste35 = set_combine(sets.engaged.DPS.hastecap,{
 		waist="Reiki Yotai",
 		right_ear="Suppanomimi",
-		})
+	})
 
----- 30 Haste (need 21 DW) ----
+	---- 30 Haste (need 21 DW) ----
 		sets.engaged.hybrid.haste30 = set_combine(sets.engaged.hybrid.hastecap,{
 		waist="Reiki Yotai",
 		right_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-		})
+	})
 	-- 30 haste 0 shadows
 	sets.engaged.hybrid.haste30def = set_combine(sets.engaged.hybrid.haste30,{
 		head="Malignance Chapeau",
@@ -440,13 +437,13 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Mpaca's Hose",
 		feet="Malignance Boots",
-		})
+	})
 	--yonin swap
 	sets.engaged.hybrid.haste30yonin = set_combine(sets.engaged.hybrid.haste30def,{
 		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		legs="Hattori Hakama +2",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-		})
+	})
 	---- Malignance ----
 	sets.engaged.malignance.haste30 = set_combine(sets.engaged.hybrid.haste30,{
 		head="Malignance Chapeau",
@@ -454,28 +451,28 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		})
+	})
 	sets.engaged.malignance.haste30def = set_combine(sets.engaged.malignance.haste30,{
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		})
+	})
 	---- DPS ----
 	sets.engaged.DPS.haste30 = set_combine(sets.engaged.DPS.hastecap,{
 		waist="Reiki Yotai",
 		right_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-		})
+	})
 
------ 15 Haste (need 32 DW) ----
+	----- 15 Haste (need 32 DW) ----
 	sets.engaged.hybrid.haste15 = set_combine(sets.engaged.hybrid.hastecap,{
 		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		waist="Reiki Yotai",
 		right_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-		})
+	})
 	-- 15 haste 0 shadows
 	sets.engaged.hybrid.haste15def = set_combine(sets.engaged.hybrid.haste15,{
 		head="Malignance Chapeau",
@@ -483,27 +480,27 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Mpaca's Hose",
 		feet="Malignance Boots",
-		})
+	})
 	--yonin swap
 	sets.engaged.hybrid.haste15yonin = set_combine(sets.engaged.hybrid.haste15def,{
 		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		legs="Hattori Hakama +2",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-		})
+	})
 	---- Malignance ----
 	sets.engaged.malignance.haste15 = set_combine(sets.engaged.hybrid.haste15, {
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		})
+	})
 	sets.engaged.malignance.haste15def = set_combine(sets.engaged.malignance.haste15,{
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-    	})
+    })
 	---- DPS ----
 	sets.engaged.DPS.haste15 = set_combine(sets.engaged.DPS.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -511,16 +508,16 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ear="Eabani Earring",
 		right_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-		})
+	})
 	
------- 0 Haste (need 39 DW) -------------------
+	------ 0 Haste (need 39 DW) -------------------
 	sets.engaged.hybrid.haste0 = set_combine(sets.engaged.hybrid.hastecap,{
 		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		feet="Hiza. Sune-Ate +2",
 		waist="Reiki Yotai",
 		right_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-		})
+	})
 	-- 0 haste 0 shadows
 	sets.engaged.hybrid.haste0def = set_combine(sets.engaged.hybrid.haste0,{
 		head="Malignance Chapeau",
@@ -528,13 +525,13 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Mpaca's Hose",
 		feet="Malignance Boots",
-    	})
+    })
 	--yonin swap
 	sets.engaged.hybrid.haste0yonin = set_combine(sets.engaged.hybrid.haste0def,{
 		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		legs="Hattori Hakama +2",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-		})
+	})
 	---- Malignance ----
 	sets.engaged.malignance.haste0 = set_combine(sets.engaged.hybrid.haste0, {
 		body="Malignance Tabard",
@@ -547,7 +544,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-    	})
+    })
 	---- DPS ----
 	sets.engaged.DPS.haste0 = set_combine(sets.engaged.DPS.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -558,10 +555,10 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 
---------------- PRECAST SETS ------------------
-	--Fastcast Set
+	--------------- PRECAST SETS ------------------
+	--Fastcast
     sets.precast.fastcast = {
-	    ammo="Sapience Orb",
+		ammo="Sapience Orb",
 		head={ name="Herculean Helm", augments={'"Fast Cast"+5','"Mag.Atk.Bns."+14',}},
 		body={ name="Adhemar Jacket +1", augments={'HP+105','"Fast Cast"+10','Magic dmg. taken -4',}},
 		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
@@ -578,9 +575,9 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	--Utsusemi Precast
 	sets.precast.utsusemi = set_combine(sets.precast.fastcast,{
 	})
-	
+	--Enmity
 	sets.precast.enmity = {
-	    ammo="Aqreqaq Bomblet",
+		ammo="Aqreqaq Bomblet",
 		body="Emet Harness +1",
 		hands="Kurys Gloves",
 		feet="Ahosi Leggings",
@@ -592,7 +589,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Eihwaz Ring",
 	}
 
---------------- MIDCAST SETS ------------------
+	--------------- MIDCAST SETS ------------------
 	--Utsusemi Midcast
     sets.midcast.utsusemi = set_combine(sets.precast.fastcast,{
 		feet="Hattori Kyahan +3",
@@ -607,7 +604,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	
 	--Enfeeble Midcast
     sets.midcast.enfeeble = {
-	    ammo="Pemphredo Tathlum",
+		ammo="Pemphredo Tathlum",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Hattori Tekko +3",
@@ -619,12 +616,12 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ear="Digni. Earring",
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
-		back={ name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
-		}
+		back="Null Shawl",
+	}
 
 	--Elemental Midcast
     sets.midcast.elemental = {
-	    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
+		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head={ name="Mochi. Hatsu. +4", augments={'Enhances "Yonin" and "Innin" effect',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -662,7 +659,8 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
 	}
---------------- Weaponskill SETS ------------------
+
+	--------------- Weaponskill SETS ------------------
 	--undefined Weaponskills
 	sets.ws.normal = {
 		ammo="Coiste Bodhar",
@@ -678,9 +676,8 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring="Gere Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
-		}
+	}
 	
-	--shun Weaponskill
 	sets.ws.shun = {
 	    ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
@@ -695,9 +692,8 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
-		}
+	}
 
-	--metsu Weaponskill
 	sets.ws.metsu = {
 	    ammo="Coiste Bodhar",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -712,11 +708,10 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring="Gere Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
-		}
+	}
 	
-	--ten Weaponskill
 	sets.ws.ten = {
-	    ammo="Coiste Bodhar",
+		ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -729,9 +724,8 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
-		}
+	}
 	
-	--Ku Weaponskill
 	sets.ws.ku = {
 		ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
@@ -747,8 +741,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Fickblix's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
-	
-	--Hi Weaponskill
+
 	sets.ws.hi = {
 		ammo="C. Palug Stone",
 		head="Ken. Jinpachi +1",
@@ -765,7 +758,6 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
-	--Kamu Weaponskill
 	sets.ws.kamu = {
 		ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
@@ -782,7 +774,6 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
-	--Ei Weaponskill
 	sets.ws.ei = {
 		ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
 		head="Pixie Hairpin +1",
@@ -815,14 +806,14 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Epaminondas's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
-	
+	--Yu with obi
 	sets.ws.yuobi = set_combine(sets.ws.yu,{
 		waist="Hachirin-no-Obi",
 	})
 	
-	--chi/teki/to Weaponskill
+	--chi/teki/to 
 	sets.ws.elemental = {
-	    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
+		ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
 		head={ name="Mochi. Hatsu. +4", augments={'Enhances "Yonin" and "Innin" effect',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -836,13 +827,11 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Epaminondas's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
-
 	--chi/teki/to elemental with Obi
 	sets.ws.elementalobi = set_combine(sets.ws.elemental, {
 		waist="Hachirin-no-Obi",
 	})
 
-	--savageblade Weaponskill
 	sets.ws.savageblade = {
 		ammo="Crepuscular Pebble",
 		head="Mpaca's Cap",
@@ -859,7 +848,6 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
-	--Tachi:Ageha Weaponskill
 	sets.ws.ageha = {
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -875,8 +863,7 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	}
 	
-
----------------------------	ITEM SETS	---------------------------
+	---------------------------	ITEM SETS	---------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -914,7 +901,6 @@ windower.register_event('gain buff', function(buff_id)
 	end
 end)
 
-
 function status_change(new,old)
 	if new == "Engaged" then
 		idle()
@@ -922,7 +908,6 @@ function status_change(new,old)
 		idle()
 	end
 end
-
 
 function idle()
 	if TP_Mode == "Hybrid" or TP_Mode == "Malignance" or TP_Mode == "DPS" then
@@ -1229,7 +1214,6 @@ function idle()
 	end
 end
 
-
 function precast(spell)
 	if spell.english == "Provoke" or spell.english == "Issekigan" then
 		equip(sets.precast.enmity)
@@ -1429,7 +1413,6 @@ function aftercast(spell)
 	end
 end
 
-
 function self_command(command)
 	if command == "ToggleHybrid" then
 		if TP_Mode == "Hybrid" then
@@ -1517,28 +1500,28 @@ function self_command(command)
 end
 
 function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
+	send_command('unbind numpad9')
+	send_command('unbind numpad8')
+	send_command('unbind numpad7')
+	send_command('unbind numpad6')
 	send_command('unbind numpad5')
 	send_command('unbind numpad4')
 	send_command('unbind numpad3')
 	send_command('unbind numpad2')
 	send_command('unbind numpad1')
-    send_command('unbind ^numpad9')
-    send_command('unbind ^numpad8')
-    send_command('unbind ^numpad7')
-    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad9')
+	send_command('unbind ^numpad8')
+	send_command('unbind ^numpad7')
+	send_command('unbind ^numpad6')
 	send_command('unbind ^numpad5')
 	send_command('unbind ^numpad4')
 	send_command('unbind ^numpad3')
 	send_command('unbind ^numpad2')
 	send_command('unbind ^numpad1')
-    send_command('unbind !numpad9')
-    send_command('unbind !numpad8')
-    send_command('unbind !numpad7')
-    send_command('unbind !numpad6')
+	send_command('unbind !numpad9')
+	send_command('unbind !numpad8')
+	send_command('unbind !numpad7')
+	send_command('unbind !numpad6')
 	send_command('unbind !numpad5')
 	send_command('unbind !numpad4')
 	send_command('unbind !numpad3')
@@ -1548,7 +1531,7 @@ function file_unload()
 	send_command('unbind f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()
