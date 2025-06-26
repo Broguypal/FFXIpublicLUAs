@@ -104,8 +104,8 @@ function get_sets()
 		waist="Null Belt",
 		left_ear="Eabani Earring",
 		right_ear="Infused Earring",
-		left_ring="Defending Ring",
-		right_ring="Ilabrat Ring",
+		left_ring="Ilabrat Ring",
+		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 	
@@ -143,8 +143,8 @@ function get_sets()
 		waist="Reiki Yotai",
 		left_ear="Eabani Earring",
 		right_ear="Infused Earring",
-		left_ring="Defending Ring",
-		right_ring="Ilabrat Ring",
+		left_ring="Ilabrat Ring",
+		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 	
@@ -165,7 +165,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Suppanomimi",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
-		left_ring="Epona's Ring",
+		left_ring="Fickblix's Ring",
 		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
@@ -182,7 +182,7 @@ function get_sets()
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
-		left_ring="Epona's Ring",
+		left_ring="Fickblix's Ring",
 		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
@@ -211,8 +211,8 @@ function get_sets()
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		right_ear="Telos Earring",
-		left_ring="Defending Ring",
-		right_ring="Fickblix's Ring",
+		left_ring="Fickblix's Ring",
+		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
@@ -305,8 +305,8 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Mache Earring +1",
 		right_ear="Telos Earring",
-		left_ring="Apate Ring",
-		right_ring="Ilabrat Ring",
+		left_ring="Ilabrat Ring",
+		right_ring="Apate Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
@@ -333,8 +333,8 @@ function get_sets()
 		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Null Belt",
 		left_ear="Mache Earring +1",
-		left_ring="Apate Ring",
-		right_ring="Ilabrat Ring",
+		left_ring="Ilabrat Ring",
+		right_ring="Apate Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	})
 	
@@ -348,7 +348,7 @@ function get_sets()
 	sets.midcast.bluemagic.PhysicalAgi = set_combine(sets.midcast.bluemagic.Physical,{
 		waist="Svelt. Gouriz +1",
 		right_ear="Infused Earring",
-		right_ring="Ilabrat Ring",
+		left_ring="Ilabrat Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	})
 	
@@ -377,8 +377,8 @@ function get_sets()
 		waist="Plat. Mog. Belt",
 		left_ear="Tuisto Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Beeline Ring",
-		right_ring="Ilabrat Ring",
+		left_ring="Ilabrat Ring",
+		right_ring="Beeline Ring",
 		back="Moonbeam Cape",
 	})
 	
