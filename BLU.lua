@@ -276,6 +276,11 @@ function get_sets()
 	sets.precast.diffusion = {
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
 	}
+	
+	sets.precast.efflux = {
+		legs="Hashishin Tayt +2",
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
+	}
 
 	---- TANK PRECAST SETS----
 	sets.precast.tank.dreamflower = {
@@ -881,6 +886,8 @@ end
 function precast(spell)
 	if spell.name == "Diffusion" then
 		equip(sets.precast.diffusion)
+	elseif spell.name == "Efflux" then
+		equip(sets.precast.efflux)
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
 	elseif spell.type == "BlueMagic" then
