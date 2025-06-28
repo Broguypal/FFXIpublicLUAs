@@ -52,19 +52,19 @@ function get_sets()
 	send_command('bind f11 input /item "Holy Water" <me>')
 	send_command('bind f12 input //fillmode')
 
-    sets.idle = {}                  -- Leave this empty
+	sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- Leave this empty
 		sets.engaged.dualwield = {}
 		sets.engaged.hybrid = {}
-    sets.precast = {}               -- leave this empty   
+	sets.precast = {}               -- leave this empty   
 		sets.precast.tank = {}
-    sets.midcast = {}               -- leave this empty
+	sets.midcast = {}               -- leave this empty
 		sets.midcast.tank = {}
 		sets.midcast.bluemagic = {}
-    sets.aftercast = {}             -- leave this empty
+	sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
- 	sets.main = {}
+	sets.main = {}
 	sets.sub = {}
  
 	 -- Main Weapons 
