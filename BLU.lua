@@ -17,6 +17,10 @@ Player_Modes = {'Hybrid','TreasureHunter','DualWield','DualWieldHaste1','OmenTan
 Casting_Modes = {'Normal','SIR'}
 Lock_Modes = {'Unlocked','Locked'}
 
+efflux_active = false
+chain_active = false
+burst_active = false
+
 gearswap_box = function()
   str = '           \\cs(0,0,204)BLUE MAGE\\cr\n'
   str = str..' Offense Mode:\\cs(255,150,100)   '..Player_Mode..'\\cr\n'
@@ -275,6 +279,14 @@ function get_sets()
 	
 	sets.precast.diffusion = {
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
+	}
+
+	sets.precast.burstaffinity = {
+		feet="Hashi. Basmak +2",
+	}
+
+	sets.precast.chainaffinity = {
+		head="Hashishin Kavuk +3",
 	}
 	
 	sets.precast.efflux = {
@@ -884,10 +896,19 @@ function status_change(new,old)
 end
 
 function precast(spell)
-	if spell.name == "Diffusion" then
-		equip(sets.precast.diffusion)
-	elseif spell.name == "Efflux" then
-		equip(sets.precast.efflux)
+	if spell.type == "JobAbility" then
+		if spell.name == "Diffusion" then
+			equip(sets.precast.diffusion)
+		elseif spell.name == "Efflux" then
+			equip(sets.precast.efflux)
+			efflux_active = true
+		elseif spell.name == "Chain Affinity" then
+			equip(sets.precast.chainaffinity)
+			chain_active = true
+		elseif spell.name == "Burst Affinity" then
+			equip(sets.precast.burstaffinity)
+			burst_active = true
+		end
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
 	elseif spell.type == "BlueMagic" then
@@ -921,6 +942,15 @@ function precast(spell)
 		else
 			equip(sets.ws.normal)	
 		end
+	end
+	if burst_active then
+		equip(sets.precast.burstaffinity)
+	end
+	if chain_active then
+		equip(sets.precast.chainaffinity)
+	end
+	if efflux_active then
+		equip(sets.precast.efflux)
 	end
 end
 
@@ -1060,10 +1090,24 @@ function midcast(spell)
 			end
 		end
 	end
+	if burst_active then
+		equip(sets.precast.burstaffinity)
+	end
+	if chain_active then
+		equip(sets.precast.chainaffinity)
+	end
+	if efflux_active then
+		equip(sets.precast.efflux)
+	end
 end
 
 
 function aftercast(spell)
+	if spell.type == "BlueMagic" then
+		burst_active = false
+		chain_active = false
+		efflux_active = false
+	end
 	idle()
 end
 
