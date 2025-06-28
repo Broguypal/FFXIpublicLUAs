@@ -885,13 +885,40 @@ function idle()
 			equip(sets.idle.hybrid)
 		end
 	end
+	if burst_active then
+		equip(sets.precast.burstaffinity)
+	end
+	if chain_active then
+		equip(sets.precast.chainaffinity)
+	end
+	if efflux_active then
+		equip(sets.precast.efflux)
+	end
 end
 
 function status_change(new,old)
 	if new == "Engaged" then
 		idle()
+		if burst_active then
+			equip(sets.precast.burstaffinity)
+		end
+		if chain_active then
+			equip(sets.precast.chainaffinity)
+		end
+		if efflux_active then
+			equip(sets.precast.efflux)
+		end
 	else
 		idle()
+		if burst_active then
+			equip(sets.precast.burstaffinity)
+		end
+		if chain_active then
+			equip(sets.precast.chainaffinity)
+		end
+		if efflux_active then
+			equip(sets.precast.efflux)
+		end
 	end
 end
 
