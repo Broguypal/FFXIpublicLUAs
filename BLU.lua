@@ -885,39 +885,39 @@ function idle()
 			equip(sets.idle.hybrid)
 		end
 	end
+	if burst_active then
+		equip(sets.precast.burstaffinity)
+	end
 	if chain_active then
 		equip(sets.precast.chainaffinity)
 	end
 	if efflux_active then
 		equip(sets.precast.efflux)
 	end
-	if burst_active then
-		equip(sets.precast.burstaffinity)
-	end
 end
 
 function status_change(new,old)
 	if new == "Engaged" then
 		idle()
+		if burst_active then
+			equip(sets.precast.burstaffinity)
+		end
 		if chain_active then
 			equip(sets.precast.chainaffinity)
 		end
 		if efflux_active then
 			equip(sets.precast.efflux)
-		end
-		if burst_active then
-			equip(sets.precast.burstaffinity)
 		end
 	else
 		idle()
+		if burst_active then
+			equip(sets.precast.burstaffinity)
+		end
 		if chain_active then
 			equip(sets.precast.chainaffinity)
 		end
 		if efflux_active then
 			equip(sets.precast.efflux)
-		end
-		if burst_active then
-			equip(sets.precast.burstaffinity)
 		end
 	end
 end
@@ -970,14 +970,14 @@ function precast(spell)
 			equip(sets.ws.normal)	
 		end
 	end
+	if burst_active then
+		equip(sets.precast.burstaffinity)
+	end
 	if chain_active then
 		equip(sets.precast.chainaffinity)
 	end
 	if efflux_active then
 		equip(sets.precast.efflux)
-	end
-	if burst_active then
-		equip(sets.precast.burstaffinity)
 	end
 end
 
@@ -1117,23 +1117,23 @@ function midcast(spell)
 			end
 		end
 	end
+	if burst_active then
+		equip(sets.precast.burstaffinity)
+	end
 	if chain_active then
 		equip(sets.precast.chainaffinity)
 	end
 	if efflux_active then
 		equip(sets.precast.efflux)
 	end
-	if burst_active then
-		equip(sets.precast.burstaffinity)
-	end
 end
 
 
 function aftercast(spell)
 	if spell.type == "BlueMagic" then
+		burst_active = false
 		chain_active = false
 		efflux_active = false
-		burst_active = false
 	end
 	idle()
 end
