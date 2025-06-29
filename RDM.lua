@@ -1223,6 +1223,12 @@ function midcast(spell)
 					equip(sets.midcast.darkBIOweapons)
 				end
 			end
+		elseif spell.name:match('Stun') then
+			if Player_Mode ~= "ZeroTPEnspell" and (player.status == "Engaged" or Lock_Mode == "Locked") then
+				equip(sets.midcast.enfeebleACCURACY)
+			else
+				equip(sets.midcast.enfeebleACCURACYweapons)
+			end
 		end
 	elseif spell.skill == "Enhancing Magic" then
 		if spell.name:match('Haste') or spell.name:match('Flurry') or spell.name:match('Blink') or spell.name:match('Protect') or spell.name:match('Shell') or spell.english:startswith('Bar') then 
