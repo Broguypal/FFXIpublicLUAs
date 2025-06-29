@@ -29,7 +29,7 @@ gearswap_box = function()
 	str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
 	str = str..' Animator Lock:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
 	str = str..' Auto Manouever:\\cs(211,211,211)   '..Auto_Mode..'\\cr\n'
-		-- Strobe status	
+	-- Strobe status	
 	if (TP_Mode == "Hybrid" or TP_Mode == "Pet") and pet and pet.isvalid and (pet.attachments.strobe or pet.attachments["strobe II"]) then	
 		if Strobe_Recast <= 0 then
 			str = str..' Strobe: \\cs(0,255,0)Ready\\cr\n'
@@ -37,7 +37,7 @@ gearswap_box = function()
 			str = str..' Strobe: \\cs(255,50,50)' .. string.format("%.1f", Strobe_Recast) .. 's\\cr\n'
 		end
 	end
-	  -- Flashbulb status
+	-- Flashbulb status
 	if (TP_Mode == "Hybrid" or TP_Mode == "Pet") and pet and pet.isvalid and pet.attachments.flashbulb then
 		if Flashbulb_Recast <= 0 then
 			str = str..' Flashbulb: \\cs(0,255,0)Ready\\cr\n'
