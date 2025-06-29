@@ -14,18 +14,37 @@ TP_Mode = "Hybrid"
 Pet_Mode = "NA"
 Pet_Distance = "Melee"
 Lock_Mode = "Locked"
+Auto_Mode = "Off"
  
 TP_Modes = {'Hybrid','HybridDEF','Master','MasterDEF','Overdrive','OverdriveDEF','Pet','PetDEF','Emergency-DT'}
 Pet_Modes = {'NA','Bruiser','Tank','Sharpshot','Ranged','WHM','BLM','RDM','Other'}
 Pet_Distances = {'Melee', 'Ranged'}
 Lock_Modes = {'Locked','Unlocked'}
+Auto_Modes = {'On','Off'}
 
 gearswap_box = function()
-  str = '           \\cs(246,102,13)PUPPETMASTER\\cr\n'
-  str = str..' Current Mode:\\cs(200,100,200)   '..TP_Mode..'\\cr\n'
-  str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
-  str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
-  str = str..' Animator Lock:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
+	str = '           \\cs(246,102,13)PUPPETMASTER\\cr\n'
+	str = str..' Current Mode:\\cs(200,100,200)   '..TP_Mode..'\\cr\n'
+	str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
+	str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
+	str = str..' Animator Lock:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
+	str = str..' Auto Manouever:\\cs(211,211,211)   '..Auto_Mode..'\\cr\n'
+		-- Strobe status	
+	if (TP_Mode == "Hybrid" or TP_Mode == "Pet") and pet and pet.isvalid and (pet.attachments.strobe or pet.attachments["strobe II"]) then	
+		if Strobe_Recast <= 0 then
+			str = str..' Strobe: \\cs(0,255,0)Ready\\cr\n'
+		else
+			str = str..' Strobe: \\cs(255,50,50)' .. string.format("%.1f", Strobe_Recast) .. 's\\cr\n'
+		end
+	end
+	  -- Flashbulb status
+	if (TP_Mode == "Hybrid" or TP_Mode == "Pet") and pet and pet.isvalid and pet.attachments.flashbulb then
+		if Flashbulb_Recast <= 0 then
+			str = str..' Flashbulb: \\cs(0,255,0)Ready\\cr\n'
+		else
+			str = str..' Flashbulb: \\cs(255,50,50)' .. string.format("%.1f", Flashbulb_Recast) .. 's\\cr\n'
+		end
+	end
   return str
 end
 
@@ -35,6 +54,7 @@ gearswap_jobbox = texts.new(gearswap_box_config)
 function user_setup()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
+	initialize_enmity_logic()
 end
 
 function get_sets()
@@ -48,29 +68,29 @@ function get_sets()
 	send_command('bind numpad4 gs c ToggleWeapon')
 	send_command('bind numpad3 gs c ToggleLock')
 	send_command('bind numpad2 gs c ToggleDistance')
+	send_command('bind numpad1 gs c ToggleAutoMode')
 
 	--------- Personal Commands ---------------
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
-	send_command('bind numpad1 input /jump')
 
 	--------- GEAR DEFINED ------------------
 
-    sets.idle = {}	
+	sets.idle = {}	
 	sets.engaged = {}
 		sets.engaged.hybrid = {}
 		sets.engaged.master = {}
 		sets.engaged.pet = {}
 		sets.engaged.overdrive = {}
-    sets.precast = {}
+	sets.precast = {}
 		sets.precast.master = {}
 		sets.precast.pet = {}
 	sets.ws = {}
 		sets.ws.master = {}
 		sets.ws.pet = {}
 	sets.ja = {}
-    sets.midcast = {}    
+	sets.midcast = {}    
 		sets.midcast.master = {}
 		sets.midcast.pet = {} 
 	sets.items = {}
@@ -146,7 +166,6 @@ function get_sets()
 	}
 
 	---------------------------	ENGAGED SETS	---------------------------
-
 	---------------------------	HYRBRID ENGAGED SETS	---------------------------
 	-- Normal Hybrid
 	sets.engaged.hybrid.Normal = {
@@ -435,7 +454,7 @@ function get_sets()
 	}
 
 	--  individual abilities
-    sets.ja.optimization = {head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},}
+	sets.ja.optimization = {head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},}
 	sets.ja.overdrive = {body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},}
 	sets.ja.finetuning = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
 	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
@@ -461,6 +480,16 @@ function get_sets()
 		waist="Ukko Sash",
 		right_ear="Burana Earring",
 		right_ring="Thur. Ring +1",
+	}
+	
+	--pet midcast Enmity gain
+	sets.precast.pet.enmity = {
+		head="Heyoka Cap +1",
+		body="Heyoka Harness",
+		hands="Heyoka Mittens",
+		legs="Heyoka Subligar +1",
+		feet="Heyoka Leggings",
+		left_ear="Rimeice Earring",
 	}
 
 	---------------------------	MIDCAST MASTER SETS	---------------------------
@@ -488,16 +517,6 @@ function get_sets()
 	}
 
 	---------------------------	MIDCAST PET SETS	---------------------------
-	--pet midcast Enmity gain
-	sets.midcast.pet.enmity = {
-		head="Heyoka Cap +1",
-		body="Heyoka Harness",
-		hands="Heyoka Mittens",
-		legs="Heyoka Subligar +1",
-		feet="Heyoka Leggings",
-		left_ear="Rimeice Earring",
-	}
-		
 	-- pet midcast BLM
 	sets.midcast.pet.nuke = {
 		ammo="Automat. Oil +3",
@@ -547,7 +566,7 @@ function get_sets()
 	---------------------------	WEAPONSKILL SETS	---------------------------
 	---------------------------	MASTER WS SETS	---------------------------
 	--  weaponskills
-     sets.ws.master.weaponskill = {
+	sets.ws.master.weaponskill = {
 		head="Mpaca's Cap",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -992,7 +1011,6 @@ function precast(spell)
 	end
 end
 
-
 function midcast(spell)
 	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" then 
 		equip(sets.midcast.master.spelldamage)
@@ -1002,9 +1020,7 @@ function midcast(spell)
 end
 
 function pet_midcast(spell)
-	if pet.frame == "Valoredge Frame" then
-		equip(sets.midcast.pet.enmity)
-	elseif pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
+	if pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
 		equip(sets.midcast.pet.nuke)
 	elseif pet.head == "Soulsoother Head" and pet.frame == "Stormwaker Frame" then
 		equip(sets.midcast.pet.cure)
@@ -1024,9 +1040,139 @@ function aftercast(spell)
 end
 
 function pet_aftercast(spell)
-    coroutine.schedule(idle, 0.5)
+    idle()
 end
 
+---- Pet Enmity Timers Logic ----
+Strobe_Timer = 30
+Flashbulb_Timer = 45
+PetEnmityDistanceLimit = 30 -- Maximum distance to equip pet enmity gear
+
+-- Runtime
+Strobe_Time = 0.0
+Flashbulb_Time = 0.0
+Strobe_Recast = 0
+Flashbulb_Recast = 0
+
+time_start = os.time()
+Enmity_Gear_End_Time = 0
+
+function initialize_enmity_logic()
+	windower.register_event("prerender", function()
+		local now = os.clock()  -- ⬅ High precision timer
+
+		-- Smooth jobbox updates
+		gearswap_jobbox:text(gearswap_box())
+		gearswap_jobbox:show()
+
+		-- Enmity idle return timer
+		if Enmity_Gear_End_Time > 0 and now >= Enmity_Gear_End_Time then
+			Enmity_Gear_End_Time = 0
+			idle()
+		end
+
+		-- Always update recasts smoothly
+		if Strobe_Time > 0 then
+			Strobe_Recast = math.max(0, Strobe_Timer - (now - Strobe_Time))
+		end
+
+		if Flashbulb_Time > 0 then
+			Flashbulb_Recast = math.max(0, Flashbulb_Timer - (now - Flashbulb_Time))
+		end
+
+		-- Enmity gear logic
+		if (TP_Mode == "Hybrid" or TP_Mode == "Pet")
+		and pet and pet.isvalid and pet.status == "Engaged"
+		and player.hpp > 0 and pet.distance
+		and pet.distance < PetEnmityDistanceLimit then
+
+			if buffactive["Fire Maneuver"]
+			and (pet.attachments.strobe or pet.attachments["strobe II"])
+			and Strobe_Recast <= 2 then
+				equip(sets.precast.pet.enmity)
+				Enmity_Gear_End_Time = now + 1  -- 1s delay
+			elseif buffactive["Light Maneuver"]
+			and pet.attachments.flashbulb
+			and Flashbulb_Recast <= 2 then
+				equip(sets.precast.pet.enmity)
+				Enmity_Gear_End_Time = now + 1
+			end
+		end
+	end)
+
+	windower.register_event("incoming text", function(original)
+		local now = os.clock()
+
+		if (TP_Mode == "Hybrid" or TP_Mode == "Pet")
+		and pet and pet.isvalid
+		and pet.distance and pet.distance < PetEnmityDistanceLimit then
+
+			if buffactive["Fire Maneuver"]
+			and original:contains(pet.name)
+			and original:contains("Provoke") then
+				add_to_chat(204, "*-*-*-*-*-*-*-*-* [ Strobe done ] *-*-*-*-*-*-*-*-*")
+				Strobe_Time = now
+				equip(sets.precast.pet.enmity)
+				Enmity_Gear_End_Time = now + 1
+
+			elseif buffactive["Light Maneuver"]
+			and original:contains(pet.name)
+			and original:contains("Flashbulb") then
+				add_to_chat(204, "*-*-*-*-*-*-*-*-* [ Flashbulb done ] *-*-*-*-*-*-*-*-*")
+				Flashbulb_Time = now
+				equip(sets.precast.pet.enmity)
+				Enmity_Gear_End_Time = now + 1
+			end
+		end
+		return original
+	end)
+end
+
+---- Auto Maneuver Logic ----
+windower.register_event('lose buff', function(buff_id)
+	if buff_id == 300 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Fire Maneuver" <me>')
+		end
+	end
+	if buff_id == 301 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Ice Maneuver" <me>')
+		end
+	end
+	if buff_id == 302 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Wind Maneuver" <me>')
+		end
+	end
+	if buff_id == 303 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Earth Maneuver" <me>')
+		end
+	end
+	if buff_id == 304 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Thunder Maneuver" <me>')
+		end
+	end
+	if buff_id == 305 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Water Maneuver" <me>')
+		end
+	end
+	if buff_id == 306 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Light Maneuver" <me>')
+		end
+	end
+	if buff_id == 307 then
+		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
+			send_command('input /ja "Dark Maneuver" <me>')
+		end
+	end
+end)
+
+---- Command List ----
 function self_command(command)
 	if command == "ToggleHybrid" then
 		if TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
@@ -1101,6 +1247,12 @@ function self_command(command)
 		elseif Lock_Mode == "Locked" then
 			Lock_Mode = "Unlocked"
 		end
+	elseif command == "ToggleAutoMode" then
+		if Auto_Mode == "Off" then
+			Auto_Mode = "On"
+		else 
+			Auto_Mode = "Off"
+		end
 	elseif command == "ToggleWeapon" then
 		local weapon_cycle = {
 			Hybrid     = {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
@@ -1139,9 +1291,9 @@ end
 
 function check_pet_status()
 	if pet.isvalid then
-		if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" then
+		if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" and ( pet.attachments.flashbulb or pet.attachments.strobe or pet.attachments["strobe II"] ) then
 			Pet_Mode = "Tank"
-		elseif pet.head == "Valoredge Head" and pet.frame == "Valoredge Frame" then
+		elseif pet.frame == "Valoredge Frame" then
 				Pet_Mode = "Bruiser"
 		elseif pet.frame == "Harlequin Frame" then
 			Pet_Mode = "Bruiser"
