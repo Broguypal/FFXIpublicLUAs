@@ -281,17 +281,18 @@ function get_sets()
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
 	}
 
-	sets.precast.burstaffinity = {
-		feet="Hashi. Basmak +2",
-	}
-
 	sets.precast.chainaffinity = {
 		head="Hashishin Kavuk +3",
+		feet="Assim. Charuqs +4",
 	}
 	
 	sets.precast.efflux = {
 		legs="Hashishin Tayt +2",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
+	}
+
+	sets.precast.burstaffinity = {
+		feet="Hashi. Basmak +2",
 	}
 
 	---- TANK PRECAST SETS----
