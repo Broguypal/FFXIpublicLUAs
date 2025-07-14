@@ -1023,7 +1023,11 @@ function midcast(spell)
 				elseif spell.skill == "Dark Magic" then
 					equip(sets.midcast.dark)
 				elseif spell.skill == "Enhancing Magic" then
-					equip(sets.midcast.enhancing)
+					if spell.english == "Phalanx" then
+						equip(sets.midcast.phalanx)
+					else
+						equip(sets.midcast.enhancing)
+					end
 				elseif spell.skill == "Healing Magic" then
 					equip(sets.midcast.healing)
 				end
