@@ -1301,7 +1301,7 @@ function midcast(spell)
 		end
 	elseif spell.name:match('Migawari') then
 		equip(sets.midcast.migawari)
-	elseif spell.name:match('Kurayami') or spell.name:match('Hojo') or spell.name:match('Dokumori') or spell.name:match('Jubaku') or spell.name:match('Yurin') or spell.name:match('Aisha') then
+	elseif spell.name:match('Kurayami') or spell.name:match('Hojo') or spell.name:match('Dokumori') or spell.name:match('Jubaku') or spell.name:match('Yurin') or spell.name:match('Aisha') or spell.skill == "Enfeebling Magic" then
 		equip(sets.midcast.enfeeble)
 	elseif spell.name:match('Katon') or spell.name:match('Suiton') or spell.name:match('Raiton') or spell.name:match('Doton') or spell.name:match('Huton') or spell.name:match('Hyoton') then
 		if buffactive['Futae'] then
