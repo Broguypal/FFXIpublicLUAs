@@ -353,7 +353,7 @@ function get_sets()
 		left_ear="Mache Earring +1",
 		left_ring="Ilabrat Ring",
 		right_ring="Apate Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	})
 	
 	sets.midcast.bluemagic.PhysicalVit = set_combine(sets.midcast.bluemagic.Physical,{
@@ -711,7 +711,7 @@ function get_sets()
 		right_ear="Odr Earring",
 		left_ring="Begrudging Ring",
 		right_ring="Epona's Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.requiescat = {
