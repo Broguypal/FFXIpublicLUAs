@@ -94,7 +94,7 @@ function get_sets()
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
 	}
 	
 	sets.idle.tank = {
@@ -131,7 +131,7 @@ function get_sets()
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
 	---- ENGAGED SETS ---- 
@@ -224,7 +224,7 @@ function get_sets()
 	sets.engaged.dualwield.haste35 = set_combine(sets.engaged.dualwield.hastecap,{
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
 	--30 Magic Haste (31DW to cap with DW3)
@@ -233,7 +233,7 @@ function get_sets()
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
 		right_ear="Eabani Earring", -- 4 DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 
 	})
 
@@ -244,7 +244,7 @@ function get_sets()
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
 		right_ear="Eabani Earring", -- 4 DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
 	-- 0 Magic Haste (49DW to cap with DW3)
@@ -255,7 +255,7 @@ function get_sets()
 		waist="Reiki Yotai", --7DW
 		left_ear="Suppanomimi", -- 5DW
 		right_ear="Eabani Earring", -- 4 DW
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
 	---- PRECAST SETS ----
@@ -288,7 +288,7 @@ function get_sets()
 	
 	sets.precast.efflux = {
 		legs="Hashishin Tayt +2",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
 	}
 
 	sets.precast.burstaffinity = {
