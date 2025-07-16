@@ -675,7 +675,7 @@ function get_sets()
 		right_ear="Mache Earring +1",
 		left_ring="Gere Ring",
 		right_ring="Sroda Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	sets.ws.shun = {
@@ -707,7 +707,7 @@ function get_sets()
 		right_ear="Mache Earring +1",
 		left_ring="Gere Ring",
 		right_ring="Epaminondas's Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	sets.ws.ten = {
@@ -723,7 +723,7 @@ function get_sets()
 		right_ear="Telos Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	sets.ws.ku = {
@@ -739,7 +739,7 @@ function get_sets()
 		right_ear="Mache Earring +1",
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
 	sets.ws.hi = {
@@ -755,7 +755,7 @@ function get_sets()
 		right_ear="Mache Earring +1",
 		left_ring="Sroda Ring",
 		right_ring="Epaminondas's Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	sets.ws.kamu = {
@@ -771,7 +771,7 @@ function get_sets()
 		right_ear="Ishvara Earring",
 		left_ring="Gere Ring",
 		right_ring="Sroda Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	sets.ws.ei = {
@@ -787,7 +787,7 @@ function get_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Archon Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	-- Yu Weaponskill
@@ -804,7 +804,7 @@ function get_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Shiva Ring +1",
 		right_ring="Epaminondas's Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	--Yu with obi
 	sets.ws.yuobi = set_combine(sets.ws.yu,{
@@ -825,7 +825,7 @@ function get_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Gere Ring",
 		right_ring="Epaminondas's Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	--chi/teki/to elemental with Obi
 	sets.ws.elementalobi = set_combine(sets.ws.elemental, {
@@ -845,7 +845,7 @@ function get_sets()
 		right_ear="Ishvara Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
-		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	sets.ws.ageha = {
