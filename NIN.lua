@@ -1345,60 +1345,12 @@ function midcast(spell)
 				equip(sets.midcast.elemental)
 			end
 		end
-	elseif spell.type == "WeaponSkill" then 
-		if spell.english == "Blade: Shun" then
-			equip(sets.ws.shun)
-		elseif spell.english == "Blade: Metsu" then
-			equip(sets.ws.metsu)
-		elseif spell.english == "Blade: Ten" then
-			equip(sets.ws.ten)
-		elseif spell.english == "Blade: Ku" then
-			equip(sets.ws.ku)
-		elseif spell.english == "Blade: Hi" then
-			equip(sets.ws.hi)
-		elseif spell.english == "Blade: Kamu" then
-			equip(sets.ws.kamu)
-		elseif spell.english == "Blade: Ei" then
-			equip(sets.ws.ei)
-		elseif spell.english == "Blade: Chi" or spell.english == "Blade: Teki" or spell.english == "Blade: To" then
-			if spell.element == world.day_element or spell.element == world.weather_element then
-				if spell.english == "Blade: Chi" and world.day_element ~= "Wind" and world.weather_element ~= "Wind" then
-					equip(sets.ws.elementalobi)
-				elseif spell.english == "Blade: Teki" and world.day_element ~= "Lightning" and world.weather_element ~= "Lightning" then
-					equip(sets.ws.elementalobi)
-				elseif spell.english == "Blade: To" and world.day_element ~= "Fire" and world.weather_element ~= "Fire" then
-					equip(sets.ws.elementalobi)
-				else
-					equip(sets.ws.elemental)
-				end
-			else
-				equip(sets.ws.elemental)
-			end
-		elseif spell.english == "Blade: Yu" then
-			if spell.element == world.day_element or spell.element == world.weather_element then
-				if world.day_element ~= "Lightning" and world.weather_element ~= "Lightning" then
-					equip(sets.ws.yuobi)
-				else
-					equip(sets.ws.yu)
-				end
-			else
-				equip(sets.ws.yu)
-			end
-		elseif spell.english == "Savage Blade" then
-			equip(sets.ws.savageblade)
-		elseif spell.english == "Tachi: Ageha" then
-			equip(sets.ws.ageha)
-		else
-			equip(sets.ws.normal)
-		end
 	elseif spell.english == "Provoke" or spell.english == "Foil" or spell.english == "Poisonga" or spell.english == "Stun" or spell.english == "Flash" or spell.english == "Jettatura" or spell.english == "Blank Gaze" then
 		equip(sets.precast.enmity)
 	elseif spell.type == "Trust" then
 		equip(sets.midcast.trust)
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
-	else
-		idle()
 	end
 end
 
