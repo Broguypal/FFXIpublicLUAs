@@ -552,19 +552,7 @@ end
 
 --midcast rules
 function midcast(spell)
-	if spell.type == "WeaponSkill" then 
-		if spell.english == "Resolution" then
-			equip (sets.ws.resolution) 
-		elseif spell.english == "Dimidiation" then
-			equip(sets.ws.dimidiation)	
-		elseif spell.english == "Savage Blade" then
-			equip(sets.ws.savageblade)
-		elseif spell.english == "Ruinator" then
-			equip(sets.ws.ruinator)
-		else
-			equip(sets.ws.dimidiation)
-		end
-	elseif spell.english == "Foil" or spell.english == "Poisonga" or spell.english == "Stun" or spell.english == "Flash" or spell.english == "Jettatura" or spell.english == "Blank Gaze" then
+	if spell.english == "Foil" or spell.english == "Poisonga" or spell.english == "Stun" or spell.english == "Flash" or spell.english == "Jettatura" or spell.english == "Blank Gaze" then
 		if tp_mode == "Hybrid" or tp_mode == "DPS" or MOde == "Single Tank" or tp_mode == "MagicEva" then
 			if spell_mode == "Normal" then
 				equip(sets.midcast.enmity)
@@ -588,8 +576,6 @@ function midcast(spell)
 		end
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
-	else
-		idle()
 	end
 end
 
@@ -661,28 +647,28 @@ end
 
 ---- 	Unload settings 		----
 function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
+	send_command('unbind numpad9')
+	send_command('unbind numpad8')
+	send_command('unbind numpad7')
+	send_command('unbind numpad6')
 	send_command('unbind numpad5')
 	send_command('unbind numpad4')
 	send_command('unbind numpad3')
 	send_command('unbind numpad2')
 	send_command('unbind numpad1')
-    send_command('unbind ^numpad9')
-    send_command('unbind ^numpad8')
-    send_command('unbind ^numpad7')
-    send_command('unbind ^numpad6')
+	send_command('unbind ^numpad9')
+	send_command('unbind ^numpad8')
+	send_command('unbind ^numpad7')
+	send_command('unbind ^numpad6')
 	send_command('unbind ^numpad5')
 	send_command('unbind ^numpad4')
 	send_command('unbind ^numpad3')
 	send_command('unbind ^numpad2')
 	send_command('unbind ^numpad1')
-    send_command('unbind !numpad9')
-    send_command('unbind !numpad8')
-    send_command('unbind !numpad7')
-    send_command('unbind !numpad6')
+	send_command('unbind !numpad9')
+	send_command('unbind !numpad8')
+	send_command('unbind !numpad7')
+	send_command('unbind !numpad6')
 	send_command('unbind !numpad5')
 	send_command('unbind !numpad4')
 	send_command('unbind !numpad3')
@@ -692,7 +678,7 @@ function file_unload()
 	send_command('unbind f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
 user_setup()
