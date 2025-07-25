@@ -577,7 +577,7 @@ function get_sets()
 	})
 	--Enmity
 	sets.precast.enmity = {
-		ammo="Aqreqaq Bomblet",
+		ammo="Date Shuriken",
 		body="Emet Harness +1",
 		hands="Kurys Gloves",
 		feet="Ahosi Leggings",
