@@ -574,6 +574,7 @@ function get_sets()
 	}
 	--Utsusemi Precast
 	sets.precast.utsusemi = set_combine(sets.precast.fastcast,{
+		body={ name="Mochi. Chainmail +3", augments={'Enhances "Sange" effect',}},
 	})
 	--Enmity
 	sets.precast.enmity = {
