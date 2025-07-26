@@ -565,7 +565,7 @@ function get_sets()
 		legs={ name="Herculean Trousers", augments={'"Mag.Atk.Bns."+8','"Fast Cast"+6','INT+4',}},
 		feet={ name="Herculean Boots", augments={'"Mag.Atk.Bns."+8','"Fast Cast"+6','INT+9',}},
 		neck="Voltsurge Torque",
-		waist="Audumbla Sash",
+		waist="Plat. Mog. Belt",
 		left_ear="Tuisto Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Rahab Ring",
@@ -575,6 +575,7 @@ function get_sets()
 	--Utsusemi Precast
 	sets.precast.utsusemi = set_combine(sets.precast.fastcast,{
 		body={ name="Mochi. Chainmail +3", augments={'Enhances "Sange" effect',}},
+		neck="Magoraga Beads",
 	})
 	--Enmity
 	sets.precast.enmity = {
