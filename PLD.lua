@@ -219,7 +219,6 @@ shields = {
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
 	
-
 ---- PRECAST SETS ----
 	sets.precast.fastcast = {
 		ammo="Sapience Orb",
@@ -404,7 +403,7 @@ shields = {
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Thrud Earring",
+		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
 		left_ring="Sroda Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
@@ -444,32 +443,32 @@ shields = {
 	
 	sets.ws.requiescat = {
 		ammo="Coiste Bodhar",
-		head="Flam. Zucchetto +2",
-		body="Sakpata's Plate",
-		hands="Sakpata's Gauntlets",
-		legs="Sakpata's Cuisses",
-		feet="Flam. Gambieras +2",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Mache Earring +1",
-		left_ring="Flamma Ring",
-		right_ring="Fickblix's Ring",
+		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Sroda Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
 
 	sets.ws.chantducygne = {
 		ammo="Aurgelmir Orb",
-		head="Flam. Zucchetto +2",
-		body="Flamma Korazin +2",
-		hands="Flam. Manopolas +2",
-		legs="Flamma Dirs +2",
-		feet="Flam. Gambieras +2",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body="Sakpata's Plate",
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs="Sakpata's Cuisses",
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Mache Earring +1",
-		left_ring="Flamma Ring",
+		left_ear="Brutal Earring",
+		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		left_ring="Begrudging Ring",
 		right_ring="Apate Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
