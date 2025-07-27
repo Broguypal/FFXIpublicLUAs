@@ -10,6 +10,8 @@
 
 
 ----------------- MODES / UI TEXT BOX -----------------------------
+-- Note: Requires the addon "Easy Spells" for macros to work
+
 Player_Mode = "Melee"
 Casting_Mode = "Burst"
 Enfeeble_Mode = "Normal"
@@ -29,8 +31,8 @@ gearswap_box = function()
   str = str..' Enfeeble Mode:\\cs(0,153,51)   '..Enfeeble_Mode..'\\cr\n'
   str = str..' Weapon Lock:\\cs(128,128,128)   '..Lock_Mode..'\\cr\n'
   str = str..' Shihei Amount: '..shihei..'\n'
-  str = str..' \\cs(255,64,64)[FIR]\\cr   \\cs(0,255,0)[WND]\\cr   \\cs(180,0,255)[THD]\\cr\n'
-  str = str..' \\cs(128,255,255)[ICE]\\cr   \\cs(165,100,40)[STN]\\cr   \\cs(64,128,255)[WTR]\\cr\n'
+  str = str..' crl: \\cs(255,64,64)[FIR]\\cr   \\cs(0,255,0)[WND]\\cr   \\cs(180,0,255)[THD]\\cr\n'
+  str = str..' alt: \\cs(128,255,255)[ICE]\\cr   \\cs(165,100,40)[STN]\\cr   \\cs(64,128,255)[WTR]\\cr\n'
     return str
 end
 
