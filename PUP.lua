@@ -28,7 +28,7 @@ gearswap_box = function()
 	str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
 	str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
 	str = str..' Animator Lock:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
-	str = str..' Auto Manouever:\\cs(211,211,211)   '..Auto_Mode..'\\cr\n'
+	str = str..' Auto Maneuver:\\cs(211,211,211)   '..Auto_Mode..'\\cr\n'
 	-- Strobe status	
 	if (TP_Mode == "Hybrid" or TP_Mode == "Pet") and pet and pet.isvalid and (pet.attachments.strobe or pet.attachments["strobe II"]) then	
 		if Strobe_Recast <= 0 then
@@ -1294,11 +1294,11 @@ function check_pet_status()
 		if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" and ( pet.attachments.flashbulb or pet.attachments.strobe or pet.attachments["strobe II"] ) then
 			Pet_Mode = "Tank"
 		elseif pet.frame == "Valoredge Frame" then
-				Pet_Mode = "Bruiser"
+			Pet_Mode = "Bruiser"
 		elseif pet.frame == "Harlequin Frame" then
 			Pet_Mode = "Bruiser"
 		elseif pet.head == "Valoredge Head" and pet.frame == "Sharpshot Frame" then
-				Pet_Mode = "Sharpshot"
+			Pet_Mode = "Sharpshot"
 		elseif pet.head == "Sharpshot Head" and pet.frame == "Sharpshot Frame" then
 			Pet_Mode = "Ranged"
 		elseif pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
