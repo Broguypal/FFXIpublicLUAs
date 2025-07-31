@@ -264,6 +264,7 @@ function get_sets()
 	-- 0 shadows
 	sets.engaged.tank.counter = set_combine(sets.engaged.tank.normal,{
 		ammo="Amar Cluster",
+		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		waist="Cornelia's Belt",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
 	})
@@ -293,6 +294,7 @@ function get_sets()
 		ammo="Amar Cluster",
 		body="Mpaca's Doublet",
 		legs="Mpaca's Hose",
+		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		waist="Cornelia's Belt",
 		left_ear="Genmei Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
