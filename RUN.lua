@@ -410,14 +410,14 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		}
 		
 	sets.ws.resolution = {
-		ammo="Knobkierrie",
-		head={ name="Lustratio Cap +1", augments={'Attack+20','STR+8','"Dbl.Atk."+3',}},
+		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Herculean Gloves", augments={'Accuracy+30','"Triple Atk."+4','Attack+13',}},
-		legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
+		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lustra. Leggings +1", augments={'Attack+20','STR+8','"Dbl.Atk."+3',}},
 		neck="Fotia Gorget",
-		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Sherida Earring",
 		left_ring="Sroda Ring",
