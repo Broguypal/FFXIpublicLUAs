@@ -29,6 +29,8 @@ gearswap_box = function()
   str = str..'  Ino(E): '..inofu..'\\cs(255,255,255)   Shika(B): '..shika..'\\cr\n'
   str = str..'Cho(D): '..chono.."\\cs(255,255,255)  Shihei(U): "..shihei.."\\cr\n"
   str = str..'Utsusemi Shadows: '..utsubuff.."\\cr\n"
+  str = str..' crl: \\cs(255,64,64)[FIR]\\cr   \\cs(0,255,0)[WND]\\cr   \\cs(180,0,255)[THD]\\cr\n'
+  str = str..' alt: \\cs(128,255,255)[ICE]\\cr   \\cs(165,100,40)[STN]\\cr   \\cs(64,128,255)[WTR]\\cr\n'
   return str
 end
 
@@ -100,12 +102,47 @@ function check_tool_count()
 	end
 end
 
+----- Spell Logic ---- (ctrl or alt 1/2/3 on numpad automatically casts best tier spell available. 
+-- May need to edit these based on your gear. (NOTE: See aftercast logic for seeing how timers are set)
+local ninjutsu_custom_recasts = {
+    ["San"] = 45,
+    ["Ni"]  = 33,
+    ["Ichi"] = 22,
+}
+
+local ninjutsu_tiers = {"San", "Ni", "Ichi"}
+
+local last_ninjutsu_cast = {}
+
+function capitalize(word)
+    return word:sub(1,1):upper() .. word:sub(2):lower()
+end
+
+function cast_best_ninjutsu(element)
+    local now = os.clock()
+    local element_cap = element  -- assuming you're skipping capitalize()
+    
+    for _, tier in ipairs(ninjutsu_tiers) do
+        local spell_name = ("%s: %s"):format(element_cap, tier)
+        local last_cast = last_ninjutsu_cast[spell_name] or 0
+        local cooldown = ninjutsu_custom_recasts[tier]
+        local remaining = cooldown - (now - last_cast)
+
+        if remaining <= 0 then
+            send_command('input /ma "' .. spell_name .. '" <t>')
+            return
+        end
+    end
+end
+
+---- Setting up jobbox.
 function user_setup()
 	check_tool_count()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
 
+---- Equipset logic
 function get_sets()
 	---- Keybinds ----
 	send_command('bind numpad9 gs c ToggleHybrid')
@@ -116,7 +153,16 @@ function get_sets()
 	send_command('bind numpad5 gs c ToggleSub')
 	send_command('bind numpad4 gs c ToggleMain')
 	send_command('bind numpad1 gs c ToggleSpecial')
+	
+	---- Ninjutsu Keybinds ----
+	send_command ('bind ^numpad1 gs c castnin Katon')
+	send_command ('bind ^numpad2 gs c castnin Huton')
+	send_command ('bind ^numpad3 gs c castnin Raiton')
+	send_command ('bind !numpad1 gs c castnin Hyoton')
+	send_command ('bind !numpad2 gs c castnin Doton')
+	send_command ('bind !numpad3 gs c castnin Suiton')
 
+	---- QOL Keybinds ----
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
@@ -1359,7 +1405,10 @@ function midcast(spell)
 end
 
 function aftercast(spell)
-	if spell.type == "Ninjutsu" then	
+	if spell.type == "Ninjutsu" then
+		if (spell.name:match('Katon') or spell.name:match('Suiton') or spell.name:match('Raiton') or spell.name:match('Doton') or spell.name:match('Huton') or spell.name:match('Hyoton')) and not spell.interrupted then
+			last_ninjutsu_cast[spell.name] = os.clock()
+		end
 		idle()
 		check_tool_count()
 		gearswap_jobbox:text(gearswap_box())		
@@ -1451,6 +1500,12 @@ function self_command(command)
 			send_command ('input /equip Main "Tauret"; wait 1; input /equip Sub "Gleti\'s Knife"')
 		else
 			send_command ('input /equip Main "Hachimonji"; wait 1; input /equip Sub "Bloodrain strap"')
+		end
+	elseif command:startswith('castnin ') then
+		local element = command:match('castnin (%a+)')
+		if element then
+			cast_best_ninjutsu(element)
+			return
 		end
 	end
 end
