@@ -10,7 +10,7 @@
 
 
 ----------------- MODES / UI TEXT BOX -----------------------------
--- Note: Requires the addon "Easy Spells" for macros to work
+
 
 Player_Mode = "Melee"
 Casting_Mode = "Burst"
@@ -79,13 +79,13 @@ function get_sets()
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
 
-	-------- Easyspell Keybinds ---------- (Requires easyspell addon)
-	send_command ('bind ^numpad1 input //es fire <t>')
-	send_command ('bind ^numpad2 input //es aero <t>')
-	send_command ('bind ^numpad3 input //es thunder <t>')
-	send_command ('bind !numpad1 input //es blizzard <t>')
-	send_command ('bind !numpad2 input //es stone <t>')
-	send_command ('bind !numpad3 input //es water <t>')
+	-------- Spell Keybinds -----
+	send_command('bind ^numpad1 gs c cast Fire <t>')
+	send_command('bind ^numpad2 gs c cast Aero <t>')
+	send_command('bind ^numpad3 gs c cast Thunder <t>')
+	send_command('bind !numpad1 gs c cast Blizzard <t>')
+	send_command('bind !numpad2 gs c cast Stone <t>')
+	send_command('bind !numpad3 gs c cast Water <t>')
 
 	--------------- EQUIPMENT SETS ------------------
 
@@ -1364,8 +1364,62 @@ function aftercast(spell)
 	end
 end
 
+-- Autospell logic ---
+local res = require('resources')
+local elemental_spells = {
+    Fire = 6, Blizzard = 6, Aero = 6, Stone = 6, Thunder = 6, Water = 6
+}
+local tiers = {"", " II", " III", " IV", " V", " VI"}
+
+function can_cast(spellName)
+    local spell = res.spells:with('en', spellName)
+    local spells = windower.ffxi.get_spells()
+    if spell and spells and spells[spell.id] then
+        local player = windower.ffxi.get_player()
+        local mjob = player.main_job_id
+        local mlvl = player.main_job_level
+        local sjob = player.sub_job_id
+        local slvl = player.sub_job_level
+        local jp = player.job_points[string.lower(player.main_job)].jp_spent
+        if ((spell.levels[mjob] and mlvl >= spell.levels[mjob]) or 
+            (spell.levels[sjob] and slvl >= spell.levels[sjob]) or 
+            (spell.levels[mjob] and spell.levels[mjob] > 99 and jp and jp >= spell.levels[mjob])) then
+            local recasts = windower.ffxi.get_spell_recasts()
+            if recasts and recasts[spell.id] == 0 and player.vitals.mp >= spell.mp_cost then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+function cast_highest_tier(spell_base, target)
+    local max_tier = elemental_spells[spell_base]
+    local spell_to_cast
+
+    for tier = max_tier, 1, -1 do
+        local spell_name = spell_base .. tiers[tier]
+        if can_cast(spell_name) then
+            spell_to_cast = spell_name
+            break
+        end
+    end
+
+    if spell_to_cast then
+        send_command('input /ma "' .. spell_to_cast .. '" ' .. target)
+    else
+        windower.add_to_chat(123, 'No available tier for spell: ' .. spell_base)
+    end
+end
+
+-- Commands --
 function self_command(command)
-	if command == "ToggleMelee" then
+    local args = command:split(' ')
+
+    if args[1] == 'cast' and elemental_spells[args[2]] then
+        local target = args[3] or 't'
+        cast_highest_tier(args[2], target)
+	elseif command == "ToggleMelee" then
 		if Player_Mode == "Tank" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" then
 			Player_Mode = "Melee"
 			idle()
