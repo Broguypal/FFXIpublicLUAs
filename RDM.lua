@@ -497,7 +497,7 @@ function get_sets()
 		neck="Incanter's Torque",
 		waist="Olympus Sash",
 		left_ear="Mimir Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
