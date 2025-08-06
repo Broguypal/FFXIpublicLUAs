@@ -565,6 +565,8 @@ function aftercast(spell)
 		gearswap_jobbox:text(gearswap_box())		
 		gearswap_jobbox:show()
 	else
+        local ammo = (last_real_ranged == "Death Penalty") and "Living Bullet" or "Chrono Bullet"
+        equip({ range = last_real_ranged, ammo = ammo })
 		idle()
 		check_trump_card_count()
 		gearswap_jobbox:text(gearswap_box())		
