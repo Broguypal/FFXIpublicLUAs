@@ -7,25 +7,6 @@
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
 
-
-function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
-	send_command('unbind numpad5')
-	send_command('unbind numpad4')
-	send_command('unbind numpad3')
-	send_command('unbind numpad2')
-	send_command('unbind numpad1')
-	send_command('unbind f8')
-	send_command('unbind f9')
-	send_command('unbind f10')
-	send_command('unbind f11')
-	send_command('unbind f12')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
-end
-
 TP_Mode = "Hybrid"
  
 TP_Modes = {'Defence','Hybrid'}
@@ -44,6 +25,7 @@ gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size
 gearswap_jobbox = texts.new(gearswap_box_config)
 
 function user_setup()
+	initialize_weapon_tracking()
 	check_trump_card_count()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
@@ -124,7 +106,6 @@ function get_sets()
 	sets.ja = {}					-- Leave this empty
 	sets.items = {}
 
-	last_real_ranged = "Fomalhaut"
  
  ------------------ DO NOT TOUCH ABOVE (BUT TOTALLY TOUCH BELOW THIS POINT) ---------
  
@@ -557,22 +538,20 @@ function midcast(spell,action,spellMap,eventArgs)
 end
 
 function aftercast(spell)
-    if spell.type == "CorsairRoll" and player.status ~= "Engaged" then
         local ammo = (last_real_ranged == "Death Penalty") and "Living Bullet" or "Chrono Bullet"
-        equip({ range = last_real_ranged, ammo = ammo })
+        equip({main = last_real_main, sub = last_real_sub, range = last_real_ranged, ammo = ammo})
 		idle()
 		check_trump_card_count()
 		gearswap_jobbox:text(gearswap_box())		
 		gearswap_jobbox:show()
-	else
-        local ammo = (last_real_ranged == "Death Penalty") and "Living Bullet" or "Chrono Bullet"
-        equip({ range = last_real_ranged, ammo = ammo })
-		idle()
-		check_trump_card_count()
-		gearswap_jobbox:text(gearswap_box())		
-		gearswap_jobbox:show()
-    end
 end
+
+function initialize_weapon_tracking()
+    last_real_main   = player.equipment.main or "Naegling"
+    last_real_sub    = player.equipment.sub or "Gleti's Knife"
+    last_real_ranged = player.equipment.range or "Fomalhaut"
+end
+
 
 function self_command(command)
 	if command == "RangedAttack" then
@@ -596,6 +575,9 @@ function self_command(command)
 			end
 		end
 		main_mode = main_cycle[index]
+		
+		last_real_main = main_mode
+		
 		equip({ main = main_mode })
 	elseif command == "ToggleSub" then
 		local sub_cycle = { "Gleti's Knife", "Tauret" }
@@ -608,6 +590,9 @@ function self_command(command)
 			end
 		end
 		sub_mode = sub_cycle[index]
+		
+		last_real_sub = sub_mode
+		
 		equip({ sub = sub_mode })
 	elseif command == "ToggleRanged" then
 		local ranged_cycle = { "Death Penalty", "Anarchy +2", "Fomalhaut" }
