@@ -1421,9 +1421,8 @@ function self_command(command)
 	elseif command == "ToggleMelee" then
 		if Player_Mode == "Tank" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" then
 			Player_Mode = "Melee"
+			equip({ main="Crocea Mors", sub="Daybreak" })
 			idle()
-			send_command('input /equip Main "Crocea Mors"')
-			send_command('input /equip Sub "Daybreak"')
 		elseif Player_Mode == "Melee" then
 			Player_Mode = "Enspell"
 			idle()
