@@ -111,7 +111,6 @@ function get_sets()
 
 	-- Sub weapons
 	sets.sub["Ammurapi Shield"] = {sub="Ammurapi Shield"}
-	sets.sub["Culminus"]        = {sub="Culminus"}
 	sets.sub["Pukulatmuj +1"]   = {sub="Pukulatmuj +1"}
 	sets.sub["Ethereal Dagger"] = {sub="Ethereal Dagger"}
 	sets.sub["Genmei Shield"]   = {sub="Genmei Shield"}
@@ -121,9 +120,9 @@ function get_sets()
     --Hybrid/DPS IDLE--
 	sets.idle.hybrid = {
 		ammo="Staunch Tathlum +1",
-		head={ name="Nyame Helm", augments={'Path: B',}},
+		head="Leth. Chappel +3",
 		body="Shamash Robe",
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		hands="Leth. Ganth. +3",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Sibyl Scarf",
@@ -158,9 +157,9 @@ function get_sets()
 	sets.idle.caster = {
 		sub="Ammurapi Shield",
 		ammo="Homiliary",
-		head="Malignance Chapeau",
+		head="Leth. Chappel +3",
 		body="Shamash Robe",
-		hands="Malignance Gloves",
+		hands="Leth. Ganth. +3",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		feet="Malignance Boots",
 		neck="Sibyl Scarf",
@@ -292,9 +291,9 @@ function get_sets()
 	sets.midcast.enfeebleACCURACY = {
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Atrophy Tabard +3",
-		hands="Leth. Ganth. +2",
+		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
-		feet={ name="Vitiation Boots +3", augments={'Immunobreak Chance',}},
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Null Belt",
 		left_ear="Malignance Earring",
@@ -313,10 +312,10 @@ function get_sets()
 	--Frazzle or distract
 	sets.midcast.enfeebleFRAZDIST = {
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
-		body="Lethargy Sayon +2",
-		hands="Leth. Ganth. +2",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
-		feet={ name="Vitiation Boots +3", augments={'Immunobreak Chance',}},
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Luminary Sash",
 		left_ear="Malignance Earring",
@@ -335,10 +334,10 @@ function get_sets()
 	--gravity/dispel
 	sets.midcast.enfeebleGRAVDISP = {
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
-		body="Lethargy Sayon +2",
-		hands="Leth. Ganth. +2",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
-		feet={ name="Vitiation Boots +3", augments={'Immunobreak Chance',}},
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Luminary Sash",
 		left_ear="Malignance Earring",
@@ -357,11 +356,11 @@ function get_sets()
 	-- Paralyze/Slow/Addle/poison
 	sets.midcast.enfeeblePOTENCY = {
 		ammo="Hydrocera",
-		head="Leth. Chappel +2",
-		body="Lethargy Sayon +2",
-		hands="Leth. Ganth. +2",
+		head="Leth. Chappel +3",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
-		feet="Leth. Houseaux +2",
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Luminary Sash",
 		left_ear="Malignance Earring",
@@ -378,11 +377,11 @@ function get_sets()
 
 	-- Silence/Sleep/Break/Bind
 	sets.midcast.enfeebleDURATION = {
-		head="Leth. Chappel +2",
-		body="Lethargy Sayon +2",
-		hands="Leth. Ganth. +2",
-		legs="Leth. Fuseau +2",
-		feet="Leth. Houseaux +2",
+		head="Leth. Chappel +3",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Obstin. Sash",
 		left_ear="Malignance Earring",
@@ -405,7 +404,7 @@ function get_sets()
 		body="Ea Houppe. +1",
 		hands="Bunzi's Gloves",
 		legs="Bunzi's Pants",
-		feet={ name="Vitiation Boots +3", augments={'Immunobreak Chance',}},
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck="Sibyl Scarf",
 		waist="Channeler's Stone",
 		left_ear="Malignance Earring",
@@ -422,11 +421,11 @@ function get_sets()
 		
 	--Dia/Inundation
 	sets.midcast.enfeebleINUNDIA = {
-		head="Leth. Chappel +2",
-		body="Lethargy Sayon +2",
-		hands="Leth. Ganth. +2",
-		legs="Leth. Fuseau +2",
-		feet="Leth. Houseaux +2",
+		head="Leth. Chappel +3",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
 		neck="Sibyl Scarf",
 		waist="Obstin. Sash",
 		right_ear="Snotra Earring",
@@ -443,11 +442,11 @@ function get_sets()
 	---- DARK MAGIC SETS ----
 	--Bio
 	sets.midcast.darkBIO = {
-		head="Leth. Chappel +2",
-		body="Lethargy Sayon +2",
-		hands="Leth. Ganth. +2",
+		head="Leth. Chappel +3",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
-		feet={ name="Vitiation Boots +3", augments={'Immunobreak Chance',}},
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck="Erra Pendant",
 		waist="Luminary Sash",
 		left_ear="Malignance Earring",
@@ -466,10 +465,10 @@ function get_sets()
 	--Aspir / Drain
 	sets.midcast.darkASPIRDRAIN = {
 		head="Pixie Hairpin +1",
-		body="Lethargy Sayon +2",
-		hands="Leth. Ganth. +2",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
-		feet={ name="Vitiation Boots +3", augments={'Immunobreak Chance',}},
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck="Erra Pendant",
 		waist="Austerity Belt +1",
 		left_ear="Malignance Earring",
@@ -493,7 +492,7 @@ function get_sets()
 		body={ name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}},
 		hands={ name="Viti. Gloves +3", augments={'Enhancing Magic duration',}},
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
-		feet="Leth. Houseaux +2",
+		feet="Leth. Houseaux +3",
 		neck="Incanter's Torque",
 		waist="Olympus Sash",
 		left_ear="Mimir Earring",
@@ -515,7 +514,7 @@ function get_sets()
 		body={ name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}},
 		hands="Atrophy Gloves +2",
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		feet="Leth. Houseaux +2",
+		feet="Leth. Houseaux +3",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Embla Sash",
 		left_ear="Mimir Earring",
@@ -531,11 +530,11 @@ function get_sets()
 
 	sets.midcast.enhanceOTHERS = {
 		ammo="Staunch Tathlum +1",
-		head="Leth. Chappel +2",
-		body="Lethargy Sayon +2",
+		head="Leth. Chappel +3",
+		body="Lethargy Sayon +3",
 		hands="Atrophy Gloves +2",
-		legs="Leth. Fuseau +2",
-		feet="Leth. Houseaux +2",
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Embla Sash",
 		left_ear="Mimir Earring",
@@ -564,8 +563,8 @@ function get_sets()
 		head={ name="Amalric Coif +1", augments={'MP+80','INT+12','Enmity-6',}},
 		body={ name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}},
 		hands="Atrophy Gloves +2",
-		legs="Leth. Fuseau +2",
-		feet="Leth. Houseaux +2",
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Embla Sash",
 		left_ear="Mimir Earring",
@@ -585,8 +584,8 @@ function get_sets()
 		head={ name="Amalric Coif +1", augments={'MP+80','INT+12','Enmity-6',}},
 		body="Atrophy Tabard +3",
 		hands="Atrophy Gloves +2",
-		legs="Leth. Fuseau +2",
-		feet="Leth. Houseaux +2",
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Embla Sash",
 		left_ear="Mimir Earring",
@@ -608,7 +607,7 @@ function get_sets()
 		body={ name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}},
 		hands="Atrophy Gloves +2",
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		feet="Leth. Houseaux +2",
+		feet="Leth. Houseaux +3",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Siegel Sash",
 		left_ear="Mimir Earring",
@@ -625,7 +624,7 @@ function get_sets()
 	--self phalanx enhancements
 	sets.midcast.enhancePHALANXSELF = {
 		ammo="Staunch Tathlum +1",
-		head="Leth. Chappel +2",
+		head="Leth. Chappel +3",
 		body={ name="Taeon Tabard", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		hands={ name="Taeon Gloves", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		legs={ name="Taeon Tights", augments={'Spell interruption rate down -10%','Phalanx +3',}},
@@ -676,11 +675,11 @@ function get_sets()
 	----Elemental sets ----
 	sets.midcast.elementalFREECAST = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		head="Leth. Chappel +2",
-		body="Lethargy Sayon +2",
-		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
-		legs="Leth. Fuseau +2",
-		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
+		head="Leth. Chappel +3",
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
+		legs="Leth. Fuseau +3",
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck="Sibyl Scarf",
 		waist="Skrymir Cord",
 		left_ear="Friomisi Earring",
@@ -692,8 +691,7 @@ function get_sets()
 
 	sets.midcast.elementalFREECASTweapons = set_combine(sets.midcast.elementalFREECAST,{
 		main="Bunzi's Rod",
-		sub="Culminus",
-		--sub="Ammurapi Shield",
+		sub="Ammurapi Shield",
 	})
 
 	sets.midcast.elementalFREECASTOBI = set_combine(sets.midcast.elementalFREECAST,{
@@ -709,9 +707,9 @@ function get_sets()
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head="Ea Hat +1",
 		body="Ea Houppe. +1",
-		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
-		legs="Leth. Fuseau +2",
-		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
+		hands={ name="Bunzi's Gloves", augments={'Path: A',}},
+		legs="Leth. Fuseau +3",
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck="Sibyl Scarf",
 		waist="Skrymir Cord",
 		left_ear="Friomisi Earring",
@@ -764,7 +762,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear="Ishvara Earring",
@@ -780,7 +778,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck="Rep. Plat. Medal",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Sherida Earring",
@@ -812,7 +810,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck="Rep. Plat. Medal",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Sherida Earring",
@@ -828,7 +826,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear="Malignance Earring",
@@ -843,8 +841,8 @@ function get_sets()
 		head="Pixie Hairpin +1",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
-		legs="Leth. Fuseau +2",
-		feet="Leth. Houseaux +2",
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
@@ -860,7 +858,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck="Fotia Gorget",
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
@@ -876,7 +874,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
@@ -892,7 +890,7 @@ function get_sets()
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
-		feet="Aya. Gambieras +2",
+		feet="Thereoid Greaves",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
@@ -908,7 +906,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck="Rep. Plat. Medal",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Malignance Earring",
@@ -920,11 +918,11 @@ function get_sets()
 
 	sets.ws.AeolianEdge = {
 		ammo="Pemphredo Tathlum",
-		head={ name="Nyame Helm", augments={'Path: B',}},
+		head="Leth. Chappel +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
@@ -1424,6 +1422,8 @@ function self_command(command)
 		if Player_Mode == "Tank" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" then
 			Player_Mode = "Melee"
 			idle()
+			send_command('input /equip Main "Crocea Mors"')
+			send_command('input /equip Sub "Daybreak"')
 		elseif Player_Mode == "Melee" then
 			Player_Mode = "Enspell"
 			idle()
@@ -1489,7 +1489,7 @@ function self_command(command)
 				sub_cycle = {"Ammurapi Shield", "Genmei Shield"}
 			end
 		elseif Player_Mode == "Caster" then
-			sub_cycle = {"Culminus", "Ammurapi Shield"}
+			sub_cycle = {"Genmei Shield", "Ammurapi Shield"}
 		elseif Player_Mode == "Enspell" then
 			sub_cycle = {"Pukulatmuj +1"}
 		end
