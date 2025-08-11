@@ -136,8 +136,6 @@ function get_sets()
 	
 	--Tank Idle
 	sets.idle.tank = {
-		main="Sakpata's Sword",
-		sub="Ammurapi Shield",
 		ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -155,7 +153,6 @@ function get_sets()
 	
 	--Caster idle
 	sets.idle.caster = {
-		sub="Ammurapi Shield",
 		ammo="Homiliary",
 		head="Leth. Chappel +3",
 		body="Shamash Robe",
@@ -1433,11 +1430,13 @@ function self_command(command)
 	elseif command == "ToggleTank" then
 		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Enspell" or Player_Mode == "Caster" then
 			Player_Mode = "Tank"
+			equip({ main="Sakpata's Sword", sub="Genmei Shield" })
 			idle()
 		end
 	elseif command == "ToggleCaster" then
 		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Enspell" or Player_Mode == "Tank" then
 			Player_Mode = "Caster"
+			equip({ main="Crocea Mors", sub="Ammurapi Shield" })
 			idle()
 		end
 	elseif command == "ToggleEnfeeble" then
@@ -1463,7 +1462,7 @@ function self_command(command)
 		if Player_Mode == "Melee" or Player_Mode == "Tank" then
 			main_cycle = {"Crocea Mors","Naegling","Tauret","Maxentius"}
 		elseif Player_Mode == "Caster" then
-			main_cycle = {"Crocea Mors","Naegling","Tauret","Maxentius"}
+			main_cycle = {"Crocea Mors","Bunzi's Rod","Daybreak","Maxentius"}
 		elseif Player_Mode == "Enspell" then
 			main_cycle = {"Crocea Mors"}
 		end
