@@ -1460,7 +1460,7 @@ function self_command(command)
 	elseif command == "ToggleMain" then
 		local main_cycle = {}
 		if Player_Mode == "Melee" or Player_Mode == "Tank" then
-			main_cycle = {"Crocea Mors","Naegling","Tauret","Maxentius"}
+			main_cycle = {"Crocea Mors","Maxentius","Naegling","Tauret"}
 		elseif Player_Mode == "Caster" then
 			main_cycle = {"Crocea Mors","Bunzi's Rod","Daybreak","Maxentius"}
 		elseif Player_Mode == "Enspell" then
