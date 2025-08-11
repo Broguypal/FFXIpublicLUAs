@@ -708,7 +708,7 @@ function get_sets()
 		head="Ea Hat +1",
 		body="Ea Houppe. +1",
 		hands={ name="Bunzi's Gloves", augments={'Path: A',}},
-		legs="Leth. Fuseau +3",
+		legs="Ea Slops +1",
 		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck="Sibyl Scarf",
 		waist="Skrymir Cord",
