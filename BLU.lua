@@ -72,8 +72,8 @@ function get_sets()
 	sets.sub = {}
  
 	 -- Main Weapons 
-	sets.main["Tizona"] 	= {main="Tizona"}
-	sets.main["Maxentius"]  = {main="Maxentius"}
+	sets.main["Tizona"]		= {main="Tizona"}
+	sets.main["Maxentius"]	= {main="Maxentius"}
 	 
 	 -- Sub Weapons
 	sets.sub["Thibron"]		= {sub="Thibron"}
@@ -292,7 +292,8 @@ function get_sets()
 	}
 
 	sets.precast.burstaffinity = {
-		feet="Hashi. Basmak +2",
+		legs="Assim. Shalwar +3",
+		feet="Hashi. Basmak +3",
 	}
 
 	---- TANK PRECAST SETS----
@@ -455,7 +456,7 @@ function get_sets()
 		body="Hashishin Mintan +2",
 		hands="Hashi. Bazu. +2",
 		legs="Hashishin Tayt +2",
-		feet="Hashi. Basmak +2",
+		feet="Hashi. Basmak +3",
 		neck="Null Loop",
 		waist="Null Belt",
 		left_ear="Crep. Earring",
@@ -616,7 +617,7 @@ function get_sets()
 		body="Hashishin Mintan +2",
 		hands="Hashi. Bazu. +2",
 		legs="Hashishin Tayt +2",
-		feet="Hashi. Basmak +2",
+		feet="Hashi. Basmak +3",
 		neck="Null Loop",
 		waist="Null Belt",
 		left_ear="Crep. Earring",
@@ -637,7 +638,7 @@ function get_sets()
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		body="Shamash Robe",
 		hands="Rawhide Gloves",
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+		legs="Assim. Shalwar +3",
 		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Plat. Mog. Belt",
@@ -752,7 +753,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
 		legs={ name="Luhlaza Shalwar +3", augments={'Enhances "Assimilation" effect',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Hashi. Basmak +3",
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
 		left_ear="Crematio Earring",
@@ -784,7 +785,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Jhakri Cuffs +2",
 		legs={ name="Luhlaza Shalwar +3", augments={'Enhances "Assimilation" effect',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Hashi. Basmak +3",
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
 		left_ear="Crematio Earring",
