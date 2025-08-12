@@ -29,6 +29,8 @@ gearswap_box = function()
 	str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
 	str = str..' Animator Lock:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
 	str = str..' Auto Maneuver:\\cs(211,211,211)   '..Auto_Mode..'\\cr\n'
+	str = str..' crl: \\cs(255,255,255)[LGT]\\cr \\cs(255,64,64)[FIR]\\cr \\cs(0,255,0)[WND]\\cr \\cs(180,0,255)[THD]\\cr\n'
+	str = str..' alt: \\cs(80,60,100)[DRK]\\cr \\cs(128,255,255)[ICE]\\cr \\cs(165,100,40)[STN]\\cr \\cs(64,128,255)[WTR]\\cr\n'
 	-- Strobe status	
 	if (TP_Mode == "Hybrid" or TP_Mode == "Pet") and pet and pet.isvalid and (pet.attachments.strobe or pet.attachments["strobe II"]) then	
 		if Strobe_Recast <= 0 then
@@ -68,7 +70,19 @@ function get_sets()
 	send_command('bind numpad4 gs c ToggleWeapon')
 	send_command('bind numpad3 gs c ToggleLock')
 	send_command('bind numpad2 gs c ToggleDistance')
-	send_command('bind numpad1 gs c ToggleAutoMode')
+	send_command('bind numpad0 gs c ToggleAutoMode')
+	
+	-- Manouver commands
+	send_command('bind numpad0 gs c ToggleAutoMode')
+	
+	send_command ('bind ^numpad1 input /ja "Fire Maneuver" <me>')
+	send_command ('bind ^numpad2 input /ja "Wind Maneuver" <me>')
+	send_command ('bind ^numpad3 input /ja "Thunder Maneuver" <me>')
+	send_command ('bind ^numpad0 input /ja "Light Maneuver" <me>')
+	send_command ('bind !numpad1 input /ja "Ice Maneuver" <me>')
+	send_command ('bind !numpad2 input /ja "Earth Maneuver" <me>')
+	send_command ('bind !numpad3 input /ja "Water Maneuver" <me>')
+	send_command ('bind !numpad0 input /ja "Dark Maneuver" <me>')
 
 	--------- Personal Commands ---------------
 	send_command('bind f9 input /item "Remedy" <me>')
@@ -1327,6 +1341,7 @@ function file_unload()
 	send_command('unbind numpad3')
 	send_command('unbind numpad2')
 	send_command('unbind numpad1')
+	send_command('unbind numpad0')
 	send_command('unbind ^numpad9')
 	send_command('unbind ^numpad8')
 	send_command('unbind ^numpad7')
@@ -1336,6 +1351,7 @@ function file_unload()
 	send_command('unbind ^numpad3')
 	send_command('unbind ^numpad2')
 	send_command('unbind ^numpad1')
+	send_command('unbind ^numpad0')
 	send_command('unbind !numpad9')
 	send_command('unbind !numpad8')
 	send_command('unbind !numpad7')
@@ -1345,11 +1361,13 @@ function file_unload()
 	send_command('unbind !numpad3')
 	send_command('unbind !numpad2')
 	send_command('unbind !numpad1')
+	send_command('unbind !numpad0')
 	send_command('unbind f9')
 	send_command('unbind f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
 	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
+
 
 user_setup()
