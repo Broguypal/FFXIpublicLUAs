@@ -1193,9 +1193,9 @@ function self_command(command)
 			TP_Mode = "Hybrid"
 			idle()
 			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
-				send_command ('input /equip Range "Animator P +1"')
+				equip({ range = "Animator P +1"})
 			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
-				send_command ('input /equip Range "Animator P II +1"') 
+				equip({ range = "Animator P II +1"})
 			end
 		elseif TP_Mode == "Hybrid" then
 			TP_Mode = "HybridDEF"
@@ -1207,7 +1207,7 @@ function self_command(command)
 			idle()
 			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Neo Animator" then
 				Pet_Distance = "Melee"
-				send_command ('input /equip Range "Neo Animator"')
+				equip({ range = "Neo Animator"})
 			end
 		elseif TP_Mode == "Master" then
 			TP_Mode = "MasterDEF"
@@ -1220,7 +1220,7 @@ function self_command(command)
 			idle()
 			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Animator P +1" then
 				Pet_Distance = "Melee"
-				send_command ('input /equip Range "Animator P +1"')
+				equip({ range = "Animator P +1"})
 			end
 		elseif TP_Mode == "Overdrive" then
 			TP_Mode = "OverdriveDEF"  
@@ -1232,9 +1232,9 @@ function self_command(command)
 			TP_Mode = "PetDEF"
 			idle()
 			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
-				send_command ('input /equip Range "Animator P +1"')
+				equip({ range = "Animator P +1"})
 			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
-				send_command ('input /equip Range "Animator P II +1"')
+				equip({ range = "Animator P II +1"})
 			end
 		elseif TP_Mode == "PetDEF" then
 			TP_Mode = "Pet"
@@ -1248,11 +1248,11 @@ function self_command(command)
 	elseif command == "ToggleDistance" then
 		if Pet_Distance == "Melee" then
 			Pet_Distance = "Ranged"
-			send_command ('input /equip Range "Animator P II +1"')
+			equip({ range = "Animator P II +1"})
 			idle()
 		elseif Pet_Distance == "Ranged" then
 			Pet_Distance = "Melee"
-			send_command ('input /equip Range "Animator P +1"')
+			equip({ range = "Animator P +1"})
 			idle()
 		end
 	elseif command == "ToggleLock" then
@@ -1296,7 +1296,7 @@ function self_command(command)
 
 		local next_weapon = sets.weapons[cycle[next_index]]
 		if next_weapon then
-			send_command('input /equip Main "' .. next_weapon.main .. '"')
+			equip({ main = next_weapon.main})
 		end
 	end
 	gearswap_jobbox:text(gearswap_box())
