@@ -1476,7 +1476,7 @@ function self_command(command)
         end
 		local next_weapon = main_cycle[next_index]
         if next_weapon then
-            send_command('input /equip Main "' .. next_weapon .. '"')
+			equip({ main = next_weapon })
         end
 	elseif command == "ToggleSub" then
 		local sub_cycle = {}
@@ -1501,7 +1501,7 @@ function self_command(command)
 		end
 		local next_offhand = sub_cycle[next_index] 
 		if next_offhand then
-			send_command('input /equip Sub "' .. next_offhand .. '"')
+			equip({ sub = next_offhand })
 		end
 	end
 	check_shihei()
