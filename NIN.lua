@@ -1479,7 +1479,7 @@ function self_command(command)
         end
 		local next_weapon = main_cycle[next_index]
         if next_weapon then
-            send_command('input /equip Main "' .. next_weapon .. '"')
+            equip({ main = next_weapon })
         end
 	elseif command == "ToggleSub" then
 		local sub_cycle = {"Yagyu Darkblade","Kunimitsu","Gleti's Knife","Hitaki","Tsuru"}
@@ -1493,13 +1493,13 @@ function self_command(command)
 		end
 		local next_offhand = sub_cycle[next_index] 
 		if next_offhand then
-			send_command('input /equip Sub "' .. next_offhand .. '"')
+			equip({ sub = next_offhand })
 		end
 	elseif command == "ToggleSpecial" then
 		if player.equipment.main == "Hachimonji" then
-			send_command ('input /equip Main "Tauret"; wait 1; input /equip Sub "Gleti\'s Knife"')
+			equip({ main="Tauret", sub="Gleti's Knife" })
 		else
-			send_command ('input /equip Main "Hachimonji"; wait 1; input /equip Sub "Bloodrain strap"')
+			equip({ main="Hachimonji", sub="Bloodrain Strap" })
 		end
 	elseif command:startswith('castnin ') then
 		local element = command:match('castnin (%a+)')

@@ -698,7 +698,8 @@ function self_command(command)
         end
 		local next_weapon = main_cycle[next_index]
         if next_weapon then
-            send_command('input /equip Main "' .. next_weapon .. '"')
+			
+            equip({ main = next_weapon })
         end
 	elseif command == "ToggleAUTO" then
 		if auto_mode == "Off" then
