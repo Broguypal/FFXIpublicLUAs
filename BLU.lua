@@ -190,6 +190,11 @@ function get_sets()
 		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
+	
+	sets.engaged.hybrid.am3 = set_combine(sets.engaged.hybrid.normal,{
+		right_ear="Crep. Earring",
+		left_ring="Chirich Ring +1",
+	})
 
 	----DUAL WIELD SETS ---- (Note: All sets assume DW3)
 
@@ -839,7 +844,11 @@ function idle()
 		end
 	elseif Player_Mode == "Hybrid" then
 		if player.status == "Engaged" then 
-			equip(sets.engaged.hybrid.normal)
+			if buffactive["Aftermath: Lv.3"] then
+				equip(sets.engaged.hybrid.am3)
+			else
+				equip(sets.engaged.hybrid.normal)
+			end
 		else
 			equip(sets.idle.hybrid)
 		end
