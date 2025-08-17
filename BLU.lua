@@ -810,13 +810,13 @@ end
 
 
 windower.register_event('lose buff', function(buff_id)
-	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 or buff_id == 273 then
 		idle()
 	end
 end)
 
 windower.register_event('gain buff', function(buff_id)
-	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 or buff_id == 273 then
 		idle()
 	end
 end)
