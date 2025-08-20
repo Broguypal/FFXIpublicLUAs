@@ -406,7 +406,7 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		head="Runeist Bandeau",
 		neck="Sacro Gorget",
 		waist="Sroda Belt",
-		right_ear={ name="Erilaz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+7','Mag. Acc.+7',}},
+		right_ear={ name="Erilaz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
 	})
 	
 	
