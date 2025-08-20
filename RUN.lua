@@ -403,7 +403,7 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		}
 	
 	sets.midcast.regen = set_combine(sets.midcast.SIR,{
-		head="Runeist Bandeau",
+		head="Rune. Bandeau +1",
 		neck="Sacro Gorget",
 		waist="Sroda Belt",
 		right_ear={ name="Erilaz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
