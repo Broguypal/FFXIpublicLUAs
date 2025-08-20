@@ -401,6 +401,15 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		right_ring="Moonlight Ring",
 		back="Moonbeam Cape",
 		}
+	
+	sets.midcast.regen = set_combine(sets.midcast.SIR,{
+		head="Runeist Bandeau",
+		neck="Sacro Gorget",
+		waist="Sroda Belt",
+		right_ear={ name="Erilaz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+7','Mag. Acc.+7',}},
+	})
+	
+	
 ----			Item Sets						----
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
@@ -587,6 +596,8 @@ function midcast(spell)
 	elseif spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then 
 		if spell.english == "Temper" then
 			equip(sets.midcast.temper)
+		elseif spell.name:match('Regen') then
+			equip(sets.midcast.regen)
 		else
 			equip(sets.midcast.SIR)
 		end
