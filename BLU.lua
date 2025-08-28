@@ -279,7 +279,7 @@ function get_sets()
 	}
 	
 	sets.precast.bluemagic = set_combine(sets.precast.fastcast,{ 
-		body="Hashishin Mintan +2",
+		body="Hashishin Mintan +3",
 	})
 	
 	sets.precast.diffusion = {
@@ -304,7 +304,7 @@ function get_sets()
 	---- TANK PRECAST SETS----
 	sets.precast.tank.dreamflower = {
 		head={ name="Nyame Helm", augments={'Path: B',}},
-		body="Hashishin Mintan +2",
+		body="Hashishin Mintan +3",
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
@@ -409,7 +409,7 @@ function get_sets()
 	sets.midcast.bluemagic.Magical = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head="Hashishin Kavuk +3",
-		body="Hashishin Mintan +2",
+		body="Hashishin Mintan +3",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
 		legs="Hashishin Tayt +2",
 		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
@@ -458,7 +458,7 @@ function get_sets()
 	sets.midcast.bluemagic.MagicalAcc = {
 		ammo="Pemphredo Tathlum",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
-		body="Hashishin Mintan +2",
+		body="Hashishin Mintan +3",
 		hands="Hashi. Bazu. +2",
 		legs="Hashishin Tayt +2",
 		feet="Hashi. Basmak +3",
@@ -570,7 +570,7 @@ function get_sets()
 	sets.midcast.enhancing = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		body="Hashishin Mintan +2",
+		body="Hashishin Mintan +3",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
@@ -603,7 +603,7 @@ function get_sets()
 	sets.midcast.elemental = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head="Hashishin Kavuk +3",
-		body="Hashishin Mintan +2",
+		body="Hashishin Mintan +3",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
 		legs="Hashishin Tayt +2",
 		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
@@ -619,7 +619,7 @@ function get_sets()
 	sets.midcast.enfeebling = {
 		ammo="Pemphredo Tathlum",
 		head="Hashishin Kavuk +3",
-		body="Hashishin Mintan +2",
+		body="Hashishin Mintan +3",
 		hands="Hashi. Bazu. +2",
 		legs="Hashishin Tayt +2",
 		feet="Hashi. Basmak +3",
