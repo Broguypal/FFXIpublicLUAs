@@ -292,7 +292,7 @@ function get_sets()
 	}
 	
 	sets.precast.efflux = {
-		legs="Hashishin Tayt +2",
+		legs="Hashishin Tayt +3",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
 	}
 
@@ -411,7 +411,7 @@ function get_sets()
 		head="Hashishin Kavuk +3",
 		body="Hashishin Mintan +3",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
-		legs="Hashishin Tayt +2",
+		legs="Hashishin Tayt +3",
 		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
@@ -460,7 +460,7 @@ function get_sets()
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		body="Hashishin Mintan +3",
 		hands="Hashi. Bazu. +2",
-		legs="Hashishin Tayt +2",
+		legs="Hashishin Tayt +3",
 		feet="Hashi. Basmak +3",
 		neck="Null Loop",
 		waist="Null Belt",
@@ -520,7 +520,7 @@ function get_sets()
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		body="Assim. Jubbah +3",
 		hands="Rawhide Gloves",
-		legs="Hashishin Tayt +2",
+		legs="Hashishin Tayt +3",
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
 		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist="Plat. Mog. Belt",
@@ -605,7 +605,7 @@ function get_sets()
 		head="Hashishin Kavuk +3",
 		body="Hashishin Mintan +3",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
-		legs="Hashishin Tayt +2",
+		legs="Hashishin Tayt +3",
 		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
@@ -621,7 +621,7 @@ function get_sets()
 		head="Hashishin Kavuk +3",
 		body="Hashishin Mintan +3",
 		hands="Hashi. Bazu. +2",
-		legs="Hashishin Tayt +2",
+		legs="Hashishin Tayt +3",
 		feet="Hashi. Basmak +3",
 		neck="Null Loop",
 		waist="Null Belt",
