@@ -1223,7 +1223,7 @@ function midcast(spell)
 					equip(sets.midcast.darkBIOweapons)
 				end
 			end
-		elseif spell.name:match('Stun') then
+		elseif spell.name:match('Stun') or spell.name:match('Absorb') then
 			if Player_Mode ~= "ZeroTPEnspell" and (player.status == "Engaged" or Lock_Mode == "Locked") then
 				equip(sets.midcast.enfeebleACCURACY)
 			else
