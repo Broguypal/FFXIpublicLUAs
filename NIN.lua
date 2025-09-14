@@ -381,7 +381,7 @@ function get_sets()
 		neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Telos Earring",
-		right_ear="Crep. Earring",
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
@@ -425,8 +425,9 @@ function get_sets()
 		feet="Ken. Sune-Ate +1",
 		neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		left_ear="Telos Earring",
-		right_ear="Brutal Earring",
+		left_ear="Brutal Earring",
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
+		left_ear="Brutal Earring",
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
 		back="Null Shawl",
@@ -435,7 +436,7 @@ function get_sets()
 	---- 35 Haste (need 12 DW) ----
 	sets.engaged.hybrid.haste35 = set_combine(sets.engaged.hybrid.hastecap,{
 		waist="Reiki Yotai",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
 	})
 	-- 35 haste 0 shadows
 	sets.engaged.hybrid.haste35def = set_combine(sets.engaged.hybrid.haste35,{
@@ -469,13 +470,13 @@ function get_sets()
 	----DPS---- 	
 	sets.engaged.DPS.haste35 = set_combine(sets.engaged.DPS.hastecap,{
 		waist="Reiki Yotai",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
 	})
 
 	---- 30 Haste (need 21 DW) ----
 		sets.engaged.hybrid.haste30 = set_combine(sets.engaged.hybrid.hastecap,{
 		waist="Reiki Yotai",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 	-- 30 haste 0 shadows
@@ -510,7 +511,7 @@ function get_sets()
 	---- DPS ----
 	sets.engaged.DPS.haste30 = set_combine(sets.engaged.DPS.hastecap,{
 		waist="Reiki Yotai",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 
@@ -518,7 +519,7 @@ function get_sets()
 	sets.engaged.hybrid.haste15 = set_combine(sets.engaged.hybrid.hastecap,{
 		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		waist="Reiki Yotai",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 	-- 15 haste 0 shadows
@@ -553,8 +554,8 @@ function get_sets()
 	sets.engaged.DPS.haste15 = set_combine(sets.engaged.DPS.hastecap,{
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		waist="Reiki Yotai",
-		left_ear="Eabani Earring",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
+		right_ear="Eabani Earring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 	
@@ -563,7 +564,7 @@ function get_sets()
 		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		feet="Hiza. Sune-Ate +2",
 		waist="Reiki Yotai",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 	-- 0 haste 0 shadows
@@ -598,8 +599,8 @@ function get_sets()
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		feet="Hiza. Sune-Ate +2",
 		waist="Reiki Yotai",
-		left_ear="Eabani Earring",
-		right_ear="Suppanomimi",
+		left_ear="Suppanomimi",
+		right_ear="Eabani Earring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 
@@ -662,8 +663,8 @@ function get_sets()
 		feet="Hattori Kyahan +3",
 		neck="Null Loop",
 		waist="Null Belt",
-		left_ear="Hermetic Earring",
-		right_ear="Digni. Earring",
+		left_ear="Digni. Earring",
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
 		back="Null Shawl",
@@ -722,7 +723,7 @@ function get_sets()
 		neck="Fotia Gorget",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -732,13 +733,13 @@ function get_sets()
 	    ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
 		body="Malignance Tabard",
-		hands="Hattori Tekko +3",
+		hands="Malignance Gloves",
 		legs="Mpaca's Hose",
 		feet="Hattori Kyahan +3",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
@@ -754,7 +755,7 @@ function get_sets()
 		neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-		right_ear="Mache Earring +1",
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -770,7 +771,7 @@ function get_sets()
 		neck="Rep. Plat. Medal",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -785,8 +786,8 @@ function get_sets()
 		feet="Hattori Kyahan +3",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
-		left_ear="Brutal Earring",
-		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -802,7 +803,7 @@ function get_sets()
 		neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Odr Earring",
-		right_ear="Ishvara Earring",
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Sroda Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -818,7 +819,7 @@ function get_sets()
 		neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-		right_ear="Ishvara Earring",
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -850,8 +851,8 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Fotia Gorget",
 		waist="Orpheus's Sash",
-		left_ear="Crematio Earring",
-		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Shiva Ring +1",
 		right_ring="Epaminondas's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -872,7 +873,7 @@ function get_sets()
 		neck="Fotia Gorget",
 		waist="Orpheus's Sash",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -892,7 +893,7 @@ function get_sets()
 		neck="Rep. Plat. Medal",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
@@ -906,8 +907,8 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Null Loop",
 		waist="Null Belt",
-		left_ear="Digni. Earring",
-		right_ear="Crep. Earring",
+		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
 		left_ring="Stikini Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back={ name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
