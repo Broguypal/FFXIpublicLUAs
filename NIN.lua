@@ -13,7 +13,7 @@
 TP_Mode = "Hybrid"
 Haste_Mode = "Haste2"
 
-TP_Modes = {'Hybrid','HybridHaste1','Malignance','MalignanceHaste1','AoETank','EvasionTank','MagicEvasionTank','DPS','DPSHaste1'}
+TP_Modes = {'Hybrid','HybridHaste1','Malignance','MalignanceHaste1','AoETank','EvasionTank','MagicEvasionTank','DPS'}
 Haste_Modes = {'Haste1','Haste2'}
 
 shika = 0
