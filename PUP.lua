@@ -959,7 +959,7 @@ function idle()
 				equip(sets.precast.pet.fastcast)
 			end
 		else
-			equip(sets.idle.PetTank)
+			equip(sets.idle.Normal)
 		end
 	end
 end
