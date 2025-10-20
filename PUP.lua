@@ -198,13 +198,13 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 	
-	sets.engaged.hybrid.NormalMelee = set_combine(sets.engaged.hybrid.Normal,{sets.animators.Melee,})
-	sets.engaged.hybrid.NormalRanged = set_combine(sets.engaged.hybrid.Normal,{sets.animators.Ranged,})
+	sets.engaged.hybrid.NormalMelee = set_combine(sets.engaged.hybrid.Normal, sets.animators.Melee)
+	sets.engaged.hybrid.NormalRanged = set_combine(sets.engaged.hybrid.Normal, sets.animators.Ranged)
 
 	-- Normal - Godhands/Xiucoatl equipped --
 	sets.engaged.hybrid.Godhands = set_combine(sets.engaged.hybrid.Normal,{left_ear="Mache Earring +1",})
-	sets.engaged.hybrid.GodhandsMelee = set_combine(sets.engaged.hybrid.Godhands,{sets.animators.Melee,})
-	sets.engaged.hybrid.GodhandsRanged = set_combine(sets.engaged.hybrid.Godhands,{sets.animators.Ranged,})
+	sets.engaged.hybrid.GodhandsMelee = set_combine(sets.engaged.hybrid.Godhands, sets.animators.Melee)
+	sets.engaged.hybrid.GodhandsRanged = set_combine(sets.engaged.hybrid.Godhands, sets.animators.Ranged)
 
 	--Hybrid Dual Tank set
 	sets.engaged.hybrid.Defence = {
@@ -223,13 +223,13 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','Pet: Phys. dmg. taken-10%',}},
 	}
 	
-	sets.engaged.hybrid.DefenceMelee = set_combine(sets.engaged.hybrid.Defence,{sets.animators.Melee,})
-	sets.engaged.hybrid.DefenceRanged = set_combine(sets.engaged.hybrid.Defence,{sets.animators.Ranged,})
+	sets.engaged.hybrid.DefenceMelee = set_combine(sets.engaged.hybrid.Defence, sets.animators.Melee)
+	sets.engaged.hybrid.DefenceRanged = set_combine(sets.engaged.hybrid.Defence, sets.animators.Ranged)
 
 	-- Hybrid - Godhands/Xiucoatl equipped --
 	sets.engaged.hybrid.DefenceGodhands = set_combine(sets.engaged.hybrid.Defence,{left_ear="Mache Earring +1",})
-	sets.engaged.hybrid.DefenceGodhandsMelee = set_combine(sets.engaged.hybrid.DefenceGodhands,{sets.animators.Melee,})
-	sets.engaged.hybrid.DefenceGodhandsRanged = set_combine(sets.engaged.hybrid.DefenceGodhands,{sets.animators.Ranged,})
+	sets.engaged.hybrid.DefenceGodhandsMelee = set_combine(sets.engaged.hybrid.DefenceGodhands, sets.animators.Melee)
+	sets.engaged.hybrid.DefenceGodhandsRanged = set_combine(sets.engaged.hybrid.DefenceGodhands, sets.animators.Ranged)
 
 	---------------------------	MASTER ONLY ENGAGED SETS	---------------------------
 	-- Normal Master Mode
@@ -249,11 +249,11 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
-	sets.engaged.master.NormalUnlocked = set_combine(sets.engaged.master.Normal,{sets.animators.Master,})
+	sets.engaged.master.NormalUnlocked = set_combine(sets.engaged.master.Normal, sets.animators.Master)
 
 	--Normal - Godhands/xiucoatl equipped
 	sets.engaged.master.Godhands = set_combine(sets.engaged.master.Normal,{left_ear="Mache Earring +1",})
-	sets.engaged.master.GodhandsUnlocked = set_combine(sets.engaged.master.Godhands,{sets.animators.Master,})
+	sets.engaged.master.GodhandsUnlocked = set_combine(sets.engaged.master.Godhands, sets.animators.Master)
 
 	-- Defence
 	sets.engaged.master.Defence = {
@@ -272,24 +272,24 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
-	sets.engaged.master.DefenceUnlocked = set_combine(sets.engaged.master.Defence,{sets.animators.Master,})
+	sets.engaged.master.DefenceUnlocked = set_combine(sets.engaged.master.Defence, sets.animators.Master)
 
 	--Defence - Godhands/xiucoatl equipped
 	sets.engaged.master.DefenceGodhands = set_combine(sets.engaged.master.Defence,{left_ear="Mache Earring +1",})
-	sets.engaged.master.DefenceGodhandsUnlocked = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Master,})
+	sets.engaged.master.DefenceGodhandsUnlocked = set_combine(sets.engaged.master.DefenceGodhands, sets.animators.Master)
 
 	---- Master Sets for Hybrid Mode (For when pet dies or is not engaged during Hybrid bode
 	--Hybrid Master
-	sets.engaged.master.HybridMelee = set_combine(sets.engaged.master.Normal,{sets.animators.Melee,})
-	sets.engaged.master.HybridRanged = set_combine(sets.engaged.master.Normal,{sets.animators.Ranged,})
-	sets.engaged.master.HybridGodhandsMelee = set_combine(sets.engaged.master.Godhands,{sets.animators.Melee,})
-	sets.engaged.master.HybridGodhandsRanged = set_combine(sets.engaged.master.Godhands,{sets.animators.Ranged,})
+	sets.engaged.master.HybridMelee = set_combine(sets.engaged.master.Normal, sets.animators.Melee)
+	sets.engaged.master.HybridRanged = set_combine(sets.engaged.master.Normal, sets.animators.Ranged)
+	sets.engaged.master.HybridGodhandsMelee = set_combine(sets.engaged.master.Godhands, sets.animators.Melee)
+	sets.engaged.master.HybridGodhandsRanged = set_combine(sets.engaged.master.Godhands, sets.animators.Ranged)
 		
 	-- Defence Master
-	sets.engaged.master.HybridDefenceMelee = set_combine(sets.engaged.master.Defence,{sets.animators.Melee,})
-	sets.engaged.master.HybridDefenceRanged = set_combine(sets.engaged.master.Defence,{sets.animators.Ranged,})
-	sets.engaged.master.HybridDefenceGodhandsMelee = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Melee,})
-	sets.engaged.master.HybridDefenceGodhandsRanged = set_combine(sets.engaged.master.DefenceGodhands,{sets.animators.Ranged,})
+	sets.engaged.master.HybridDefenceMelee = set_combine(sets.engaged.master.Defence, sets.animators.Melee)
+	sets.engaged.master.HybridDefenceRanged = set_combine(sets.engaged.master.Defence, sets.animators.Ranged)
+	sets.engaged.master.HybridDefenceGodhandsMelee = set_combine(sets.engaged.master.DefenceGodhands, sets.animators.Melee)
+	sets.engaged.master.HybridDefenceGodhandsRanged = set_combine(sets.engaged.master.DefenceGodhands, sets.animators.Ranged)
 
 	---------------------------	PET ONLY ENGAGED SETS	---------------------------
 	-- Normal
@@ -371,7 +371,7 @@ function get_sets()
 		back={ name="Dispersal Mantle", augments={'STR+2','DEX+4','Pet: TP Bonus+500',}},
 	}
 	
-	sets.engaged.overdrive.SharpshotUnlocked = set_combine(sets.engaged.overdrive.Sharpshot,{sets.animators.Melee,})
+	sets.engaged.overdrive.SharpshotUnlocked = set_combine(sets.engaged.overdrive.Sharpshot, sets.animators.Melee)
 
 	--Sharpshot overdrive Defence
 	sets.engaged.overdrive.SharpshotDEF = {
@@ -390,7 +390,7 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.SharpshotDEFUnlocked = set_combine(sets.engaged.overdrive.SharpshotDEF,{sets.animators.Melee,})
+	sets.engaged.overdrive.SharpshotDEFUnlocked = set_combine(sets.engaged.overdrive.SharpshotDEF, sets.animators.Melee)
 
 	--Valoredge overdrive
 	sets.engaged.overdrive.Valoredge = {
@@ -409,7 +409,7 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.ValoredgeUnlocked = set_combine(sets.engaged.overdrive.Valoredge,{sets.animators.Melee,})
+	sets.engaged.overdrive.ValoredgeUnlocked = set_combine(sets.engaged.overdrive.Valoredge, sets.animators.Melee)
 
 	--Valoredge overdrive Defence
 	sets.engaged.overdrive.ValoredgeDEF = {
@@ -428,7 +428,7 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.ValoredgeDEFUnlocked = set_combine(sets.engaged.overdrive.ValoredgeDEF,{sets.animators.Melee,})
+	sets.engaged.overdrive.ValoredgeDEFUnlocked = set_combine(sets.engaged.overdrive.ValoredgeDEF, sets.animators.Melee)
 
 	---------------------------	PRECAST SETS	---------------------------
 	---------------------------	PRECAST / JOB ABILITY MASTER SETS	---------------------------
