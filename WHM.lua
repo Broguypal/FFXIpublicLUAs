@@ -357,7 +357,14 @@ function get_sets()
 	sets.ws.Randgirth = {}
 	sets.ws.FlashNova = {}
  ---- MISC SETS ----
-	sets.misc.Trust = {}
+	sets.misc.Trust = {
+		head="Nyame Helm",
+		body="Shamash Robe",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets", 
+	}
+	
 end
 
 
