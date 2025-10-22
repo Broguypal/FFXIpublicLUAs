@@ -510,9 +510,8 @@ function get_sets()
 		back="Moonbeam Cape",
 	})
 	
-	sets.midcast.bluemagic.Buff = set_combine(sets.midcast.bluemagic.Magical,{
-		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+	sets.midcast.bluemagic.Buff = set_combine(sets.precast.bluemagic,{
+		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
 	})
 	
 	sets.midcast.bluemagic.BuffSkillBased = set_combine(sets.midcast.bluemagic.Magical,{
@@ -537,7 +536,7 @@ function get_sets()
 	---- MIDCAST NON BLU SETS ----
 	sets.midcast.phalanx = {
 		ammo="Sapience Orb",
-		head={ name="Nyame Helm", augments={'Path: B',}},
+		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		body={ name="Taeon Tabard", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		hands={ name="Taeon Gloves", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		legs={ name="Taeon Tights", augments={'Spell interruption rate down -10%','Phalanx +3',}},
@@ -570,10 +569,10 @@ function get_sets()
 	sets.midcast.enhancing = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		body="Hashishin Mintan +3",
-		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
+		body={ name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}},
+		hands={ name="Telchine Gloves", augments={'Enh. Mag. eff. dur. +9',}},
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
+		feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
 		left_ear="Crematio Earring",
