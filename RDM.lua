@@ -192,7 +192,7 @@ function get_sets()
 		right_ear="Crep. Earring",
 		left_ring="Fickblix's Ring",
 		right_ring="Ilabrat Ring",
-		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back="Null Shawl",
 	}
 
 	-- Normal Hybrid set dual wield
@@ -239,9 +239,10 @@ function get_sets()
 	}
 
 	-- Enspell mode + shadows up
-	sets.engaged.hybrid.enspellshadows = set_combine(sets.engaged.hybrid.dualwieldenspellshadows,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub={ name="Pukulatmuj +1", augments={'Path: A',}},
+	sets.engaged.hybrid.enspellshadows = set_combine(sets.engaged.hybrid.enspell,{
+		head="Umuthi Hat",
+		hands="Aya. Manopolas +2",
+		waist="Orpheus's Sash",
 	})
 
 	sets.engaged.hybrid.zeroTPenspell = {
