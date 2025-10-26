@@ -22,6 +22,9 @@ gearswap_box = function()
   str = str..' Player Mode:\\cs(255,150,100)   '..Player_Mode..'\\cr\n'
   str = str..' Weapon Lock:\\cs(200,100,100)   '..Weapon_Mode..'\\cr\n'
   str = str..' Casting Mode:\\cs(255,0,100)   '..Casting_Mode..'\\cr\n'
+  str = str..' crl: \\cs(255,255,255)[ERASE]\\cr \\cs(80,60,100)[CRSE] \\cr \\cs(255,255,255)[ESUNA]\\cr\n'
+  str = str..' crl: \\cs(128,255,255)[PARA]\\cr \\cs(0,255,0)[SLNC]\\cr \\cs(80,60,100)[BLND]\\cr\n'
+  str = str..' alt: \\cs(165,100,40)[STON]\\cr \\cs(64,128,255)[PSN]\\cr \\cs(255,64,64)[VIRU]\\cr\n'
     return str
 end
 
@@ -38,6 +41,17 @@ function get_sets()
 	send_command('bind numpad9 gs c ToggleMode')
 	send_command('bind numpad3 gs c ToggleSpell')
 	send_command('bind numpad6 gs c ToggleWeapons')
+	
+--Spell Commands
+	send_command ('bind numpad1 input /ma "Erase" <stal>')
+	send_command ('bind numpad2 input /ma "Cursna" <stal>')
+	send_command ('bind numpad3 input /ma "Esuna" <me>')
+	send_command ('bind ^numpad1 input /ma "Paralyna" <stal>')
+	send_command ('bind ^numpad2 input /ma "Silena" <stal>')
+	send_command ('bind ^numpad3 input /ma "Blindna" <stal>')
+	send_command ('bind !numpad1 input /ma "Stona" <stal>')
+	send_command ('bind !numpad2 input /ma "Poisana" <stal>')
+	send_command ('bind !numpad3 input /ma "Viruna" <stal>')
 	
 -- Gearsets --
     sets.weapons = {}
@@ -348,6 +362,7 @@ function get_sets()
 	sets.ja.Martyr = {}
 	sets.ja.Benediction = {}
 	sets.ja.Devotion = {}
+	
  ---- WEAPONSKILL SETS ----
 	sets.ws.Normal = {
 		ammo="Oshasha's Treatise",
