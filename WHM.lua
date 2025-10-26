@@ -39,7 +39,7 @@ end
 function get_sets()
 --Mode Commands
 	send_command('bind numpad9 gs c ToggleMode')
-	send_command('bind numpad3 gs c ToggleSpell')
+	send_command('bind numpad5 gs c ToggleSpell')
 	send_command('bind numpad6 gs c ToggleWeapons')
 	
 --Spell Commands
