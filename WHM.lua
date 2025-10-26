@@ -50,7 +50,7 @@ function get_sets()
 	send_command ('bind ^numpad2 input /ma "Silena" <stal>')
 	send_command ('bind ^numpad3 input /ma "Blindna" <stal>')
 	send_command ('bind !numpad1 input /ma "Stona" <stal>')
-	send_command ('bind !numpad2 input /ma "Poisana" <stal>')
+	send_command ('bind !numpad2 input /ma "Poisona" <stal>')
 	send_command ('bind !numpad3 input /ma "Viruna" <stal>')
 	
 -- Gearsets --
