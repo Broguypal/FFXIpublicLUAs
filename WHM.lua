@@ -22,7 +22,7 @@ gearswap_box = function()
   str = str..' Player Mode:\\cs(255,150,100)   '..Player_Mode..'\\cr\n'
   str = str..' Weapon Lock:\\cs(200,100,100)   '..Weapon_Mode..'\\cr\n'
   str = str..' Casting Mode:\\cs(255,0,100)   '..Casting_Mode..'\\cr\n'
-  str = str..' \\cs(255,255,255)[ERASE]\\cr \\cs(80,60,100)[CRSE] \\cr \\cs(255,255,255)[ESUNA]\\cr\n'
+  str = str..' \\cs(255,255,255)[ERASE]\\cr \\cs(80,60,100)[CRSE]\\cr \\cs(255,255,255)[ESUNA]\\cr\n'
   str = str..' crl: \\cs(128,255,255)[PARA]\\cr \\cs(0,255,0)[SLNC]\\cr \\cs(80,60,100)[BLND]\\cr\n'
   str = str..' alt: \\cs(165,100,40)[STON]\\cr \\cs(64,128,255)[PSN]\\cr \\cs(255,64,64)[VIRU]\\cr\n'
     return str
