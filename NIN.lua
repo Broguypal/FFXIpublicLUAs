@@ -372,7 +372,7 @@ function get_sets()
 	----Hybrid / Malignance / DPS engaged sets ----
 	---- Capped Haste (need 1 DW - negligible) ----
 	sets.engaged.hybrid.hastecap = {
-		ammo="Date Shuriken",
+		ammo="Seki Shuriken",
 		head="Malignance Chapeau",
 		body="Mpaca's Doublet",
 		hands="Malignance Gloves",
@@ -417,7 +417,7 @@ function get_sets()
 	})
 	---- DPS ----
 	sets.engaged.DPS.hastecap = {
-		ammo="Date Shuriken",
+		ammo="Seki Shuriken",
 		head="Ken. Jinpachi +1",
 		body="Ken. Samue +1",
 		hands="Ken. Tekko +1",
