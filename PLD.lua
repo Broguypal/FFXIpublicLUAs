@@ -93,16 +93,16 @@ shields = {
     sets.idle.normal = {
 		ammo="Staunch Tathlum +1",
 		head="Chev. Armet +3",
-		body="Sakpata's Plate",
+		body="Adamantite Armor",
 		hands="Sakpata's Gauntlets",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		feet="Sakpata's Leggings",
-		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
-		waist="Flume Belt +1",
+		neck="Unmoving Collar +1",
+		waist="Carrier's Sash",
 		left_ear="Hearty Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Moonbeam Ring",
-		right_ring="Moonlight Ring",
+		right_ear="Odnowa Earring +1",
+		left_ring="Fortified Ring",
+		right_ring="Gelatinous Ring +1",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 		}
 
@@ -670,7 +670,6 @@ function self_command(command)
 			idle()
 		elseif tp_mode == "BlockTank" then
 			tp_mode = "SingleTank"
-			send_command('console_echo "Single Tank Mode"')
 			idle()
 		end
 	elseif command == "ToggleMagic" then
