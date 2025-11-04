@@ -92,7 +92,7 @@ shields = {
  --Normal Idle set - Movement speed
     sets.idle.normal = {
 		ammo="Staunch Tathlum +1",
-		head="Chev. Armet +2",
+		head="Chev. Armet +3",
 		body="Sakpata's Plate",
 		hands="Sakpata's Gauntlets",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
@@ -108,10 +108,10 @@ shields = {
 
 	sets.idle.aoetank = {
 		ammo="Staunch Tathlum +1",
-		head="Chev. Armet +2",
+		head="Chev. Armet +3",
 		body="Sakpata's Plate",
 		hands="Sakpata's Gauntlets",
-		legs="Chev. Cuisses +2",
+		legs="Chev. Cuisses +3",
 		feet="Sakpata's Leggings",
 		neck="Warder's Charm +1",
 		waist="Plat. Mog. Belt",
@@ -124,10 +124,10 @@ shields = {
 	
 	sets.idle.singletank = {
 		ammo="Staunch Tathlum +1",
-		head="Chev. Armet +2",
+		head="Chev. Armet +3",
 		body="Sakpata's Plate",
 		hands="Sakpata's Gauntlets",
-		legs="Chev. Cuisses +2",
+		legs="Chev. Cuisses +3",
 		feet="Sakpata's Leggings",
 		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
@@ -140,10 +140,10 @@ shields = {
 	
 	sets.idle.block = {
 		ammo="Staunch Tathlum +1",
-		head="Chev. Armet +2",
+		head="Chev. Armet +3",
 		body="Sakpata's Plate",
 		hands={ name="Souv. Handsch. +1", augments={'HP+65','Shield skill +15','Phys. dmg. taken -4',}},
-		legs="Chev. Cuisses +2",
+		legs="Chev. Cuisses +3",
 		feet="Rev. Leggings +4",
 		neck="Combatant's Torque",
 		waist="Plat. Mog. Belt",
@@ -156,10 +156,10 @@ shields = {
 	
 	sets.idle.magiceva = {
 		ammo="Staunch Tathlum +1",
-		head="Chev. Armet +2",
+		head="Chev. Armet +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs="Chev. Cuisses +2",
+		legs="Chev. Cuisses +3",
 		feet="Rev. Leggings +4",
 		neck="Warder's Charm +1",
 		waist="Plat. Mog. Belt",
@@ -172,10 +172,10 @@ shields = {
 	
 	sets.idle.mpabsorb = {
 		ammo="Homiliary",
-		head="Chev. Armet +2",
-		body="Rev. Surcoat +3",
+		head="Chev. Armet +3",
+		body="Rev. Surcoat +4",
 		hands="Sakpata's Gauntlets",
-		legs="Chev. Cuisses +2",
+		legs="Chev. Cuisses +3",
 		feet="Rev. Leggings +4",
 		neck="Sibyl Scarf",
 		waist="Flume Belt +1",
@@ -223,9 +223,9 @@ shields = {
 	sets.precast.fastcast = {
 		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
-		body="Rev. Surcoat +3",
+		body="Rev. Surcoat +4",
 		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-		legs="Chev. Cuisses +2",
+		legs="Chev. Cuisses +3",
 		feet={ name="Odyssean Greaves", augments={'"Mag.Atk.Bns."+21','"Fast Cast"+3','INT+12','Mag. Acc.+11',}},
 		neck="Voltsurge Torque",
 		waist="Plat. Mog. Belt",
