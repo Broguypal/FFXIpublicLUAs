@@ -172,6 +172,10 @@ function get_sets()
 	}
 	sets.precast.CureWeapons = set_combine(sets.precast.Cure, sets.weapons.Curing)
 	
+	sets.precast.Sublimation = {
+		waist="Embla Sash"
+	}
+	
  ---- MIDCAST SETS ----	
 	--Cure
 	sets.midcast.Cure = {
@@ -556,6 +560,12 @@ function precast(spell)
 			equip(sets.ws.FlashNova)
 		else
 			equip(sets.ws.Normal)
+		end
+	elseif spell.type == "JobAbility" then
+		if spell.english == "Sublimation" then
+			equip(sets.precast.Sublimation)
+		else
+			idle()
 		end
 	else
 		idle()
