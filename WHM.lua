@@ -172,10 +172,6 @@ function get_sets()
 	}
 	sets.precast.CureWeapons = set_combine(sets.precast.Cure, sets.weapons.Curing)
 	
-	sets.precast.Sublimation = {
-		waist="Embla Sash"
-	}
-	
  ---- MIDCAST SETS ----	
 	--Cure
 	sets.midcast.Cure = {
@@ -366,6 +362,9 @@ function get_sets()
 	sets.ja.Martyr = {}
 	sets.ja.Benediction = {}
 	sets.ja.Devotion = {}
+	sets.ja.Sublimation = {
+		waist="Embla Sash",
+	}
 	
  ---- WEAPONSKILL SETS ----
 	sets.ws.Normal = {
@@ -563,9 +562,17 @@ function precast(spell)
 		end
 	elseif spell.type == "JobAbility" then
 		if spell.english == "Sublimation" then
-			equip(sets.precast.Sublimation)
-		else
-			idle()
+			equip(sets.ja.Sublimation)
+		elseif spell.english == "Solace" then
+			equip(sets.ja.Solace)
+		elseif spell.english == "Misery" then
+			equip(sets.ja.Misery)
+		elseif spell.english == "Martyr" then
+			equip(sets.ja.Martyr)
+		elseif spell.english == "Benediction" then
+			equip(sets.ja.Benediction)
+		elseif spell.english == "Devotion" then
+			equip(sets.ja.Devotion)
 		end
 	else
 		idle()
