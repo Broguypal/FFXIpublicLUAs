@@ -580,147 +580,149 @@ function precast(spell)
 end
 
 function midcast(spell)
-	if Casting_Mode == "SIR" then
-		if Weapon_Mode == "Locked" then
-			equip(sets.midcast.SIR)
-		elseif Weapon_Mode == "Unlocked" then
-			equip(sets.midcast.SIRWeapons)
-		end
-	else
-		if Weapon_Mode == "Locked" then
-			if spell.skill == "Healing Magic" then
-				if spell.name:match('Cure') or spell.english == "Full Cure" then
-					if buffactive["Aurorastorm"] then
-						equip(sets.midcast.CureAurorastorm)
-					else
-						equip(sets.midcast.Cure)
+	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then
+		if Casting_Mode == "SIR" then
+			if Weapon_Mode == "Locked" then
+				equip(sets.midcast.SIR)
+			elseif Weapon_Mode == "Unlocked" then
+				equip(sets.midcast.SIRWeapons)
+			end
+		else
+			if Weapon_Mode == "Locked" then
+				if spell.skill == "Healing Magic" then
+					if spell.name:match('Cure') or spell.english == "Full Cure" then
+						if buffactive["Aurorastorm"] then
+							equip(sets.midcast.CureAurorastorm)
+						else
+							equip(sets.midcast.Cure)
+						end
+					elseif spell.name:match('Cura') or spell.name:match('Curaga') then
+						if buffactive["Aurorastorm"] then
+							equip(sets.midcast.CuragaAurorastorm)
+						else
+							equip(sets.midcast.Curaga)
+						end
+					elseif spell.name:match('Raise') or spell.name:match('Reraise') or spell.name:match('Arise') then
+						equip(sets.precast.FastCast)
+					elseif spell.name:match('Poisona') or spell.name:match('Paralyna') or spell.name:match('Blindna') or
+					spell.name:match('Silena') or spell.name:match('Stona') or spell.name:match('Viruna') or spell.name:match('Esuna') then
+						if buffactive['Divine Caress'] then
+							equip(sets.midcast.DivineCaress)
+						else
+							equip(sets.midcast.EraseNA)
+						end
 					end
-				elseif spell.name:match('Cura') or spell.name:match('Curaga') then
-					if buffactive["Aurorastorm"] then
-						equip(sets.midcast.CuragaAurorastorm)
-					else
-						equip(sets.midcast.Curaga)
-					end
-				elseif spell.name:match('Raise') or spell.name:match('Reraise') or spell.name:match('Arise') then
-					equip(sets.precast.FastCast)
-				elseif spell.name:match('Poisona') or spell.name:match('Paralyna') or spell.name:match('Blindna') or
-				spell.name:match('Silena') or spell.name:match('Stona') or spell.name:match('Viruna') or spell.name:match('Esuna') then
-					if buffactive['Divine Caress'] then
-						equip(sets.midcast.DivineCaress)
-					else
+				elseif spell.skill == "Enhancing Magic" then
+					if spell.name:match('Erase') then
 						equip(sets.midcast.EraseNA)
+					elseif spell.name:match('Protect') or spell.name:match('Protectra') or spell.name:match('Shell') or spell.name:match('Shellra') or 
+					spell.name:match('Blink') or spell.name:match('Haste') or spell.name:match('Auspice') or spell.name:match('Sandstorm') or
+					spell.name:match('Rainstorm') or spell.name:match('Windstorm') or spell.name:match('Firestorm') or spell.name:match('Hailstorm') or
+					spell.name:match('Thunderstorm') or spell.name:match('Voidstorm') or spell.name:match('Aurorastorm') or spell.name:match('Sneak') or 
+					spell.name:match('Invisible') or spell.name:match('Deodorize') or spell.name:match('Animus') or spell.name:match('Flurry') then
+						equip(sets.midcast.EnhanceDuration)
+					elseif spell.english:startswith('En') or spell.name:match('Phalanx') or spell.name:match('Refresh') or spell.english:startswith('Boost') then
+						equip(sets.midcast.EnhanceSkill)
+					elseif spell.name:match('Stoneskin') then
+						equip(sets.midcast.Stoneskin)
+					elseif spell.name:match('Aquaveil') then
+						equip(sets.midcast.Aquaveil)
+					elseif spell.english:startswith('Bar') then
+						equip(sets.midcast.BarSpells)
+					elseif spell.name:match('Regen') then
+						equip(sets.midcast.Regen)
+					elseif spell.english:startswith('Recall') or spell.english:startswith('Teleport') or spell.english:startswith('Retrace') or spell.name:match('Warp') or
+					spell.name:match('Escape') or spell.name:match('Tractor') then
+						equip(sets.precast.FastCast)
 					end
-				end
-			elseif spell.skill == "Enhancing Magic" then
-				if spell.name:match('Erase') then
-					equip(sets.midcast.EraseNA)
-				elseif spell.name:match('Protect') or spell.name:match('Protectra') or spell.name:match('Shell') or spell.name:match('Shellra') or 
-				spell.name:match('Blink') or spell.name:match('Haste') or spell.name:match('Auspice') or spell.name:match('Sandstorm') or
-				spell.name:match('Rainstorm') or spell.name:match('Windstorm') or spell.name:match('Firestorm') or spell.name:match('Hailstorm') or
-				spell.name:match('Thunderstorm') or spell.name:match('Voidstorm') or spell.name:match('Aurorastorm') or spell.name:match('Sneak') or 
-				spell.name:match('Invisible') or spell.name:match('Deodorize') or spell.name:match('Animus') or spell.name:match('Flurry') then
-					equip(sets.midcast.EnhanceDuration)
-				elseif spell.english:startswith('En') or spell.name:match('Phalanx') or spell.name:match('Refresh') or spell.english:startswith('Boost') then
-					equip(sets.midcast.EnhanceSkill)
-				elseif spell.name:match('Stoneskin') then
-					equip(sets.midcast.Stoneskin)
-				elseif spell.name:match('Aquaveil') then
-					equip(sets.midcast.Aquaveil)
-				elseif spell.english:startswith('Bar') then
-					equip(sets.midcast.BarSpells)
-				elseif spell.name:match('Regen') then
-					equip(sets.midcast.Regen)
-				elseif spell.english:startswith('Recall') or spell.english:startswith('Teleport') or spell.english:startswith('Retrace') or spell.name:match('Warp') or
-				spell.name:match('Escape') or spell.name:match('Tractor') then
+				elseif spell.skill == "Enfeebling Magic" or spell.skill == "Dark Magic" then
+					if spell.name:match('Dispelga') then
+						equip(sets.midcast.Dispelga)
+					else
+						equip(sets.midcast.Enfeeble)
+					end
+				elseif spell.skill == "Divine Magic" then
+					if spell.name:match('Repose') or spell.name:match('Flash') then
+						equip(sets.midcast.Repose)
+					elseif spell.name:match('Holy') then
+						equip(sets.midcast.Holy)
+					elseif spell.name:match('Banish') or spell.name:match('Banishga') then
+						equip(sets.midcast.Banish)
+					end
+				elseif spell.skill == "Elemental Magic" or spell.skill == "Blue Magic" then 
+					equip(sets.midcast.Elemental)
+				elseif spell.skill == "Ninjutsu" then
 					equip(sets.precast.FastCast)
-				end
-			elseif spell.skill == "Enfeebling Magic" or spell.skill == "Dark Magic" then
-				if spell.name:match('Dispelga') then
-					equip(sets.midcast.Dispelga)
-				else
-					equip(sets.midcast.Enfeeble)
-				end
-			elseif spell.skill == "Divine Magic" then
-				if spell.name:match('Repose') or spell.name:match('Flash') then
-					equip(sets.midcast.Repose)
-				elseif spell.name:match('Holy') then
-					equip(sets.midcast.Holy)
-				elseif spell.name:match('Banish') or spell.name:match('Banishga') then
-					equip(sets.midcast.Banish)
-				end
-			elseif spell.skill == "Elemental Magic" or spell.skill == "Blue Magic" then 
-				equip(sets.midcast.Elemental)
-			elseif spell.skill == "Ninjutsu" then
-				equip(sets.precast.FastCast)
-			end	
-		elseif Weapon_Mode == "Unlocked" then
-			if spell.skill == "Healing Magic" then
-				if spell.name:match('Cure') or spell.english == "Full Cure" then
-					if buffactive["Aurorastorm"] then
-						equip(sets.midcast.CureAurorastormWeapons)
-					else
-						equip(sets.midcast.CureWeapons)
+				end	
+			elseif Weapon_Mode == "Unlocked" then
+				if spell.skill == "Healing Magic" then
+					if spell.name:match('Cure') or spell.english == "Full Cure" then
+						if buffactive["Aurorastorm"] then
+							equip(sets.midcast.CureAurorastormWeapons)
+						else
+							equip(sets.midcast.CureWeapons)
+						end
+					elseif spell.name:match('Cura') or spell.name:match('Curaga') then
+						if buffactive["Aurorastorm"] then
+							equip(sets.midcast.CuragaAurorastormWeapons)
+						else
+							equip(sets.midcast.CuragaWeapons)
+						end
+					elseif spell.name:match('Raise') or spell.name:match('Reraise') or spell.name:match('Arise') then
+						equip(sets.precast.FastCastWeapons)
+					elseif spell.name:match('Poisona') or spell.name:match('Paralyna') or spell.name:match('Blindna') or
+					spell.name:match('Silena') or spell.name:match('Stona') or spell.name:match('Viruna') or spell.name:match('Esuna') then
+						if buffactive['Divine Caress'] then
+							equip(sets.midcast.DivineCaressWeapons)
+						else
+							equip(sets.midcast.EraseNAWeapons)
+						end
 					end
-				elseif spell.name:match('Cura') or spell.name:match('Curaga') then
-					if buffactive["Aurorastorm"] then
-						equip(sets.midcast.CuragaAurorastormWeapons)
-					else
-						equip(sets.midcast.CuragaWeapons)
-					end
-				elseif spell.name:match('Raise') or spell.name:match('Reraise') or spell.name:match('Arise') then
-					equip(sets.precast.FastCastWeapons)
-				elseif spell.name:match('Poisona') or spell.name:match('Paralyna') or spell.name:match('Blindna') or
-				spell.name:match('Silena') or spell.name:match('Stona') or spell.name:match('Viruna') or spell.name:match('Esuna') then
-					if buffactive['Divine Caress'] then
-						equip(sets.midcast.DivineCaressWeapons)
-					else
+				elseif spell.skill == "Enhancing Magic" then
+					if spell.name:match('Erase') then
 						equip(sets.midcast.EraseNAWeapons)
+					elseif spell.name:match('Protect') or spell.name:match('Protectra') or spell.name:match('Shell') or spell.name:match('Shellra') or 
+					spell.name:match('Blink') or spell.name:match('Haste') or spell.name:match('Auspice') or spell.name:match('Sandstorm') or
+					spell.name:match('Rainstorm') or spell.name:match('Windstorm') or spell.name:match('Firestorm') or spell.name:match('Hailstorm') or
+					spell.name:match('Thunderstorm') or spell.name:match('Voidstorm') or spell.name:match('Aurorastorm') or spell.name:match('Sneak') or 
+					spell.name:match('Invisible') or spell.name:match('Deodorize') or spell.name:match('Animus') or spell.name:match('Flurry') then
+						equip(sets.midcast.EnhanceDurationWeapons)
+					elseif spell.english:startswith('En') or spell.name:match('Phalanx') or spell.name:match('Refresh') or spell.english:startswith('Boost') then
+						equip(sets.midcast.EnhanceSkillWeapons)
+					elseif spell.name:match('Stoneskin') then
+						equip(sets.midcast.StoneskinWeapons)
+					elseif spell.name:match('Aquaveil') then
+						equip(sets.midcast.AquaveilWeapons)
+					elseif spell.english:startswith('Bar') then
+						equip(sets.midcast.BarSpellsWeapons)
+					elseif spell.name:match('Regen') then
+						equip(sets.midcast.RegenWeapons)
+					elseif spell.english:startswith('Recall') or spell.english:startswith('Teleport') or spell.english:startswith('Retrace') or spell.name:match('Warp') or
+					spell.name:match('Escape') or spell.name:match('Tractor') then
+						equip(sets.precast.FastCastWeapons)
 					end
-				end
-			elseif spell.skill == "Enhancing Magic" then
-				if spell.name:match('Erase') then
-					equip(sets.midcast.EraseNAWeapons)
-				elseif spell.name:match('Protect') or spell.name:match('Protectra') or spell.name:match('Shell') or spell.name:match('Shellra') or 
-				spell.name:match('Blink') or spell.name:match('Haste') or spell.name:match('Auspice') or spell.name:match('Sandstorm') or
-				spell.name:match('Rainstorm') or spell.name:match('Windstorm') or spell.name:match('Firestorm') or spell.name:match('Hailstorm') or
-				spell.name:match('Thunderstorm') or spell.name:match('Voidstorm') or spell.name:match('Aurorastorm') or spell.name:match('Sneak') or 
-				spell.name:match('Invisible') or spell.name:match('Deodorize') or spell.name:match('Animus') or spell.name:match('Flurry') then
-					equip(sets.midcast.EnhanceDurationWeapons)
-				elseif spell.english:startswith('En') or spell.name:match('Phalanx') or spell.name:match('Refresh') or spell.english:startswith('Boost') then
-					equip(sets.midcast.EnhanceSkillWeapons)
-				elseif spell.name:match('Stoneskin') then
-					equip(sets.midcast.StoneskinWeapons)
-				elseif spell.name:match('Aquaveil') then
-					equip(sets.midcast.AquaveilWeapons)
-				elseif spell.english:startswith('Bar') then
-					equip(sets.midcast.BarSpellsWeapons)
-				elseif spell.name:match('Regen') then
-					equip(sets.midcast.RegenWeapons)
-				elseif spell.english:startswith('Recall') or spell.english:startswith('Teleport') or spell.english:startswith('Retrace') or spell.name:match('Warp') or
-				spell.name:match('Escape') or spell.name:match('Tractor') then
+				elseif spell.skill == "Enfeebling Magic" or spell.skill == "Dark Magic" then
+					if spell.name:match('Dispelga') then
+						equip(sets.midcast.DispelgaWeapons)
+					else
+						equip(sets.midcast.EnfeebleWeapons)
+					end
+				elseif spell.skill == "Divine Magic" then
+					if spell.name:match('Repose') or spell.name:match('Flash') then
+						equip(sets.midcast.ReposeWeapons)
+					elseif spell.name:match('Holy') then
+						equip(sets.midcast.HolyWeapons)
+					elseif spell.name:match('Banish') or spell.name:match('Banishga') then
+						equip(sets.midcast.BanishWeapons)
+					end
+				elseif spell.skill == "Elemental Magic" or spell.skill == "Blue Magic" then 
+					equip(sets.midcast.ElementalWeapons)
+				elseif spell.skill == "Ninjutsu" then
 					equip(sets.precast.FastCastWeapons)
-				end
-			elseif spell.skill == "Enfeebling Magic" or spell.skill == "Dark Magic" then
-				if spell.name:match('Dispelga') then
-					equip(sets.midcast.DispelgaWeapons)
-				else
-					equip(sets.midcast.EnfeebleWeapons)
-				end
-			elseif spell.skill == "Divine Magic" then
-				if spell.name:match('Repose') or spell.name:match('Flash') then
-					equip(sets.midcast.ReposeWeapons)
-				elseif spell.name:match('Holy') then
-					equip(sets.midcast.HolyWeapons)
-				elseif spell.name:match('Banish') or spell.name:match('Banishga') then
-					equip(sets.midcast.BanishWeapons)
-				end
-			elseif spell.skill == "Elemental Magic" or spell.skill == "Blue Magic" then 
-				equip(sets.midcast.ElementalWeapons)
-			elseif spell.skill == "Ninjutsu" then
-				equip(sets.precast.FastCastWeapons)
-			end	
-		end
-	end	
+				end	
+			end
+		end	
+	end
 end
 
 function aftercast(spell)
