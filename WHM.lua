@@ -563,9 +563,9 @@ function precast(spell)
 	elseif spell.type == "JobAbility" then
 		if spell.english == "Sublimation" then
 			equip(sets.ja.Sublimation)
-		elseif spell.english == "Solace" then
+		elseif spell.english == "Afflatus Solace" then
 			equip(sets.ja.Solace)
-		elseif spell.english == "Misery" then
+		elseif spell.english == "Afflatus Misery" then
 			equip(sets.ja.Misery)
 		elseif spell.english == "Martyr" then
 			equip(sets.ja.Martyr)
