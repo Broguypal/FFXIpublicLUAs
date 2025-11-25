@@ -993,141 +993,143 @@ function precast(spell)
 end
 
 function midcast(spell)
-	if Casting_Mode == "SIR" then
-		equip(sets.midcast.SIR)
-	else
-		if Player_Mode == "OmenTank" then
-			if spell.english == "Phalanx" then
-				equip(sets.midcast.phalanx)
-			elseif spell.english == "Dream Flower" or spell.english == "Sheep Song" then
-				equip(sets.midcast.tank.SleepSpells)
-			elseif spell.english == "Cruel Joke" then
-				equip(sets.midcast.bluemagic.MagicalAcc)
-			elseif spell.english == "Reaving Wind" or spell.english == "Feather Tickle" then
-				equip(sets.midcast.bluemagic.MagicalAcc)
-			elseif spell.english == "Holy Water" then
-				equip(sets.items.holywater)
-			elseif spell.type == "Trust" then
-				equip(sets.idle.trust)
-			else
-				equip(sets.idle.tank)
-			end
-		elseif Player_Mode == "TreasureHunter" then
-			if spell.english == "Holy Water" then
-				equip(sets.items.holywater)
-			elseif spell.type == "Trust" then
-				equip(sets.idle.trust)
-			else
-				equip(sets.midcast.treasurehunter)
-			end
+	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" or spell.type == "Trust" then
+		if Casting_Mode == "SIR" then
+			equip(sets.midcast.SIR)
 		else
-			if spell.english == "Holy Water" then
-				equip(sets.items.holywater)
-			elseif spell.type == "Trust" then
-				equip(sets.idle.trust)
-			elseif spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then
-				if spell.skill == "Elemental Magic" then
-					equip(sets.midcast.elemental)
-				elseif spell.skill == "Enfeebling Magic" then
-					equip(sets.midcast.enfeebling)
-				elseif spell.skill == "Dark Magic" then
-					equip(sets.midcast.dark)
-				elseif spell.skill == "Enhancing Magic" then
-					if spell.english == "Phalanx" then
-						equip(sets.midcast.phalanx)
-					else
-						equip(sets.midcast.enhancing)
-					end
-				elseif spell.skill == "Healing Magic" then
-					equip(sets.midcast.healing)
-				end
-			elseif spell.type == "BlueMagic" then
-				if spell.english == "Bilgestorm" then
-					equip(sets.midcast.bluemagic.Physical)
-				elseif spell.english == "Heavy Strike" then
-					equip(sets.midcast.bluemagic.PhysicalAcc)
-				elseif spell.english == "Battle Dance" or spell.english == "Bloodrake" or spell.english == "Death Scissors" or spell.english == "Dimensional Death"
-					or spell.english == "Empty Thrash" or spell.english == "Quadrastrike" or spell.english == "Saurian Slide" or spell.english == "Sinker Drill" 
-					or spell.english == "Spinal Cleave" or spell.english == "Sweeping Gouge" or spell.english == "Uppercut" or spell.english == "Vertical Cleave" then
-					equip(sets.midcast.bluemagic.PhysicalStr)
-				elseif spell.english == "Amorphic Spikes" or spell.english == "Asuran Claws" or spell.english == "Barbed Crescent" or spell.english == "Claw Cyclone"
-					or spell.english == "Disseverment" or spell.english == "Foot Kick"  or spell.english == "Frenetic Rip" or spell.english == "Goblin Rush"
-					or spell.english == "Hysteric Barrage" or spell.english == "Paralyzing Triad" or spell.english == "Seedspray" or spell.english == "Sickle Slash" 
-					or spell.english == "Smite of Rage" or spell.english == "Terror Touch" or spell.english == "Thrashing Assault" or spell.english == "Vanity Dive"  then
-					equip(sets.midcast.bluemagic.PhysicalDex)
-				elseif spell.english == "Body Slam" or spell.english == "Cannonball" or spell.english == "Delta Thrust" or spell.english == "Glutinous Dart"
-					or spell.english == "Grand Slam" or spell.english == "Power Attack"  or spell.english == "Quad. Continuum" or spell.english == "Sprout Smack" then
-					equip(sets.midcast.bluemagic.PhysicalVit)
-				elseif spell.english == "Benthic Typhoon" or spell.english == "Feather Storm" or spell.english == "Helldive" or spell.english == "Hydro Shot"
-					or spell.english == "Jet Stream" or spell.english == "Pinecone Bomb"  or spell.english == "Spiral Spin" or spell.english == "Wild Oats" then
-					equip(sets.midcast.bluemagic.PhysicalAgi)
-				elseif spell.english == "Mandibular Bite" or spell.english == "Queasyshroom" then
-					equip(sets.midcast.bluemagic.PhysicalInt)
-				elseif spell.english == "Ram Charge" or spell.english == "Screwdriver" or spell.english == "Tourbillion" then
-					equip(sets.midcast.bluemagic.PhysicalMnd)
-				elseif spell.english == "Bludgeon" then
-					equip(sets.midcast.bluemagic.PhysicalChr)
-				elseif spell.english == "Final Sting" then
-					equip(sets.midcast.bluemagic.PhysicalHP)
-				elseif spell.english == "Anvil Lightning" or spell.english == "Blastbomb" or spell.english == "Blazing Bound" or spell.english == "Bomb Toss"
-					or spell.english == "Cursed Sphere" or spell.english == "Droning Whirlwind"  or spell.english == "Embalming Earth" or spell.english == "Entomb"
-					or spell.english == "Firespit" or spell.english == "Foul Waters" or spell.english == "Ice Break" or spell.english == "Leafstorm" 
-					or spell.english == "Maelstrom" or spell.english == "Molting Plumage" or spell.english == "Nectarous Deluge" or spell.english == "Regurgitation" 
-					or spell.english == "Rending Deluge" or spell.english == "Scouring Spate" or spell.english == "Silent Storm" or spell.english == "Spectral Floe" 
-					or spell.english == "Subduction" or spell.english == "Tem. Upheaval" or spell.english == "Water Bomb" or spell.english == "Crashing Thunder"
-					or spell.english == "Tearing Gust" or spell.english == "Cesspool" then
-					equip(sets.midcast.bluemagic.Magical)
-				elseif spell.english == "Dark Orb" or spell.english == "Death Ray" or spell.english == "Eyes On Me" or spell.english == "Evryone. Grudge"
-					or spell.english == "Palling Salvo" or spell.english == "Tenebral Crush" or spell.english == "Polar Roar" then
-					equip(sets.midcast.bluemagic.MagicalDark)
-				elseif spell.english == "Blinding Fulgor" or spell.english == "Diffusion Ray" or spell.english == "Radiant Breath" or spell.english == "Retinal Glare" 
-				or spell.english == "Rail Cannon" or spell.english == "Uproot" then
-					equip(sets.midcast.bluemagic.MagicalLight)
-				elseif spell.english == "Acrid Stream" or spell.english == "Magic Hammer" or spell.english == "Mind Blast" then
-					equip(sets.midcast.bluemagic.MagicalMnd)
-				elseif spell.english == "Mysterious Light" then
-					equip(sets.midcast.bluemagic.MagicalChr)
-				elseif spell.english == "Thermal Pulse" then
-					equip(sets.midcast.bluemagic.MagicalVit)
-				elseif spell.english == "Charged Whisker" or spell.english == "Gates of Hades" then
-					equip(sets.midcast.bluemagic.MagicalDex)
-				elseif spell.english == "1000 Needles" or spell.english == "Absolute Terror" or spell.english == "Actinic Burst" or spell.english == "Atra. Libations"
-					or spell.english == "Auroral Drape" or spell.english == "Awful Eye"  or spell.english == "Blank Gaze" or spell.english == "Blistering Roar"
-					or spell.english == "Blood Saber" or spell.english == "Chaotic Eye" or spell.english == "Cimicine Discharge" or spell.english == "Cold Wave" 
-					or spell.english == "Corrosive Ooze" or spell.english == "Demoralizing Roar" or spell.english == "Digest" or spell.english == "Dream Flower"  
-					or spell.english == "Enervation" or spell.english == "Feather Tickle"  or spell.english == "Filamented Hold" or spell.english == "Frightful Roar"
-					or spell.english == "Geist Wall" or spell.english == "Infrasonics" or spell.english == "Jettatura" 
-					or spell.english == "Light of Penance" or spell.english == "Lowing" or spell.english == "Mortal Ray" 
-					or spell.english == "MP Drainkiss" or spell.english == "Osmosis"  or spell.english == "Reaving Wind" or spell.english == "Sandspin"
-					or spell.english == "Sandspray" or spell.english == "Sheep Song" or spell.english == "Soporific" or spell.english == "Sound Blast" 
-					or spell.english == "Stinking Gas" or spell.english == "Sub-zero Smash" or spell.english == "Venom Shell" or spell.english == "Voracious Trunk"
-					or spell.english == "Yawn" or spell.english == "Cruel Joke" then
+			if Player_Mode == "OmenTank" then
+				if spell.english == "Phalanx" then
+					equip(sets.midcast.phalanx)
+				elseif spell.english == "Dream Flower" or spell.english == "Sheep Song" then
+					equip(sets.midcast.tank.SleepSpells)
+				elseif spell.english == "Cruel Joke" then
 					equip(sets.midcast.bluemagic.MagicalAcc)
-				elseif spell.english == "Bad Breath" or spell.english == "Flying Hip Press" or spell.english == "Frost Breath" or spell.english == "Heat Breath"
-					or spell.english == "Hecatomb Wave" or spell.english == "Magnetite Cloud"  or spell.english == "Poison Breath" or spell.english == "Self-Destruct"
-					or spell.english == "Thunder Breath" or spell.english == "Vapor Spray" or spell.english == "Wind Breath" then
-					equip(sets.midcast.bluemagic.Breath)
-				elseif spell.english == "Frypan" or spell.english == "Head Butt" or spell.english == "Sudden Lunge" or spell.english == "Tail slap"
-					or spell.english == "Whirl of Rage" then
-					equip(sets.midcast.bluemagic.StunPhysical)
-				elseif spell.english == "Blitzstrahl" or spell.english == "Temporal Shift" or spell.english == "Thunderbolt" then
-					equip(sets.midcast.bluemagic.StunMagical)
-				elseif spell.english == "Healing Breeze" or spell.english == "Magic Fruit" or spell.english == "Plenilune Embrace" or spell.english == "Pollen"
-					or spell.english == "Restoral" or spell.english == "Wild Carrot" then
-					equip(sets.midcast.bluemagic.Healing)
-				elseif spell.english == "White Wind" then
-					equip(sets.midcast.bluemagic.HealingHP)
-				elseif spell.english == "Amplification" or spell.english == "Animating Wail" or spell.english == "Carcharian Verve" or spell.english == "Cocoon"
-					or spell.english == "Erratic Flutter" or spell.english == "Exuviation"  or spell.english == "Fantod" or spell.english == "Feather Barrier"
-					or spell.english == "Harden Shell" or spell.english == "Memento Mori" or spell.english == "Nat. Meditation" or spell.english == "Orcish Counterstance" 
-					or spell.english == "Refueling" or spell.english == "Regeneration" or spell.english == "Saline Coat" or spell.english == "Triumphant Roar"
-					or spell.english == "Warm-Up" or spell.english == "Winds of Promyvion" or spell.english == "Zephyr Mantle" or spell.english == "Mighty Guard" then
-					equip(sets.midcast.bluemagic.Buff)
-				elseif spell.english == "Barrier Tusk" or spell.english == "Diamondhide" or spell.english == "Magic Barrier" or spell.english == "Metallic Body"
-					or spell.english == "Plasma Charge" or spell.english == "Pyric Bulwark"  or spell.english == "Reactor Cool" or spell.english == "Occultation" then
-					equip(sets.midcast.bluemagic.BuffSkillBased)
-				elseif spell.english == "Battery Charge" then
-					equip(sets.midcast.bluemagic.Refresh)
+				elseif spell.english == "Reaving Wind" or spell.english == "Feather Tickle" then
+					equip(sets.midcast.bluemagic.MagicalAcc)
+				elseif spell.english == "Holy Water" then
+					equip(sets.items.holywater)
+				elseif spell.type == "Trust" then
+					equip(sets.idle.trust)
+				else
+					equip(sets.idle.tank)
+				end
+			elseif Player_Mode == "TreasureHunter" then
+				if spell.english == "Holy Water" then
+					equip(sets.items.holywater)
+				elseif spell.type == "Trust" then
+					equip(sets.idle.trust)
+				else
+					equip(sets.midcast.treasurehunter)
+				end
+			else
+				if spell.english == "Holy Water" then
+					equip(sets.items.holywater)
+				elseif spell.type == "Trust" then
+					equip(sets.idle.trust)
+				elseif spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then
+					if spell.skill == "Elemental Magic" then
+						equip(sets.midcast.elemental)
+					elseif spell.skill == "Enfeebling Magic" then
+						equip(sets.midcast.enfeebling)
+					elseif spell.skill == "Dark Magic" then
+						equip(sets.midcast.dark)
+					elseif spell.skill == "Enhancing Magic" then
+						if spell.english == "Phalanx" then
+							equip(sets.midcast.phalanx)
+						else
+							equip(sets.midcast.enhancing)
+						end
+					elseif spell.skill == "Healing Magic" then
+						equip(sets.midcast.healing)
+					end
+				elseif spell.type == "BlueMagic" then
+					if spell.english == "Bilgestorm" then
+						equip(sets.midcast.bluemagic.Physical)
+					elseif spell.english == "Heavy Strike" then
+						equip(sets.midcast.bluemagic.PhysicalAcc)
+					elseif spell.english == "Battle Dance" or spell.english == "Bloodrake" or spell.english == "Death Scissors" or spell.english == "Dimensional Death"
+						or spell.english == "Empty Thrash" or spell.english == "Quadrastrike" or spell.english == "Saurian Slide" or spell.english == "Sinker Drill" 
+						or spell.english == "Spinal Cleave" or spell.english == "Sweeping Gouge" or spell.english == "Uppercut" or spell.english == "Vertical Cleave" then
+						equip(sets.midcast.bluemagic.PhysicalStr)
+					elseif spell.english == "Amorphic Spikes" or spell.english == "Asuran Claws" or spell.english == "Barbed Crescent" or spell.english == "Claw Cyclone"
+						or spell.english == "Disseverment" or spell.english == "Foot Kick"  or spell.english == "Frenetic Rip" or spell.english == "Goblin Rush"
+						or spell.english == "Hysteric Barrage" or spell.english == "Paralyzing Triad" or spell.english == "Seedspray" or spell.english == "Sickle Slash" 
+						or spell.english == "Smite of Rage" or spell.english == "Terror Touch" or spell.english == "Thrashing Assault" or spell.english == "Vanity Dive"  then
+						equip(sets.midcast.bluemagic.PhysicalDex)
+					elseif spell.english == "Body Slam" or spell.english == "Cannonball" or spell.english == "Delta Thrust" or spell.english == "Glutinous Dart"
+						or spell.english == "Grand Slam" or spell.english == "Power Attack"  or spell.english == "Quad. Continuum" or spell.english == "Sprout Smack" then
+						equip(sets.midcast.bluemagic.PhysicalVit)
+					elseif spell.english == "Benthic Typhoon" or spell.english == "Feather Storm" or spell.english == "Helldive" or spell.english == "Hydro Shot"
+						or spell.english == "Jet Stream" or spell.english == "Pinecone Bomb"  or spell.english == "Spiral Spin" or spell.english == "Wild Oats" then
+						equip(sets.midcast.bluemagic.PhysicalAgi)
+					elseif spell.english == "Mandibular Bite" or spell.english == "Queasyshroom" then
+						equip(sets.midcast.bluemagic.PhysicalInt)
+					elseif spell.english == "Ram Charge" or spell.english == "Screwdriver" or spell.english == "Tourbillion" then
+						equip(sets.midcast.bluemagic.PhysicalMnd)
+					elseif spell.english == "Bludgeon" then
+						equip(sets.midcast.bluemagic.PhysicalChr)
+					elseif spell.english == "Final Sting" then
+						equip(sets.midcast.bluemagic.PhysicalHP)
+					elseif spell.english == "Anvil Lightning" or spell.english == "Blastbomb" or spell.english == "Blazing Bound" or spell.english == "Bomb Toss"
+						or spell.english == "Cursed Sphere" or spell.english == "Droning Whirlwind"  or spell.english == "Embalming Earth" or spell.english == "Entomb"
+						or spell.english == "Firespit" or spell.english == "Foul Waters" or spell.english == "Ice Break" or spell.english == "Leafstorm" 
+						or spell.english == "Maelstrom" or spell.english == "Molting Plumage" or spell.english == "Nectarous Deluge" or spell.english == "Regurgitation" 
+						or spell.english == "Rending Deluge" or spell.english == "Scouring Spate" or spell.english == "Silent Storm" or spell.english == "Spectral Floe" 
+						or spell.english == "Subduction" or spell.english == "Tem. Upheaval" or spell.english == "Water Bomb" or spell.english == "Crashing Thunder"
+						or spell.english == "Tearing Gust" or spell.english == "Cesspool" then
+						equip(sets.midcast.bluemagic.Magical)
+					elseif spell.english == "Dark Orb" or spell.english == "Death Ray" or spell.english == "Eyes On Me" or spell.english == "Evryone. Grudge"
+						or spell.english == "Palling Salvo" or spell.english == "Tenebral Crush" or spell.english == "Polar Roar" then
+						equip(sets.midcast.bluemagic.MagicalDark)
+					elseif spell.english == "Blinding Fulgor" or spell.english == "Diffusion Ray" or spell.english == "Radiant Breath" or spell.english == "Retinal Glare" 
+					or spell.english == "Rail Cannon" or spell.english == "Uproot" then
+						equip(sets.midcast.bluemagic.MagicalLight)
+					elseif spell.english == "Acrid Stream" or spell.english == "Magic Hammer" or spell.english == "Mind Blast" then
+						equip(sets.midcast.bluemagic.MagicalMnd)
+					elseif spell.english == "Mysterious Light" then
+						equip(sets.midcast.bluemagic.MagicalChr)
+					elseif spell.english == "Thermal Pulse" then
+						equip(sets.midcast.bluemagic.MagicalVit)
+					elseif spell.english == "Charged Whisker" or spell.english == "Gates of Hades" then
+						equip(sets.midcast.bluemagic.MagicalDex)
+					elseif spell.english == "1000 Needles" or spell.english == "Absolute Terror" or spell.english == "Actinic Burst" or spell.english == "Atra. Libations"
+						or spell.english == "Auroral Drape" or spell.english == "Awful Eye"  or spell.english == "Blank Gaze" or spell.english == "Blistering Roar"
+						or spell.english == "Blood Saber" or spell.english == "Chaotic Eye" or spell.english == "Cimicine Discharge" or spell.english == "Cold Wave" 
+						or spell.english == "Corrosive Ooze" or spell.english == "Demoralizing Roar" or spell.english == "Digest" or spell.english == "Dream Flower"  
+						or spell.english == "Enervation" or spell.english == "Feather Tickle"  or spell.english == "Filamented Hold" or spell.english == "Frightful Roar"
+						or spell.english == "Geist Wall" or spell.english == "Infrasonics" or spell.english == "Jettatura" 
+						or spell.english == "Light of Penance" or spell.english == "Lowing" or spell.english == "Mortal Ray" 
+						or spell.english == "MP Drainkiss" or spell.english == "Osmosis"  or spell.english == "Reaving Wind" or spell.english == "Sandspin"
+						or spell.english == "Sandspray" or spell.english == "Sheep Song" or spell.english == "Soporific" or spell.english == "Sound Blast" 
+						or spell.english == "Stinking Gas" or spell.english == "Sub-zero Smash" or spell.english == "Venom Shell" or spell.english == "Voracious Trunk"
+						or spell.english == "Yawn" or spell.english == "Cruel Joke" then
+						equip(sets.midcast.bluemagic.MagicalAcc)
+					elseif spell.english == "Bad Breath" or spell.english == "Flying Hip Press" or spell.english == "Frost Breath" or spell.english == "Heat Breath"
+						or spell.english == "Hecatomb Wave" or spell.english == "Magnetite Cloud"  or spell.english == "Poison Breath" or spell.english == "Self-Destruct"
+						or spell.english == "Thunder Breath" or spell.english == "Vapor Spray" or spell.english == "Wind Breath" then
+						equip(sets.midcast.bluemagic.Breath)
+					elseif spell.english == "Frypan" or spell.english == "Head Butt" or spell.english == "Sudden Lunge" or spell.english == "Tail slap"
+						or spell.english == "Whirl of Rage" then
+						equip(sets.midcast.bluemagic.StunPhysical)
+					elseif spell.english == "Blitzstrahl" or spell.english == "Temporal Shift" or spell.english == "Thunderbolt" then
+						equip(sets.midcast.bluemagic.StunMagical)
+					elseif spell.english == "Healing Breeze" or spell.english == "Magic Fruit" or spell.english == "Plenilune Embrace" or spell.english == "Pollen"
+						or spell.english == "Restoral" or spell.english == "Wild Carrot" then
+						equip(sets.midcast.bluemagic.Healing)
+					elseif spell.english == "White Wind" then
+						equip(sets.midcast.bluemagic.HealingHP)
+					elseif spell.english == "Amplification" or spell.english == "Animating Wail" or spell.english == "Carcharian Verve" or spell.english == "Cocoon"
+						or spell.english == "Erratic Flutter" or spell.english == "Exuviation"  or spell.english == "Fantod" or spell.english == "Feather Barrier"
+						or spell.english == "Harden Shell" or spell.english == "Memento Mori" or spell.english == "Nat. Meditation" or spell.english == "Orcish Counterstance" 
+						or spell.english == "Refueling" or spell.english == "Regeneration" or spell.english == "Saline Coat" or spell.english == "Triumphant Roar"
+						or spell.english == "Warm-Up" or spell.english == "Winds of Promyvion" or spell.english == "Zephyr Mantle" or spell.english == "Mighty Guard" then
+						equip(sets.midcast.bluemagic.Buff)
+					elseif spell.english == "Barrier Tusk" or spell.english == "Diamondhide" or spell.english == "Magic Barrier" or spell.english == "Metallic Body"
+						or spell.english == "Plasma Charge" or spell.english == "Pyric Bulwark"  or spell.english == "Reactor Cool" or spell.english == "Occultation" then
+						equip(sets.midcast.bluemagic.BuffSkillBased)
+					elseif spell.english == "Battery Charge" then
+						equip(sets.midcast.bluemagic.Refresh)
+					end
 				end
 			end
 		end
