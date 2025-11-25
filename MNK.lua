@@ -8,22 +8,8 @@
 --                  |___/       |___/|_|    
 --MNK LUA
 
-
-function file_unload()
-    send_command('unbind numpad9')
-    send_command('unbind numpad8')
-    send_command('unbind numpad7')
-    send_command('unbind numpad6')
-	send_command('unbind numpad5')
-	send_command('unbind numpad4')
-	send_command('unbind numpad3')
-	send_command('unbind numpad2')
-	send_command('unbind numpad1')
-	send_command('unbind f9')
-	send_command('unbind f10')
-	send_command('unbind f11')
-    enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
-end
+----------------------------UI BOX LOGIC -------------------------------
+------------------------------------------------------------------------
 
 TP_Mode = "Hybrid"
 TP_Modes = {'Hybrid','Counter','Defence'}
@@ -38,31 +24,37 @@ gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size
 gearswap_jobbox = texts.new(gearswap_box_config)
 
 function user_setup()
+	initialize_weapon_tracking()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
 
+----------------------------KEYBINDS-------------------------------
+-------------------------------------------------------------------
 function get_sets()
 send_command('bind numpad9 gs c ToggleHybrid')
 send_command('bind numpad8 gs c ToggleCounter')
 send_command('bind numpad7 gs c ToggleDefence')
 
 send_command('bind numpad4 gs c ToggleWeapon')
-send_command('bind numpad5 gs c ToggleStaff')
+send_command('bind numpad5 gs c ToggleSpecial')
 
 send_command('bind f9 input /item "Remedy" <me>')
 send_command('bind f10 input /item "Panacea" <me>')
 send_command('bind f11 input /item "Holy Water" <me>')
 send_command ('bind numpad1 input /mount "Noble Chocobo"')
 send_command ('bind numpad2 input /dismount')
-  
+ 
+----------------------------EQUIPMENT SETS-------------------------------
+------------------------------------------------------------------------
+ 
     sets.idle = {}                  -- Leave this empty.
     sets.precast = {}               -- leave this empty    
     sets.midcast = {}               -- leave this empty    
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
-	sets.ja = {}
-	sets.items = {}
+	sets.ja = {}					-- Leave this empty
+	sets.items = {}					-- Leave this empty
  
  -------------------------------------DT Sets-----------------------------------------------------------
  -- Normal DT / Town set
@@ -388,7 +380,6 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
-
 ------------------------------------ Job Ability Sets---------------------------------------------------
 -- Hundred Fists
 	sets.ja.hundredfists = {
@@ -461,9 +452,18 @@ send_command ('bind numpad2 input /dismount')
 		left_ring="Purity Ring",
 		right_ring="Blenmot's Ring",
 	}
-
 end
 
+----------------------------WEAPONS/AMMO-------------------------------
+------------------------------------------------------------------------
+	Weapons = {
+		Main  	= { "Godhands", "Verethragna" },
+	}
+	
+	Special = {
+		{ main = "Xoanon", sub = "Niobid Strap" },
+	}
+ 
 ------------------------------------ Logic ----------------------------------------------------------
 function idle()
 	if TP_Mode == "Defence" then
@@ -602,64 +602,10 @@ function precast(spell)
 end
 
 function midcast(spell)
-	 if spell.type == "WeaponSkill" then
-		if spell.english == "Victory Smite" then
-			if buffactive["Impetus"] then
-				equip(sets.ws.victorysmiteimpetus) 
-			else
-				equip(sets.ws.victorysmite) 
-			end
-		elseif spell.english == "Raging Fists" then
-			equip(sets.ws.ragingfists)
-		elseif spell.english == "Shijin Spiral" then
-			equip(sets.ws.shijinspiral)
-		elseif spell.english == "Howling Fist" then
-			equip(sets.ws.howlingfist)
-		elseif spell.english == "Tornado Kick" then
-			equip(sets.ws.tornadokick)
-		elseif spell.english == "Final Heaven" then
-			equip(sets.ws.finalheaven)
-		elseif spell.english == "Shell Crusher" or spell.english == "Shattersoul" then
-			equip(sets.ws.shellcrusher)
-		elseif spell.english == "Cataclysm" then
-			equip(sets.ws.cataclysm)
-		elseif spell.english == "Rock Crusher" or spell.english == "Earth Crusher" or spell.english == "Starburst" or spell.english == "Sunburst" then
-			equip(sets.ws.staffele)
-		else
-			equip(sets.ws.weaponskill)
-		end
-	elseif spell.type == "JobAbility" then
-		if spell.english == "Hundred Fists" then
-			equip(sets.ja.hundredfists)
-		elseif spell.english == "Boost" then
-			equip(sets.ja.boost)
-		elseif spell.english == "Dodge" then
-			equip(sets.ja.dodge)
-		elseif spell.english == "Focus" then
-			equip(sets.ja.focus)
-		elseif spell.english == "Chakra" then
-			equip(sets.ja.chakra)
-		elseif spell.english == "Chi Blast" then
-			equip(sets.ja.chiblast)
-		elseif spell.english == "Counterstance" then
-			equip(sets.ja.counterstance)
-		elseif spell.english == "Footwork" then
-			equip(sets.ja.footwork)
-		elseif spell.english == "Mantra" then
-			equip(sets.ja.mantra)
-		elseif spell.english == "Formless Strikes" then
-			equip(sets.ja.formlessstrikes)
-		elseif spell.english == "Perfect Counter" then
-			equip(sets.ja.perfectcounter)
-		else 
-			idle()
-		end
-	elseif spell.type == "Trust" then
+	if spell.type == "Trust" then
 		equip(sets.midcast.trust)
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
-	else
-		equip(sets.midcast.spell)
 	end
 end
 
@@ -699,17 +645,26 @@ function aftercast(spell)
 	end
 end
 
+----------------------------CYCLING/COMMANDS LOGIC----------------------
+------------------------------------------------------------------------
+function cycle(list, current)
+    local index = 1
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    return list[index]
+end
 
-function buff_change(name,gain)
-	if name == "terror" and gain == "true" then
-			equip(sets.idle.normal)
-		end
-	if name == "stun" and gain == "true" then
-			equip(sets.idle.normal)
-		end
-	if name	== "petrification" and gain == "true" then
-			equip(sets.idle.normal)
-		end
+function initialize_weapon_tracking()
+	last_real_main   = player.equipment.main   or Weapons.Main[1]
+	main_mode   = last_real_main
+	
+	special_mode = Special[1]
 end
 
 function self_command(command)
@@ -735,15 +690,12 @@ function self_command(command)
 			idle()
 		end
 	elseif command == "ToggleWeapon" then
-		if player.equipment.main == "Godhands" then
-			equip({ main="Verethragna" })
-		elseif player.equipment.main == "Verethragna" then
-			equip({ main="Godhands" })
-		else
-			equip({ main="Godhands" })
-		end
-	elseif command == "ToggleStaff" then
-		equip({ main="Xoanon", sub="Niobid Strap" })
+		main_mode = cycle(Weapons.Main, main_mode)
+		last_real_main = main_mode
+		equip({ main = main_mode })
+	elseif command == "ToggleSpecial" then
+		special_mode = cycle(Special, special_mode)
+		equip(special_mode)
 	end
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
