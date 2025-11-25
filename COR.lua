@@ -397,7 +397,9 @@ function get_sets()
 	sets.ja.randomdeal = {
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
 	}
-
+	
+	sets.ja.waltz = {
+	}
 ---------------------------	ITEM SETS	---------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
@@ -543,6 +545,8 @@ function precast(spell,action,spellMap,eventArgs)
 				equip(sets.ja.quickdraw)
 			end
 		end
+	elseif spell.type == "Waltz" then
+		equip(sets.ja.waltz)
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
 	end
