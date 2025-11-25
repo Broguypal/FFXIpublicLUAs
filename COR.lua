@@ -599,7 +599,11 @@ function initialize_weapon_tracking()
 	last_real_main   = player.equipment.main   or Weapons.Main[1]
 	last_real_sub    = player.equipment.sub    or Weapons.Sub[1]
 	last_real_ranged = player.equipment.range  or Weapons.Ranged[1]
-
+	
+	main_mode   = last_real_main
+	sub_mode    = last_real_sub
+	ranged_mode = last_real_ranged
+	
 	current_ammo = Ammo.Default
 end
 
