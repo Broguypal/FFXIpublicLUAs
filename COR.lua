@@ -6,7 +6,10 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
+-- COR LUA ----
 
+----------------------------UI BOX LOGIC -------------------------------
+------------------------------------------------------------------------
 TP_Mode = "Hybrid"
  
 TP_Modes = {'Defence','Hybrid'}
@@ -67,7 +70,8 @@ function check_trump_card_count()
     trump_card = a
 end
 
-------------------------DO NOT TOUCH BELOW----------------------------------------
+----------------------------KEYBINDS-------------------------------
+-------------------------------------------------------------------
 function get_sets()
 	-- Toggle Modes
 	send_command('bind numpad9 gs c ToggleMode')
@@ -76,6 +80,7 @@ function get_sets()
 	send_command('bind numpad4 gs c ToggleMain')
 	send_command('bind numpad5 gs c ToggleSub')
 	send_command('bind numpad6 gs c ToggleRanged')
+	send_command('bind numpad7 gs c ToggleAmmo')
 
 	--Shots keybinds
 	send_command ('bind ^numpad1 input /ja "Fire Shot" <t> ')
@@ -96,6 +101,9 @@ function get_sets()
 	send_command ('bind numpad1 input /mount "Noble Chocobo"')
 	send_command ('bind numpad2 input /dismount')
 
+
+----------------------------EQUIPMENT SETS-------------------------------
+------------------------------------------------------------------------
  
     sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- Leave this empty
@@ -104,11 +112,9 @@ function get_sets()
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.ja = {}					-- Leave this empty
-	sets.items = {}
+	sets.items = {}					-- Leave this empty
 
- 
- ------------------ DO NOT TOUCH ABOVE (BUT TOTALLY TOUCH BELOW THIS POINT) ---------
- 
+
 ---- IDLE SETS ----
     sets.idle.normal = {
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -174,7 +180,6 @@ function get_sets()
 	}
 
 ---- MIDCAST SETS ----
-
     sets.midcast.midshot = {
 		head="Malignance Chapeau",
 		body="Chasseur's Frac +2",
@@ -315,7 +320,7 @@ function get_sets()
 		waist="Hachirin-no-Obi",
 	})
 
----- **** IMPORTANT ***** ONLY NON-RANGED WEAPONSKILLS SHOULD HAVE HAUKSBOK BULLET EQUIPPED ******
+---- Note: only non-ranged weaponskills should have Hauksbok Bullet equipped
 	sets.ws.aeolianedge = {
 		ammo="Hauksbok Bullet",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -402,7 +407,27 @@ function get_sets()
 	
 end
 
--------- DO NOT TOUCH BELOW IF COMPLETELY NEW AT GEARSWAP -- Everything above should be all your basic needs.
+----------------------------WEAPONS/AMMO-------------------------------
+------------------------------------------------------------------------
+	Weapons = {
+		Main   = { "Naegling", "Tauret" },
+		Sub    = { "Gleti's Knife", "Tauret" },
+		Ranged = { "Death Penalty", "Anarchy +2", "Fomalhaut" },
+	}
+ 
+	AmmoList = {
+		"Chrono Bullet",
+		"Living Bullet",
+	}
+ 
+	Ammo = {
+		Default     = "Chrono Bullet",
+		PhysicalWS  = "Chrono Bullet",
+		MagicalWS   = "Living Bullet",
+	}
+
+----------------------------INTERNAL LOGIC-------------------------------
+------------------------------------------------------------------------
 function idle()
 	if TP_Mode == "Defence" then
 		equip(sets.idle.tank)
@@ -538,20 +563,41 @@ function midcast(spell,action,spellMap,eventArgs)
 end
 
 function aftercast(spell)
-        local ammo = (last_real_ranged == "Death Penalty") and "Living Bullet" or "Chrono Bullet"
-        equip({main = last_real_main, sub = last_real_sub, range = last_real_ranged, ammo = ammo})
-		idle()
-		check_trump_card_count()
-		gearswap_jobbox:text(gearswap_box())		
-		gearswap_jobbox:show()
+    equip({
+        main  = last_real_main,
+        sub   = last_real_sub,
+        range = last_real_ranged,
+        ammo  = current_ammo,
+    })
+
+    idle()
+    check_trump_card_count()
+    gearswap_jobbox:text(gearswap_box())
+    gearswap_jobbox:show()
+end
+
+----------------------------CYCLING/COMMANDS LOGIC----------------------
+------------------------------------------------------------------------
+function cycle(list, current)
+    local index = 1
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    return list[index]
 end
 
 function initialize_weapon_tracking()
-    last_real_main   = player.equipment.main or "Naegling"
-    last_real_sub    = player.equipment.sub or "Gleti's Knife"
-    last_real_ranged = player.equipment.range or "Fomalhaut"
-end
+	last_real_main   = player.equipment.main   or Weapons.Main[1]
+	last_real_sub    = player.equipment.sub    or Weapons.Sub[1]
+	last_real_ranged = player.equipment.range  or Weapons.Ranged[1]
 
+	current_ammo = Ammo.Default
+end
 
 function self_command(command)
 	if command == "RangedAttack" then
@@ -565,58 +611,29 @@ function self_command(command)
 			idle()
 		end
 	elseif command == "ToggleMain" then
-		local main_cycle = { "Naegling", "Tauret" }
-		if not main_mode then main_mode = main_cycle[1] end
-		local index = 1
-		for i, name in ipairs(main_cycle) do
-			if main_mode == name then
-				index = (i % #main_cycle) + 1
-				break
-			end
-		end
-		main_mode = main_cycle[index]
-		
+		main_mode = cycle(Weapons.Main, main_mode)
 		last_real_main = main_mode
-		
 		equip({ main = main_mode })
 	elseif command == "ToggleSub" then
-		local sub_cycle = { "Gleti's Knife", "Tauret" }
-		if not sub_mode then sub_mode = sub_cycle[1] end
-		local index = 1
-		for i, name in ipairs(sub_cycle) do
-			if sub_mode == name then
-				index = (i % #sub_cycle) + 1
-				break
-			end
-		end
-		sub_mode = sub_cycle[index]
-		
+		sub_mode = cycle(Weapons.Sub, sub_mode)
 		last_real_sub = sub_mode
-		
 		equip({ sub = sub_mode })
 	elseif command == "ToggleRanged" then
-		local ranged_cycle = { "Death Penalty", "Anarchy +2", "Fomalhaut" }
-		if not ranged_mode then ranged_mode = ranged_cycle[1] end
-		local index = 1
-		for i, name in ipairs(ranged_cycle) do
-			if ranged_mode == name then
-				index = (i % #ranged_cycle) + 1
-				break
-			end
-		end
-		ranged_mode = ranged_cycle[index]
-		
+		ranged_mode = cycle(Weapons.Ranged, ranged_mode)
 		last_real_ranged = ranged_mode
-
-		local ammo = (ranged_mode == "Death Penalty") and "Living Bullet" or "Chrono Bullet"
-		equip({ range = ranged_mode, ammo = ammo })
+		equip({ range = ranged_mode, ammo = current_ammo })
+	elseif command == "ToggleAmmo" then
+		current_ammo = cycle(AmmoList, current_ammo)
+		equip({ ammo = current_ammo })
+		add_to_chat(122, "Ammo set to: "..current_ammo)
 	end
 	check_trump_card_count()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
 
----- 	Unload settings 		----
+----------------------------MISC----------------------------------------
+------------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')
