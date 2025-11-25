@@ -33,11 +33,13 @@ gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size
 gearswap_jobbox = texts.new(gearswap_box_config)
 
 function user_setup()
+	initialize_weapon_tracking()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
 
------------------------GEAR SETS------------------------------
+----------------------------KEYBINDS-------------------------------
+-------------------------------------------------------------------
 function get_sets()
 	--Mode Commands
 	send_command('bind numpad9 gs c ToggleHybrid')
@@ -56,29 +58,21 @@ function get_sets()
 	send_command('bind f11 input /item "Holy Water" <me>')
 	send_command('bind f12 input //fillmode')
 
+----------------------------EQUIPMENT SETS-------------------------------
+------------------------------------------------------------------------
 	sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- Leave this empty
-		sets.engaged.dualwield = {}
-		sets.engaged.hybrid = {}
+		sets.engaged.dualwield = {} -- Leave this empty
+		sets.engaged.hybrid = {}	-- Leave this empty
 	sets.precast = {}               -- leave this empty   
-		sets.precast.tank = {}
+		sets.precast.tank = {}		-- Leave this empty
 	sets.midcast = {}               -- leave this empty
-		sets.midcast.tank = {}
-		sets.midcast.bluemagic = {}
+		sets.midcast.tank = {}		-- Leave this empty
+		sets.midcast.bluemagic = {}	-- Leave this empty
 	sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
-	sets.items = {}
-	sets.main = {}
-	sets.sub = {}
+	sets.items = {}					-- Leave this empty
  
-	 -- Main Weapons 
-	sets.main["Tizona"]		= {main="Tizona"}
-	sets.main["Maxentius"]	= {main="Maxentius"}
-	 
-	 -- Sub Weapons
-	sets.sub["Thibron"]		= {sub="Thibron"}
-	sets.sub["Zantetsuken"]	= {sub="Zantetsuken"}
-	sets.sub["Bunzi's Rod"]	= {sub="Bunzi's Rod"}
  
 	 ---- IDLE SETS ----
     sets.idle.hybrid = {
@@ -807,7 +801,14 @@ function get_sets()
 	}
 end
 
-
+----------------------------WEAPONS/AMMO-------------------------------
+------------------------------------------------------------------------
+	Weapons = {
+		Main	=	{"Tizona", "Maxentius"},
+		Sub		=	{"Thibron","Zantetsuken","Bunzi's Rod"}
+	}
+----------------------------INTERNAL LOGIC-------------------------------
+------------------------------------------------------------------------
 windower.register_event('lose buff', function(buff_id)
 	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 or buff_id == 273 then
 		idle()
@@ -1142,7 +1143,6 @@ function midcast(spell)
 	end
 end
 
-
 function aftercast(spell)
 	if spell.type == "BlueMagic" then
 		if burst_active then
@@ -1158,6 +1158,29 @@ function aftercast(spell)
 		end
 	end
 	idle()
+end
+
+----------------------------CYCLING/COMMANDS LOGIC----------------------
+------------------------------------------------------------------------
+function cycle(list, current)
+    local index = 1
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    return list[index]
+end
+
+function initialize_weapon_tracking()
+	last_real_main   = player.equipment.main   or Weapons.Main[1]
+	last_real_sub    = player.equipment.sub    or Weapons.Sub[1]
+	
+	main_mode   = last_real_main
+	sub_mode    = last_real_sub
 end
 
 function self_command(command)
@@ -1195,33 +1218,13 @@ function self_command(command)
 			Lock_Mode = "Locked"
 		end
 	elseif command == "ToggleMAIN" then
-		local main_cycle = {"Tizona","Maxentius"}
-        local current = player.equipment.main
-		local next_index = 1
-        for i, main in ipairs(main_cycle) do
-            if current == main then
-                next_index = (i % #main_cycle) + 1
-                break  
-            end
-        end
-		local next_weapon = main_cycle[next_index]
-        if next_weapon then
-            equip({ main = next_weapon })
-        end
+		main_mode = cycle(Weapons.Main, main_mode)
+		last_real_main = main_mode
+		equip({ main = main_mode })
 	elseif command == "ToggleSUB" then
-		local sub_cycle = {"Zantetsuken","Thibron","Bunzi's Rod"}
-		local current = player.equipment.sub
-		local next_index = 1
-		for i, sub in ipairs(sub_cycle) do
-			if current == sub then
-				next_index = (i % #sub_cycle) + 1
-				break
-			end
-		end
-		local next_offhand = sub_cycle[next_index]
-		if next_offhand then
-			equip({ sub = next_offhand })
-		end
+		sub_mode = cycle(Weapons.Sub, sub_mode)
+		last_real_sub = sub_mode
+		equip({ sub = sub_mode })
 	end
 	gearswap_jobbox:text(gearswap_box())
 	gearswap_jobbox:show()
