@@ -15,7 +15,7 @@ tp_mode = 'Hybrid'
 spell_mode = 'Normal'
 auto_mode = 'Off'
 
-tp_modes = {'Hybrid','DPS','AoETank','SingleTank','MagicEva','MagicAettir'}
+tp_modes = {'Hybrid','DPS','AoETank','SingleTank','MagicEva'}
 spell_modes = {'Normal','SIR'}
 auto_modes = {'On','Off'}
 
@@ -33,6 +33,7 @@ gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size
 gearswap_jobbox = texts.new(gearswap_box_config)
 
 function user_setup()
+	initialize_weapon_tracking()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
@@ -79,13 +80,7 @@ function get_sets()
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
-	sets.main =	{}
 
----- 		Weapons used 		----
-sets.main["Epeolatry"] = {main = "Epeolatry"}
-sets.main["Lionheart"] = {main = "Lionheart"}
-sets.main["Aettir"]    = {main = "Aettir"}
-sets.main["Lycurgos"]  = {main = "Lycurgos"}
 
  ----			 Idle Sets				----
     sets.idle.normal = {
@@ -123,26 +118,7 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	
-	sets.idle.singletank = {
-		main={ name="Epeolatry", augments={'Path: A',}},
-		sub={ name="Refined Grip +1", augments={'Path: A',}},
-		ammo="Staunch Tathlum +1",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body="Runeist Coat +4",
-		hands="Turms Mittens +1",
-		legs="Eri. Leg Guards +3",
-		feet="Erilaz Greaves +3",
-		neck="Warder's Charm +1",
-		waist="Flume Belt +1",
-		left_ear="Tuisto Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Shadow Ring",
-		right_ring="Moonlight Ring",
-		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Enmity+10','Parrying rate+5%',}},
-	}
-	
 	sets.idle.magic = {
-		main={ name="Epeolatry", augments={'Path: A',}},
 		sub="Irenic Strap",
 		ammo="Staunch Tathlum +1",
 		head="Nyame Helm",
@@ -158,11 +134,6 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		}
-	
-	sets.idle.magicaettir = set_combine(sets.idle.magic,{
-		main={ name="Aettir", augments={'Accuracy+70','Mag. Evasion+50','Weapon skill damage +10%',}},
-		})
-	
 
 	sets.idle.dualwield = {
 		main="Naegling",
@@ -199,6 +170,24 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		}
+	
+	sets.engaged.singletank = {
+		main={ name="Epeolatry", augments={'Path: A',}},
+		sub={ name="Refined Grip +1", augments={'Path: A',}},
+		ammo="Staunch Tathlum +1",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body="Runeist Coat +4",
+		hands="Turms Mittens +1",
+		legs="Eri. Leg Guards +3",
+		feet="Erilaz Greaves +3",
+		neck="Warder's Charm +1",
+		waist="Flume Belt +1",
+		left_ear="Tuisto Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Shadow Ring",
+		right_ring="Moonlight Ring",
+		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Enmity+10','Parrying rate+5%',}},
+	}
 	
 	sets.engaged.battuta = {
 		sub={ name="Refined Grip +1", augments={'Path: A',}},
@@ -324,10 +313,6 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		head="Erilaz Galea +3",
 		}
 		
-	sets.precast.battuta = {
-		head={ name="Fu. Bandeau +2", augments={'Enhances "Battuta" effect',}},
-		}
-		
 	sets.precast.enmity = {
 		ammo="Aqreqaq Bomblet",
 		head="Halitus Helm",
@@ -343,6 +328,10 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		right_ring="Eihwaz Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
 		}
+
+	sets.precast.battuta = set_combine(sets.precast.enmity,{
+		head={ name="Fu. Bandeau +2", augments={'Enhances "Battuta" effect',}},
+		})
 		
 ----			 Midcast Sets				----	
     sets.midcast.enmity = {
@@ -409,7 +398,6 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 		waist="Sroda Belt",
 		right_ear={ name="Erilaz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
 	})
-	
 	
 ----			Item Sets						----
 	sets.items.holywater = {
@@ -484,8 +472,14 @@ sets.main["Lycurgos"]  = {main = "Lycurgos"}
 	}
 end
 
-----			 Internal Logic				----	
--- Idle() - the superhero of the .lua
+----------------------------WEAPONS/AMMO-------------------------------
+------------------------------------------------------------------------
+	Weapons = {
+		Main	=	{"Epeolatry","Lionheart","Aettir","Lycurgos"},
+	}
+
+----------------------------Internal Logic-------------------------------
+------------------------------------------------------------------------
 function idle()
 	if tp_mode == "Hybrid" or tp_mode == "DPS" then
 		if player.status == "Engaged" then
@@ -524,15 +518,13 @@ function idle()
 			if buffactive["Battuta"] then
 				equip(sets.engaged.battuta)
 			else
-				equip(sets.idle.singletank)
+				equip(sets.engaged.singletank)
 			end
 		else
-			equip (sets.idle.singletank)
+			equip (sets.engaged.singletank)
 		end
 	elseif tp_mode == "MagicEva" then
 		equip(sets.idle.magic)
-	elseif tp_mode == "MagicAettir" then
-		equip(sets.idle.magicaettir)
 	end
 end
 
@@ -565,7 +557,7 @@ function precast(spell)
 		equip(sets.precast.valiance)
 	elseif spell.english == "Vivacious Pulse" then
 		equip(sets.precast.pulse)
-	elseif spell.type == "JobAbility" or spell.english == "Pflug" or spell.english == "Liement" or spell.english == "Battuta" then
+	elseif spell.english == "Pflug" or spell.english == "Liement" then
 		equip(sets.precast.enmity)
 	elseif spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then 
 		equip(sets.precast.fastcast)
@@ -579,7 +571,7 @@ end
 --midcast rules
 function midcast(spell)
 	if spell.english == "Foil" or spell.english == "Poisonga" or spell.english == "Stun" or spell.english == "Flash" or spell.english == "Jettatura" or spell.english == "Blank Gaze" then
-		if tp_mode == "Hybrid" or tp_mode == "DPS" or MOde == "Single Tank" or tp_mode == "MagicEva" then
+		if tp_mode == "Hybrid" or tp_mode == "DPS" or tp_mode == "SingleTank" or tp_mode == "MagicEva" then
 			if spell_mode == "Normal" then
 				equip(sets.midcast.enmity)
 			else
@@ -611,7 +603,7 @@ end
 function aftercast(spell)
 	if spell.english == "Battuta" and player.status == "Engaged" then
 		if tp_mode == "AoETank" or tp_mode == "SingleTank" then
-			equip(sets.idle.battuta)
+			equip(sets.engaged.battuta)
 		else
 			idle()
 		end
@@ -633,7 +625,7 @@ windower.register_event('lose buff', function(buff_id)
 		end
 	end
 	if buff_id == 525 then
-		if auto_mode == "On" and player.hp > 0 and pet and pet.isvalid then
+		if auto_mode == "On" and player.hp > 0 then
 			send_command('input /ja "Flabra" <me>')
 		end
 	end
@@ -664,13 +656,33 @@ windower.register_event('lose buff', function(buff_id)
 	end
 end)
 
--- rules for setting modes
+----------------------------CYCLING/COMMANDS LOGIC----------------------
+------------------------------------------------------------------------
+function cycle(list, current)
+    local index = 1
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    return list[index]
+end
+
+function initialize_weapon_tracking()
+	last_real_main   = player.equipment.main   or Weapons.Main[1]
+	main_mode   = last_real_main
+	equip({ main = main_mode })
+end
+
 function self_command(command)
 	if command == "ToggleHybrid" then
 		if tp_mode == "Hybrid" then
 			tp_mode = "DPS"
 			idle()
-		elseif tp_mode == "DPS" or tp_mode == "AoETank" or tp_mode == "SingleTank" or tp_mode == "MagicEva" or tp_mode == "MagicAettir" then
+		elseif tp_mode == "DPS" or tp_mode == "AoETank" or tp_mode == "SingleTank" or tp_mode == "MagicEva" then
 			tp_mode = "Hybrid"
 			idle()
 		end
@@ -678,41 +690,23 @@ function self_command(command)
 		if tp_mode == "AoETank" then
 			tp_mode = "SingleTank"
 			idle()
-		elseif tp_mode == "Hybrid" or tp_mode == "DPS" or tp_mode == "SingleTank" or tp_mode == "MagicEva" or tp_mode == "MagicAettir" then
+		elseif tp_mode == "Hybrid" or tp_mode == "DPS" or tp_mode == "SingleTank" or tp_mode == "MagicEva" then
 			tp_mode = "AoETank"
 			idle()
 		end
 	elseif command == "ToggleMagic" then
-		if tp_mode == "MagicEva" then
-			tp_mode = "MagicAettir"
-			idle()
-		elseif tp_mode == "Hybrid" or tp_mode == "DPS" or tp_mode == "AoETank" or tp_mode == "SingleTank" or tp_mode == "MagicAettir" then
-			tp_mode = "MagicEva"
-			idle()
-		end
+		tp_mode = "MagicEva"
+		idle()
 	elseif command == "ToggleSIR" then
 		if spell_mode == "Normal" then
 			spell_mode = "SIR"
-			idle()
 		else
 			spell_mode = "Normal"
-			idle()
 		end
 	elseif command == "ToggleWeapon" then
-		local main_cycle	=	{"Epeolatry","Lionheart","Aettir","Lycurgos"}
-		local current = player.equipment.main
-		local next_index = 1
-        for i, main in ipairs(main_cycle) do
-            if current == main then
-                next_index = (i % #main_cycle) + 1
-                break  
-            end
-        end
-		local next_weapon = main_cycle[next_index]
-        if next_weapon then
-			
-            equip({ main = next_weapon })
-        end
+		main_mode = cycle(Weapons.Main, main_mode)
+		last_real_main = main_mode
+		equip({ main = main_mode })
 	elseif command == "ToggleAUTO" then
 		if auto_mode == "Off" then
 			auto_mode = "On"
