@@ -708,7 +708,7 @@ end
 ---------------------------	LOGIC	---------------------------
 -- Registering event for pet changes -- Essentially, this checks the Pet TP every second, and if it reaches 850+ it automatically swaps to the appropriate pet weaponskill set.
 windower.register_event('time change', function(new, old)
-	if new > old and pet.isvalid and pet.status == "Engaged" then 
+	if new > old and pet and pet.isvalid and pet.status == "Engaged" then 
 		if ( TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Pet" ) and pet.tp >= 850 and player.tp <= 400 then
 			if pet.frame == "Sharpshot Frame" then
 				equip(sets.ws.pet.arcuballista)
@@ -730,7 +730,7 @@ function idle()
 	if TP_Mode == "Emergency-DT" then
 		equip(sets.idle.Tank)
 	elseif TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" then
-		if player.status == "Idle" and pet.status == "Engaged" then
+		if player.status == "Idle" and pet and pet.isvalid and pet.status == "Engaged" then
 			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
 				if player.equipment.main == "Ohtas" then
 					equip(sets.engaged.pet.BruiserOhtas)
@@ -750,7 +750,7 @@ function idle()
 			elseif pet.frame == "Stormwaker Frame" then
 				equip(sets.precast.pet.fastcast)
 			end
-		elseif player.status == "Engaged" and pet.status == "Engaged" then
+		elseif player.status == "Engaged" and pet and pet.isvalid and pet.status == "Engaged" then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
 				if TP_Mode == "Hybrid" then
 					equip(sets.engaged.hybrid.Godhands)
@@ -800,7 +800,7 @@ function idle()
 			equip(sets.idle.Normal)
 		end
 	elseif TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" then
-		if pet.status == "Engaged" then
+		if pet and pet.isvalid and pet.status == "Engaged" then
 			if TP_Mode == "Overdrive" then
 				if pet.frame == "Sharpshot Frame" then
 					equip(sets.engaged.overdrive.Sharpshot)
@@ -820,7 +820,7 @@ function idle()
 	elseif TP_Mode == "PetDEF" then
 		equip(sets.idle.PetTank)
 	elseif TP_Mode == "Pet" then
-		if pet.status == "Engaged" then
+		if pet and pet.isvalid and pet.status == "Engaged" then
 			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
 				if player.equipment.main == "Ohtas" then
 					equip(sets.engaged.pet.BruiserOhtas)
@@ -1007,8 +1007,7 @@ function initialize_enmity_logic()
 	windower.register_event("incoming text", function(original)
 		local now = os.clock()
 
-		if (TP_Mode == "Hybrid" or TP_Mode == "Pet")
-		and pet and pet.isvalid
+		if (TP_Mode == "Hybrid" or TP_Mode == "Pet") and pet and pet.isvalid 
 		and pet.distance and pet.distance < PetEnmityDistanceLimit then
 
 			if buffactive["Fire Maneuver"]
@@ -1172,7 +1171,7 @@ function self_command(command)
 end
 
 function check_pet_status()
-	if pet.isvalid then
+	if pet and pet.isvalid then
 		if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" and ( pet.attachments.flashbulb or pet.attachments.strobe or pet.attachments["strobe II"] ) then
 			Pet_Mode = "Tank"
 		elseif pet.frame == "Valoredge Frame" then
