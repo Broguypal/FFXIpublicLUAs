@@ -1449,7 +1449,6 @@ function initialize_weapon_tracking()
 	sub_mode    = last_real_sub
 	
 	special_mode = nil
-
 end
 
 function self_command(command)
