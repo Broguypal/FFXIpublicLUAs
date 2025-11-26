@@ -1339,13 +1339,6 @@ function midcast(spell)
 end
 
 function aftercast(spell)
-	if Lock_Mode == "Unlocked" then
-		equip({
-			main  = last_real_main,
-			sub   = last_real_sub,
-		})
-	end
-	
 	if spell.type == "Ninjutsu" then
 		check_shihei()
 		gearswap_jobbox:text(gearswap_box())		
@@ -1459,19 +1452,24 @@ function self_command(command)
 	elseif command == "ToggleMelee" then
 		if Player_Mode == "Tank" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" then
 			Player_Mode = "Melee"
-				if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
-					equip({main = Weapons.Melee.main[1], sub = Weapons.Melee.sub_dw[1],})
-					player.equipment.main = Weapons.Melee.main[1]
-					player.equipment.sub  = Weapons.Melee.sub_dw[1]
-					last_real_main = Weapons.Melee.main[1]
-					last_real_sub  = Weapons.Melee.sub_dw[1]
-				else
-					equip({main = Weapons.Melee.main[1], sub = Weapons.Melee.sub_1h[1],})
-					player.equipment.main = Weapons.Melee.main[1]
-					player.equipment.sub  = Weapons.Melee.sub_1h[1]
-					last_real_main = Weapons.Melee.main[1]
-					last_real_sub  = Weapons.Melee.sub_1h[1]
-				end
+
+			local new_main, new_sub
+			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+				new_main = Weapons.Melee.main[1]
+				new_sub  = Weapons.Melee.sub_dw[1]
+			else
+				new_main = Weapons.Melee.main[1]
+				new_sub  = Weapons.Melee.sub_1h[1]
+			end
+
+			equip({ main = new_main, sub = new_sub })
+
+			last_real_main = new_main
+			last_real_sub  = new_sub
+
+			main_mode = new_main
+			sub_mode  = new_sub
+
 			idle()
 		elseif Player_Mode == "Melee" then
 			Player_Mode = "Enspell"
@@ -1483,21 +1481,37 @@ function self_command(command)
 	elseif command == "ToggleTank" then
 		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Enspell" or Player_Mode == "Caster" then
 			Player_Mode = "Tank"
-			equip({main = Weapons.Tank.main[1], sub = Weapons.Tank.sub[1],})
-			player.equipment.main = Weapons.Tank.main[1]
-			player.equipment.sub  = Weapons.Tank.sub[1]
-			last_real_main = Weapons.Tank.main[1]
-			last_real_sub  = Weapons.Tank.sub[1]
+
+			local new_main = Weapons.Tank.main[1]
+			local new_sub  = Weapons.Tank.sub[1]
+
+			equip({ main = new_main, sub = new_sub })
+
+			-- FIX: keep cycle index synced
+			last_real_main = new_main
+			last_real_sub  = new_sub
+
+			main_mode = new_main
+			sub_mode  = new_sub
+
 			idle()
 		end
 	elseif command == "ToggleCaster" then
 		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Enspell" or Player_Mode == "Tank" then
 			Player_Mode = "Caster"
-			equip({main = Weapons.Caster.main[1], sub = Weapons.Caster.sub[1],})
-			player.equipment.main = Weapons.Caster.main[1]
-			player.equipment.sub  = Weapons.Caster.sub[1]
-			last_real_main = Weapons.Caster.main[1]
-			last_real_sub  = Weapons.Caster.sub[1]
+
+			local new_main = Weapons.Caster.main[1]
+			local new_sub  = Weapons.Caster.sub[1]
+
+			equip({ main = new_main, sub = new_sub })
+
+			-- FIX: keep cycle index synced
+			last_real_main = new_main
+			last_real_sub  = new_sub
+
+			main_mode = new_main
+			sub_mode  = new_sub
+
 			idle()
 		end
 	elseif command == "ToggleEnfeeble" then
@@ -1521,18 +1535,16 @@ function self_command(command)
 	elseif command == "ToggleMain" then
 		local cycle_list = get_main_cycle()
 		if #cycle_list > 0 then
-		main_mode = cycle(cycle_list, main_mode)
-		equip({ main = main_mode })
-		player.equipment.main = main_mode
-        last_real_main        = main_mode
+			main_mode = cycle(cycle_list, main_mode)
+			equip({ main = main_mode })
+			last_real_main = main_mode
 		end
 	elseif command == "ToggleSub" then
 		local cycle_list = get_sub_cycle()
 		if #cycle_list > 0 then
-		sub_mode = cycle(cycle_list, sub_mode)
-		equip({ sub = sub_mode })
-		player.equipment.sub	= sub_mode
-        last_real_sub 			= sub_mode
+			sub_mode = cycle(cycle_list, sub_mode)
+			equip({ sub = sub_mode })
+			last_real_sub = sub_mode
 		end
 	end
 	check_shihei()
