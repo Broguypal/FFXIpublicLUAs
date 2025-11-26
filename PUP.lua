@@ -12,22 +12,19 @@
 --------------------------- SETTING UP TEXTBOX ------------------------------------------
 TP_Mode = "Hybrid"
 Pet_Mode = "NA"
-Pet_Distance = "Melee"
-Lock_Mode = "Locked"
+Animator_Mode = "Melee"
 Auto_Mode = "Off"
  
 TP_Modes = {'Hybrid','HybridDEF','Master','MasterDEF','Overdrive','OverdriveDEF','Pet','PetDEF','Emergency-DT'}
 Pet_Modes = {'NA','Bruiser','Tank','Sharpshot','Ranged','WHM','BLM','RDM','Other'}
-Pet_Distances = {'Melee', 'Ranged'}
-Lock_Modes = {'Locked','Unlocked'}
+Animator_Modes = {'Melee', 'Ranged', 'Master'}
 Auto_Modes = {'On','Off'}
 
 gearswap_box = function()
 	str = '           \\cs(246,102,13)PUPPETMASTER\\cr\n'
 	str = str..' Current Mode:\\cs(200,100,200)   '..TP_Mode..'\\cr\n'
 	str = str..' Pet Mode:\\cs(54,120,233)   '..Pet_Mode..'\\cr\n'
-	str = str..' Pet Distance:\\cs(211,211,211)   '..Pet_Distance..'\\cr\n'
-	str = str..' Animator Lock:\\cs(211,211,211)   '..Lock_Mode..'\\cr\n'
+	str = str..' Animator:\\cs(211,211,211)   '..Animator_Mode..'\\cr\n'
 	str = str..' Auto Maneuver:\\cs(211,211,211)   '..Auto_Mode..'\\cr\n'
 	str = str..' crl: \\cs(255,255,255)[LGT]\\cr \\cs(255,64,64)[FIR]\\cr \\cs(0,255,0)[WND]\\cr \\cs(180,0,255)[THD]\\cr\n'
 	str = str..' alt: \\cs(80,60,100)[DRK]\\cr \\cs(128,255,255)[ICE]\\cr \\cs(165,100,40)[STN]\\cr \\cs(64,128,255)[WTR]\\cr\n'
@@ -54,6 +51,7 @@ gearswap_box_config = {pos={x=1250,y=525},padding=8,text={font='sans-serif',size
 gearswap_jobbox = texts.new(gearswap_box_config)
 
 function user_setup()
+	initialize_weapon_tracking()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 	initialize_enmity_logic()
@@ -66,10 +64,9 @@ function get_sets()
 	send_command('bind numpad8 gs c ToggleOverdrive')
 	send_command('bind numpad7 gs c TogglePet')
 	send_command('bind numpad6 gs c ToggleMaster')
-	send_command('bind numpad5 gs c ToggleEmergency')
+	send_command('bind numpad3 gs c ToggleEmergency')
 	send_command('bind numpad4 gs c ToggleWeapon')
-	send_command('bind numpad3 gs c ToggleLock')
-	send_command('bind numpad2 gs c ToggleDistance')
+	send_command('bind numpad5 gs c ToggleAnimator')
 	send_command('bind numpad0 gs c ToggleAutoMode')
 	
 	-- Manouver commands
@@ -109,23 +106,10 @@ function get_sets()
 		sets.midcast.pet = {} 
 	sets.items = {}
 	sets.animators = {}
-	sets.weapons = {}
  	
 	---------------------------	GEAR SETS	---------------------------	
-	------------- Animator Swaps - Put in your applicable animators here ---------------
+	
 	-- Note: Please buy a "left_ear="Mache Earring +1"" to make a lot of the swaps work
-	sets.animators.Ranged = {range="Animator P II +1",}
-	sets.animators.Melee = {range="Animator P +1",}
-	sets.animators.Master = {range="Neo Animator",}
-
-	-- Weapon sets 
-	sets.weapons.Kenkonken   = {main="Kenkonken"}
-	sets.weapons.Xiucoatl    = {main="Xiucoatl"}
-	sets.weapons.Godhands    = {main="Godhands"}
-	sets.weapons.Verethragna = {main="Verethragna"}
-	sets.weapons.Ohtas       = {main="Ohtas"}
-	sets.weapons.Sakpata     = {main="Sakpata's Fists"}
-	sets.weapons.Gnafron     = {main="Gnafron's Adargas"}
 
 	---------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
 	-- Master Damage taken --
@@ -197,14 +181,9 @@ function get_sets()
 		right_ring="Fickblix's Ring",
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
-	
-	sets.engaged.hybrid.NormalMelee = set_combine(sets.engaged.hybrid.Normal, sets.animators.Melee)
-	sets.engaged.hybrid.NormalRanged = set_combine(sets.engaged.hybrid.Normal, sets.animators.Ranged)
 
 	-- Normal - Godhands/Xiucoatl equipped --
 	sets.engaged.hybrid.Godhands = set_combine(sets.engaged.hybrid.Normal,{left_ear="Mache Earring +1",})
-	sets.engaged.hybrid.GodhandsMelee = set_combine(sets.engaged.hybrid.Godhands, sets.animators.Melee)
-	sets.engaged.hybrid.GodhandsRanged = set_combine(sets.engaged.hybrid.Godhands, sets.animators.Ranged)
 
 	--Hybrid Dual Tank set
 	sets.engaged.hybrid.Defence = {
@@ -223,13 +202,9 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','Pet: Phys. dmg. taken-10%',}},
 	}
 	
-	sets.engaged.hybrid.DefenceMelee = set_combine(sets.engaged.hybrid.Defence, sets.animators.Melee)
-	sets.engaged.hybrid.DefenceRanged = set_combine(sets.engaged.hybrid.Defence, sets.animators.Ranged)
 
 	-- Hybrid - Godhands/Xiucoatl equipped --
 	sets.engaged.hybrid.DefenceGodhands = set_combine(sets.engaged.hybrid.Defence,{left_ear="Mache Earring +1",})
-	sets.engaged.hybrid.DefenceGodhandsMelee = set_combine(sets.engaged.hybrid.DefenceGodhands, sets.animators.Melee)
-	sets.engaged.hybrid.DefenceGodhandsRanged = set_combine(sets.engaged.hybrid.DefenceGodhands, sets.animators.Ranged)
 
 	---------------------------	MASTER ONLY ENGAGED SETS	---------------------------
 	-- Normal Master Mode
@@ -249,11 +224,8 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
-	sets.engaged.master.NormalUnlocked = set_combine(sets.engaged.master.Normal, sets.animators.Master)
-
 	--Normal - Godhands/xiucoatl equipped
 	sets.engaged.master.Godhands = set_combine(sets.engaged.master.Normal,{left_ear="Mache Earring +1",})
-	sets.engaged.master.GodhandsUnlocked = set_combine(sets.engaged.master.Godhands, sets.animators.Master)
 
 	-- Defence
 	sets.engaged.master.Defence = {
@@ -272,24 +244,8 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
-	sets.engaged.master.DefenceUnlocked = set_combine(sets.engaged.master.Defence, sets.animators.Master)
-
 	--Defence - Godhands/xiucoatl equipped
 	sets.engaged.master.DefenceGodhands = set_combine(sets.engaged.master.Defence,{left_ear="Mache Earring +1",})
-	sets.engaged.master.DefenceGodhandsUnlocked = set_combine(sets.engaged.master.DefenceGodhands, sets.animators.Master)
-
-	---- Master Sets for Hybrid Mode (For when pet dies or is not engaged during Hybrid bode
-	--Hybrid Master
-	sets.engaged.master.HybridMelee = set_combine(sets.engaged.master.Normal, sets.animators.Melee)
-	sets.engaged.master.HybridRanged = set_combine(sets.engaged.master.Normal, sets.animators.Ranged)
-	sets.engaged.master.HybridGodhandsMelee = set_combine(sets.engaged.master.Godhands, sets.animators.Melee)
-	sets.engaged.master.HybridGodhandsRanged = set_combine(sets.engaged.master.Godhands, sets.animators.Ranged)
-		
-	-- Defence Master
-	sets.engaged.master.HybridDefenceMelee = set_combine(sets.engaged.master.Defence, sets.animators.Melee)
-	sets.engaged.master.HybridDefenceRanged = set_combine(sets.engaged.master.Defence, sets.animators.Ranged)
-	sets.engaged.master.HybridDefenceGodhandsMelee = set_combine(sets.engaged.master.DefenceGodhands, sets.animators.Melee)
-	sets.engaged.master.HybridDefenceGodhandsRanged = set_combine(sets.engaged.master.DefenceGodhands, sets.animators.Ranged)
 
 	---------------------------	PET ONLY ENGAGED SETS	---------------------------
 	-- Normal
@@ -370,8 +326,6 @@ function get_sets()
 		right_ring="Thur. Ring +1",
 		back={ name="Dispersal Mantle", augments={'STR+2','DEX+4','Pet: TP Bonus+500',}},
 	}
-	
-	sets.engaged.overdrive.SharpshotUnlocked = set_combine(sets.engaged.overdrive.Sharpshot, sets.animators.Melee)
 
 	--Sharpshot overdrive Defence
 	sets.engaged.overdrive.SharpshotDEF = {
@@ -390,8 +344,6 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.SharpshotDEFUnlocked = set_combine(sets.engaged.overdrive.SharpshotDEF, sets.animators.Melee)
-
 	--Valoredge overdrive
 	sets.engaged.overdrive.Valoredge = {
 		ammo="Automat. Oil +3",
@@ -409,8 +361,6 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	sets.engaged.overdrive.ValoredgeUnlocked = set_combine(sets.engaged.overdrive.Valoredge, sets.animators.Melee)
-
 	--Valoredge overdrive Defence
 	sets.engaged.overdrive.ValoredgeDEF = {
 		ammo="Automat. Oil +3",
@@ -427,8 +377,6 @@ function get_sets()
 		right_ring="Thur. Ring +1",
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
-
-	sets.engaged.overdrive.ValoredgeDEFUnlocked = set_combine(sets.engaged.overdrive.ValoredgeDEF, sets.animators.Melee)
 
 	---------------------------	PRECAST SETS	---------------------------
 	---------------------------	PRECAST / JOB ABILITY MASTER SETS	---------------------------
@@ -469,10 +417,15 @@ function get_sets()
 
 	--  individual abilities
 	sets.ja.optimization = {head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},}
+	
 	sets.ja.overdrive = {body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},}
+	
 	sets.ja.finetuning = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	
 	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	
 	sets.ja.rolereversal = {feet={ name="Pitre Babouches +3", augments={'Enhances "Role Reversal" effect',}},}
+	
 	sets.ja.tacticalswitch = {feet="Karagoz Scarpe +2",}
 	
 	sets.ja.repair = {
@@ -725,7 +678,32 @@ function get_sets()
 		left_ring="Purity Ring",
 		right_ring="Blenmot's Ring",
 	}
+
+----------------------------------------------------------------------------------
+------------- Animator Swaps - Put in your applicable animators here ---------------
+----- Note: Please fill this out even if you don't have a specific animator. Totally fine to have these be all the same animator if you're just starting.
+
+	sets.animators.Ranged = {range="Animator P II +1",}
+	
+	sets.animators.Melee = {range="Animator P +1",}
+	
+	sets.animators.Master = {range="Neo Animator",}
 end
+
+----------------------------------------------------------------------------------------------------
+----------------------- MELEE WEAPON SETS (WHAT YOU WANT TO SWAP TO BASED ON MODE) -----------------
+	Weapons = {
+		Hybrid 			= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
+		HybridDEF 		= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
+		Master     		= {"Godhands", "Verethragna", "Kenkonken"},
+		MasterDEF  		= {"Godhands", "Verethragna", "Kenkonken"},
+		Emergency  		= {"Godhands", "Verethragna", "Kenkonken"},
+		Overdrive  		= {"Xiucoatl", "Kenkonken"},
+		OverdriveDEF	= {"Xiucoatl", "Kenkonken"},
+		Pet        		= {"Xiucoatl", "Sakpata's Fists", "Ohtas"},
+		PetDEF     		= {"Gnafron's Adargas", "Ohtas"}
+	}
+
 
 ---------------------------	LOGIC	---------------------------
 -- Registering event for pet changes -- Essentially, this checks the Pet TP every second, and if it reaches 850+ it automatically swaps to the appropriate pet weaponskill set.
@@ -775,93 +753,29 @@ function idle()
 		elseif player.status == "Engaged" and pet.status == "Engaged" then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
 				if TP_Mode == "Hybrid" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.hybrid.GodhandsMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.hybrid.GodhandsRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.hybrid.Godhands)
-					end
+					equip(sets.engaged.hybrid.Godhands)
 				elseif TP_Mode == "HybridDEF" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.hybrid.DefenceGodhandsMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.hybrid.DefenceGodhandsRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.hybrid.DefenceGodhands)
-					end
+					equip(sets.engaged.hybrid.DefenceGodhands)
 				end
 			else
 				if TP_Mode == "Hybrid" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.hybrid.NormalMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.hybrid.NormalRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.hybrid.Normal)
-					end
+					equip(sets.engaged.hybrid.Normal)
 				elseif TP_Mode == "HybridDEF" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.hybrid.DefenceMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.hybrid.DefenceRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.hybrid.Defence)
-					end
+					equip(sets.engaged.hybrid.Defence)
 				end
 			end
 		elseif player.status == "Engaged" and (pet.status == "Idle" or pet.isvalid == false) then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
 				if TP_Mode == "Hybrid" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.master.HybridGodhandsMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.master.HybridGodhandsRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.Godhands)
-					end
+					equip(sets.engaged.master.Godhands)
 				elseif TP_Mode == "HybridDEF" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.master.HybridDefenceGodhandsMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.master.HybridDefenceGodhandsRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.Defence)
-					end
+					equip(sets.engaged.master.Defence)
 				end
 			else
 				if TP_Mode == "Hybrid" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.master.HybridMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.master.HybridRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.Normal)
-					end
+					equip(sets.engaged.master.Normal)
 				elseif TP_Mode == "HybridDEF" then
-					if Lock_Mode == "Unlocked" then
-						if Pet_Distance == "Melee" then
-							equip(sets.engaged.master.HybridDefenceMelee)
-						elseif Pet_Distance == "Ranged" then
-							equip(sets.engaged.master.HybridDefenceRanged)
-						end
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.Defence)
-					end
+					equip(sets.engaged.master.Defence)
 				end
 			end
 		else  
@@ -871,31 +785,15 @@ function idle()
 		if player.status == "Engaged" then
 			if player.equipment.main == "Godhands" or player.equipment.main == "Xiucoatl" then	
 				if TP_Mode == "Master" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.master.GodhandsUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.Godhands)
-					end
+					equip(sets.engaged.master.Godhands)
 				elseif TP_Mode == "MasterDEF" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.master.DefenceGodhandsUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.DefenceGodhands)
-					end
+					equip(sets.engaged.master.DefenceGodhands)
 				end
 			else
 				if TP_Mode == "Master" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.master.NormalUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.Normal)
-					end
+					equip(sets.engaged.master.Normal)
 				elseif TP_Mode == "MasterDEF" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.master.DefenceUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.master.Defence)
-					end
+					equip(sets.engaged.master.Defence)
 				end
 			end
 		else
@@ -905,31 +803,15 @@ function idle()
 		if pet.status == "Engaged" then
 			if TP_Mode == "Overdrive" then
 				if pet.frame == "Sharpshot Frame" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.overdrive.SharpshotUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.overdrive.Sharpshot)
-					end
+					equip(sets.engaged.overdrive.Sharpshot)
 				elseif pet.frame == "Valoredge Frame" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.overdrive.ValoredgeUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.overdrive.Valoredge)
-					end
+					equip(sets.engaged.overdrive.Valoredge)
 				end
 			elseif TP_Mode == "OverdriveDEF" then
 				if pet.frame == "Sharpshot Frame" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.overdrive.SharpshotDEFUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.overdrive.SharpshotDEF)
-					end
+					equip(sets.engaged.overdrive.SharpshotDEF)
 				elseif pet.frame == "Valoredge Frame" then
-					if Lock_Mode == "Unlocked" then
-						equip(sets.engaged.overdrive.ValoredgeDEFUnlocked)
-					elseif Lock_Mode == "Locked" then
-						equip(sets.engaged.overdrive.ValoredgeDEF)
-					end
+					equip(sets.engaged.overdrive.ValoredgeDEF)
 				end
 			end
 		else
@@ -1046,6 +928,14 @@ function pet_midcast(spell)
 end
 
 function aftercast(spell)
+	if Animator_Mode == "Melee" then
+		equip(sets.animators.Melee)
+	elseif Animator_Mode == "Ranged" then
+		equip(sets.animators.Ranged)
+	elseif Animator_Mode == "Master" then
+		equip(sets.animators.Master)
+	end
+	
 	if spell.english == "Deactivate" then
 		check_pet_status()
 	else
@@ -1186,17 +1076,35 @@ windower.register_event('lose buff', function(buff_id)
 	end
 end)
 
+----------------------------CYCLING/COMMANDS LOGIC----------------------
+------------------------------------------------------------------------
+function cycle(list, current)
+    local index = nil
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    if not index then
+        index = 1
+    end
+    return list[index]
+end
+
+function initialize_weapon_tracking()
+	weapon_mode = nil
+	last_real_main = player.equipment.main
+end
+
 ---- Command List ----
 function self_command(command)
 	if command == "ToggleHybrid" then
 		if TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
 			TP_Mode = "Hybrid"
 			idle()
-			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
-				equip({ range = "Animator P +1"})
-			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
-				equip({ range = "Animator P II +1"})
-			end
 		elseif TP_Mode == "Hybrid" then
 			TP_Mode = "HybridDEF"
 			idle()
@@ -1205,10 +1113,6 @@ function self_command(command)
 		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
 			TP_Mode = "Master"
 			idle()
-			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Neo Animator" then
-				Pet_Distance = "Melee"
-				equip({ range = "Neo Animator"})
-			end
 		elseif TP_Mode == "Master" then
 			TP_Mode = "MasterDEF"
 			Pet_Distance = "Melee"
@@ -1218,10 +1122,6 @@ function self_command(command)
 		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "PetDEF" or TP_Mode == "Emergency-DT" then
 			TP_Mode = "Overdrive"
 			idle()
-			if Lock_Mode == "Unlocked" and player.equipment.Range ~= "Animator P +1" then
-				Pet_Distance = "Melee"
-				equip({ range = "Animator P +1"})
-			end
 		elseif TP_Mode == "Overdrive" then
 			TP_Mode = "OverdriveDEF"  
 			Pet_Distance = "Melee"
@@ -1231,11 +1131,6 @@ function self_command(command)
 		if TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Master" or TP_Mode == "MasterDEF" or TP_Mode == "Overdrive" or TP_Mode == "OverdriveDEF" or TP_Mode == "Pet" or TP_Mode == "Emergency-DT" then
 			TP_Mode = "PetDEF"
 			idle()
-			if Lock_Mode == "Unlocked" and Pet_Distance == "Melee" and player.equipment.Range ~= "Animator P +1" then
-				equip({ range = "Animator P +1"})
-			elseif Lock_Mode == "Unlocked" and Pet_Distance == "Ranged" and player.equipment.Range ~= "Animator P II +1" then
-				equip({ range = "Animator P II +1"})
-			end
 		elseif TP_Mode == "PetDEF" then
 			TP_Mode = "Pet"
 			idle()
@@ -1245,21 +1140,16 @@ function self_command(command)
 			TP_Mode = "Emergency-DT"
 			idle()
 		end
-	elseif command == "ToggleDistance" then
-		if Pet_Distance == "Melee" then
-			Pet_Distance = "Ranged"
-			equip({ range = "Animator P II +1"})
-			idle()
-		elseif Pet_Distance == "Ranged" then
-			Pet_Distance = "Melee"
-			equip({ range = "Animator P +1"})
-			idle()
-		end
-	elseif command == "ToggleLock" then
-		if Lock_Mode == "Unlocked" then
-			Lock_Mode = "Locked"
-		elseif Lock_Mode == "Locked" then
-			Lock_Mode = "Unlocked"
+	elseif command == "ToggleAnimator" then
+		if Animator_Mode == "Melee" then
+			Animator_Mode = "Ranged"
+			equip(sets.animators.Ranged)
+		elseif Animator_Mode == "Ranged" then
+			Animator_Mode = "Master"
+			equip(sets.animators.Master)
+		elseif Animator_Mode == "Master" then
+			Animator_Mode = "Melee"
+			equip(sets.animators.Melee)
 		end
 	elseif command == "ToggleAutoMode" then
 		if Auto_Mode == "Off" then
@@ -1268,36 +1158,14 @@ function self_command(command)
 			Auto_Mode = "Off"
 		end
 	elseif command == "ToggleWeapon" then
-		local weapon_cycle = {
-			Hybrid     = {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
-			HybridDEF  = {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
-			Master     = {"Godhands", "Verethragna", "Kenkonken"},
-			MasterDEF  = {"Godhands", "Verethragna", "Kenkonken"},
-			Emergency  = {"Godhands", "Verethragna", "Kenkonken"},
-			Overdrive  = {"Xiucoatl", "Kenkonken"},
-			OverdriveDEF = {"Xiucoatl", "Kenkonken"},
-			Pet        = {"Xiucoatl", "Sakpata", "Ohtas"},
-			PetDEF     = {"Gnafron", "Ohtas"}
-		}
-		
-		local mode_key = TP_Mode
-		if TP_Mode == "Emergency-DT" then mode_key = "Emergency" end
-
-		local cycle = weapon_cycle[mode_key] or {}
-		local current = player.equipment.main
-		local next_index = 1
-
-		for i, weapon in ipairs(cycle) do
-			if current == sets.weapons[weapon].main then
-				next_index = (i % #cycle) + 1
-				break
-			end
+		local list = Weapons[TP_Mode]
+		if not list then
+			return
 		end
 
-		local next_weapon = sets.weapons[cycle[next_index]]
-		if next_weapon then
-			equip({ main = next_weapon.main})
-		end
+		weapon_mode = cycle(list, weapon_mode)
+		last_real_main = weapon_mode
+		equip({ main = weapon_mode })
 	end
 	gearswap_jobbox:text(gearswap_box())
 	gearswap_jobbox:show()
