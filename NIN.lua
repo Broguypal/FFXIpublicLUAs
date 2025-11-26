@@ -418,7 +418,6 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Brutal Earring",
 		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
-		left_ear="Brutal Earring",
 		left_ring="Gere Ring",
 		right_ring="Fickblix's Ring",
 		back="Null Shawl",
@@ -997,7 +996,7 @@ function idle()
 								end
 							end
 						end
-					elseif ( (buffactive[33] or buffactive.march == 2 or buffactive[580]) and buffactive['haste samba'] ) then
+					elseif ( (buffactive[33] or buffactive.march == 2 or buffactive[580]) and buffactive['Haste Samba'] ) then
 						if TP_Mode == "DPS" then
 								equip(sets.engaged.DPS.haste35)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
@@ -1127,9 +1126,9 @@ function idle()
 								end
 							end
 						end
-					elseif ( (buffactive[604] or buffactive[33]) and buffactive['haste samba'] and buffactive.march == 1) or -- MG or haste + samba with 1 march
-					( buffactive.march == 2 and buffactive['haste samba'] ) or
-					( buffactive[580] and buffactive['haste samba'] ) then 
+					elseif ( (buffactive[604] or buffactive[33]) and buffactive['Haste Samba'] and buffactive.march == 1) or -- MG or haste + samba with 1 march
+					( buffactive.march == 2 and buffactive['Haste Samba'] ) or
+					( buffactive[580] and buffactive['Haste Samba'] ) then 
 						if TP_Mode == "DPS" then
 							equip(sets.engaged.DPS.haste35)
 						elseif buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
@@ -1515,7 +1514,7 @@ function self_command(command)
 		equip(special_mode)
 		main_mode = nil
 		sub_mode  = nil
-	elseif command:startswith('castnin ') then
+	elseif command:sub(1,7) == 'castnin' then
 		local element = command:match('castnin (%a+)')
 		if element then
 			cast_best_ninjutsu(element)
