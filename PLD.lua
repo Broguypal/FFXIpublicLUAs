@@ -12,21 +12,18 @@
 ---- 		Mode / Textbox settings 		----
 tp_mode = 'Hybrid'
 spell_mode = 'Normal'
-sword_mode = 'Burtgang'
-shield_mode = 'Aegis'
+lock_mode = 'Unlocked'
 
 tp_modes = {'Hybrid','DPS','AoETank','SingleTank','MagicEva','MagicAettir'}
 spell_modes = {'Normal','SIR'}
-sword_modes = {'Burtgang','Malignance','Naegling','Open'}
-shield_modes = {'Aegis','Ochain','Duban','Blurred','Open'}
+lock_modes = {'Locked','Unlocked'}
 
 
 gearswap_box = function()
   str = '           \\cs(255,192,203)Paladin\\cr\n'
   str = str..' TP Mode:\\cs(255,150,100)   '..tp_mode..'\\cr\n'
   str = str..' Spell Mode:\\cs(255,150,100)   '..spell_mode..'\\cr\n'
-  str = str..' Sword Mode:\\cs(255,150,100)   '..sword_mode..'\\cr\n'
-  str = str..' Shield Mode:\\cs(255,150,100)   '..shield_mode..'\\cr\n'
+  str = str..' Weapon Lock:\\cs(255,150,100)   '..lock_mode..'\\cr\n'
     return str
 end
 
@@ -34,6 +31,7 @@ gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size
 gearswap_jobbox = texts.new(gearswap_box_config)
 
 function user_setup()
+	initialize_weapon_tracking()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
@@ -48,10 +46,10 @@ send_command('bind numpad7 gs c ToggleMagic')
 -- Weapon/shield togles
 send_command('bind numpad5 gs c ToggleShield')
 send_command('bind numpad4 gs c ToggleWeapon')
-send_command('bind numpad3 gs c ToggleOpen')
+send_command('bind numpad6 gs c ToggleLock')
 
 -- Spell interupt toggle
-send_command('bind numpad6 gs c ToggleSIR')
+send_command('bind numpad3 gs c ToggleSIR')
 
 --QOL commands
 send_command ('bind numpad1 input /mount "Noble Chocobo"')
@@ -69,23 +67,6 @@ send_command('bind f11 input /item "Holy Water" <me>')
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}					-- Leave this empty
-
- -- Weapon definitions
-weapons = {
-    Burtgang = { main = "Burtgang" },
-    Malignance = { main = "Malignance Sword" },
-    Naegling = { main = "Naegling" },
-    Open = {}
-}
-
--- Shield definitions
-shields = {
-    Aegis = { sub = "Aegis" },
-    Ochain = { sub = "Ochain" },
-    Duban = { sub = "Duban" },
-    Blurred = { sub = "Blurred Shield +1" },
-    Open = {}
-}
  
  ---- IDLE SETS ----
  
@@ -347,25 +328,15 @@ shields = {
 	})
 
 -- No weapon/shield swaps
-	sets.midcast.phalanxOpen = {
-		ammo="Staunch Tathlum +1",
-		head={ name="Yorium Barbuta", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		body={ name="Yorium Cuirass", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		hands={ name="Souv. Handsch. +1", augments={'HP+65','Shield skill +15','Phys. dmg. taken -4',}},
-		legs="Sakpata's Cuisses",
-		feet={ name="Souveran Schuhs +1", augments={'HP+65','Attack+25','Magic dmg. taken -4',}},
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Audumbla Sash",
-		left_ear="Knightly Earring",
-		right_ear="Magnetic Earring",
-		left_ring="Defending Ring",
-		right_ring="Moonlight Ring",
-	}
+	sets.midcast.phalanxWeapons = set_combine(sets.midcast.phalanx,{
+		main="Sakpata's Sword",
+		sub={ name="Priwen", augments={'HP+50','Mag. Evasion+50','Damage Taken -3%',}},
+	})
 
 -- No weapon/shield swaps
-	sets.midcast.phalanxSIROpen = set_combine(sets.midcast.phalanxOpen,{
-		legs={ name="Founder's Hose", augments={'MND+8','Mag. Acc.+7','Breath dmg. taken -3%',}},
-		neck="Moonlight Necklace",
+	sets.midcast.phalanxSIRWeapons = set_combine(sets.midcast.phalanxSIR,{
+		main="Sakpata's Sword",
+		sub={ name="Priwen", augments={'HP+50','Mag. Evasion+50','Damage Taken -3%',}},
 	})
 	
 	sets.midcast.reprisal = {
@@ -488,10 +459,17 @@ shields = {
 		right_ring="Epaminondas's Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
-	
-
 end
 
+----------------------------WEAPONS/SHIELDS-------------------------------
+------------------------------------------------------------------------
+	Weapons = {
+		Main   = { "Burtgang","Malignance Sword","Naegling"},
+		Sub    = { "Aegis","Ochain","Duban","Burred Shield +1" },
+	}
+
+----------------------------INTERNAL LOGIC-------------------------------
+------------------------------------------------------------------------
 function idle()
 	if tp_mode == "Hybrid" then
 		if player.status == "Engaged" then
@@ -595,28 +573,28 @@ function midcast(spell)
 		elseif spell.english:startswith('Phalanx') then
 			if tp_mode == "AoETank" and player.status == "Engaged" then
 				if buffactive["Phalanx"] then
-					if sword_mode == "Open" or shield_mode == "Open" then
-						equip(sets.midcast.phalanxOpen)
+					if lock_mode == 'Unlocked' then
+						equip(sets.midcast.phalanxWeapons)
 					else
 						equip(sets.midcast.phalanx)
 					end
 				else
-					if sword_mode == "Open" or shield_mode == "Open" then
-						equip(sets.midcast.phalanxSIROpen)
+					if lock_mode == 'Unlocked' then
+						equip(sets.midcast.phalanxSIRWeapons)
 					else
 						equip(sets.midcast.phalanxSIR)
 					end
 				end
 			else
 				if spell_mode == "SIR" then
-					if sword_mode == "Open" or shield_mode == "Open" then
-						equip(sets.midcast.phalanxSIROpen)
+					if lock_mode == 'Unlocked' then
+						equip(sets.midcast.phalanxSIRWeapons)
 					else
 						equip(sets.midcast.phalanxSIR)
 					end
 				else
-					if sword_mode == "Open" or shield_mode == "Open" then
-						equip(sets.midcast.phalanxOpen)
+					if lock_mode == 'Unlocked' then
+						equip(sets.midcast.phalanxWeapons)
 					else
 						equip(sets.midcast.phalanx)
 					end
@@ -644,13 +622,39 @@ end
 
 function aftercast(spell)
     if spell.english:startswith('Phalanx') then
-        local weapon_set = weapons[sword_mode] or {}
-        local shield_set = shields[shield_mode] or {}
-        equip(set_combine(shield_set, weapon_set))
+		equip({
+			main  = last_real_main,
+			sub   = last_real_sub,
+		})
     end
     idle()
 end
 
+----------------------------CYCLING/COMMANDS LOGIC----------------------
+------------------------------------------------------------------------
+function cycle(list, current)
+    local index = nil
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    if not index then
+        index = 1
+    end
+    return list[index]
+end
+
+function initialize_weapon_tracking()
+	last_real_main   = player.equipment.main   or Weapons.Main[1]
+	last_real_sub    = player.equipment.sub    or Weapons.Sub[1]
+	
+	main_mode   = last_real_main
+	sub_mode    = last_real_sub
+end
 
 function self_command(command)
 	if command == "ToggleHybrid" then
@@ -681,40 +685,24 @@ function self_command(command)
 			idle()
 		end
 	elseif command == "ToggleShield" then
-		local shield_cycle = {"Aegis", "Ochain", "Duban", "Blurred"}
-		local index = 1
-		for i, name in ipairs(shield_cycle) do
-			if shield_mode == name then
-				index = (i % #shield_cycle) + 1
-				break
-			end
-		end
-		shield_mode = shield_cycle[index]
-		equip(shields[shield_mode])
-		idle()
+		sub_mode = cycle(Weapons.Sub, sub_mode)
+		last_real_sub = sub_mode
+		equip({ sub = sub_mode })
 	elseif command == "ToggleWeapon" then
-		local weapon_cycle = {"Burtgang", "Malignance", "Naegling"}
-		local index = 1
-		for i, name in ipairs(weapon_cycle) do
-			if sword_mode == name then
-				index = (i % #weapon_cycle) + 1
-				break
-			end
+		main_mode = cycle(Weapons.Main, main_mode)
+		last_real_main = main_mode
+		equip({ main = main_mode })
+	elseif command == "ToggleLock" then
+		if lock_mode == 'Locked' then
+			lock_mode = "Unlocked"
+		else
+			lock_mode = "Locked"
 		end
-		sword_mode = weapon_cycle[index]
-		equip(weapons[sword_mode])
-		idle()
-	elseif command == "ToggleOpen" then
-		sword_mode = "Open"
-		shield_mode = "Open"
-		idle()
 	elseif command == "ToggleSIR" then
 		if spell_mode == "Normal" then
 			spell_mode = "SIR"
-			idle()
 		else
 			spell_mode = "Normal"
-			idle()
 		end
 	end
 	gearswap_jobbox:text(gearswap_box())		
