@@ -10,6 +10,8 @@
 -- Requires Gearswap Addon - "Cancel"
 -- requires Dressup (to stop blinking "//du blinking self combat on")
 
+----------------------------UI BOX LOGIC -------------------------------
+------------------------------------------------------------------------
 TP_Mode = "Hybrid"
 Haste_Mode = "Haste2"
 
@@ -137,12 +139,14 @@ end
 
 ---- Setting up jobbox.
 function user_setup()
+	initialize_weapon_tracking()
 	check_tool_count()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
 
----- Equipset logic
+----------------------------KEYBINDS-------------------------------
+-------------------------------------------------------------------
 function get_sets()
 	---- Keybinds ----
 	send_command('bind numpad9 gs c ToggleHybrid')
@@ -167,34 +171,21 @@ function get_sets()
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
 
-	---------- Gear Sets --------------
+----------------------------EQUIPMENT SETS-------------------------------
+------------------------------------------------------------------------
     sets.idle = {}               	-- Leave this empty.   
 	sets.engaged = {}				-- Leave this empty.
-		sets.engaged.hybrid = {}
-		sets.engaged.malignance = {}
-		sets.engaged.DPS = {}
-		sets.engaged.tank = {}
-		sets.engaged.evasion = {}
+		sets.engaged.hybrid = {}	-- Leave this empty.
+		sets.engaged.malignance = {}	-- Leave this empty.
+		sets.engaged.DPS = {}			-- Leave this empty.
+		sets.engaged.tank = {}			-- Leave this empty.
+		sets.engaged.evasion = {}		-- Leave this empty.
     sets.precast = {}               -- leave this empty    
     sets.midcast = {}               -- leave this empty    
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
-	sets.items = {}
-	sets.main = {}
-	sets.sub = {}
- 
-	-- Main Weapons
-	sets.main["Heishi Shorinken"] = {main = "Heishi Shorinken"}
-	sets.main["Fudo Masamune"]    = {main = "Fudo Masamune"}
-	sets.main["Naegling"]         = {main = "Naegling"}
-	sets.main["Gokotai"]          = {main = "Gokotai"}
+	sets.items = {}					-- Leave this empty.
 
-	-- Sub Weapons
-	sets.sub["Yagyu Darkblade"] = {sub = "Yagyu Darkblade"}
-	sets.sub["Kunimitsu"]       = {sub = "Kunimitsu"}
-	sets.sub["Gleti's Knife"]   = {sub = "Gleti's Knife"}
-	sets.sub["Hitaki"]          = {sub = "Hitaki"}
-	sets.sub["Tsuru"]           = {sub = "Tsuru"}
  
 	-------------- IDLE SETS ---------------------
     --Hybrid/DPS IDLE--
@@ -922,7 +913,20 @@ function get_sets()
 	}
 end
 
---------------- LOGIC - DO NOT TOUCH BELOW ------------------
+----------------------------WEAPONS/AMMO-------------------------------
+------------------------------------------------------------------------
+	Weapons = {
+		Main   = { "Heishi Shorinken","Fudo Masamune","Naegling","Gokotai"},
+		Sub    = { "Yagyu Darkblade","Kunimitsu","Gleti's Knife","Hitaki","Tsuru" },
+	}
+
+	Special = {
+		{ main="Hachimonji", sub="Bloodrain Strap" },
+		{ main="Tauret", sub="Gleti's Knife" },
+	}
+
+----------------------------INTERNAL LOGIC-------------------------------
+------------------------------------------------------------------------
 
 --Automatically switch sets for time
     -- world.time is given in minutes into each day
@@ -1419,6 +1423,35 @@ function aftercast(spell)
 	end
 end
 
+----------------------------CYCLING/COMMANDS LOGIC----------------------
+------------------------------------------------------------------------
+function cycle(list, current)
+    local index = nil
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    if not index then
+        index = 1
+    end
+    return list[index]
+end
+
+function initialize_weapon_tracking()
+	last_real_main   = player.equipment.main   or Weapons.Main[1]
+	last_real_sub    = player.equipment.sub    or Weapons.Sub[1]
+	
+	main_mode   = last_real_main
+	sub_mode    = last_real_sub
+	
+	special_mode = nil
+
+end
+
 function self_command(command)
 	if command == "ToggleHybrid" then
 		if TP_Mode == "Hybrid" then
@@ -1469,39 +1502,20 @@ function self_command(command)
 			gearswap_jobbox:show()
 		end
 	elseif command == "ToggleMain" then
-		local main_cycle ={"Heishi Shorinken","Fudo Masamune","Naegling","Gokotai"}
-        local current = player.equipment.main
-		local next_index = 1
-        for i, main in ipairs(main_cycle) do
-            if current == main then
-                next_index = (i % #main_cycle) + 1
-                break  
-            end
-        end
-		local next_weapon = main_cycle[next_index]
-        if next_weapon then
-            equip({ main = next_weapon })
-        end
+		main_mode = cycle(Weapons.Main, main_mode)
+		last_real_main = main_mode
+		equip({ main = main_mode })
+		special_mode = nil
 	elseif command == "ToggleSub" then
-		local sub_cycle = {"Yagyu Darkblade","Kunimitsu","Gleti's Knife","Hitaki","Tsuru"}
-		local current = player.equipment.sub
-		local next_index = 1
-		for i, sub in ipairs(sub_cycle) do
-			if current == sub then
-				next_index = (i % #sub_cycle) + 1
-				break
-			end
-		end
-		local next_offhand = sub_cycle[next_index] 
-		if next_offhand then
-			equip({ sub = next_offhand })
-		end
+		sub_mode = cycle(Weapons.Sub, sub_mode)
+		last_real_sub = sub_mode
+		equip({ sub = sub_mode })
+		special_mode = nil
 	elseif command == "ToggleSpecial" then
-		if player.equipment.main == "Hachimonji" then
-			equip({ main="Tauret", sub="Gleti's Knife" })
-		else
-			equip({ main="Hachimonji", sub="Bloodrain Strap" })
-		end
+		special_mode = cycle(Special, special_mode)
+		equip(special_mode)
+		main_mode = nil
+		sub_mode  = nil
 	elseif command:startswith('castnin ') then
 		local element = command:match('castnin (%a+)')
 		if element then

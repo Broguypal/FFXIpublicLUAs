@@ -693,9 +693,11 @@ function self_command(command)
 		main_mode = cycle(Weapons.Main, main_mode)
 		last_real_main = main_mode
 		equip({ main = main_mode })
+		special_mode = nil
 	elseif command == "ToggleSpecial" then
 		special_mode = cycle(Special, special_mode)
 		equip(special_mode)
+		main_mode = nil
 	end
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
