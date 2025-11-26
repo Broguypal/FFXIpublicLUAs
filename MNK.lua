@@ -664,7 +664,7 @@ function initialize_weapon_tracking()
 	last_real_main   = player.equipment.main   or Weapons.Main[1]
 	main_mode   = last_real_main
 	
-	special_mode = Special[1]
+	special_mode = nil
 end
 
 function self_command(command)
