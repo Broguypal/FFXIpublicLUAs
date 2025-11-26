@@ -421,12 +421,6 @@ end
 		"Chrono Bullet",
 		"Living Bullet",
 	}
- 
-	Ammo = {
-		Default     = "Chrono Bullet",
-		PhysicalWS  = "Chrono Bullet",
-		MagicalWS   = "Living Bullet",
-	}
 
 ----------------------------INTERNAL LOGIC-------------------------------
 ------------------------------------------------------------------------
@@ -604,7 +598,7 @@ function initialize_weapon_tracking()
 	sub_mode    = last_real_sub
 	ranged_mode = last_real_ranged
 	
-	current_ammo = Ammo.Default
+	current_ammo = player.equipment.ammo or AmmoList[1]
 end
 
 function self_command(command)
