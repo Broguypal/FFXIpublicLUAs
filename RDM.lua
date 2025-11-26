@@ -59,6 +59,7 @@ function check_shihei()
 end
 
 function user_setup()
+	initialize_weapon_tracking()
 	check_shihei()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
@@ -98,23 +99,6 @@ function get_sets()
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
-	sets.main = {}
-	sets.sub = {}
- 
-	-- Main weapons
-	sets.main["Crocea Mors"] = {main="Crocea Mors"}
-	sets.main["Bunzi's Rod"] = {main="Bunzi's Rod"}
-	sets.main["Daybreak"]    = {main="Daybreak"}
-	sets.main["Naegling"]    = {main="Naegling"}
-	sets.main["Tauret"]      = {main="Tauret"}
-	sets.main["Maxentius"]   = {main="Maxentius"}
-
-	-- Sub weapons
-	sets.sub["Ammurapi Shield"] = {sub="Ammurapi Shield"}
-	sets.sub["Pukulatmuj +1"]   = {sub="Pukulatmuj +1"}
-	sets.sub["Ethereal Dagger"] = {sub="Ethereal Dagger"}
-	sets.sub["Genmei Shield"]   = {sub="Genmei Shield"}
-	sets.sub["Thibron"]    		= {sub="Thibron"}
 	 
 	 -------------- IDLE SETS ---------------------
     --Hybrid/DPS IDLE--
@@ -153,6 +137,7 @@ function get_sets()
 	
 	--Caster idle
 	sets.idle.caster = {
+		sub="Archduke's Shield",
 		ammo="Homiliary",
 		head="Leth. Chappel +3",
 		body="Shamash Robe",
@@ -938,6 +923,35 @@ function get_sets()
 	}
 end
 
+-------------------------- WEAPON SETS --------------------------
+    Weapons = {
+        Melee = {
+            main   = { "Crocea Mors", "Maxentius", "Naegling", "Tauret" },
+            sub_dw = { "Daybreak", "Thibron", "Bunzi's Rod" },
+            sub_1h = { "Ammurapi Shield", "Genmei Shield" },
+        },
+
+        Caster = {
+            main = { "Crocea Mors", "Bunzi's Rod", "Daybreak", "Maxentius" },
+            sub  = { "Archduke's Shield", "Ammurapi Shield" },
+        },
+
+        Enspell = {
+            main = { "Crocea Mors" },
+            sub  = { "Pukulatmuj +1" },
+        },
+
+        ZeroTPEnspell = {
+            main = { "Qutrub Knife" },
+            sub  = { "Ethereal Dagger" },
+        },
+
+        Tank = {
+            main   = { "Sakpata's Sword" },
+            sub    = { "Genmei Shield" },
+        },
+    }
+
 --------------- LOGIC - DO NOT TOUCH BELOW ------------------
 windower.register_event('gain buff', function(buff_id)
 	if buff_id == 66 then
@@ -1315,42 +1329,23 @@ function midcast(spell)
 		elseif spell.name:match('Raise') or spell.name:match('Reraise') then
 			equip(sets.midcast.fastcast)
 		end
-	elseif spell.type == "WeaponSkill" then 
-		if spell.english == "Savage Blade" then
-			equip(sets.ws.SavageBlade)
-		elseif spell.english == "Chant du Cygne" then
-			equip(sets.ws.ChantDuCygne)
-		elseif spell.english == "Death Blossom" then
-			equip(sets.ws.DeathBlossom)
-		elseif spell.english == "Requiscat" then
-			equip(sets.ws.Requiscat)
-		elseif spell.english == "Sanguine Blade" then
-			equip(sets.ws.SanguineBlade)
-		elseif spell.english == "Seraph Blade" then
-			equip(sets.ws.SeraphBlade)
-		elseif spell.english == "Red Lotus Blade" then
-			equip(sets.ws.RedLotusBlade)
-		elseif spell.english == "Evisceration" then
-			equip(sets.ws.Evisceration)
-		elseif spell.english == "Black Halo" then
-			equip(sets.ws.BlackHalo)
-		elseif spell.english == "Aeolian Edge" then
-			equip(sets.ws.AeolianEdge)
-		else
-			equip(sets.ws.normal)
-		end
 	elseif spell.name:match('Utsusemi') then
 		equip(sets.midcast.utsusemi)
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
 	elseif spell.type == "Trust" then
 		equip(sets.midcast.trust)
-	else  
-		idle()
 	end
 end
 
 function aftercast(spell)
+	if Lock_Mode == "Unlocked" then
+		equip({
+			main  = last_real_main,
+			sub   = last_real_sub,
+		})
+	end
+	
 	if spell.type == "Ninjutsu" then
 		check_shihei()
 		gearswap_jobbox:text(gearswap_box())		
@@ -1409,7 +1404,52 @@ function cast_highest_tier(spell_base, target)
     end
 end
 
--- Commands --
+---- CYCLE LOGIC AND COMMANDS ----
+function cycle(list, current)
+    local index = nil
+    if current then
+        for i, v in ipairs(list) do
+            if v == current then
+                index = (i % #list) + 1
+                break
+            end
+        end
+    end
+    if not index then
+        index = 1
+    end
+    return list[index]
+end
+
+function get_main_cycle()
+    local mode = Weapons[Player_Mode]
+    if not mode then return {} end
+    return mode.main or {}
+end
+
+function get_sub_cycle()
+    local mode = Weapons[Player_Mode]
+    if not mode then return {} end
+
+    if Player_Mode == "Melee" then
+        if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+            return mode.sub_dw or {}
+        else
+            return mode.sub_1h or {}
+        end
+    end
+
+    return mode.sub or {}
+end
+
+function initialize_weapon_tracking()
+	last_real_main   = player.equipment.main
+	last_real_sub    = player.equipment.sub
+
+	main_mode   = last_real_main
+	sub_mode    = last_real_sub
+end
+
 function self_command(command)
     local args = command:split(' ')
 
@@ -1419,7 +1459,19 @@ function self_command(command)
 	elseif command == "ToggleMelee" then
 		if Player_Mode == "Tank" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" then
 			Player_Mode = "Melee"
-			equip({ main="Crocea Mors", sub="Daybreak" })
+				if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+					equip({main = Weapons.Melee.main[1], sub = Weapons.Melee.sub_dw[1],})
+					player.equipment.main = Weapons.Melee.main[1]
+					player.equipment.sub  = Weapons.Melee.sub_dw[1]
+					last_real_main = Weapons.Melee.main[1]
+					last_real_sub  = Weapons.Melee.sub_dw[1]
+				else
+					equip({main = Weapons.Melee.main[1], sub = Weapons.Melee.sub_1h[1],})
+					player.equipment.main = Weapons.Melee.main[1]
+					player.equipment.sub  = Weapons.Melee.sub_1h[1]
+					last_real_main = Weapons.Melee.main[1]
+					last_real_sub  = Weapons.Melee.sub_1h[1]
+				end
 			idle()
 		elseif Player_Mode == "Melee" then
 			Player_Mode = "Enspell"
@@ -1431,13 +1483,21 @@ function self_command(command)
 	elseif command == "ToggleTank" then
 		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Enspell" or Player_Mode == "Caster" then
 			Player_Mode = "Tank"
-			equip({ main="Sakpata's Sword", sub="Genmei Shield" })
+			equip({main = Weapons.Tank.main[1], sub = Weapons.Tank.sub[1],})
+			player.equipment.main = Weapons.Tank.main[1]
+			player.equipment.sub  = Weapons.Tank.sub[1]
+			last_real_main = Weapons.Tank.main[1]
+			last_real_sub  = Weapons.Tank.sub[1]
 			idle()
 		end
 	elseif command == "ToggleCaster" then
 		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Enspell" or Player_Mode == "Tank" then
 			Player_Mode = "Caster"
-			equip({ main="Crocea Mors", sub="Ammurapi Shield" })
+			equip({main = Weapons.Caster.main[1], sub = Weapons.Caster.sub[1],})
+			player.equipment.main = Weapons.Caster.main[1]
+			player.equipment.sub  = Weapons.Caster.sub[1]
+			last_real_main = Weapons.Caster.main[1]
+			last_real_sub  = Weapons.Caster.sub[1]
 			idle()
 		end
 	elseif command == "ToggleEnfeeble" then
@@ -1459,50 +1519,20 @@ function self_command(command)
 			Lock_Mode = "Unlocked"
 		end
 	elseif command == "ToggleMain" then
-		local main_cycle = {}
-		if Player_Mode == "Melee" or Player_Mode == "Tank" then
-			main_cycle = {"Crocea Mors","Maxentius","Naegling","Tauret"}
-		elseif Player_Mode == "Caster" then
-			main_cycle = {"Crocea Mors","Bunzi's Rod","Daybreak","Maxentius"}
-		elseif Player_Mode == "Enspell" then
-			main_cycle = {"Crocea Mors"}
+		local cycle_list = get_main_cycle()
+		if #cycle_list > 0 then
+		main_mode = cycle(cycle_list, main_mode)
+		equip({ main = main_mode })
+		player.equipment.main = main_mode
+        last_real_main        = main_mode
 		end
-        local current = player.equipment.main
-		local next_index = 1
-        for i, main in ipairs(main_cycle) do
-            if current == main then
-                next_index = (i % #main_cycle) + 1
-                break  
-            end
-        end
-		local next_weapon = main_cycle[next_index]
-        if next_weapon then
-			equip({ main = next_weapon })
-        end
 	elseif command == "ToggleSub" then
-		local sub_cycle = {}
-		if Player_Mode == "Melee" or Player_Mode == "Tank" then
-			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
-				sub_cycle = {"Daybreak", "Thibron", "Bunzi's Rod"}
-			else
-				sub_cycle = {"Ammurapi Shield", "Genmei Shield"}
-			end
-		elseif Player_Mode == "Caster" then
-			sub_cycle = {"Genmei Shield", "Ammurapi Shield"}
-		elseif Player_Mode == "Enspell" then
-			sub_cycle = {"Pukulatmuj +1"}
-		end
-		local current = player.equipment.sub
-		local next_index = 1
-		for i, sub in ipairs(sub_cycle) do
-			if current == sub then
-				next_index = (i % #sub_cycle) + 1
-				break
-			end
-		end
-		local next_offhand = sub_cycle[next_index] 
-		if next_offhand then
-			equip({ sub = next_offhand })
+		local cycle_list = get_sub_cycle()
+		if #cycle_list > 0 then
+		sub_mode = cycle(cycle_list, sub_mode)
+		equip({ sub = sub_mode })
+		player.equipment.sub	= sub_mode
+        last_real_sub 			= sub_mode
 		end
 	end
 	check_shihei()
