@@ -22,8 +22,8 @@ lock_modes = {'Locked','Unlocked'}
 gearswap_box = function()
   str = '           \\cs(255,192,203)Paladin\\cr\n'
   str = str..' TP Mode:\\cs(255,150,100)   '..tp_mode..'\\cr\n'
-  str = str..' Spell Mode:\\cs(255,150,100)   '..spell_mode..'\\cr\n'
   str = str..' Weapon Lock:\\cs(255,150,100)   '..lock_mode..'\\cr\n'
+  str = str..' Spell Mode:\\cs(255,150,100)   '..spell_mode..'\\cr\n'
     return str
 end
 
