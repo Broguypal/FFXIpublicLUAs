@@ -509,31 +509,7 @@ end
 
 function status_change(new,old)
 	if new == "Engaged" then
-		if player.equipment.main == "Godhands" then
-			if buffactive["Impetus"] then
-				if buffactive["Footwork"] then
-					equip(sets.idle.tpimpetusfootwork.godhands)
-				else
-					equip(sets.idle.tpimpetus.godhands) 
-				end
-			elseif buffactive["Footwork"] then
-				equip(sets.idle.tpfootwork.godhands)
-			else
-				equip(sets.idle.tp.godhands) 
-			end
-		else
-			if buffactive["Impetus"] then
-				if buffactive["Footwork"] then
-					equip(sets.idle.tpimpetusfootwork)
-				else
-					equip(sets.idle.tpimpetus) 
-				end
-			elseif buffactive["Footwork"] then
-				equip(sets.idle.tpfootwork)
-			else
-				equip(sets.idle.tp) 
-			end
-		end
+		idle()
 	else
 		idle()
 	end
