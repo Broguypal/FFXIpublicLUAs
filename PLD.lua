@@ -14,7 +14,7 @@ tp_mode = 'Hybrid'
 spell_mode = 'Normal'
 lock_mode = 'Unlocked'
 
-tp_modes = {'Hybrid','DPS','AoETank','SingleTank','MagicEva','MagicAettir'}
+tp_modes = {'Hybrid','DPS','AoETank','BlockTank','SingleTank','MagicEva'.'MPAbsorb'}
 spell_modes = {'Normal','SIR'}
 lock_modes = {'Locked','Unlocked'}
 
