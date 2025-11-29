@@ -36,6 +36,42 @@ end
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+function check_trump_card_count()
+    local item_name = 'Trump Card'
+    local curCount = 0
+
+    if player.inventory[item_name] and player.inventory[item_name].count then
+        curCount = player.inventory[item_name].count
+    end
+
+    -- max stack count for coloring
+    local cMax = 99
+    local cColorR, cColorG
+
+    if curCount > cMax then
+        cColorR = 0
+        cColorG = 255
+    else
+        local percent = (curCount / cMax) * 100
+        if percent >= 50 then
+            cColorG = 255
+            cColorR = math.floor(5 * (100 - percent))
+        else
+            cColorR = 255
+            cColorG = 255 - math.floor(5 * (50 - percent))
+        end
+    end
+
+    local a
+    if curCount == 0 then
+        a = "\\cs(255,0,0)" .. '0'
+    else
+        a = "\\cs(" .. cColorR .. "," .. cColorG .. ",0)" .. curCount
+    end
+
+    trump_card = a
+end
+
 ----------------------------------------------------------------------
 --                           USER SETUP
 ----------------------------------------------------------------------
@@ -74,42 +110,6 @@ function user_setup()
 	check_trump_card_count()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
-end
-
-function check_trump_card_count()
-    local item_name = 'Trump Card'
-    local curCount = 0
-
-    if player.inventory[item_name] and player.inventory[item_name].count then
-        curCount = player.inventory[item_name].count
-    end
-
-    -- max stack count for coloring
-    local cMax = 99
-    local cColorR, cColorG
-
-    if curCount > cMax then
-        cColorR = 0
-        cColorG = 255
-    else
-        local percent = (curCount / cMax) * 100
-        if percent >= 50 then
-            cColorG = 255
-            cColorR = math.floor(5 * (100 - percent))
-        else
-            cColorR = 255
-            cColorG = 255 - math.floor(5 * (50 - percent))
-        end
-    end
-
-    local a
-    if curCount == 0 then
-        a = "\\cs(255,0,0)" .. '0'
-    else
-        a = "\\cs(" .. cColorR .. "," .. cColorG .. ",0)" .. curCount
-    end
-
-    trump_card = a
 end
 
 ----------------------------------------------------------------------
