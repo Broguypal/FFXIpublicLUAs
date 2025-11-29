@@ -11,7 +11,7 @@
 ----------------------------------------------------------------------
 -- Summary:
 -- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
------ The numberpad is also used to cast the highest tier NIN spell available more easily (Timers may need to be adjusted based on your fastcast - see SPELL LOGIC)
+----- The numberpad is also used to cast the highest tier NIN spell available more easily (Timers may need to be adjusted based on your fastcast - see SPELL LOGIC near bottom)
 -- To change the keybinds, please edit them in the Keybinds function below
 -- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
@@ -108,42 +108,6 @@ function check_tool_count()
 			inofu = a 
 		end
 	end
-end
-
-----------------------------------------------------------------------
---                           SPELL LOGIC
-----------------------------------------------------------------------
--- Note: ctrl or alt 1/2/3 on numpad automatically casts best tier spell available. 
--- Below are the timers which you may need to change based on your level of fastcast.
-local ninjutsu_custom_recasts = {
-    ["San"] = 45,
-    ["Ni"]  = 33,
-    ["Ichi"] = 22,
-}
-
-local ninjutsu_tiers = {"San", "Ni", "Ichi"}
-
-local last_ninjutsu_cast = {}
-
-function capitalize(word)
-    return word:sub(1,1):upper() .. word:sub(2):lower()
-end
-
-function cast_best_ninjutsu(element)
-    local now = os.clock()
-    local element_cap = element  -- assuming you're skipping capitalize()
-    
-    for _, tier in ipairs(ninjutsu_tiers) do
-        local spell_name = ("%s: %s"):format(element_cap, tier)
-        local last_cast = last_ninjutsu_cast[spell_name] or 0
-        local cooldown = ninjutsu_custom_recasts[tier]
-        local remaining = cooldown - (now - last_cast)
-
-        if remaining <= 0 then
-            send_command('input /ma "' .. spell_name .. '" <t>')
-            return
-        end
-    end
 end
 
 ----------------------------------------------------------------------
@@ -1446,6 +1410,42 @@ function status_change(new,old)
 	else
 		idle()
 	end
+end
+
+----------------------------------------------------------------------
+--                           SPELL LOGIC
+----------------------------------------------------------------------
+-- Note: ctrl or alt 1/2/3 on numpad automatically casts best tier spell available. 
+-- Below are the timers which you may need to change based on your level of fastcast.
+local ninjutsu_custom_recasts = {
+    ["San"] = 45,
+    ["Ni"]  = 33,
+    ["Ichi"] = 22,
+}
+
+local ninjutsu_tiers = {"San", "Ni", "Ichi"}
+
+local last_ninjutsu_cast = {}
+
+function capitalize(word)
+    return word:sub(1,1):upper() .. word:sub(2):lower()
+end
+
+function cast_best_ninjutsu(element)
+    local now = os.clock()
+    local element_cap = element  -- assuming you're skipping capitalize()
+    
+    for _, tier in ipairs(ninjutsu_tiers) do
+        local spell_name = ("%s: %s"):format(element_cap, tier)
+        local last_cast = last_ninjutsu_cast[spell_name] or 0
+        local cooldown = ninjutsu_custom_recasts[tier]
+        local remaining = cooldown - (now - last_cast)
+
+        if remaining <= 0 then
+            send_command('input /ma "' .. spell_name .. '" <t>')
+            return
+        end
+    end
 end
 
 ----------------------------------------------------------------------
