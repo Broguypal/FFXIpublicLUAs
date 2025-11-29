@@ -325,13 +325,13 @@ function get_sets()
 		neck="Moonlight Necklace",
 	})
 
--- No weapon/shield swaps
+	-- No weapon/shield swaps
 	sets.midcast.phalanxWeapons = set_combine(sets.midcast.phalanx,{
 		main="Sakpata's Sword",
 		sub={ name="Priwen", augments={'HP+50','Mag. Evasion+50','Damage Taken -3%',}},
 	})
 
--- No weapon/shield swaps
+	-- No weapon/shield swaps
 	sets.midcast.phalanxSIRWeapons = set_combine(sets.midcast.phalanxSIR,{
 		main="Sakpata's Sword",
 		sub={ name="Priwen", augments={'HP+50','Mag. Evasion+50','Damage Taken -3%',}},
