@@ -156,7 +156,7 @@ function get_sets()
 		right_ear="Eabani Earring",
 		left_ring="Defending Ring",
 		right_ring="Warden's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.idle.tank = {
@@ -171,7 +171,7 @@ function get_sets()
 		right_ear="Eabani Earring",
 		left_ring="Defending Ring",
 		right_ring="Warden's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
 	----------------------------------------------------------------------
@@ -189,7 +189,7 @@ function get_sets()
 		right_ear="Eabani Earring",
 		left_ring="Defending Ring",
 		right_ring="Fickblix's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
 	----------------------------------------------------------------------
@@ -207,7 +207,7 @@ function get_sets()
 		right_ear="Crep. Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Petrov Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','"Store TP"+10',}},
+		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Spell interruption rate down-10%',}},
 	}
 
 	----------------------------------------------------------------------
@@ -225,7 +225,7 @@ function get_sets()
 		right_ear="Crep. Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Dingir Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','"Store TP"+10',}},
+		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Spell interruption rate down-10%',}},
 	}
 	
 	sets.midcast.trust = {
@@ -366,7 +366,7 @@ function get_sets()
 		right_ear="Mache Earring +1",
 		left_ring="Apate Ring",
 		right_ring="Ilabrat Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.hotshot = {
