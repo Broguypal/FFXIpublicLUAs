@@ -191,7 +191,7 @@ function get_sets()
 	}
 	sets.midcast.CureWeapons = set_combine(sets.midcast.Cure, sets.weapons.Curing)
 	sets.midcast.CureAurorastorm = set_combine(sets.midcast.cure,{waist="Hachirin-no-Obi",})
-	sets.midcast.CureAurorastormWeapons = set_combine(CureAurorastorm, sets.weapons.CuringAurorastorm)
+	sets.midcast.CureAurorastormWeapons = set_combine(sets.midcast.CureAurorastorm, sets.weapons.CuringAurorastorm)
 	
 	sets.midcast.Curaga = set_combine(sets.midcast.Cure,{
 	--twilight cape
