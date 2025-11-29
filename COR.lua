@@ -429,9 +429,8 @@ function get_sets()
 		waist="Hachirin-no-Obi",
 	})
 
-	---- Note: only non-ranged weaponskills should have Hauksbok Bullet equipped
 	sets.ws.aeolianedge = {
-		ammo="Hauksbok Bullet",
+		ammo="Living Bullet",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -454,7 +453,6 @@ function get_sets()
 		left_ring="Purity Ring",
 		right_ring="Blenmot's Ring",
 	}
-	
 end
 
 ----------------------------------------------------------------------
