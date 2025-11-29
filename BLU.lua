@@ -6,9 +6,17 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
---BLU LUA
+----------------------------------------------------------------------
+--                           BLU LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
------------------ MODES / UI TEXT BOX -----------------------------
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 Player_Mode = "Hybrid"
 Casting_Mode = "Normal"
 Lock_Mode = "Locked"
@@ -29,28 +37,26 @@ gearswap_box = function()
     return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
-	initialize_weapon_tracking()
-	gearswap_jobbox:text(gearswap_box())		
-	gearswap_jobbox:show()
-end
-
-----------------------------KEYBINDS-------------------------------
--------------------------------------------------------------------
-function get_sets()
-	--Mode Commands
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleHybrid')
 	send_command('bind numpad8 gs c ToggleTank')
 	send_command('bind numpad7 gs c ToggleDualWield')
-	send_command('bind numpad3 gs c ToggleSIR')
-	send_command('bind numpad6 gs c ToggleLOCK')
+	
 	send_command('bind numpad4 gs c ToggleMAIN')
 	send_command('bind numpad5 gs c ToggleSUB')
+	send_command('bind numpad3 gs c ToggleSIR')
+	send_command('bind numpad6 gs c ToggleLOCK')
 
-	--QOL commands
 	send_command ('bind numpad1 input /mount "Noble Chocobo"')
 	send_command ('bind numpad2 input /dismount')
 	send_command('bind f9 input /item "Remedy" <me>')
@@ -58,8 +64,27 @@ function get_sets()
 	send_command('bind f11 input /item "Holy Water" <me>')
 	send_command('bind f12 input //fillmode')
 
-----------------------------EQUIPMENT SETS-------------------------------
-------------------------------------------------------------------------
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
+	initialize_weapon_tracking()
+	gearswap_jobbox:text(gearswap_box())		
+	gearswap_jobbox:show()
+end
+
+----------------------------------------------------------------------
+--                           WEAPON TABLES
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons.
+	Weapons = {
+		Main	=	{"Tizona", "Maxentius"},
+		Sub		=	{"Thibron","Zantetsuken","Bunzi's Rod"}
+	}
+
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets()
 	sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- Leave this empty
 		sets.engaged.dualwield = {} -- Leave this empty
@@ -69,12 +94,13 @@ function get_sets()
 	sets.midcast = {}               -- leave this empty
 		sets.midcast.tank = {}		-- Leave this empty
 		sets.midcast.bluemagic = {}	-- Leave this empty
-	sets.aftercast = {}             -- leave this empty
+	sets.ja = {}             		-- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}					-- Leave this empty
  
- 
-	 ---- IDLE SETS ----
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
     sets.idle.hybrid = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -112,23 +138,9 @@ function get_sets()
 		sub="Sakpata's Sword",
 	})
 	
-	sets.idle.trust = {
-		ammo="Staunch Tathlum +1",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Sibyl Scarf",
-		waist="Carrier's Sash",
-		left_ear="Genmei Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Shadow Ring",
-		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
-	}
-	
-	---- ENGAGED SETS ---- 
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
 	--Tank engaged
 	sets.engaged.tank = {
 		ammo="Amar Cluster",
@@ -257,7 +269,9 @@ function get_sets()
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --10DW
 	})
 
-	---- PRECAST SETS ----
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
 	sets.precast.fastcast = {
 		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -275,27 +289,8 @@ function get_sets()
 	sets.precast.bluemagic = set_combine(sets.precast.fastcast,{ 
 		body="Hashishin Mintan +3",
 	})
-	
-	sets.precast.diffusion = {
-		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
-	}
 
-	sets.precast.chainaffinity = {
-		head="Hashishin Kavuk +3",
-		feet="Assim. Charuqs +4",
-	}
-	
-	sets.precast.efflux = {
-		legs="Hashishin Tayt +3",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
-	}
-
-	sets.precast.burstaffinity = {
-		legs="Assim. Shalwar +3",
-		feet="Hashi. Basmak +3",
-	}
-
-	---- TANK PRECAST SETS----
+	---- ODYSSEY/OMEN TANK PRECAST SETS----
 	sets.precast.tank.dreamflower = {
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body="Hashishin Mintan +3",
@@ -311,7 +306,9 @@ function get_sets()
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 
-	----BLUE MAGIC MIDCAST SETS ----
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS (BLUE MAGIC)
+	----------------------------------------------------------------------
 	sets.midcast.bluemagic.Physical = {
 		ammo="Aurgelmir Orb",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -527,7 +524,9 @@ function get_sets()
 	sets.midcast.bluemagic.Refresh = set_combine(sets.midcast.bluemagic.Buff,{
 	})
 
-	---- MIDCAST NON BLU SETS ----
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS (NON-BLUE MAGIC)
+	----------------------------------------------------------------------
 	sets.midcast.phalanx = {
 		ammo="Sapience Orb",
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
@@ -647,6 +646,14 @@ function get_sets()
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 
+	sets.midcast.trust = {
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+	}
+	
 	---- Tank Midcast Sets ----
 	sets.midcast.tank.SleepSpells = {
 		ammo="Staunch Tathlum +1",
@@ -664,7 +671,31 @@ function get_sets()
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 
-	---- WEAPONSKILL SETS ----
+	----------------------------------------------------------------------
+	--                           JOB ABILITIES
+	----------------------------------------------------------------------
+	sets.ja.diffusion = {
+		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
+	}
+
+	sets.ja.chainaffinity = {
+		head="Hashishin Kavuk +3",
+		feet="Assim. Charuqs +4",
+	}
+	
+	sets.ja.efflux = {
+		legs="Hashishin Tayt +3",
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
+	}
+
+	sets.ja.burstaffinity = {
+		legs="Assim. Shalwar +3",
+		feet="Hashi. Basmak +3",
+	}
+
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
 	sets.ws.normal = {
 		ammo="Oshasha's Treatise",
 		head="Hashishin Kavuk +3",
@@ -793,7 +824,9 @@ function get_sets()
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 		
-	-----	ITEM SETS	----
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -801,26 +834,9 @@ function get_sets()
 	}
 end
 
-----------------------------WEAPONS/AMMO-------------------------------
-------------------------------------------------------------------------
-	Weapons = {
-		Main	=	{"Tizona", "Maxentius"},
-		Sub		=	{"Thibron","Zantetsuken","Bunzi's Rod"}
-	}
-----------------------------INTERNAL LOGIC-------------------------------
-------------------------------------------------------------------------
-windower.register_event('lose buff', function(buff_id)
-	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 or buff_id == 273 then
-		idle()
-	end
-end)
-
-windower.register_event('gain buff', function(buff_id)
-	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 or buff_id == 273 then
-		idle()
-	end
-end)
-
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if Player_Mode == "OmenTank" then
 		if Lock_Mode == "Locked" then
@@ -897,54 +913,28 @@ function idle()
 		end
 	end
 	if chain_active then
-		equip(sets.precast.chainaffinity)
+		equip(sets.ja.chainaffinity)
 	end
 	if efflux_active then
-		equip(sets.precast.efflux)
+		equip(sets.ja.efflux)
 	end
 	if burst_active then
-		equip(sets.precast.burstaffinity)
-	end
-end
-
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-		if chain_active then
-			equip(sets.precast.chainaffinity)
-		end
-		if efflux_active then
-			equip(sets.precast.efflux)
-		end
-		if burst_active then
-			equip(sets.precast.burstaffinity)
-		end
-	else
-		idle()
-		if chain_active then
-			equip(sets.precast.chainaffinity)
-		end
-		if efflux_active then
-			equip(sets.precast.efflux)
-		end
-		if burst_active then
-			equip(sets.precast.burstaffinity)
-		end
+		equip(sets.ja.burstaffinity)
 	end
 end
 
 function precast(spell)
 	if spell.type == "JobAbility" then
 		if spell.name == "Diffusion" then
-			equip(sets.precast.diffusion)
+			equip(sets.ja.diffusion)
 		elseif spell.name == "Efflux" then
-			equip(sets.precast.efflux)
+			equip(sets.ja.efflux)
 			efflux_active = true
 		elseif spell.name == "Chain Affinity" then
-			equip(sets.precast.chainaffinity)
+			equip(sets.ja.chainaffinity)
 			chain_active = true
 		elseif spell.name == "Burst Affinity" then
-			equip(sets.precast.burstaffinity)
+			equip(sets.ja.burstaffinity)
 			burst_active = true
 		end
 	elseif spell.english == "Holy Water" then
@@ -982,13 +972,13 @@ function precast(spell)
 		end
 	end
 	if chain_active then
-		equip(sets.precast.chainaffinity)
+		equip(sets.ja.chainaffinity)
 	end
 	if efflux_active then
-		equip(sets.precast.efflux)
+		equip(sets.ja.efflux)
 	end
 	if burst_active then
-		equip(sets.precast.burstaffinity)
+		equip(sets.ja.burstaffinity)
 	end
 end
 
@@ -1009,7 +999,7 @@ function midcast(spell)
 				elseif spell.english == "Holy Water" then
 					equip(sets.items.holywater)
 				elseif spell.type == "Trust" then
-					equip(sets.idle.trust)
+					equip(sets.midcast.trust)
 				else
 					equip(sets.idle.tank)
 				end
@@ -1017,7 +1007,7 @@ function midcast(spell)
 				if spell.english == "Holy Water" then
 					equip(sets.items.holywater)
 				elseif spell.type == "Trust" then
-					equip(sets.idle.trust)
+					equip(sets.midcast.trust)
 				else
 					equip(sets.midcast.treasurehunter)
 				end
@@ -1025,7 +1015,7 @@ function midcast(spell)
 				if spell.english == "Holy Water" then
 					equip(sets.items.holywater)
 				elseif spell.type == "Trust" then
-					equip(sets.idle.trust)
+					equip(sets.midcast.trust)
 				elseif spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then
 					if spell.skill == "Elemental Magic" then
 						equip(sets.midcast.elemental)
@@ -1135,13 +1125,13 @@ function midcast(spell)
 		end
 	end
 	if chain_active then
-		equip(sets.precast.chainaffinity)
+		equip(sets.ja.chainaffinity)
 	end
 	if efflux_active then
-		equip(sets.precast.efflux)
+		equip(sets.ja.efflux)
 	end
 	if burst_active then
-		equip(sets.precast.burstaffinity)
+		equip(sets.ja.burstaffinity)
 	end
 end
 
@@ -1162,8 +1152,50 @@ function aftercast(spell)
 	idle()
 end
 
-----------------------------CYCLING/COMMANDS LOGIC----------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+windower.register_event('lose buff', function(buff_id)
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 or buff_id == 273 then
+		idle()
+	end
+end)
+
+windower.register_event('gain buff', function(buff_id)
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 or buff_id == 273 then
+		idle()
+	end
+end)
+
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+		if chain_active then
+			equip(sets.ja.chainaffinity)
+		end
+		if efflux_active then
+			equip(sets.ja.efflux)
+		end
+		if burst_active then
+			equip(sets.ja.burstaffinity)
+		end
+	else
+		idle()
+		if chain_active then
+			equip(sets.ja.chainaffinity)
+		end
+		if efflux_active then
+			equip(sets.ja.efflux)
+		end
+		if burst_active then
+			equip(sets.ja.burstaffinity)
+		end
+	end
+end
+
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+-----------------------------------------------------------------------
 function cycle(list, current)
     local index = 1
     if current then
@@ -1232,6 +1264,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')

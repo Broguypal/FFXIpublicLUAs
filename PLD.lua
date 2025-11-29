@@ -6,10 +6,17 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
---PLD LUA
+----------------------------------------------------------------------
+--                           PLD LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-
----- 		Mode / Textbox settings 		----
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 tp_mode = 'Hybrid'
 spell_mode = 'Normal'
 lock_mode = 'Unlocked'
@@ -27,38 +34,53 @@ gearswap_box = function()
     return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
+	send_command('bind numpad9 gs c ToggleHybrid')
+	send_command('bind numpad8 gs c ToggleTank')
+	send_command('bind numpad7 gs c ToggleMagic')
+
+	send_command('bind numpad4 gs c ToggleWeapon')
+	send_command('bind numpad5 gs c ToggleShield')
+	send_command('bind numpad6 gs c ToggleLock')
+	send_command('bind numpad3 gs c ToggleSIR')
+
+	send_command ('bind numpad1 input /mount "Noble Chocobo"')
+	send_command ('bind numpad2 input /dismount')
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
+
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
 	initialize_weapon_tracking()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
 
+----------------------------------------------------------------------
+--                           WEAPON TABLES 
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons.
+	Weapons = {
+		Main   = { "Burtgang","Malignance Sword","Naegling"},
+		Sub    = { "Aegis","Ochain","Duban","Burred Shield +1" },
+	}
+
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
 function get_sets()
-----				KEYBINDS			----
--- Equipset toggles
-send_command('bind numpad9 gs c ToggleHybrid')
-send_command('bind numpad8 gs c ToggleTank')
-send_command('bind numpad7 gs c ToggleMagic')
-
--- Weapon/shield togles
-send_command('bind numpad5 gs c ToggleShield')
-send_command('bind numpad4 gs c ToggleWeapon')
-send_command('bind numpad6 gs c ToggleLock')
-
--- Spell interupt toggle
-send_command('bind numpad3 gs c ToggleSIR')
-
---QOL commands
-send_command ('bind numpad1 input /mount "Noble Chocobo"')
-send_command ('bind numpad2 input /dismount')
-send_command('bind f9 input /item "Remedy" <me>')
-send_command('bind f10 input /item "Panacea" <me>')
-send_command('bind f11 input /item "Holy Water" <me>')
-
---- 			EQUIPMENT SETS			----
     sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- leave this empty   
     sets.precast = {}               -- leave this empty  
@@ -68,9 +90,10 @@ send_command('bind f11 input /item "Holy Water" <me>')
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}					-- Leave this empty
  
- ---- IDLE SETS ----
- 
- --Normal Idle set - Movement speed
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
+	--Normal Idle set - Movement speed should go here
     sets.idle.normal = {
 		ammo="Staunch Tathlum +1",
 		head="Chev. Armet +3",
@@ -167,7 +190,9 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
 
----- ENGAGED SETS ----
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
 	sets.engaged.hybrid = {
 		ammo="Coiste Bodhar",
 		head="Sakpata's Helm",
@@ -200,7 +225,9 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
 	
----- PRECAST SETS ----
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
 	sets.precast.fastcast = {
 		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -219,39 +246,10 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		left_ear="Mendi. Earring",
 		right_ear="Tuisto Earring",
 	})
-
----- JOB ABILITY SETS ----
-	sets.ja.sentinel = {
-	}
 	
-	sets.ja.shieldbash = {
-		hands={ name="Cab. Gauntlets +2", augments={'Enhances "Chivalry" effect',}},
-		left_ear="Knightly Earring",
-	}
-	
-	sets.ja.cover = {
-	}
-	
-	sets.ja.rampart = {
-	}
-	
-	sets.ja.fealty = {
-	}
-	
-	sets.ja.chivalry = {
-		hands={ name="Cab. Gauntlets +2", augments={'Enhances "Chivalry" effect',}},
-	}
-	
-	sets.ja.divineemblem = {
-	}
-	
-	sets.ja.invincible = {
-	}
-	
-	sets.ja.holycircle = {
-	}
-
----- MIDCAST SETS ----
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
 	sets.midcast.cure = {
 		ammo="Staunch Tathlum +1",
 		head={ name="Loess Barbuta +1", augments={'Path: A',}},
@@ -354,16 +352,44 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Eihwaz Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
-	
 
----- ITEM SETS ----
-	sets.items.holywater = {
-		neck="Nicander's Necklace",
-		left_ring="Purity Ring",
-		right_ring="Blenmot's Ring",
+	----------------------------------------------------------------------
+	--                           JOB ABILITIES
+	----------------------------------------------------------------------
+	sets.ja.sentinel = {
+	}
+	
+	sets.ja.shieldbash = {
+		hands={ name="Cab. Gauntlets +2", augments={'Enhances "Chivalry" effect',}},
+		left_ear="Knightly Earring",
+	}
+	
+	sets.ja.cover = {
+	}
+	
+	sets.ja.rampart = {
+	}
+	
+	sets.ja.fealty = {
+	}
+	
+	sets.ja.chivalry = {
+		hands={ name="Cab. Gauntlets +2", augments={'Enhances "Chivalry" effect',}},
+	}
+	
+	sets.ja.divineemblem = {
+	}
+	
+	sets.ja.invincible = {
+	}
+	
+	sets.ja.holycircle = {
 	}
 
----- WEAPONSKILL SETS ----
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
+	--Undefined weaponskills
 	sets.ws.normal = {
 		ammo="Oshasha's Treatise",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -459,17 +485,20 @@ send_command('bind f11 input /item "Holy Water" <me>')
 		right_ring="Epaminondas's Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
+
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
+	sets.items.holywater = {
+		neck="Nicander's Necklace",
+		left_ring="Purity Ring",
+		right_ring="Blenmot's Ring",
+	}
 end
 
-----------------------------WEAPONS/SHIELDS-------------------------------
-------------------------------------------------------------------------
-	Weapons = {
-		Main   = { "Burtgang","Malignance Sword","Naegling"},
-		Sub    = { "Aegis","Ochain","Duban","Burred Shield +1" },
-	}
-
-----------------------------INTERNAL LOGIC-------------------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if tp_mode == "Hybrid" then
 		if player.status == "Engaged" then
@@ -493,14 +522,6 @@ function idle()
 		equip(sets.idle.magiceva)
 	elseif tp_mode == "MPAbsorb" then
 		equip(sets.idle.mpabsorb)
-	end
-end
-
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	else
-		idle()
 	end
 end
 
@@ -630,8 +651,20 @@ function aftercast(spell)
     idle()
 end
 
-----------------------------CYCLING/COMMANDS LOGIC----------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
+end
+
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+----------------------------------------------------------------------
 function cycle(list, current)
     local index = nil
     if current then
@@ -709,6 +742,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
     send_command('unbind numpad9')
     send_command('unbind numpad8')

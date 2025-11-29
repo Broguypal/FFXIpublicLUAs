@@ -6,12 +6,20 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
--- COR LUA ----
+----------------------------------------------------------------------
+--                           COR LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+----- The numberpad is also used to easily use quickdraw (all elements) and ranged attack.
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-----------------------------UI BOX LOGIC -------------------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 TP_Mode = "Hybrid"
- 
+
 TP_Modes = {'Defence','Hybrid'}
 
 trump_card = "\\cs(255,0,0)0"
@@ -24,10 +32,44 @@ gearswap_box = function()
   str = str..' alt: \\cs(80,60,100)[DRK]\\cr \\cs(128,255,255)[ICE]\\cr \\cs(165,100,40)[STN]\\cr \\cs(64,128,255)[WTR]\\cr\n'    return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
+	send_command('bind numpad9 gs c ToggleMode')
+
+	send_command('bind numpad4 gs c ToggleMain')
+	send_command('bind numpad5 gs c ToggleSub')
+	send_command('bind numpad6 gs c ToggleRanged')
+	send_command('bind numpad7 gs c ToggleAmmo')
+
+	send_command ('bind ^numpad1 input /ja "Fire Shot" <t> ')
+	send_command ('bind ^numpad2 input /ja "Wind Shot" <t>')
+	send_command ('bind ^numpad3 input /ja "Thunder Shot" <t>')
+	send_command ('bind ^numpad0 input /ja "Light Shot" <t>') 
+	send_command ('bind !numpad1 input /ja "Ice Shot" <t>')
+	send_command ('bind !numpad2 input /ja "Earth Shot" <t>')
+	send_command ('bind !numpad3 input /ja "Water Shot" <t>')
+	send_command ('bind !numpad0 input /ja "Dark Shot" <t>')
+
+	send_command ('bind numpad0 gs c RangedAttack')
+
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
+	send_command ('bind numpad1 input /mount "Noble Chocobo"')
+	send_command ('bind numpad2 input /dismount')
+
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
 	initialize_weapon_tracking()
 	check_trump_card_count()
 	gearswap_jobbox:text(gearswap_box())		
@@ -70,41 +112,25 @@ function check_trump_card_count()
     trump_card = a
 end
 
-----------------------------KEYBINDS-------------------------------
--------------------------------------------------------------------
-function get_sets()
-	-- Toggle Modes
-	send_command('bind numpad9 gs c ToggleMode')
-
-	-- Toggle weapons
-	send_command('bind numpad4 gs c ToggleMain')
-	send_command('bind numpad5 gs c ToggleSub')
-	send_command('bind numpad6 gs c ToggleRanged')
-	send_command('bind numpad7 gs c ToggleAmmo')
-
-	--Shots keybinds
-	send_command ('bind ^numpad1 input /ja "Fire Shot" <t> ')
-	send_command ('bind ^numpad2 input /ja "Wind Shot" <t>')
-	send_command ('bind ^numpad3 input /ja "Thunder Shot" <t>')
-	send_command ('bind ^numpad0 input /ja "Light Shot" <t>') 
-	send_command ('bind !numpad1 input /ja "Ice Shot" <t>')
-	send_command ('bind !numpad2 input /ja "Earth Shot" <t>')
-	send_command ('bind !numpad3 input /ja "Water Shot" <t>')
-	send_command ('bind !numpad0 input /ja "Dark Shot" <t>')
-
-	-- Ranged attack
-	send_command ('bind numpad0 gs c RangedAttack')
-
-	send_command('bind f9 input /item "Remedy" <me>')
-	send_command('bind f10 input /item "Panacea" <me>')
-	send_command('bind f11 input /item "Holy Water" <me>')
-	send_command ('bind numpad1 input /mount "Noble Chocobo"')
-	send_command ('bind numpad2 input /dismount')
-
-
-----------------------------EQUIPMENT SETS-------------------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           WEAPON TABLES
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons.
+	Weapons = {
+		Main   = { "Naegling", "Tauret" },
+		Sub    = { "Gleti's Knife", "Tauret" },
+		Ranged = { "Death Penalty", "Anarchy +2", "Fomalhaut" },
+	}
  
+	AmmoList = {
+		"Chrono Bullet",
+		"Living Bullet",
+	}
+
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets()
     sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}				-- Leave this empty
     sets.precast = {}               -- leave this empty    
@@ -115,7 +141,9 @@ function get_sets()
 	sets.items = {}					-- Leave this empty
 
 
----- IDLE SETS ----
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
     sets.idle.normal = {
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -146,8 +174,9 @@ function get_sets()
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
----- ENGAGED SETS ----
-
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
 	sets.engaged.normal = {
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
@@ -163,7 +192,9 @@ function get_sets()
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
----- PRESHOT SET ----
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
     sets.precast.preshot = {
 		head="Ikenga's Hat",
 		body="Oshosi Vest +1",
@@ -179,7 +210,9 @@ function get_sets()
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','"Store TP"+10',}},
 	}
 
----- MIDCAST SETS ----
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
     sets.midcast.midshot = {
 		head="Malignance Chapeau",
 		body="Chasseur's Frac +2",
@@ -194,8 +227,84 @@ function get_sets()
 		right_ring="Dingir Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','"Store TP"+10',}},
 	}
+	
+	sets.midcast.trust = {
+		head="Nyame Helm",
+		body="Shamash Robe",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets", 
+	}
 
----- WEAPONSKILL SETS ----
+	----------------------------------------------------------------------
+	--                           JOB ABILITIES
+	----------------------------------------------------------------------
+	sets.ja.quickdraw = {
+		ammo="Hauksbok Bullet",
+		head="Ikenga's Hat",
+		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+		neck="Sanctity Necklace",
+		waist="Orpheus's Sash",
+		left_ear="Crematio Earring",
+		right_ear="Friomisi Earring",
+		left_ring="Fenrir Ring +1",
+		right_ring="Dingir Ring",
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+	}
+
+	sets.ja.quickdrawobi = set_combine(sets.ja.quickdraw,{
+		waist="Hachirin-no-Obi",
+	})
+
+	sets.ja.quickdrawACC = {
+		ammo="Hauksbok Bullet",
+		head="Malignance Chapeau",
+		body="Malignance Tabard",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+		neck="Sanctity Necklace",
+		waist="Orpheus's Sash",
+		left_ear="Friomisi Earring",
+		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
+		left_ring="Stikini Ring +1",
+		right_ring="Stikini Ring +1",
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+	}
+
+	sets.ja.quickdrawACCobi = set_combine(sets.ja.quickdrawACC,{
+		waist="Hachirin-no-Obi",
+	})
+
+	sets.ja.engagedroll = {
+		head={ name="Lanun Tricorne +1", augments={'Enhances "Winning Streak" effect',}},
+		hands="Chasseur's Gants +2",
+		neck="Regal Necklace",
+		left_ring="Luzaf's Ring",
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+	}
+
+	sets.ja.roll = set_combine(sets.ja.engagedroll,{
+		range="Compensator",
+	})
+	
+	sets.ja.wildcard = {
+		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+	}
+	
+	sets.ja.randomdeal = {
+		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
+	}
+	
+	sets.ja.waltz = {
+	}
+
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
 	sets.ws.general = {
 		ammo="Chrono Bullet",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -320,7 +429,7 @@ function get_sets()
 		waist="Hachirin-no-Obi",
 	})
 
----- Note: only non-ranged weaponskills should have Hauksbok Bullet equipped
+	---- Note: only non-ranged weaponskills should have Hauksbok Bullet equipped
 	sets.ws.aeolianedge = {
 		ammo="Hauksbok Bullet",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -337,70 +446,9 @@ function get_sets()
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
 
----- JOB ABILITY SETS ----
-	sets.ja.quickdraw = {
-		ammo="Hauksbok Bullet",
-		head="Ikenga's Hat",
-		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
-		neck="Sanctity Necklace",
-		waist="Orpheus's Sash",
-		left_ear="Crematio Earring",
-		right_ear="Friomisi Earring",
-		left_ring="Fenrir Ring +1",
-		right_ring="Dingir Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
-	}
-
-	sets.ja.quickdrawobi = set_combine(sets.ja.quickdraw,{
-		waist="Hachirin-no-Obi",
-	})
-
-	sets.ja.quickdrawACC = {
-		ammo="Hauksbok Bullet",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
-		neck="Sanctity Necklace",
-		waist="Orpheus's Sash",
-		left_ear="Friomisi Earring",
-		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
-		left_ring="Stikini Ring +1",
-		right_ring="Stikini Ring +1",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
-	}
-
-	sets.ja.quickdrawACCobi = set_combine(sets.ja.quickdrawACC,{
-		waist="Hachirin-no-Obi",
-	})
-
-	sets.ja.engagedroll = {
-		head={ name="Lanun Tricorne +1", augments={'Enhances "Winning Streak" effect',}},
-		hands="Chasseur's Gants +2",
-		neck="Regal Necklace",
-		left_ring="Luzaf's Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
-	}
-
-	sets.ja.roll = set_combine(sets.ja.engagedroll,{
-		range="Compensator",
-	})
-	
-	sets.ja.wildcard = {
-		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
-	}
-	
-	sets.ja.randomdeal = {
-		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
-	}
-	
-	sets.ja.waltz = {
-	}
----------------------------	ITEM SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -409,21 +457,9 @@ function get_sets()
 	
 end
 
-----------------------------WEAPONS/AMMO-------------------------------
-------------------------------------------------------------------------
-	Weapons = {
-		Main   = { "Naegling", "Tauret" },
-		Sub    = { "Gleti's Knife", "Tauret" },
-		Ranged = { "Death Penalty", "Anarchy +2", "Fomalhaut" },
-	}
- 
-	AmmoList = {
-		"Chrono Bullet",
-		"Living Bullet",
-	}
-
-----------------------------INTERNAL LOGIC-------------------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if TP_Mode == "Defence" then
 		equip(sets.idle.tank)
@@ -433,14 +469,6 @@ function idle()
 		else
 			equip(sets.idle.normal)
 		end
-	end
-end
-
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	else
-		idle()
 	end
 end
 
@@ -557,6 +585,8 @@ function midcast(spell,action,spellMap,eventArgs)
 		end
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
+	elseif spell.type == "Trust" then
+		equip(sets.midcast.trust)
 	end
 end
 
@@ -574,8 +604,20 @@ function aftercast(spell)
     gearswap_jobbox:show()
 end
 
-----------------------------CYCLING/COMMANDS LOGIC----------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
+end
+
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+----------------------------------------------------------------------
 function cycle(list, current)
     local index = 1
     if current then
@@ -634,8 +676,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
-----------------------------MISC----------------------------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')

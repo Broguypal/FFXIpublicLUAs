@@ -6,10 +6,18 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
---  
----------------------------	PUPPETMASTER LUA---------------------------
+----------------------------------------------------------------------
+--                           PUP LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+----- The numberpad is also used to easily cast any element Maneuver and automatically recast it when it drops
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
---------------------------- SETTING UP TEXTBOX ------------------------------------------
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 TP_Mode = "Hybrid"
 Pet_Mode = "NA"
 Animator_Mode = "Melee"
@@ -47,29 +55,53 @@ gearswap_box = function()
   return str
 end
 
+function check_pet_status()
+	if pet and pet.isvalid then
+		if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" and ( pet.attachments.flashbulb or pet.attachments.strobe or pet.attachments["strobe II"] ) then
+			Pet_Mode = "Tank"
+		elseif pet.frame == "Valoredge Frame" then
+			Pet_Mode = "Bruiser"
+		elseif pet.frame == "Harlequin Frame" then
+			Pet_Mode = "Bruiser"
+		elseif pet.head == "Valoredge Head" and pet.frame == "Sharpshot Frame" then
+			Pet_Mode = "Sharpshot"
+		elseif pet.head == "Sharpshot Head" and pet.frame == "Sharpshot Frame" then
+			Pet_Mode = "Ranged"
+		elseif pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
+			Pet_Mode = "BLM"
+		elseif pet.head == "Soulsoother Head" and pet.frame == "Stormwaker Frame" then
+			Pet_Mode = "WHM"
+		elseif pet.head == "Stormwaker Head" and pet.frame == "Stormwaker Frame" then
+			Pet_Mode = "RDM"
+		else
+			Pet_Mode = "Other"
+		end
+	else
+		Pet_Mode = "NA"
+	end
+	gearswap_jobbox:text(gearswap_box())
+	gearswap_jobbox:show()
+end
+
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1250,y=525},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
-	initialize_weapon_tracking()
-	gearswap_jobbox:text(gearswap_box())		
-	gearswap_jobbox:show()
-	initialize_enmity_logic()
-end
-
-function get_sets()
-	--------------------------- Commands ----------------------------------
-	--------Required Commands Below ----------
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleHybrid')
 	send_command('bind numpad8 gs c ToggleOverdrive')
 	send_command('bind numpad7 gs c TogglePet')
 	send_command('bind numpad6 gs c ToggleMaster')
 	send_command('bind numpad3 gs c ToggleEmergency')
+	
 	send_command('bind numpad4 gs c ToggleWeapon')
 	send_command('bind numpad5 gs c ToggleAnimator')
-	send_command('bind numpad0 gs c ToggleAutoMode')
-	
-	-- Manouver commands
 	send_command('bind numpad0 gs c ToggleAutoMode')
 	
 	send_command ('bind ^numpad1 input /ja "Fire Maneuver" <me>')
@@ -81,37 +113,73 @@ function get_sets()
 	send_command ('bind !numpad3 input /ja "Water Maneuver" <me>')
 	send_command ('bind !numpad0 input /ja "Dark Maneuver" <me>')
 
-	--------- Personal Commands ---------------
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
+	
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
+	initialize_weapon_tracking()
+	initialize_enmity_logic()
+	gearswap_jobbox:text(gearswap_box())		
+	gearswap_jobbox:show()
+end
 
-	--------- GEAR DEFINED ------------------
+----------------------------------------------------------------------
+--                           WEAPON TABLES
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons based on modes.
+	Weapons = {
+		Hybrid 			= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
+		HybridDEF 		= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
+		Master     		= {"Godhands", "Verethragna", "Kenkonken"},
+		MasterDEF  		= {"Godhands", "Verethragna", "Kenkonken"},
+		Emergency  		= {"Godhands", "Verethragna", "Kenkonken"},
+		Overdrive  		= {"Xiucoatl", "Kenkonken"},
+		OverdriveDEF	= {"Xiucoatl", "Kenkonken"},
+		Pet        		= {"Xiucoatl", "Sakpata's Fists", "Ohtas"},
+		PetDEF     		= {"Gnafron's Adargas", "Ohtas"}
+	}
 
-	sets.idle = {}	
-	sets.engaged = {}
-		sets.engaged.hybrid = {}
-		sets.engaged.master = {}
-		sets.engaged.pet = {}
-		sets.engaged.overdrive = {}
-	sets.precast = {}
-		sets.precast.master = {}
-		sets.precast.pet = {}
-	sets.ws = {}
-		sets.ws.master = {}
-		sets.ws.pet = {}
-	sets.ja = {}
-	sets.midcast = {}    
-		sets.midcast.master = {}
-		sets.midcast.pet = {} 
-	sets.items = {}
-	sets.animators = {}
- 	
-	---------------------------	GEAR SETS	---------------------------	
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets()
+	sets.idle = {}						--leave this empty
+	sets.engaged = {}					--leave this empty
+		sets.engaged.hybrid = {}		--leave this empty
+		sets.engaged.master = {}		--leave this empty
+		sets.engaged.pet = {}			--leave this empty
+		sets.engaged.overdrive = {}		--leave this empty
+	sets.precast = {}					--leave this empty
+		sets.precast.master = {}		--leave this empty
+		sets.precast.pet = {}			--leave this empty
+	sets.ws = {}						--leave this empty
+		sets.ws.master = {}				--leave this empty
+		sets.ws.pet = {}				--leave this empty
+	sets.ja = {}						--leave this empty
+	sets.midcast = {}    				--leave this empty
+		sets.midcast.master = {}		--leave this empty
+		sets.midcast.pet = {} 			--leave this empty
+	sets.items = {}						--leave this empty
+	sets.animators = {}					--leave this empty
 	
 	-- Note: Please buy a "left_ear="Mache Earring +1"" to make a lot of the swaps work
 
-	---------------------------	DAMAGE TAKEN (for emergencies)	---------------------------	
+	----------------------------------------------------------------------
+	--                           ANIMATOR SWAPS
+	----------------------------------------------------------------------
+	-- Note: Please fill this out even if you don't have a specific animator. Totally fine to have these be all the same animator if you don't have a specific animator for each mode.
+	sets.animators.Ranged = {range="Animator P II +1",}
+	
+	sets.animators.Melee = {range="Animator P +1",}
+	
+	sets.animators.Master = {range="Neo Animator",}
+	
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
 	-- Master Damage taken --
 	sets.idle.Tank = {
 		ammo="Automat. Oil +3",
@@ -146,7 +214,6 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	---------------------------	IDLE / TOWN SET	---------------------------	
 	sets.idle.Normal = {
 		ammo="Automat. Oil +3",
 		head="Malignance Chapeau",
@@ -163,7 +230,10 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
-	---------------------------	ENGAGED SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
+	
 	---------------------------	HYRBRID ENGAGED SETS	---------------------------
 	-- Normal Hybrid
 	sets.engaged.hybrid.Normal = {
@@ -378,9 +448,10 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	---------------------------	PRECAST SETS	---------------------------
-	---------------------------	PRECAST / JOB ABILITY MASTER SETS	---------------------------
-	-- fastcast	
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
+	-- Master Fastcast	
 	sets.precast.master.fastcast = {
 		ammo="Automat. Oil +3",
 		head={ name="Herculean Helm", augments={'"Fast Cast"+5','"Mag.Atk.Bns."+14',}},
@@ -391,47 +462,6 @@ function get_sets()
 		left_ring="Rahab Ring",
 		right_ring="Prolix Ring",
 		back="Swith Cape",
-	}
-
-	--Job Abilities--
-	--  overload
-	sets.ja.overload = {
-		body="Kara. Farsetto +2",
-		hands="Foire Dastanas +1",
-		neck="Bfn. Collar +1",
-		left_ear="Burana Earring",
-		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
-	}
-
-	-- Provoke (you want an enmity set for your provoke)
-	sets.ja.enmity = {
-		hands="Kurys Gloves",
-		legs="Obatala Subligar",
-		feet="Ahosi Leggings",
-		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
-		left_ear="Friomisi Earring",
-		right_ear="Trux Earring",
-		left_ring="Begrudging Ring",
-		right_ring="Eihwaz Ring",
-	}
-
-	--  individual abilities
-	sets.ja.optimization = {head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},}
-	
-	sets.ja.overdrive = {body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},}
-	
-	sets.ja.finetuning = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
-	
-	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
-	
-	sets.ja.rolereversal = {feet={ name="Pitre Babouches +3", augments={'Enhances "Role Reversal" effect',}},}
-	
-	sets.ja.tacticalswitch = {feet="Karagoz Scarpe +2",}
-	
-	sets.ja.repair = {
-	    left_ear="Guignol Earring",
-		right_ear={ name="Kara. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Store TP"+5',}},
-		feet="Foire Bab. +1",
 	}
 
 	---------------------------	PRECAST PET SETS	---------------------------
@@ -459,7 +489,9 @@ function get_sets()
 		left_ear="Rimeice Earring",
 	}
 
-	---------------------------	MIDCAST MASTER SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
 	-- Master Midcast
 	sets.midcast.master.spelldamage = {
 		head="Nyame Helm",
@@ -530,9 +562,53 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	---------------------------	WEAPONSKILL SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           JOB ABILITIES
+	----------------------------------------------------------------------
+	--  Reduced overload pieces here
+	sets.ja.overload = {
+		body="Kara. Farsetto +2",
+		hands="Foire Dastanas +1",
+		neck="Bfn. Collar +1",
+		left_ear="Burana Earring",
+		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
+	}
+
+	-- Provoke (you want an enmity set for your provoke)
+	sets.ja.enmity = {
+		hands="Kurys Gloves",
+		legs="Obatala Subligar",
+		feet="Ahosi Leggings",
+		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
+		left_ear="Friomisi Earring",
+		right_ear="Trux Earring",
+		left_ring="Begrudging Ring",
+		right_ring="Eihwaz Ring",
+	}
+
+	sets.ja.optimization = {head={ name="Pitre Taj +3", augments={'Enhances "Optimization" effect',}},}
+	
+	sets.ja.overdrive = {body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},}
+	
+	sets.ja.finetuning = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	
+	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	
+	sets.ja.rolereversal = {feet={ name="Pitre Babouches +3", augments={'Enhances "Role Reversal" effect',}},}
+	
+	sets.ja.tacticalswitch = {feet="Karagoz Scarpe +2",}
+	
+	sets.ja.repair = {
+	    left_ear="Guignol Earring",
+		right_ear={ name="Kara. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Store TP"+5',}},
+		feet="Foire Bab. +1",
+	}
+
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
 	---------------------------	MASTER WS SETS	---------------------------
-	--  weaponskills
+	--  General weaponskills
 	sets.ws.master.weaponskill = {
 		head="Mpaca's Cap",
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -672,60 +748,18 @@ function get_sets()
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','System: 1 ID: 1246 Val: 4',}},
 	}
 
-	---------------------------	ITEM SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
 		right_ring="Blenmot's Ring",
 	}
-
-----------------------------------------------------------------------------------
-------------- Animator Swaps - Put in your applicable animators here ---------------
------ Note: Please fill this out even if you don't have a specific animator. Totally fine to have these be all the same animator if you're just starting.
-
-	sets.animators.Ranged = {range="Animator P II +1",}
-	
-	sets.animators.Melee = {range="Animator P +1",}
-	
-	sets.animators.Master = {range="Neo Animator",}
 end
-
-----------------------------------------------------------------------------------------------------
------------------------ MELEE WEAPON SETS (WHAT YOU WANT TO SWAP TO BASED ON MODE) -----------------
-	Weapons = {
-		Hybrid 			= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
-		HybridDEF 		= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
-		Master     		= {"Godhands", "Verethragna", "Kenkonken"},
-		MasterDEF  		= {"Godhands", "Verethragna", "Kenkonken"},
-		Emergency  		= {"Godhands", "Verethragna", "Kenkonken"},
-		Overdrive  		= {"Xiucoatl", "Kenkonken"},
-		OverdriveDEF	= {"Xiucoatl", "Kenkonken"},
-		Pet        		= {"Xiucoatl", "Sakpata's Fists", "Ohtas"},
-		PetDEF     		= {"Gnafron's Adargas", "Ohtas"}
-	}
-
-
----------------------------	LOGIC	---------------------------
--- Registering event for pet changes -- Essentially, this checks the Pet TP every second, and if it reaches 850+ it automatically swaps to the appropriate pet weaponskill set.
-windower.register_event('time change', function(new, old)
-	if new > old and pet and pet.isvalid and pet.status == "Engaged" then 
-		if ( TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Pet" ) and pet.tp >= 850 and player.tp <= 400 then
-			if pet.frame == "Sharpshot Frame" then
-				equip(sets.ws.pet.arcuballista)
-			end
-			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
-				equip(sets.ws.pet.bonecrusher)
-			end
-		end
-		--Insert this command if you want your character to automatically cast repair if your pet falls below a certain health percentage while engaged (Delete the "--[[ ... ]]")
-		--[[if pet.hpp <= 40 then windower.send_command('input /ja "Repair" <me>') end ]]
-	end
-	if new > old then
-		check_pet_status()
-	end
-end)
-
--- How swaps are calculated --
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if TP_Mode == "Emergency-DT" then
 		equip(sets.idle.Tank)
@@ -846,22 +880,6 @@ function idle()
 	end
 end
 
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	elseif new == "Idle" then 
-		idle()
-	end
-end
-
-function pet_status_change(new,old)
-	if new == "Engaged" then 
-		idle()
-	elseif new == "Idle" then 
-		idle()
-	end
-end
-
 function precast(spell)
 	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" or spell.type == "Trust" then 
 		equip(sets.precast.master.fastcast)
@@ -947,6 +965,47 @@ function pet_aftercast(spell)
     idle()
 end
 
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+-- Registering event for pet changes -- Essentially, this checks the Pet TP every second, and if it reaches 850+ it automatically swaps to the appropriate pet weaponskill set.
+windower.register_event('time change', function(new, old)
+	if new > old and pet and pet.isvalid and pet.status == "Engaged" then 
+		if ( TP_Mode == "Hybrid" or TP_Mode == "HybridDEF" or TP_Mode == "Pet" ) and pet.tp >= 850 and player.tp <= 400 then
+			if pet.frame == "Sharpshot Frame" then
+				equip(sets.ws.pet.arcuballista)
+			end
+			if pet.frame == "Valoredge Frame" or pet.frame == "Harlequin Frame" then
+				equip(sets.ws.pet.bonecrusher)
+			end
+		end
+		--Insert this command if you want your character to automatically cast repair if your pet falls below a certain health percentage while engaged (Delete the "--[[ ... ]]")
+		--[[if pet.hpp <= 40 then windower.send_command('input /ja "Repair" <me>') end ]]
+	end
+	if new > old then
+		check_pet_status()
+	end
+end)
+
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	elseif new == "Idle" then 
+		idle()
+	end
+end
+
+function pet_status_change(new,old)
+	if new == "Engaged" then 
+		idle()
+	elseif new == "Idle" then 
+		idle()
+	end
+end
+
+----------------------------------------------------------------------
+--                           PET ENMITY LOGIC
+----------------------------------------------------------------------
 ---- Pet Enmity Timers Logic ----
 Strobe_Timer = 30
 Flashbulb_Timer = 45
@@ -1031,7 +1090,9 @@ function initialize_enmity_logic()
 	end)
 end
 
----- Auto Maneuver Logic ----
+----------------------------------------------------------------------
+--                           AUTO MANEUVER LOGIC
+----------------------------------------------------------------------
 windower.register_event('lose buff', function(buff_id)
 	if buff_id == 300 then
 		if Auto_Mode == "On" and player.hp > 0 and pet and pet.isvalid then
@@ -1075,8 +1136,9 @@ windower.register_event('lose buff', function(buff_id)
 	end
 end)
 
-----------------------------CYCLING/COMMANDS LOGIC----------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+----------------------------------------------------------------------
 function cycle(list, current)
     local index = nil
     if current then
@@ -1170,34 +1232,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
-function check_pet_status()
-	if pet and pet.isvalid then
-		if pet.head == "Soulsoother Head" and pet.frame == "Valoredge Frame" and ( pet.attachments.flashbulb or pet.attachments.strobe or pet.attachments["strobe II"] ) then
-			Pet_Mode = "Tank"
-		elseif pet.frame == "Valoredge Frame" then
-			Pet_Mode = "Bruiser"
-		elseif pet.frame == "Harlequin Frame" then
-			Pet_Mode = "Bruiser"
-		elseif pet.head == "Valoredge Head" and pet.frame == "Sharpshot Frame" then
-			Pet_Mode = "Sharpshot"
-		elseif pet.head == "Sharpshot Head" and pet.frame == "Sharpshot Frame" then
-			Pet_Mode = "Ranged"
-		elseif pet.head == "Spiritreaver Head" and pet.frame == "Stormwaker Frame" then
-			Pet_Mode = "BLM"
-		elseif pet.head == "Soulsoother Head" and pet.frame == "Stormwaker Frame" then
-			Pet_Mode = "WHM"
-		elseif pet.head == "Stormwaker Head" and pet.frame == "Stormwaker Frame" then
-			Pet_Mode = "RDM"
-		else
-			Pet_Mode = "Other"
-		end
-	else
-		Pet_Mode = "NA"
-	end
-	gearswap_jobbox:text(gearswap_box())
-	gearswap_jobbox:show()
-end
-
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')

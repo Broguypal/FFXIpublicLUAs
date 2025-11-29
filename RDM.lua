@@ -6,12 +6,18 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
--- 						RED MAGE LUA
+----------------------------------------------------------------------
+--                           RDM LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+----- The numberpad is also used to cast the highest tier spell available more easily 
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-
------------------ MODES / UI TEXT BOX -----------------------------
-
-
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 Player_Mode = "Melee"
 Casting_Mode = "Burst"
 Enfeeble_Mode = "Normal"
@@ -36,6 +42,7 @@ gearswap_box = function()
     return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
@@ -58,29 +65,23 @@ function check_shihei()
     shihei = color .. tostring(count) .. "\\cr"
 end
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
-	initialize_weapon_tracking()
-	check_shihei()
-	gearswap_jobbox:text(gearswap_box())		
-	gearswap_jobbox:show()
-end
-
-function get_sets()
-	---------------- KEYBINDS -----------------------
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleMelee')
 	send_command('bind numpad8 gs c ToggleTank')
 	send_command('bind numpad7 gs c ToggleCaster')
-	send_command('bind numpad3 gs c ToggleBurst')
-	send_command('bind numpad1 gs c ToggleEnfeeble')
+	
 	send_command('bind numpad4 gs c ToggleMain')
 	send_command('bind numpad5 gs c ToggleSub')
 	send_command('bind numpad6 gs c ToggleLock')
+	send_command('bind numpad3 gs c ToggleBurst')
+	send_command('bind numpad1 gs c ToggleEnfeeble')
 
-	send_command('bind f9 input /item "Remedy" <me>')
-	send_command('bind f10 input /item "Panacea" <me>')
-	send_command('bind f11 input /item "Holy Water" <me>')
-
-	-------- Spell Keybinds -----
 	send_command('bind ^numpad1 gs c cast Fire <t>')
 	send_command('bind ^numpad2 gs c cast Aero <t>')
 	send_command('bind ^numpad3 gs c cast Thunder <t>')
@@ -88,8 +89,55 @@ function get_sets()
 	send_command('bind !numpad2 gs c cast Stone <t>')
 	send_command('bind !numpad3 gs c cast Water <t>')
 
-	--------------- EQUIPMENT SETS ------------------
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
 
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
+	initialize_weapon_tracking()
+	check_shihei()
+	gearswap_jobbox:text(gearswap_box())		
+	gearswap_jobbox:show()
+end
+
+----------------------------------------------------------------------
+--                           WEAPON TABLES
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons based on modes
+    Weapons = {
+        Melee = {
+            main   = { "Crocea Mors", "Maxentius", "Naegling", "Tauret" },
+            sub_dw = { "Daybreak", "Thibron", "Bunzi's Rod" },
+            sub_1h = { "Ammurapi Shield", "Genmei Shield" },
+        },
+
+        Caster = {
+            main = { "Crocea Mors", "Bunzi's Rod", "Daybreak", "Maxentius" },
+            sub  = { "Archduke's Shield", "Ammurapi Shield" },
+        },
+
+        Enspell = {
+            main = { "Crocea Mors" },
+            sub  = { "Pukulatmuj +1" },
+        },
+
+        ZeroTPEnspell = {
+            main = { "Qutrub Knife" },
+            sub  = { "Ethereal Dagger" },
+        },
+
+        Tank = {
+            main   = { "Sakpata's Sword" },
+            sub    = { "Genmei Shield" },
+        },
+    }
+
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets()
     sets.idle = {}               	-- Leave this empty 
 	sets.engaged = {}				-- Leave this empty
 		sets.engaged.hybrid = {}	-- Leave this empty
@@ -100,7 +148,9 @@ function get_sets()
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
 	 
-	 -------------- IDLE SETS ---------------------
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
     --Hybrid/DPS IDLE--
 	sets.idle.hybrid = {
 		ammo="Staunch Tathlum +1",
@@ -163,7 +213,9 @@ function get_sets()
 		sub="Ethereal Dagger",
 	})
 		
-	--------------- ENGAGED SETS ------------------
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
 	sets.engaged.hybrid.normal = {
 		ammo="Coiste Bodhar",
 		head="Malignance Chapeau",
@@ -248,7 +300,9 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
-	--------------- PRECAST SETS ------------------
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
 	--Fastcast Set
     sets.precast.fastcast = {
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -260,7 +314,9 @@ function get_sets()
 		waist="Plat. Mog. Belt",
 	}
 
-	--------------- MIDCAST SETS ------------------
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
 	sets.midcast.trust = {
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -737,8 +793,10 @@ function get_sets()
 		waist="Plat. Mog. Belt",
 	}
 	
-	--------------- Weaponskill SETS ------------------
-		--undefined Weaponskills
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
+	--undefined Weaponskills
 	sets.ws.normal = {
 		ammo="Oshasha's Treatise",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -915,7 +973,9 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 
-	---------------------------	ITEM SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -923,56 +983,9 @@ function get_sets()
 	}
 end
 
--------------------------- WEAPON SETS --------------------------
-    Weapons = {
-        Melee = {
-            main   = { "Crocea Mors", "Maxentius", "Naegling", "Tauret" },
-            sub_dw = { "Daybreak", "Thibron", "Bunzi's Rod" },
-            sub_1h = { "Ammurapi Shield", "Genmei Shield" },
-        },
-
-        Caster = {
-            main = { "Crocea Mors", "Bunzi's Rod", "Daybreak", "Maxentius" },
-            sub  = { "Archduke's Shield", "Ammurapi Shield" },
-        },
-
-        Enspell = {
-            main = { "Crocea Mors" },
-            sub  = { "Pukulatmuj +1" },
-        },
-
-        ZeroTPEnspell = {
-            main = { "Qutrub Knife" },
-            sub  = { "Ethereal Dagger" },
-        },
-
-        Tank = {
-            main   = { "Sakpata's Sword" },
-            sub    = { "Genmei Shield" },
-        },
-    }
-
---------------- LOGIC - DO NOT TOUCH BELOW ------------------
-windower.register_event('gain buff', function(buff_id)
-	if buff_id == 66 then
-		idle()
-	end
-end)
-
-windower.register_event('lose buff', function(buff_id)
-	if buff_id == 66 then
-		idle()
-	end
-end)
-
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	else
-		idle()
-	end
-end
-
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if Player_Mode == "Melee" or Player_Mode == "Enspell" then
 		if player.status == "Engaged" then 
@@ -1349,7 +1362,33 @@ function aftercast(spell)
 	end
 end
 
--- Autospell logic ---
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+windower.register_event('gain buff', function(buff_id)
+	if buff_id == 66 then
+		idle()
+	end
+end)
+
+windower.register_event('lose buff', function(buff_id)
+	if buff_id == 66 then
+		idle()
+	end
+end)
+
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
+end
+
+
+----------------------------------------------------------------------
+--                   BEST SPELL SELECTION LOGIC 
+----------------------------------------------------------------------
 local res = require('resources')
 local elemental_spells = {
     Fire = 6, Blizzard = 6, Aero = 6, Stone = 6, Thunder = 6, Water = 6
@@ -1397,7 +1436,9 @@ function cast_highest_tier(spell_base, target)
     end
 end
 
----- CYCLE LOGIC AND COMMANDS ----
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+----------------------------------------------------------------------
 function cycle(list, current)
     local index = nil
     if current then
@@ -1552,6 +1593,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')

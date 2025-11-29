@@ -6,12 +6,21 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
--- 						NINJA LUA
--- Requires Gearswap Addon - "Cancel"
--- requires Dressup (to stop blinking "//du blinking self combat on")
+----------------------------------------------------------------------
+--                           NIN LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+----- The numberpad is also used to cast the highest tier NIN spell available more easily (Timers may need to be adjusted based on your fastcast - see SPELL LOGIC)
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-----------------------------UI BOX LOGIC -------------------------------
-------------------------------------------------------------------------
+-- Its highly recommended that the native windower Addon "Cancel" is installed for the utsusemi logic to work best.
+-- This lua, along with any other Ninja Lua, works best with the addon 'Dressup' to stop blinking (Command to stop blinking "//du blinking self combat on")
+
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 TP_Mode = "Hybrid"
 Haste_Mode = "Haste2"
 
@@ -36,6 +45,7 @@ gearswap_box = function()
   return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
@@ -60,17 +70,13 @@ function check_tool_count()
 		'Shihei',
 		'Chonofuda',
 		'Inoshishinofuda'}
-
 	for t =1,4  do
-
 		if not player.inventory[ctool[t]] then
 			curCount = 0
 		elseif player.inventory[ctool[t]].count then
 			curCount = player.inventory[ctool[t]].count
 		end
 		a = ''
-
-		--defined green = 99
 		cMax = 99
 		cColorR = 0
 		if curCount > cMax then
@@ -104,8 +110,11 @@ function check_tool_count()
 	end
 end
 
------ Spell Logic ---- (ctrl or alt 1/2/3 on numpad automatically casts best tier spell available. 
--- May need to edit these based on your gear. (NOTE: See aftercast logic for seeing how timers are set)
+----------------------------------------------------------------------
+--                           SPELL LOGIC
+----------------------------------------------------------------------
+-- Note: ctrl or alt 1/2/3 on numpad automatically casts best tier spell available. 
+-- Below are the timers which you may need to change based on your level of fastcast.
 local ninjutsu_custom_recasts = {
     ["San"] = 45,
     ["Ni"]  = 33,
@@ -137,28 +146,22 @@ function cast_best_ninjutsu(element)
     end
 end
 
----- Setting up jobbox.
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
-	initialize_weapon_tracking()
-	check_tool_count()
-	gearswap_jobbox:text(gearswap_box())		
-	gearswap_jobbox:show()
-end
-
-----------------------------KEYBINDS-------------------------------
--------------------------------------------------------------------
-function get_sets()
-	---- Keybinds ----
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleHybrid')
 	send_command('bind numpad8 gs c ToggleTank')
 	send_command('bind numpad7 gs c ToggleDPS')
 	send_command('bind numpad6 gs c ToggleHaste')
 
-	send_command('bind numpad5 gs c ToggleSub')
 	send_command('bind numpad4 gs c ToggleMain')
+	send_command('bind numpad5 gs c ToggleSub')
 	send_command('bind numpad1 gs c ToggleSpecial')
 	
-	---- Ninjutsu Keybinds ----
 	send_command ('bind ^numpad1 gs c castnin Katon')
 	send_command ('bind ^numpad2 gs c castnin Huton')
 	send_command ('bind ^numpad3 gs c castnin Raiton')
@@ -166,13 +169,37 @@ function get_sets()
 	send_command ('bind !numpad2 gs c castnin Doton')
 	send_command ('bind !numpad3 gs c castnin Suiton')
 
-	---- QOL Keybinds ----
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
 
-----------------------------EQUIPMENT SETS-------------------------------
-------------------------------------------------------------------------
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
+	initialize_weapon_tracking()
+	check_tool_count()
+	gearswap_jobbox:text(gearswap_box())		
+	gearswap_jobbox:show()
+end
+
+----------------------------------------------------------------------
+--                           WEAPON TABLES
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons.
+	Weapons = {
+		Main   = { "Heishi Shorinken","Fudo Masamune","Naegling","Gokotai"},
+		Sub    = { "Yagyu Darkblade","Kunimitsu","Gleti's Knife","Hitaki","Tsuru" },
+	}
+
+	Special = {
+		{ main="Hachimonji", sub="Bloodrain Strap" },
+		{ main="Tauret", sub="Gleti's Knife" },
+	}
+
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets()
     sets.idle = {}               	-- Leave this empty.   
 	sets.engaged = {}				-- Leave this empty.
 		sets.engaged.hybrid = {}	-- Leave this empty.
@@ -186,8 +213,9 @@ function get_sets()
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}					-- Leave this empty.
 
- 
-	-------------- IDLE SETS ---------------------
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
     --Hybrid/DPS IDLE--
 	sets.idle.normal = {
 		ammo="Date Shuriken",
@@ -281,7 +309,9 @@ function get_sets()
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
 	}
 
-	--------------- ENGAGED SETS ------------------
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
 	---- TANK Engaged Sets ----
 	sets.engaged.tank.normal = {
 		ammo="Date Shuriken",
@@ -594,7 +624,9 @@ function get_sets()
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	})
 
-	--------------- PRECAST SETS ------------------
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
 	--Fastcast
     sets.precast.fastcast = {
 		ammo="Sapience Orb",
@@ -630,7 +662,9 @@ function get_sets()
 		right_ring="Eihwaz Ring",
 	}
 
-	--------------- MIDCAST SETS ------------------
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
 	--Utsusemi Midcast
     sets.midcast.utsusemi = set_combine(sets.precast.fastcast,{
 		feet="Hattori Kyahan +3",
@@ -701,7 +735,9 @@ function get_sets()
 		feet="Nyame Sollerets",
 	}
 
-	--------------- Weaponskill SETS ------------------
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
 	--undefined Weaponskills
 	sets.ws.normal = {
 		ammo="Coiste Bodhar",
@@ -904,7 +940,9 @@ function get_sets()
 		back={ name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	}
 	
-	---------------------------	ITEM SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -912,57 +950,9 @@ function get_sets()
 	}
 end
 
-----------------------------WEAPONS/AMMO-------------------------------
-------------------------------------------------------------------------
-	Weapons = {
-		Main   = { "Heishi Shorinken","Fudo Masamune","Naegling","Gokotai"},
-		Sub    = { "Yagyu Darkblade","Kunimitsu","Gleti's Knife","Hitaki","Tsuru" },
-	}
-
-	Special = {
-		{ main="Hachimonji", sub="Bloodrain Strap" },
-		{ main="Tauret", sub="Gleti's Knife" },
-	}
-
-----------------------------INTERNAL LOGIC-------------------------------
-------------------------------------------------------------------------
-
---Automatically switch sets for time
-    -- world.time is given in minutes into each day
-    -- 7:00 AM would be 420 minutes
-    -- 17:00 PM would be 1020 minutes
-
-windower.register_event('time change', function(new, old)
-	if new > (7*60) and old <= (7*60) then
-		idle()
-	end
-	if new > (17*60) and old <= (17*60) then
-		idle()
-	end
-end)
-
--- Recognizing when losing utsusemi or haste related buffs to trigger automatic equipment change
-windower.register_event('lose buff', function(buff_id)
-	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
-		idle()
-	end
-end)
-
--- Recognizing when gaining utsusemi or haste related buffs to trigger automatic equipment change
-windower.register_event('gain buff', function(buff_id)
-	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
-		idle()
-	end
-end)
-
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	else
-		idle()
-	end
-end
-
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if TP_Mode == "Hybrid" or TP_Mode == "Malignance" or TP_Mode == "DPS" then
 		if Haste_Mode == "Haste2" then
@@ -1422,8 +1412,45 @@ function aftercast(spell)
 	end
 end
 
-----------------------------CYCLING/COMMANDS LOGIC----------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+--Automatically switch sets for time
+    -- world.time is given in minutes into each day(7:00 AM would be 420 minutes; 17:00 PM would be 1020 minutes)
+windower.register_event('time change', function(new, old)
+	if new > (7*60) and old <= (7*60) then
+		idle()
+	end
+	if new > (17*60) and old <= (17*60) then
+		idle()
+	end
+end)
+
+-- Recognizing when losing utsusemi or haste related buffs to trigger automatic equipment change
+windower.register_event('lose buff', function(buff_id)
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
+		idle()
+	end
+end)
+
+-- Recognizing when gaining utsusemi or haste related buffs to trigger automatic equipment change
+windower.register_event('gain buff', function(buff_id)
+	if buff_id == 66 or buff_id == 33 or buff_id == 580 or buff_id == 604 or buff_id == 214 or buff_id == 228 then
+		idle()
+	end
+end)
+
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
+end
+
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+----------------------------------------------------------------------
 function cycle(list, current)
     local index = nil
     if current then
@@ -1523,6 +1550,9 @@ function self_command(command)
 	end
 end
 
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')

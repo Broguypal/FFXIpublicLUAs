@@ -6,9 +6,18 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
---WHM LUA
+----------------------------------------------------------------------
+--                           WHM LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+----- The number pad is also used to easily cast erase and -na spells.
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
------------------ MODES / UI TEXT BOX -----------------------------
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 Player_Mode = "Normal"
 Casting_Mode = "Normal"
 Weapon_Mode = "Unlocked"
@@ -28,21 +37,22 @@ gearswap_box = function()
     return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
-	gearswap_jobbox:text(gearswap_box())		
-	gearswap_jobbox:show()
-end
-
-function get_sets()
---Mode Commands
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleMode')
 	send_command('bind numpad5 gs c ToggleSpell')
+	
 	send_command('bind numpad6 gs c ToggleWeapons')
 	
---Spell Commands
 	send_command ('bind numpad1 input /ma "Erase" <stal>')
 	send_command ('bind numpad2 input /ma "Cursna" <stal>')
 	send_command ('bind numpad3 input /ma "Esuna" <me>')
@@ -52,18 +62,30 @@ function get_sets()
 	send_command ('bind !numpad1 input /ma "Stona" <stal>')
 	send_command ('bind !numpad2 input /ma "Poisona" <stal>')
 	send_command ('bind !numpad3 input /ma "Viruna" <stal>')
-	
--- Gearsets --
-    sets.weapons = {}
-	sets.idle = {}                  
-    sets.precast = {}                  
-    sets.midcast = {}                 
-    sets.aftercast = {}             
-	sets.ws = {}					
-	sets.ja = {}					
-	sets.misc = {}					
+
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
+	gearswap_jobbox:text(gearswap_box())		
+	gearswap_jobbox:show()
+end
+
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets()			--leave this empty
+    sets.weapons = {}		--leave this empty
+	sets.idle = {}    		--leave this empty              
+    sets.precast = {}  		--leave this empty                
+    sets.midcast = {}    	--leave this empty             
+    sets.aftercast = {}		--leave this empty             
+	sets.ws = {}			--leave this empty	
+	sets.ja = {}			--leave this empty			
+	sets.misc = {}			--leave this empty	
  
- ---- WEAPON SETS ----
+	----------------------------------------------------------------------
+	--                           WEAPON SETS
+	----------------------------------------------------------------------
 	sets.weapons.Idle = {main="Daybreak", sub="Genmei Shield",}
 	sets.weapons.Engaged = {main="Maxentius", sub="Genmei Shield",}
 	sets.weapons.Dualwield = {main="Maxentius", sub="C. Palug Hammer",}
@@ -76,7 +98,9 @@ function get_sets()
 	sets.weapons.Nuking = {main="Daybreak", sub="Ammurapi Shield"}
 	sets.weapons.SIR = {main="Daybreak", sub="Culminus",}
  
- ---- IDLE SETS ----
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
     sets.idle.Normal = {
 		ammo="Homiliary",
 		head="Befouled Crown",
@@ -93,7 +117,10 @@ function get_sets()
 		back={ name="Alaunus's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity-10','Damage taken-5%',}},
 	}
 	sets.idle.NormalWeapons = set_combine(sets.idle.Normal, sets.weapons.Idle)
-	
+
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
 	sets.idle.Engaged = {
 		ammo="Amar Cluster",
 		head="Nyame Helm",
@@ -134,7 +161,9 @@ function get_sets()
 	}
 	sets.idle.TankWeapons = set_combine(sets.idle.Tank, sets.weapons.Idle)
 
- ---- PRECAST SETS ----
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
     sets.precast.FastCast = {
 		ammo="Sapience Orb",
 		head="Ebers Cap +2",
@@ -172,7 +201,9 @@ function get_sets()
 	}
 	sets.precast.CureWeapons = set_combine(sets.precast.Cure, sets.weapons.Curing)
 	
- ---- MIDCAST SETS ----	
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
 	--Cure
 	sets.midcast.Cure = {
 		ammo="Pemphredo Tathlum",
@@ -354,9 +385,19 @@ function get_sets()
 		--Note SIR is currently only 74% with weapons. will need to improve later.
 	}
 	sets.midcast.SIRWeapons = set_combine(sets.midcast.SIR, sets.weapons.SIR)
+
+	--Trust
+	sets.midcast.Trust = {
+		head="Nyame Helm",
+		body="Shamash Robe",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets", 
+	}
 	
-	
- ---- JOB ABILITY SETS ----
+	----------------------------------------------------------------------
+	--                           JOB ABILITIES
+	----------------------------------------------------------------------
 	sets.ja.Solace = {}
 	sets.ja.Misery = {}
 	sets.ja.Martyr = {}
@@ -366,7 +407,9 @@ function get_sets()
 		waist="Embla Sash",
 	}
 	
- ---- WEAPONSKILL SETS ----
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
 	sets.ws.Normal = {
 		ammo="Oshasha's Treatise",
 		head="Nyame Helm",
@@ -473,18 +516,11 @@ function get_sets()
 		right_ring="Metamor. Ring +1",
 		back="Aurist's Cape +1",
 	}
- ---- MISC SETS ----
-	sets.misc.Trust = {
-		head="Nyame Helm",
-		body="Shamash Robe",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets", 
-	}
-	
 end
 
-
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if Player_Mode == "DT" then
 		if Weapon_Mode == "Locked" then
@@ -514,14 +550,6 @@ function idle()
 				equip(sets.idle.NormalWeapons)
 			end
 		end
-	end
-end
-
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	else
-		idle()
 	end
 end
 
@@ -580,7 +608,9 @@ function precast(spell)
 end
 
 function midcast(spell)
-	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then
+	if spell.type == "Trust" then
+		equip(sets.midcast.Trust)
+	elseif spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" then
 		if Casting_Mode == "SIR" then
 			if Weapon_Mode == "Locked" then
 				equip(sets.midcast.SIR)
@@ -729,6 +759,20 @@ function aftercast(spell)
 	idle()
 end
 
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
+end
+
+----------------------------------------------------------------------
+--                         COMMANDS LOGIC
+----------------------------------------------------------------------
 function self_command(command)
 	if command == "ToggleMode" then
 		if Player_Mode == "Normal" then
@@ -755,6 +799,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')

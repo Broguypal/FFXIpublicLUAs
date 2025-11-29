@@ -6,12 +6,19 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
---MNK LUA
+----------------------------------------------------------------------
+--                           MNK LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-----------------------------UI BOX LOGIC -------------------------------
-------------------------------------------------------------------------
-
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 TP_Mode = "Hybrid"
+
 TP_Modes = {'Hybrid','Counter','Defence'}
 
 gearswap_box = function()
@@ -20,34 +27,54 @@ gearswap_box = function()
     return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
+	send_command('bind numpad9 gs c ToggleHybrid')
+	send_command('bind numpad8 gs c ToggleCounter')
+	send_command('bind numpad7 gs c ToggleDefence')
+
+	send_command('bind numpad4 gs c ToggleWeapon')
+	send_command('bind numpad5 gs c ToggleSpecial')
+
+	send_command('bind f9 input /item "Remedy" <me>')
+	send_command('bind f10 input /item "Panacea" <me>')
+	send_command('bind f11 input /item "Holy Water" <me>')
+	send_command ('bind numpad1 input /mount "Noble Chocobo"')
+	send_command ('bind numpad2 input /dismount')
+	
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
 	initialize_weapon_tracking()
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
 end
 
-----------------------------KEYBINDS-------------------------------
--------------------------------------------------------------------
-function get_sets()
-send_command('bind numpad9 gs c ToggleHybrid')
-send_command('bind numpad8 gs c ToggleCounter')
-send_command('bind numpad7 gs c ToggleDefence')
+----------------------------------------------------------------------
+--                           WEAPON TABLES
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons.
+	Weapons = {
+		Main  	= { "Godhands", "Verethragna" },
+	}
+	
+	Special = {
+		{ main = "Xoanon", sub = "Niobid Strap" },
+	}
 
-send_command('bind numpad4 gs c ToggleWeapon')
-send_command('bind numpad5 gs c ToggleSpecial')
-
-send_command('bind f9 input /item "Remedy" <me>')
-send_command('bind f10 input /item "Panacea" <me>')
-send_command('bind f11 input /item "Holy Water" <me>')
-send_command ('bind numpad1 input /mount "Noble Chocobo"')
-send_command ('bind numpad2 input /dismount')
- 
-----------------------------EQUIPMENT SETS-------------------------------
-------------------------------------------------------------------------
- 
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets() 
     sets.idle = {}                  -- Leave this empty.
     sets.precast = {}               -- leave this empty    
     sets.midcast = {}               -- leave this empty    
@@ -56,8 +83,10 @@ send_command ('bind numpad2 input /dismount')
 	sets.ja = {}					-- Leave this empty
 	sets.items = {}					-- Leave this empty
  
- -------------------------------------DT Sets-----------------------------------------------------------
- -- Normal DT / Town set
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
+	-- Normal DT / Town set
     sets.idle.normal = {
 	    ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -74,7 +103,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
---DT set
+	--DT set
 	sets.idle.DT = {
 	    ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -91,7 +120,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
---Counter set
+	--Counter set
 	sets.idle.counter = {
 		ammo="Amar Cluster",
 		head="Bhikku Crown +2",
@@ -107,8 +136,11 @@ send_command ('bind numpad2 input /dismount')
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
---------------------------------------TP Sets ----------------------------------------------------------
---Normal TP Set
+	
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
+	--Normal TP Set
 	sets.idle.tp = {
 		ammo="Coiste Bodhar",
 		head="Bhikku Crown +2",
@@ -129,7 +161,7 @@ send_command ('bind numpad2 input /dismount')
 		left_ear="Mache Earring +1",
 	})
 
--- TP Set impetus up
+	-- TP Set impetus up
 	sets.idle.tpimpetus = {
 		ammo="Coiste Bodhar",
 		head="Bhikku Crown +2",
@@ -150,7 +182,7 @@ send_command ('bind numpad2 input /dismount')
 		left_ear="Mache Earring +1",
 	})
 
--- TP Set footwork up
+	-- TP Set footwork up
 	sets.idle.tpfootwork = {
 		ammo="Coiste Bodhar",
 		head="Bhikku Crown +2",
@@ -171,7 +203,7 @@ send_command ('bind numpad2 input /dismount')
 		left_ear="Mache Earring +1",
 	})
 
--- TP Set Impetus + Footwork up
+	-- TP Set Impetus + Footwork up
 	sets.idle.tpimpetusfootwork = {
 		ammo="Coiste Bodhar",
 		head="Bhikku Crown +2",
@@ -191,9 +223,88 @@ send_command ('bind numpad2 input /dismount')
 	sets.idle.tpimpetusfootwork.godhands = set_combine(sets.idle.tpimpetusfootwork,{
 		left_ear="Mache Earring +1",
 	})
+
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
+    sets.precast.fastcast = {
+
+	}
+
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
+    sets.midcast.spell = {
+	}
+
+	sets.midcast.trust = {
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+	}
+
+	----------------------------------------------------------------------
+	--                           JOB ABILITIES
+	----------------------------------------------------------------------
+	sets.ja.hundredfists = {
+	}
+
+	sets.ja.boost = {
+		waist="Ask Sash",
+	}
+
+	sets.ja.dodge = {
+	}
+
+	sets.ja.focus= {
+	}
+
+	sets.ja.chakra = {
+		hands="Hes. Gloves +3",
+	}
+
+	sets.ja.chiblast = {
+	}
+
+	sets.ja.counterstance = {
+	}
+
+	sets.ja.footwork = {
+		feet="Shukuyu Sune-Ate",
+	}
+
+	sets.ja.mantra = {
+	}
+
+	sets.ja.formlessstrikes = {
+	}
+
+	sets.ja.perfectcounter = {
+	}
+
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
+	--Undefined weaponskills
+	sets.ws.weaponskill = {
+	    ammo="Knobkierrie",
+		head="Mpaca's Cap",
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		neck="Fotia Gorget",
+		waist="Moonbow Belt +1",
+		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		right_ear="Sherida Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+	}
 	
------------------------------------ Weaponskill sets----------------------------------------------------
---Victory Smite
+	--Victory Smite
 	sets.ws.victorysmite = {
 	    ammo="Knobkierrie",
 		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
@@ -210,7 +321,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
---Victory Smite (impetus up)
+	--Victory Smite (impetus up)
 	sets.ws.victorysmiteimpetus = {
 	    ammo="Coiste Bodhar",
 		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
@@ -227,7 +338,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 	
--- Raging Fists
+	-- Raging Fists
 	sets.ws.ragingfists = {
 		ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
@@ -244,7 +355,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
--- Shijin Spiral
+	-- Shijin Spiral
 	sets.ws.shijinspiral = {
 	    ammo="Aurgelmir Orb",
 		head="Malignance Chapeau",
@@ -261,7 +372,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
--- Howling Fist
+	-- Howling Fist
 	sets.ws.howlingfist = {
 	    ammo="Knobkierrie",
 		head="Mpaca's Cap",
@@ -278,7 +389,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
---Tornado Kick
+	--Tornado Kick
 	sets.ws.tornadokick = {
 	    ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
@@ -295,7 +406,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
---Final Heaven
+	--Final Heaven
 	sets.ws.finalheaven = {
 	    ammo="Knobkierrie",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -312,7 +423,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
---Shell Crusher
+	--Shell Crusher
 	sets.ws.shellcrusher = {
 		ammo="Pemphredo Tathlum",
 		head="Bhikku Crown +2",
@@ -329,7 +440,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
---Cataclysm
+	--Cataclysm
 	sets.ws.cataclysm = {
 		ammo="Pemphredo Tathlum",
 		head="Pixie Hairpin +1",
@@ -346,7 +457,7 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
---elemental staff Weaponskills
+	--elemental staff Weaponskills
 	sets.ws.staffele = {
 		ammo="Pemphredo Tathlum",
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
@@ -363,90 +474,9 @@ send_command ('bind numpad2 input /dismount')
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
 
---General Weaponskills
-	sets.ws.weaponskill = {
-	    ammo="Knobkierrie",
-		head="Mpaca's Cap",
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Fotia Gorget",
-		waist="Moonbow Belt +1",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
-	}
-
------------------------------------- Job Ability Sets---------------------------------------------------
--- Hundred Fists
-	sets.ja.hundredfists = {
-	}
-
--- Boost
-	sets.ja.boost = {
-		waist="Ask Sash",
-	}
-
--- Dodge
-	sets.ja.dodge = {
-	}
-
--- Focus
-	sets.ja.focus= {
-	}
-
--- Chakra
-	sets.ja.chakra = {
-		hands="Hes. Gloves +3",
-	}
-
--- Chi Blast
-	sets.ja.chiblast = {
-	}
-
--- Counterstance
-	sets.ja.counterstance = {
-	}
-
--- Footwork
-	sets.ja.footwork = {
-		feet="Shukuyu Sune-Ate",
-	}
-
--- Mantra
-	sets.ja.mantra = {
-	}
-
--- Formless Strikes
-	sets.ja.formlessstrikes = {
-	}
-
--- Perfect Counter
-	sets.ja.perfectcounter = {
-	}
-
------------------------------------- Precast Set -------------------------------------------------------
-    sets.precast.fastcast = {
-
-	}
-
---------------------------------------Midcast set ------------------------------------------------------
-    sets.midcast.spell = {
-	}
-
--- Midcast for trusts - want to have 119 gear in head,body,hands,legs,feet.
-	sets.midcast.trust = {
-		head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-	}
-
----------------------------	ITEM SETS	---------------------------
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
 		left_ring="Purity Ring",
@@ -454,17 +484,9 @@ send_command ('bind numpad2 input /dismount')
 	}
 end
 
-----------------------------WEAPONS/AMMO-------------------------------
-------------------------------------------------------------------------
-	Weapons = {
-		Main  	= { "Godhands", "Verethragna" },
-	}
-	
-	Special = {
-		{ main = "Xoanon", sub = "Niobid Strap" },
-	}
- 
------------------------------------- Logic ----------------------------------------------------------
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if TP_Mode == "Defence" then
 		equip(sets.idle.DT)
@@ -504,14 +526,6 @@ function idle()
 		else
 			equip(sets.idle.normal)
 		end
-	end
-end
-
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	else
-		idle()
 	end
 end
 
@@ -621,8 +635,20 @@ function aftercast(spell)
 	end
 end
 
-----------------------------CYCLING/COMMANDS LOGIC----------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
+end
+
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+----------------------------------------------------------------------
 function cycle(list, current)
     local index = 1
     if current then
@@ -679,6 +705,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')

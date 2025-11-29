@@ -6,11 +6,18 @@
 -- |____/|_|  \___/ \__, |\__,_|\__, | .__/ \__,_|_| |___/
 --                   __/ |       __/ | |                  
 --                  |___/       |___/|_|    
---RUN LUA
+----------------------------------------------------------------------
+--                           RUN LUA
+----------------------------------------------------------------------
+-- Summary:
+-- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
+----- The numberpad is also used to easily cast any element rune and automatically recast it when it drops
+-- To change the keybinds, please edit them in the Keybinds function below
+-- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-
-
----- 		Mode / Textbox settings 		----
+----------------------------------------------------------------------
+--                           MODES / UI TEXT BOX
+----------------------------------------------------------------------
 tp_mode = 'Hybrid'
 spell_mode = 'Normal'
 auto_mode = 'Off'
@@ -29,26 +36,23 @@ gearswap_box = function()
     return str
 end
 
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
+----------------------------------------------------------------------
+--                           USER SETUP
+----------------------------------------------------------------------
 function user_setup()
-	initialize_weapon_tracking()
-	gearswap_jobbox:text(gearswap_box())		
-	gearswap_jobbox:show()
-end
-
-function get_sets()
-----				KEYBINDS			----
-	--Equipset toggles
+	----------------------------------------------------------------------
+	--                           KEYBINDS
+	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleHybrid')
 	send_command('bind numpad8 gs c ToggleTank')
 	send_command('bind numpad7 gs c ToggleMagic')
 
-	-- Spell interupt toggle
+	send_command('bind numpad4 gs c ToggleWeapon')
 	send_command('bind numpad6 gs c ToggleSIR')
-
-	-- Auto Runes toggle
 	send_command('bind numpad0 gs c ToggleAUTO')
 
 	send_command ('bind ^numpad1 input /ja "Ignis" <me>')
@@ -60,19 +64,32 @@ function get_sets()
 	send_command ('bind !numpad3 input /ja "Unda" <me>')
 	send_command ('bind !numpad0 input /ja "Tenebrae" <me>')
 
-	--weapon toggles
-	send_command('bind numpad4 gs c ToggleWeapon')
-
-	--QOL commands
 	send_command ('bind numpad1 input /mount "Noble Chocobo"')
 	send_command ('bind numpad2 input /dismount')
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
 
---- 			EQUIPMENT SETS			----
+	----------------------------------------------------------------------
+	--                           INITIALIZATION
+	----------------------------------------------------------------------
+	initialize_weapon_tracking()
+	gearswap_jobbox:text(gearswap_box())		
+	gearswap_jobbox:show()
+end
 
--- Sets defined
+----------------------------------------------------------------------
+--                           WEAPON TABLES
+----------------------------------------------------------------------
+--Note: Place in order you want to cycle weapons.
+	Weapons = {
+		Main	=	{"Epeolatry","Lionheart","Aettir","Lycurgos"},
+	}
+
+----------------------------------------------------------------------
+--                           SETS / GEAR
+----------------------------------------------------------------------
+function get_sets()
     sets.idle = {}                  -- Leave this empty
 	sets.engaged = {}
     sets.precast = {}               -- leave this empty    
@@ -81,8 +98,9 @@ function get_sets()
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
 
-
- ----			 Idle Sets				----
+	----------------------------------------------------------------------
+	--                           IDLE SETS
+	----------------------------------------------------------------------
     sets.idle.normal = {
 		sub="Utu Grip",
 		ammo="Staunch Tathlum +1",
@@ -153,7 +171,9 @@ function get_sets()
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		}
 
- ----			 Engaged Sets				----	
+	----------------------------------------------------------------------
+	--                           ENGAGED SETS
+	----------------------------------------------------------------------
 	sets.engaged.hybrid = {
 		sub="Utu Grip",
 		ammo="Coiste Bodhar",
@@ -276,7 +296,9 @@ function get_sets()
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
- ----			 Precast Sets				----	
+	----------------------------------------------------------------------
+	--                           PRECAST SETS
+	----------------------------------------------------------------------
     sets.precast.fastcast = {
 		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -292,48 +314,10 @@ function get_sets()
 		right_ring="Rahab Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','HP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 		}
-		
-	sets.precast.valiance = {
-		ammo="Aqreqaq Bomblet",
-		head="Nyame Helm",
-		body="Runeist Coat +4",
-		hands="Kurys Gloves",
-		legs="Eri. Leg Guards +3",
-		feet="Erilaz Greaves +3",
-		neck="Moonlight Necklace",
-		waist="Plat. Mog. Belt",
-		left_ear="Genmei Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Eihwaz Ring",
-		right_ring="Moonlight Ring",
-		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
-		}	
-		
-	sets.precast.pulse = {
-		head="Erilaz Galea +3",
-		}
-		
-	sets.precast.enmity = {
-		ammo="Aqreqaq Bomblet",
-		head="Halitus Helm",
-		body="Emet Harness +1",
-		hands="Kurys Gloves",
-		legs="Eri. Leg Guards +3",
-		feet="Erilaz Greaves +3",
-		neck="Moonlight Necklace",
-		waist="Plat. Mog. Belt",
-		left_ear="Genmei Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Moonlight Ring",
-		right_ring="Eihwaz Ring",
-		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
-		}
 
-	sets.precast.battuta = set_combine(sets.precast.enmity,{
-		head={ name="Fu. Bandeau +2", augments={'Enhances "Battuta" effect',}},
-		})
-		
-----			 Midcast Sets				----	
+	----------------------------------------------------------------------
+	--                           MIDCAST SETS
+	----------------------------------------------------------------------
     sets.midcast.enmity = {
 		ammo="Aqreqaq Bomblet",
 		head="Halitus Helm",
@@ -399,14 +383,60 @@ function get_sets()
 		right_ear={ name="Erilaz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
 	})
 	
-----			Item Sets						----
-	sets.items.holywater = {
-		neck="Nicander's Necklace",
-		left_ring="Purity Ring",
-		right_ring="Blenmot's Ring",
+	sets.midcast.trust = {
+		head="Nyame Helm",
+		body="Shamash Robe",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets", 
 	}
 
-----			 Weaponskill Sets				----	
+	----------------------------------------------------------------------
+	--                           JOB ABILITIES
+	----------------------------------------------------------------------
+	sets.precast.valiance = {
+		ammo="Aqreqaq Bomblet",
+		head="Nyame Helm",
+		body="Runeist Coat +4",
+		hands="Kurys Gloves",
+		legs="Eri. Leg Guards +3",
+		feet="Erilaz Greaves +3",
+		neck="Moonlight Necklace",
+		waist="Plat. Mog. Belt",
+		left_ear="Genmei Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Eihwaz Ring",
+		right_ring="Moonlight Ring",
+		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
+		}	
+		
+	sets.precast.pulse = {
+		head="Erilaz Galea +3",
+		}
+		
+	sets.precast.enmity = {
+		ammo="Aqreqaq Bomblet",
+		head="Halitus Helm",
+		body="Emet Harness +1",
+		hands="Kurys Gloves",
+		legs="Eri. Leg Guards +3",
+		feet="Erilaz Greaves +3",
+		neck="Moonlight Necklace",
+		waist="Plat. Mog. Belt",
+		left_ear="Genmei Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Moonlight Ring",
+		right_ring="Eihwaz Ring",
+		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
+		}
+
+	sets.precast.battuta = set_combine(sets.precast.enmity,{
+		head={ name="Fu. Bandeau +2", augments={'Enhances "Battuta" effect',}},
+		})
+
+	----------------------------------------------------------------------
+	--                           WEAPONSKILL SETS
+	----------------------------------------------------------------------
 	sets.ws.dimidiation = {
 		ammo="Knobkierrie",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -470,16 +500,20 @@ function get_sets()
 		right_ring="Niqmaddu Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
+
+	----------------------------------------------------------------------
+	--                           ITEM SETS
+	----------------------------------------------------------------------
+	sets.items.holywater = {
+		neck="Nicander's Necklace",
+		left_ring="Purity Ring",
+		right_ring="Blenmot's Ring",
+	}
 end
 
-----------------------------WEAPONS/AMMO-------------------------------
-------------------------------------------------------------------------
-	Weapons = {
-		Main	=	{"Epeolatry","Lionheart","Aettir","Lycurgos"},
-	}
-
-----------------------------Internal Logic-------------------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                           GENERAL LOGIC
+----------------------------------------------------------------------
 function idle()
 	if tp_mode == "Hybrid" or tp_mode == "DPS" then
 		if player.status == "Engaged" then
@@ -528,16 +562,6 @@ function idle()
 	end
 end
 
---Checks state when becoming engaged
-function status_change(new,old)
-	if new == "Engaged" then
-		idle()
-	else
-		idle()
-	end
-end
-
---Precast rules
 function precast(spell)
 	if spell.type == "WeaponSkill" then 
 		if spell.english == "Resolution" then
@@ -568,7 +592,6 @@ function precast(spell)
 	end
 end
 
---midcast rules
 function midcast(spell)
 	if spell.english == "Foil" or spell.english == "Poisonga" or spell.english == "Stun" or spell.english == "Flash" or spell.english == "Jettatura" or spell.english == "Blank Gaze" then
 		if tp_mode == "Hybrid" or tp_mode == "DPS" or tp_mode == "SingleTank" or tp_mode == "MagicEva" then
@@ -596,10 +619,11 @@ function midcast(spell)
 		end
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
+	elseif spell.type == "Trust" then
+		equip(sets.midcast.trust)
 	end
 end
 
---aftercast rules
 function aftercast(spell)
 	if spell.english == "Battuta" and player.status == "Engaged" then
 		if tp_mode == "AoETank" or tp_mode == "SingleTank" then
@@ -612,7 +636,20 @@ function aftercast(spell)
 	end
 end
 
--- Auto RUNE Logic
+----------------------------------------------------------------------
+--                           KEY EVENTS
+----------------------------------------------------------------------
+function status_change(new,old)
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
+end
+
+----------------------------------------------------------------------
+--                           AUTOMATIC RUNES LOGIC
+----------------------------------------------------------------------
 windower.register_event('lose buff', function(buff_id)
 	if buff_id == 523 then
 		if auto_mode == "On" and player.hp > 0 then
@@ -656,8 +693,9 @@ windower.register_event('lose buff', function(buff_id)
 	end
 end)
 
-----------------------------CYCLING/COMMANDS LOGIC----------------------
-------------------------------------------------------------------------
+----------------------------------------------------------------------
+--                    WEAPON CYCLING & COMMANDS LOGIC
+----------------------------------------------------------------------
 function cycle(list, current)
     local index = 1
     if current then
@@ -718,7 +756,9 @@ function self_command(command)
 	gearswap_jobbox:show()
 end
 
----- 	Unload settings 		----
+----------------------------------------------------------------------
+--                           UNLOAD & SETUP
+----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
 	send_command('unbind numpad8')
