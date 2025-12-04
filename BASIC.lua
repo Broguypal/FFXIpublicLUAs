@@ -17,17 +17,15 @@
 -- 4. Edit using Notepad++ for best readability.
 
 --------------------------------------------------------------------------------
--- OPTIONAL: MOUNT / DISMOUNT SHORTCUTS
+-- OPTIONAL: MOUNT / DISMOUNT SHORTCUTS (f9 and f10 keyes)
 --------------------------------------------------------------------------------
-send_command('bind numpad1 input /mount "Crawler"') 	-- To disable this line, put "--" in front of it "Crawler"')
-send_command('bind numpad2 input /dismount') 			-- Same thing here: add "--" at the start to turn it off')
-
+send_command('bind f9 input /mount "Crawler"') 	-- To disable this line, put "--" in front of it)
+send_command('bind f10 input /dismount') 		-- Same thing here: add "--" at the start of the line to disable it')
 
 --------------------------------------------------------------------------------
 -- EQUIPMENT SETS: This is where you're going to be putting your equipment sets.
 --------------------------------------------------------------------------------
 function get_sets()
-  
     sets.idle = {}                  -- Leave this empty
     sets.precast = {}               -- leave this empty    
     sets.midcast = {}               -- leave this empty    
@@ -40,66 +38,66 @@ function get_sets()
 	--------------------------------------------------------------------------
 	-- NOTE 1: Type "//gs export" in-game to create a copy/pasteable document of your currently equipped gear which can be pasted into each set below.
 	-- NOTE 2: Typing "//gs export" in-game will make a folder named "export" in Windower/addons/GearSwap/data with a new .lua file within it. Open this folder to copy your equipment set and add it to the applicable set in this file.
+	-- NOTE 3: Avoid putting weapons and shields in your equipment sets as it may cause your weapons to swap. If this happens, your TP will be reset to zero and may prevent your weaponskills from firing entirely.
+	-- NOTE 4: After editing, save this file and type "//gs reload" while in-game to apply changes.
+	-- NOTE 5: Use "//gs showswaps" to verify gear is swapping correctly.
 	
 	-- Example of how to export a set into this file:
 	--[[----------------------------------------------------------------------
-	
-	Step 1: Type "//gs export" in-game to create a "timestamped.lua" file in Windower/addons/GearSwap/data/export. 
-	
-	Step 2: Open this timestamed file. This file looks like this:
-				-------------------------------------------------
-				sets.exported = {
-					main="Dojikiri Yasutsuna",
-					sub="Utu Grip",
-					ammo="Crepuscular Pebble",
-					head="Mpaca's Cap",
-					body="Nyame Mail",
-					hands="Kasuga Kote +2",
-					legs="Mpaca's Hose",
-					feet="Kas. Sune-Ate +2",
-					neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
-					waist="Sailfi Belt +1",
-					left_ear="Moonshade Earring",
-					right_ear="Thrud Earring",
-					left_ring="Niqmaddu Ring",
-					right_ring="Sroda Ring",
-					back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
-				}
-				--------------------------------------------------
-	
-	Step 3: copy everything within the brackets and add it to the sets listed below. For example, your idle set below currently looks like this:
-				---------------------
-				sets.idle.normal = {
-					-- put your set here
-				}
-				---------------------
-	
-	With the added set from the export file, it should now look like this"
-	
-				--------------------
-				sets.idle.normal = {
-					ammo="Crepuscular Pebble",
-					head="Mpaca's Cap",
-					body="Nyame Mail",
-					hands="Kasuga Kote +2",
-					legs="Mpaca's Hose",
-					feet="Kas. Sune-Ate +2",
-					neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
-					waist="Sailfi Belt +1",
-					left_ear="Moonshade Earring",
-					right_ear="Thrud Earring",
-					left_ring="Niqmaddu Ring",
-					right_ring="Sroda Ring",
-					back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
-				}
-				--------------------
-	
-	Step 4: save your file as you now have an idle set defined. 
-	--------------------------------------------------------------------------]]
-
-	-- NOTE 3: After editing, save this file and type "//gs reload" while in-game to apply changes.
-	-- NOTE 4: Use "//gs showswaps" to verify gear is swapping correctly.
-	-- NOTE 5: AVOID PUTTING WEAPONS / SHIELDS IN YOUR EQUIPMENT SETS AS IT MAY CAUSE YOUR WEAPONS TO SWAP. IF THIS HAPPENS, YOUR TP WILL BE RESET TO ZERO.
+		
+		Step 1: Type "//gs export" in-game to create a "timestamped.lua" file in Windower/addons/GearSwap/data/export. 
+		
+		Step 2: Open this timestamed file. This file looks like this:
+					-------------------------------------------------
+					sets.exported = {
+						main="Dojikiri Yasutsuna",
+						sub="Utu Grip",
+						ammo="Crepuscular Pebble",
+						head="Mpaca's Cap",
+						body="Nyame Mail",
+						hands="Kasuga Kote +2",
+						legs="Mpaca's Hose",
+						feet="Kas. Sune-Ate +2",
+						neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
+						waist="Sailfi Belt +1",
+						left_ear="Moonshade Earring",
+						right_ear="Thrud Earring",
+						left_ring="Niqmaddu Ring",
+						right_ring="Sroda Ring",
+						back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+					}
+					--------------------------------------------------
+		
+		Step 3: copy everything within the brackets (except weapons/subweapons) and add it to the sets listed below. For example, your idle set below currently looks like this:
+		
+					---------------------
+					sets.idle.normal = {
+						-- put your set here
+					}
+					---------------------
+		
+		With the added set from the export file, it should now look like this:
+		
+					--------------------
+					sets.idle.normal = {
+						ammo="Crepuscular Pebble",
+						head="Mpaca's Cap",
+						body="Nyame Mail",
+						hands="Kasuga Kote +2",
+						legs="Mpaca's Hose",
+						feet="Kas. Sune-Ate +2",
+						neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
+						waist="Sailfi Belt +1",
+						left_ear="Moonshade Earring",
+						right_ear="Thrud Earring",
+						left_ring="Niqmaddu Ring",
+						right_ring="Sroda Ring",
+						back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+					}
+					--------------------
+		
+		Step 4: save your file as you now have an idle set defined. 
+		--------------------------------------------------------------------------]]
 	
 	--------------------------------------------------------------------------
 	---- IDLE SETS
@@ -127,7 +125,7 @@ function get_sets()
 		-- put your set here
 	}
 
---------------------------------------------------------------------------
+	--------------------------------------------------------------------------
 	---- MIDCAST SETS
 	-- These sets equip while spells are casting. 
 	-- These sets equip DURING the spell. Equipment will vary depending on spell purpose:
@@ -152,25 +150,28 @@ function get_sets()
 		-- put your set here
 	}
 
---------------------------------------------------------------------------
----- WEAPONSKILL SETS
--- These sets equip when you use a weaponskill. Designed for maximum WS damage.
---------------------------------------------------------------------------
+	--------------------------------------------------------------------------
+	---- WEAPONSKILL SETS
+	-- These sets equip when you use a weaponskill. Designed for maximum WS damage.
+	--------------------------------------------------------------------------
 	sets.ws.weapons = {
 		-- put your set here
 	}
 
---------------------------------------------------------------------------
----- JOB ABILITY SETS
--- Contains gear that enhances your job abilities. Add items here as needed.
--- Lines can be disabled using "--" before the line.
---------------------------------------------------------------------------
+	--------------------------------------------------------------------------
+	---- JOB ABILITY SETS
+	-- Contains gear that enhances your job abilities. Add items here as needed.
+	-- Lines can be disabled using "--" before the line.
+	--------------------------------------------------------------------------
 	sets.ja.jobability = {
 		-- put your set here
 	}
 end
 
--------- DO NOT TOUCH BELOW IF COMPLETELY NEW AT GEARSWAP -- Everything above should be all your basic needs for starting.
+--------------------------------------------------------------------------------
+-- If you've reached this point, your basic lua is now complete! Nothing below needs to be changed until you're ready for more a more advanced lua.
+-- BASIC LOGIC BELOW (NEW USERS DO NOT TOUCH)
+--------------------------------------------------------------------------------
 function idle()
 	if player.status == "Engaged" then 
 		equip(sets.idle.engaged) 
