@@ -48,53 +48,53 @@ function get_sets()
 		Step 1: Type "//gs export" in-game to create a "timestamped.lua" file in Windower/addons/GearSwap/data/export. 
 		
 		Step 2: Open this timestamed file. This file looks like this:
-					-------------------------------------------------
-					sets.exported = {
-						main="Dojikiri Yasutsuna",
-						sub="Utu Grip",
-						ammo="Crepuscular Pebble",
-						head="Mpaca's Cap",
-						body="Nyame Mail",
-						hands="Kasuga Kote +2",
-						legs="Mpaca's Hose",
-						feet="Kas. Sune-Ate +2",
-						neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
-						waist="Sailfi Belt +1",
-						left_ear="Moonshade Earring",
-						right_ear="Thrud Earring",
-						left_ring="Niqmaddu Ring",
-						right_ring="Sroda Ring",
-						back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
-					}
-					--------------------------------------------------
+				-------------------------------------------------
+				sets.exported = {
+					main="Dojikiri Yasutsuna",
+					sub="Utu Grip",
+					ammo="Crepuscular Pebble",
+					head="Mpaca's Cap",
+					body="Nyame Mail",
+					hands="Kasuga Kote +2",
+					legs="Mpaca's Hose",
+					feet="Kas. Sune-Ate +2",
+					neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
+					waist="Sailfi Belt +1",
+					left_ear="Moonshade Earring",
+					right_ear="Thrud Earring",
+					left_ring="Niqmaddu Ring",
+					right_ring="Sroda Ring",
+					back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+				}
+				--------------------------------------------------
 		
-		Step 3: copy everything within the brackets (except weapons/subweapons) and add it to the sets listed below. For example, your idle set below currently looks like this:
+		Step 3: copy everything within the brackets (except weapons/shields) and add it to the sets listed below. For example, your idle set below currently looks like this:
 		
-					---------------------
-					sets.idle.normal = {
-						-- put your set here
-					}
-					---------------------
+				---------------------
+				sets.idle.normal = {
+					-- put your set here
+				}
+				---------------------
 		
 		With the added set from the export file, it should now look like this:
 		
-					--------------------
-					sets.idle.normal = {
-						ammo="Crepuscular Pebble",
-						head="Mpaca's Cap",
-						body="Nyame Mail",
-						hands="Kasuga Kote +2",
-						legs="Mpaca's Hose",
-						feet="Kas. Sune-Ate +2",
-						neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
-						waist="Sailfi Belt +1",
-						left_ear="Moonshade Earring",
-						right_ear="Thrud Earring",
-						left_ring="Niqmaddu Ring",
-						right_ring="Sroda Ring",
-						back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
-					}
-					--------------------
+				--------------------
+				sets.idle.normal = {
+					ammo="Crepuscular Pebble",
+					head="Mpaca's Cap",
+					body="Nyame Mail",
+					hands="Kasuga Kote +2",
+					legs="Mpaca's Hose",
+					feet="Kas. Sune-Ate +2",
+					neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
+					waist="Sailfi Belt +1",
+					left_ear="Moonshade Earring",
+					right_ear="Thrud Earring",
+					left_ring="Niqmaddu Ring",
+					right_ring="Sroda Ring",
+					back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+				}
+				--------------------
 		
 		Step 4: save your file as you now have an idle set defined. 
 		--------------------------------------------------------------------------]]
