@@ -213,3 +213,9 @@ function status_change(new,old)
 		idle()
 	end
 end
+
+function file_unload()
+	send_command('unbind f9')
+	send_command('unbind f10')
+	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+end
