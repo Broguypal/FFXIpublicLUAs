@@ -26,10 +26,10 @@ send_command('bind f10 input /dismount') 		-- Same thing here: add "--" at the s
 -- EQUIPMENT SETS: This is where you're going to be putting your equipment sets.
 --------------------------------------------------------------------------------
 function get_sets()
-    sets.idle = {}                  -- Leave this empty
-    sets.precast = {}               -- leave this empty    
-    sets.midcast = {}               -- leave this empty    
-    sets.aftercast = {}             -- leave this empty
+	sets.idle = {}                  -- Leave this empty
+	sets.precast = {}               -- leave this empty    
+	sets.midcast = {}               -- leave this empty    
+	sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.ja = {}					-- Leave this empty
  
@@ -104,7 +104,7 @@ function get_sets()
 	-- This is your idle set. To disable any gear line, put "--" in front of it.
 	-- This set equips when you are NOT engaged with an enemy. Great for damage mitigation and movement speed gear. (Remember - movement speed gear doesnt stack with other movement speed gear!)
 	--------------------------------------------------------------------------
-    sets.idle.normal = {
+	sets.idle.normal = {
 		-- put your set here
 	}
 
@@ -121,7 +121,7 @@ function get_sets()
 	-- This set equips BEFORE a spell is cast to reduce casting time.
 	-- You should aim for Fast Cast equipment here
 	--------------------------------------------------------------------------
-    sets.precast.fastcast = {
+	sets.precast.fastcast = {
 		-- put your set here
 	}
 
@@ -134,7 +134,7 @@ function get_sets()
 	-- • Enhancing Magic → Duration & Skill
 	-- • Healing Magic → Cure Potency
 	--------------------------------------------------------------------------
-    sets.midcast.elemental = {
+	sets.midcast.elemental = {
 		-- put your set here
 	}
 	
