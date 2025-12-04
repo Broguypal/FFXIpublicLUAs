@@ -160,8 +160,7 @@ function get_sets()
 
 	--------------------------------------------------------------------------
 	---- JOB ABILITY SETS
-	-- Contains gear that enhances your job abilities. Add items here as needed.
-	-- Lines can be disabled using "--" before the line.
+	-- Contains gear that enhances your job abilities. 
 	--------------------------------------------------------------------------
 	sets.ja.jobability = {
 		-- put your set here
@@ -218,4 +217,5 @@ function file_unload()
 	send_command('unbind f9')
 	send_command('unbind f10')
 	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+
 end
