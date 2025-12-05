@@ -449,7 +449,7 @@ function get_sets()
 	}
 	
 	----------------------------------------------------------------------
-	--                           ITEMS
+	--                           ITEM SETS
 	----------------------------------------------------------------------
 	sets.items.holywater = {
 		neck="Nicander's Necklace",
@@ -585,7 +585,7 @@ function aftercast(spell)
 end
 
 ----------------------------------------------------------------------
---                           STATUS CHANGE
+--                           KEY EVENTS
 ----------------------------------------------------------------------
 function status_change(new, old)
 	idle()
@@ -670,7 +670,7 @@ function self_command(command)
 end
 
 ----------------------------------------------------------------------
---                           UNLOAD & CLEANUP
+--                           UNLOAD & SETUP
 ----------------------------------------------------------------------
 function file_unload()
 	send_command('unbind numpad9')
