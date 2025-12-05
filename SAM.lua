@@ -33,7 +33,7 @@ gearswap_box = function()
     return str
 end
 
--- Default Job Box position
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8, text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},}, bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
 
