@@ -190,7 +190,7 @@ function precast(spell)
 end
 
 function midcast(spell)
-	if spell.type == "BlueMagic" or spell.skill == "Elemental Magic" then
+	if spell.type == "BlueMagic" or spell.type == "Ninjutsu" or spell.skill == "Elemental Magic" then
 		equip(sets.midcast.elemental)
 	elseif spell.skill == "Enfeebling Magic" or spell.skill == "Dark Magic" then
 		equip(sets.midcast.enfeebling)
@@ -217,5 +217,4 @@ function file_unload()
 	send_command('unbind f9')
 	send_command('unbind f10')
 	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
-
 end
