@@ -328,7 +328,7 @@ function get_sets()
 	---- ENFEEBLE SETS ----
 	-- Max Accuracy
 	sets.midcast.enfeebleACCURACY = {
-		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
+		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Atrophy Tabard +3",
 		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
@@ -350,7 +350,7 @@ function get_sets()
 
 	--Frazzle or distract
 	sets.midcast.enfeebleFRAZDIST = {
-		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
+		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Lethargy Sayon +3",
 		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
@@ -372,7 +372,7 @@ function get_sets()
 
 	--gravity/dispel
 	sets.midcast.enfeebleGRAVDISP = {
-		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
+		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Lethargy Sayon +3",
 		hands="Leth. Ganth. +3",
 		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
