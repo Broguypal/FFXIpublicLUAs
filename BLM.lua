@@ -124,7 +124,7 @@ function get_sets()
     --                      IDLE / TANK
     --------------------------------------------------------------
     sets.idle.normal = {
-		main="Mpaca's Staff",
+		main="Marin Staff +1",
 		sub="Enki Strap",
 		ammo="Staunch Tathlum +1",
 		head="Wicce Petasos +2",
