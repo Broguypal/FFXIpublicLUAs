@@ -18,9 +18,6 @@
 -- To change the keybinds, please edit them in the Keybinds function below
 -- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-
-----------------------------------------------------------------------
-
 ----------------------------------------------------------------------
 --                           MODES / UI TEXT BOX
 ----------------------------------------------------------------------
@@ -52,7 +49,7 @@ gearswap_box = function()
     return str
 end
 
--- Edit x/y here to change the jobbox position
+-- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = { pos={x=1320,y=550}, padding=8, text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},}, bg={alpha=0}, flags={} }
 gearswap_jobbox = texts.new(gearswap_box_config)
 
@@ -395,7 +392,7 @@ function get_sets()
 	}
 	
 	sets.ja.sublimation = {
-		
+		waist="Embla Sash",
 	}
 	----------------------------------------------------------------------
 	--                           WEAPONSKILL SETS
