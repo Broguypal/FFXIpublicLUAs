@@ -121,7 +121,7 @@ function get_sets()
 	sets.items = {}			--leave this empty	
 
     --------------------------------------------------------------
-    --                      IDLE / TANK
+    --                      IDLE / TANK (put your weapons/grips in these sets)
     --------------------------------------------------------------
     sets.idle.normal = {
 		main="Marin Staff +1",
@@ -216,9 +216,9 @@ function get_sets()
 		ammo="Ghastly Tathlum +1",
 		head="Ea Hat +1",
 		body="Wicce Coat +2",
-		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
+		hands="Agwu's Gages",
 		legs="Wicce Chausses +2",
-		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
+		feet="Agwu's Pigaches",
 		neck="Mizu. Kubikazari",
 		waist="Skrymir Cord",
 		left_ear="Malignance Earring",
