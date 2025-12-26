@@ -86,7 +86,7 @@ function get_sets()			--leave this empty
 	----------------------------------------------------------------------
 	--                           WEAPON SETS
 	----------------------------------------------------------------------
-	sets.weapons.Idle = {main="Daybreak", sub="Genmei Shield",}
+	sets.weapons.Idle = {main="Daybreak", sub="Archduke's Shield",}
 	sets.weapons.Engaged = {main="Maxentius", sub="Genmei Shield",}
 	sets.weapons.Dualwield = {main="Maxentius", sub="C. Palug Hammer",}
 	sets.weapons.FastCast = {main="C. Palug Hammer", sub="Chanter's Shield",}
