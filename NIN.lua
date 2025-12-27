@@ -1425,7 +1425,7 @@ local ninjutsu_custom_recasts = {
 
 local ninjutsu_tiers = {"San", "Ni", "Ichi"}
 
-local last_ninjutsu_cast = {}
+last_ninjutsu_cast = last_ninjutsu_cast or {}
 
 function capitalize(word)
     return word:sub(1,1):upper() .. word:sub(2):lower()
