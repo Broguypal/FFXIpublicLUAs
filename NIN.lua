@@ -1246,13 +1246,19 @@ function precast(spell)
 			equip(sets.ws.kamu)
 		elseif spell.english == "Blade: Ei" then
 			equip(sets.ws.ei)
-		elseif spell.english == "Blade: Chi" or spell.english == "Blade: Teki" or spell.english == "Blade: To" then
+		elseif spell.english == "Blade: Chi" or spell.english == "Blade: Teki" or spell.english == "Blade: To" or spell.english == "Tachi: Goten" or spell.english == "Tachi: Jinpu" or spell.english == "Tachi: Kagero" then
 			if spell.element == world.day_element or spell.element == world.weather_element then
 				if spell.english == "Blade: Chi" and world.day_element ~= "Wind" and world.weather_element ~= "Wind" then
 					equip(sets.ws.elementalobi)
 				elseif spell.english == "Blade: Teki" and world.day_element ~= "Lightning" and world.weather_element ~= "Lightning" then
 					equip(sets.ws.elementalobi)
 				elseif spell.english == "Blade: To" and world.day_element ~= "Fire" and world.weather_element ~= "Fire" then
+					equip(sets.ws.elementalobi)
+				elseif spell.english == "Tachi: Goten" and world.day_element ~= "Earth" and world.weather_element ~= "Earth" then
+					equip(sets.ws.elementalobi)
+				elseif spell.english == "Tachi: Jinpu" and world.day_element ~= "Ice" and world.weather_element ~= "Ice" then
+					equip(sets.ws.elementalobi)
+				elseif spell.english == "Tachi: Kagero" and world.day_element ~= "Water" and world.weather_element ~= "Water" then
 					equip(sets.ws.elementalobi)
 				else
 					equip(sets.ws.elemental)
