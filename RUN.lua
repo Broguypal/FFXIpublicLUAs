@@ -116,7 +116,7 @@ function get_sets()
 		left_ring="Warden's Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-		}
+	}
 
 	sets.idle.aoetank = {
 		main={ name="Epeolatry", augments={'Path: A',}},
@@ -151,7 +151,7 @@ function get_sets()
 		left_ring="Shadow Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-		}
+	}
 
 	sets.idle.dualwield = {
 		main="Naegling",
@@ -169,7 +169,7 @@ function get_sets()
 		left_ring="Warden's Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-		}
+	}
 
 	----------------------------------------------------------------------
 	--                           ENGAGED SETS
@@ -189,7 +189,7 @@ function get_sets()
 		left_ring="Niqmaddu Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-		}
+	}
 	
 	sets.engaged.singletank = {
 		main={ name="Epeolatry", augments={'Path: A',}},
@@ -276,7 +276,7 @@ function get_sets()
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-		}
+	}
 	
 	sets.engaged.dualwielddps = {
 		main="Naegling",
@@ -313,7 +313,7 @@ function get_sets()
 		left_ring="Kishar Ring",
 		right_ring="Rahab Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','HP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
-		}
+	}
 
 	----------------------------------------------------------------------
 	--                           MIDCAST SETS
@@ -332,7 +332,7 @@ function get_sets()
 		left_ring="Eihwaz Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
-		}
+	}
 		
     sets.midcast.SIR = {
 		ammo="Staunch Tathlum +1",
@@ -348,7 +348,7 @@ function get_sets()
 		left_ring="Evanescence Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
-		}
+	}
 		
 	sets.midcast.temper = set_combine(sets.midcast.SIR,{
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -374,7 +374,7 @@ function get_sets()
 		left_ring="Defending Ring",
 		right_ring="Moonlight Ring",
 		back="Moonbeam Cape",
-		}
+	}
 	
 	sets.midcast.regen = set_combine(sets.midcast.SIR,{
 		head="Rune. Bandeau +1",
@@ -408,11 +408,11 @@ function get_sets()
 		left_ring="Eihwaz Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
-		}	
+	}	
 		
 	sets.precast.pulse = {
 		head="Erilaz Galea +3",
-		}
+	}
 		
 	sets.precast.enmity = {
 		ammo="Aqreqaq Bomblet",
@@ -428,11 +428,11 @@ function get_sets()
 		left_ring="Moonlight Ring",
 		right_ring="Eihwaz Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Mag. Acc+20 /Mag. Dmg.+20','Enmity+10','Spell interruption rate down-10%',}},
-		}
+	}
 
 	sets.precast.battuta = set_combine(sets.precast.enmity,{
 		head={ name="Fu. Bandeau +2", augments={'Enhances "Battuta" effect',}},
-		})
+	})
 
 	----------------------------------------------------------------------
 	--                           WEAPONSKILL SETS
@@ -451,7 +451,7 @@ function get_sets()
 		left_ring="Epaminondas's Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Ogma's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
-		}
+	}
 		
 	sets.ws.resolution = {
 		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
@@ -467,7 +467,7 @@ function get_sets()
 		left_ring="Sroda Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-		}
+	}
 		
 	sets.ws.savageblade = {
 		ammo="Knobkierrie",
