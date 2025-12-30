@@ -538,8 +538,8 @@ function get_sets()
 		waist="Plat. Mog. Belt",
 		left_ear="Genmei Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Stikini Ring",
-		right_ring="Stikini Ring",
+		left_ring="Stikini Ring +1",
+		right_ring="Stikini Ring +1",
 		back="Moonbeam Cape",
 	}
 	
