@@ -129,7 +129,7 @@ function get_sets()
 		ammo="Staunch Tathlum +1",
 		head="Wicce Petasos +2",
 		body="Shamash Robe",
-		hands="Nyame Gauntlets",
+		hands="Wicce Gloves +2",
 		legs="Nyame Flanchard",
 		feet="Herald's Gaiters",
 		neck="Sibyl Scarf",
@@ -140,6 +140,10 @@ function get_sets()
 		right_ring="Defending Ring",
 		back={ name="Taranus's Cape", augments={'MP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
     }
+	
+	sets.idle.manawall = set_combine(sets.idle.normal,{
+		feet="Wicce Sabots +2",
+	})
 
     sets.idle.tank = {
 		main="Kaumodaki",
@@ -147,9 +151,9 @@ function get_sets()
 		ammo="Staunch Tathlum +1",
 		head="Nyame Helm",
 		body="Shamash Robe",
-		hands="Nyame Gauntlets",
+		hands="Wicce Gloves +2",
 		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
+		feet="Wicce Sabots +2",
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
 		left_ear="Etiolation Earring",
@@ -236,9 +240,9 @@ function get_sets()
 		ammo="Sroda Tathlum",
 		head="Wicce Petasos +2",
 		body="Spaekona's Coat +3",
-		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
+		hands="Wicce Gloves +2",
 		legs="Wicce Chausses +2",
-		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
+		feet="Wicce Sabots +2",
 		neck="Sibyl Scarf",
 		waist="Skrymir Cord",
 		left_ear="Malignance Earring",
@@ -280,7 +284,7 @@ function get_sets()
 		feet="Spae. Sabots +3",
 		neck="Null Loop",
 		waist="Null Belt",
-		left_ear="Malignance Earring",
+		left_ear="Regal Earring",
 		right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Kishar Ring",
@@ -297,9 +301,9 @@ function get_sets()
 	sets.midcast.death = {
 		ammo="Pemphredo Tathlum",
 		head="Pixie Hairpin +1",
-		body={ name="Amalric Doublet +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
+		body="Wicce Coat +2",
 		hands={ name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
-		legs={ name="Amalric Slops +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}},
+		legs="Wicce Chausses +2",
 		feet="Agwu's Pigaches",
 		neck="Null Loop",
 		waist="Luminary Sash",
@@ -332,9 +336,9 @@ function get_sets()
 		ammo="Sapience Orb",
 		head="Wicce Petasos +2",
 		body="Wicce Coat +2",
-		hands="Spae. Gloves +3",
+		hands="Wicce Gloves +2",
 		legs="Wicce Chausses +2",
-		feet="Spae. Sabots +3",
+		feet="Wicce Sabots +2",
 		neck="Unmoving Collar +1",
 		waist="Null Belt",
 		left_ear="Trux Earring",
@@ -384,7 +388,7 @@ function get_sets()
 	----------------------------------------------------------------------
 	sets.ja.manawall = {
 		main="Kaumodaki",
-		--empy feet
+		feet="Wicce Sabots +2",
 	}
 	
 	sets.ja.manafont = {
@@ -447,7 +451,11 @@ function idle()
     if Player_Mode == "Tank" then
         equip(sets.idle.tank)
     else
-		equip(sets.idle.normal)
+		if buffactive["Mana Wall"] then
+			equip(sets.idle.manawall)
+		else
+			equip(sets.idle.normal)
+		end
     end
 end
 
