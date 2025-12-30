@@ -152,7 +152,7 @@ function get_sets()
 		neck="Combatant's Torque",
 		waist="Plat. Mog. Belt",
 		left_ear="Thureous Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ear={ name="Chev. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
 		left_ring="Moonbeam Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
