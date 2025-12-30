@@ -95,7 +95,7 @@ function get_sets()			--leave this empty
 	sets.weapons.StatusRemoval = {main="Yagrush",}
 	sets.weapons.Enhancing = {main={ name="Gada", augments={'Enh. Mag. eff. dur. +5','Mag. Acc.+6','"Mag.Atk.Bns."+15',}}, sub="Ammurapi Shield",}
 	sets.weapons.Enfeebling = {main={ name="Gada", augments={'Enh. Mag. eff. dur. +5','Mag. Acc.+6','"Mag.Atk.Bns."+15',}}, sub="Ammurapi Shield",}
-	sets.weapons.Nuking = {main="Daybreak", sub="Ammurapi Shield"}
+	sets.weapons.Nuking = {main="Marin Staff +1", sub="Enki Strap",}
 	sets.weapons.SIR = {main="Daybreak", sub="Culminus",}
  
 	----------------------------------------------------------------------
