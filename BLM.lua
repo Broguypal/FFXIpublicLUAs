@@ -326,7 +326,7 @@ function get_sets()
 		waist="Fucho-no-Obi",
 		left_ear="Hirudinea Earring",
 		right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
-		left_ring="Archon Ring",
+		left_ring="Excelsis Ring",
 		right_ring="Evanescence Ring",
 		back="Aurist's Cape +1",
 	}
