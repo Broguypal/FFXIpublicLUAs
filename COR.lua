@@ -282,6 +282,7 @@ function get_sets()
 	sets.ja.engagedroll = {
 		head={ name="Lanun Tricorne +1", augments={'Enhances "Winning Streak" effect',}},
 		hands="Chasseur's Gants +2",
+		legs="Desultor Tassets",
 		neck="Regal Necklace",
 		left_ring="Luzaf's Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
@@ -300,6 +301,7 @@ function get_sets()
 	}
 	
 	sets.ja.waltz = {
+		legs="Desultor Tassets",
 	}
 
 	----------------------------------------------------------------------
