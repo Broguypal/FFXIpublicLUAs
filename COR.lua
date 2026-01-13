@@ -145,8 +145,8 @@ function get_sets()
 	--                           IDLE SETS
 	----------------------------------------------------------------------
     sets.idle.normal = {
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
+		head="Chass. Tricorne +2",
+		body="Chasseur's Frac +2",
 		hands="Malignance Gloves",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
@@ -196,10 +196,10 @@ function get_sets()
 	--                           PRECAST SETS
 	----------------------------------------------------------------------
     sets.precast.preshot = {
-		head="Ikenga's Hat",
+		head="Chass. Tricorne +2",
 		body="Oshosi Vest +1",
 		hands="Ikenga's Gloves",
-		legs="Oshosi Trousers",
+		legs="Osh. Trousers +1",
 		feet="Ikenga's Clogs",
 		neck="Sanctity Necklace",
 		waist="Impulse Belt",
@@ -214,19 +214,29 @@ function get_sets()
 	--                           MIDCAST SETS
 	----------------------------------------------------------------------
     sets.midcast.midshot = {
-		head="Malignance Chapeau",
-		body="Chasseur's Frac +2",
-		hands="Malignance Gloves",
-		legs="Chas. Culottes +2",
-		feet="Malignance Boots",
+		head="Ikenga's Hat",
+		body="Ikenga's Vest",
+		hands="Ikenga's Gloves",
+		legs="Ikenga's Trousers",
+		feet="Ikenga's Clogs",
 		neck="Iskur Gorget",
-		waist="Eschan Stone",
+		waist="Reiki Yotai",
 		left_ear="Telos Earring",
 		right_ear="Crep. Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Dingir Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Spell interruption rate down-10%',}},
 	}
+	
+	sets.midcast.tripleshot = set_combine(sets.midcast.midshot,{
+		head="Oshosi Mask +1",
+		body="Chasseur's Frac +2",
+		-- relic gloves (Lanun - need to work on asap)
+		legs="Osh. Trousers +1",
+		feet="Osh. Leggings +1",
+		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Spell interruption rate down-10%',}},
+	
+	})
 	
 	sets.midcast.trust = {
 		head="Nyame Helm",
@@ -245,7 +255,7 @@ function get_sets()
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+		feet="Chass. Bottes +2",
 		neck="Sanctity Necklace",
 		waist="Orpheus's Sash",
 		left_ear="Crematio Earring",
@@ -265,7 +275,7 @@ function get_sets()
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
-		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+		feet="Chass. Bottes +2",
 		neck="Sanctity Necklace",
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
@@ -581,7 +591,11 @@ function midcast(spell,action,spellMap,eventArgs)
 			add_to_chat(123,'Abort: Don\'t shoot your good ammo!')
 			idle()
 		else
-			equip(sets.midcast.midshot)
+			if buffactive["Triple Shot"] then
+				equip(sets.midcast.tripleshot)
+			else
+				equip(sets.midcast.midshot)
+			end
 		end
 	elseif spell.english == "Holy Water" then
 		equip(sets.items.holywater)
