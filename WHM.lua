@@ -103,7 +103,7 @@ function get_sets()			--leave this empty
 	----------------------------------------------------------------------
     sets.idle.Normal = {
 		ammo="Homiliary",
-		head="Befouled Crown",
+		head="Null Masque",
 		body="Shamash Robe",
 		hands="Ebers Mitts +2",
 		legs="Ebers Pant. +2",

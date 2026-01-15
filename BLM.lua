@@ -127,7 +127,7 @@ function get_sets()
 		main="Marin Staff +1",
 		sub="Enki Strap",
 		ammo="Staunch Tathlum +1",
-		head="Wicce Petasos +2",
+		head="Null Masque",
 		body="Shamash Robe",
 		hands="Wicce Gloves +2",
 		legs="Nyame Flanchard",
