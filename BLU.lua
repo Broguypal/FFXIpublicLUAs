@@ -102,8 +102,8 @@ function get_sets()
 	--                           IDLE SETS
 	----------------------------------------------------------------------
     sets.idle.hybrid = {
+		ammo="Staunch Tathlum +1",
 		head="Null Masque",
-		head={ name="Nyame Helm", augments={'Path: B',}},
 		body="Shamash Robe",
 		hands="Hashi. Bazu. +3",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
