@@ -107,7 +107,7 @@ function get_sets()
 	sets.idle.normal  = {
 		sub="Utu Grip",
 		ammo="Staunch Tathlum +1",
-		head="Kasuga Kabuto +2",
+		head="Null Masque",
 		body="Kasuga Domaru +2",
 		hands="Nyame Gauntlets",
 		legs="Kasuga Haidate +2",

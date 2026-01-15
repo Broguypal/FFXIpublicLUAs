@@ -123,8 +123,8 @@ end
 	}
  
 	AmmoList = {
-		"Chrono Bullet",
 		"Living Bullet",
+		"Chrono Bullet",
 	}
 
 ----------------------------------------------------------------------
@@ -145,12 +145,12 @@ function get_sets()
 	--                           IDLE SETS
 	----------------------------------------------------------------------
     sets.idle.normal = {
-		head="Chass. Tricorne +2",
+		head="Null Masque",
 		body="Chasseur's Frac +2",
 		hands="Malignance Gloves",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		neck="Warder's Charm +1",
 		waist="Plat. Mog. Belt",
 		left_ear="Infused Earring",
 		right_ear="Eabani Earring",
@@ -165,7 +165,7 @@ function get_sets()
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		neck="Warder's Charm +1",
 		waist="Plat. Mog. Belt",
 		left_ear="Infused Earring",
 		right_ear="Eabani Earring",
@@ -231,7 +231,7 @@ function get_sets()
 	sets.midcast.tripleshot = set_combine(sets.midcast.midshot,{
 		head="Oshosi Mask +1",
 		body="Chasseur's Frac +2",
-		-- relic gloves (Lanun - need to work on asap)
+		-- relic gloves (Lanun +3- need to work on asap)
 		legs="Osh. Trousers +1",
 		feet="Osh. Leggings +1",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Spell interruption rate down-10%',}},

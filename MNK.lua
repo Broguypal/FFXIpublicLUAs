@@ -89,7 +89,7 @@ function get_sets()
 	-- Normal DT / Town set
     sets.idle.normal = {
 	    ammo="Staunch Tathlum +1",
-		head={ name="Nyame Helm", augments={'Path: B',}},
+		head="Null Masque",
 		body="Adamantite Armor",
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs="Mpaca's Hose",
