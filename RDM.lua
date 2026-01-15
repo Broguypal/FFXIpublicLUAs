@@ -154,7 +154,7 @@ function get_sets()
     --Hybrid/DPS IDLE--
 	sets.idle.hybrid = {
 		ammo="Staunch Tathlum +1",
-		head="Leth. Chappel +3",
+		head="Null Masque",
 		body="Shamash Robe",
 		hands="Leth. Ganth. +3",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
@@ -283,18 +283,18 @@ function get_sets()
 	})
 
 	sets.engaged.hybrid.zeroTPenspell = {
-	    main="Qutrub Knife",
+		main="Qutrub Knife",
 		sub="Ethereal Dagger",
-		range="Ullr",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
+		ammo="Coiste Bodhar",
+		head="Umuthi Hat",
+		body="Lethargy Sayon +3",
 		hands="Aya. Manopolas +2",
 		legs="Malignance Tights",
-		feet="Malignance Boots",
-		neck="Null loop",
+		feet="Leth. Houseaux +3",
+		neck="Anu Torque",
 		waist="Orpheus's Sash",
 		left_ear="Sherida Earring",
-		right_ear="Suppanomimi",
+		right_ear="Telos Earring",
 		left_ring="Fickblix's Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
