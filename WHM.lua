@@ -167,9 +167,9 @@ function get_sets()			--leave this empty
     sets.precast.FastCast = {
 		ammo="Sapience Orb",
 		head="Ebers Cap +2",
-		body="Inyanga Jubbah +2",
+		body="Pinga Tunic +1",
 		hands={ name="Fanatic Gloves", augments={'MP+50','Healing magic skill +10','"Conserve MP"+7','"Fast Cast"+7',}},
-		legs={ name="Kaykaus Tights +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}},
+		legs="Pinga Pants +1",
 		feet="Regal Pumps +1",
 		neck="Voltsurge Torque",
 		waist="Witful Belt",
@@ -177,29 +177,22 @@ function get_sets()			--leave this empty
 		right_ear="Malignance Earring",
 		left_ring="Kishar Ring",
 		right_ring="Lebeche Ring",
-		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Spell interruption rate down-10%',}},
-	}
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Spell interruption rate down-10%',}}
+		}
+	
 	sets.precast.FastCastWeapons = set_combine(sets.precast.FastCast,sets.weapons.FastCast)
 	
 	sets.precast.Dispelga = set_combine(sets.precast.FastCast, {main="Daybreak",})
 	sets.precast.DispelgaWeapons = set_combine(sets.precast.FastCastWeapons, {main="Daybreak",})
 	
-	sets.precast.Cure = {
-		ammo="Sapience Orb",
-		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}},
-		body="Inyanga Jubbah +2",
-		hands={ name="Fanatic Gloves", augments={'MP+50','Healing magic skill +10','"Conserve MP"+7','"Fast Cast"+7',}},
+	sets.precast.Cure = set_combine(sets.precast.FastCast,{
 		legs="Ebers Pant. +2",
-		feet="Regal Pumps +1",
-		neck="Voltsurge Torque",
-		waist="Witful Belt",
 		left_ear="Mendi. Earring",
-		right_ear="Malignance Earring",
-		left_ring="Kishar Ring",
-		right_ring="Lebeche Ring",
-		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Spell interruption rate down-10%',}},
-	}
-	sets.precast.CureWeapons = set_combine(sets.precast.Cure, sets.weapons.Curing)
+	})
+	
+	sets.precast.CureWeapons = set_combine(sets.precast.Cure, sets.weapons.Curing, {
+		back="Perimede Cape",
+	})
 	
 	----------------------------------------------------------------------
 	--                           MIDCAST SETS
