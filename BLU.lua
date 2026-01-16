@@ -275,12 +275,14 @@ function get_sets()
 	sets.precast.fastcast = {
 		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
-		body={ name="Adhemar Jacket +1", augments={'HP+105','"Fast Cast"+10','Magic dmg. taken -4',}},
+		body="Pinga Tunic +1",
 		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-		legs={ name="Herculean Trousers", augments={'"Mag.Atk.Bns."+8','"Fast Cast"+6','INT+4',}},
+		legs="Pinga Pants +1",
 		feet={ name="Herculean Boots", augments={'"Mag.Atk.Bns."+8','"Fast Cast"+6','INT+9',}},
 		neck="Voltsurge Torque",
 		waist="Witful Belt",
+		left_ear="Etiolation Earring",
+		right_ear="Odnowa Earring +1",
 		left_ring="Kishar Ring",
 		right_ring="Rahab Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
@@ -479,27 +481,35 @@ function get_sets()
 	
 	sets.midcast.bluemagic.Healing = {
 		ammo="Staunch Tathlum +1",
-		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		body="Vrikodara Jupon",
-		hands="Rawhide Gloves",
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
-		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		head="Pinga Crown +1",
+		body="Pinga Tunic +1",
+		hands="Pinga Mittens +1",
+		legs="Pinga Pants +1",
+		feet="Pinga Pumps +1",
+		neck="Loricate Torque +1",
 		waist="Plat. Mog. Belt",
-		left_ear="Mendi. Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Lebeche Ring",
-		right_ring="Evanescence Ring",
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
-	}
+		left_ear="Genmei Earring",
+		right_ear="Odnowa Earring +1",
+		left_ring="Gelatinous Ring +1",
+		right_ring="Defending Ring",
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+		}
 	
-	sets.midcast.bluemagic.HealingHP = set_combine(sets.midcast.bluemagic.Healing,{
-		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
+	sets.midcast.bluemagic.HealingHP = {
+		ammo="Staunch Tathlum +1",
+		head="Null Masque",
+		body="Adamantite Armor",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Pinga Pumps +1",
+		neck="Unmoving Collar +1",
 		waist="Plat. Mog. Belt",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
+		left_ear="Tuisto Earring",
+		right_ear="Odnowa Earring +1",
+		left_ring="Gelatinous Ring +1",
+		right_ring="Beeline Ring",
 		back="Moonbeam Cape",
-	})
+	}
 	
 	sets.midcast.bluemagic.Buff = set_combine(sets.precast.bluemagic,{
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
@@ -578,18 +588,18 @@ function get_sets()
 	
 	sets.midcast.healing = {
 		ammo="Staunch Tathlum +1",
-		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		body="Vrikodara Jupon",
-		hands="Rawhide Gloves",
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
-		feet={ name="Amalric Nails +1", augments={'Mag. Acc.+20','"Mag.Atk.Bns."+20','"Conserve MP"+7',}},
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		head="Pinga Crown +1",
+		body="Pinga Tunic +1",
+		hands="Pinga Mittens +1",
+		legs="Pinga Pants +1",
+		feet="Pinga Pumps +1",
+		neck="Loricate Torque +1",
 		waist="Plat. Mog. Belt",
-		left_ear="Mendi. Earring",
-		right_ear="Halasz Earring",
-		left_ring="Lebeche Ring",
-		right_ring="Evanescence Ring",
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
+		left_ear="Genmei Earring",
+		right_ear="Odnowa Earring +1",
+		left_ring="Gelatinous Ring +1",
+		right_ring="Defending Ring",
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.midcast.elemental = {
