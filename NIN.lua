@@ -632,6 +632,7 @@ function get_sets()
 	--Utsusemi Midcast
     sets.midcast.utsusemi = set_combine(sets.precast.fastcast,{
 		feet="Hattori Kyahan +3",
+		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 	})
 	
 	--Migawari midcast
@@ -639,6 +640,7 @@ function get_sets()
 		feet={ name="Mochi. Kyahan +3", augments={'Enh. Ninj. Mag. Acc/Cast Time Red.',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
+		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 	})
 	
 	--Enfeeble Midcast
