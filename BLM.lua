@@ -262,9 +262,8 @@ function get_sets()
 		head="Wicce Petasos +2",
 		body="Spaekona's Coat +3",
 		hands="Spae. Gloves +3",
-		legs="Spae. Tonban +3",
-		feet="Spae. Sabots +3",
-		-- ########### Need to get Relic legs and feet in here.
+		legs="Arch. Tonban +3",
+		feet="Arch. Sabots +3",
 		neck="Null Loop",
 		waist="Null Belt",
 		left_ear="Malignance Earring",
@@ -295,6 +294,7 @@ function get_sets()
 	sets.midcast.impact = set_combine(sets.midcast.enfeeble,{
 		head=empty,
 		body="Twilight Cloak",
+		feet="Arch. Sabots +3",
 	})
 	
 	--death
