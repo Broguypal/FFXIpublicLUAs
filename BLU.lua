@@ -54,8 +54,8 @@ function user_setup()
 	
 	send_command('bind numpad4 gs c ToggleMAIN')
 	send_command('bind numpad5 gs c ToggleSUB')
-	send_command('bind numpad3 gs c ToggleSIR')
-	send_command('bind numpad6 gs c ToggleLOCK')
+	send_command('bind numpad6 gs c ToggleSIR')
+	send_command('bind numpad3 gs c ToggleLOCK')
 
 	send_command ('bind numpad1 input /mount "Noble Chocobo"')
 	send_command ('bind numpad2 input /dismount')
@@ -356,6 +356,7 @@ function get_sets()
 	})
 	
 	sets.midcast.bluemagic.PhysicalVit = set_combine(sets.midcast.bluemagic.Physical,{
+		head="Null Masque",
 		ammo="Aurgelmir Orb",
 		neck="Elite Royal Collar",
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
@@ -377,6 +378,7 @@ function get_sets()
 	})
 	
 	sets.midcast.bluemagic.PhysicalMnd = set_combine(sets.midcast.bluemagic.Physical,{
+		head="Null Masque",
 		ammo="Hydrocera",
 		waist="Luminary Sash",
 		left_ring="Stikini Ring +1",
