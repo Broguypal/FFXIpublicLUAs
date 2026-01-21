@@ -231,7 +231,7 @@ function get_sets()
 	sets.midcast.tripleshot = set_combine(sets.midcast.midshot,{
 		head="Oshosi Mask +1",
 		body="Chasseur's Frac +2",
-		-- relic gloves (Lanun +3- need to work on asap)
+		hands="Lanun Gants +3",
 		legs="Osh. Trousers +1",
 		feet="Osh. Leggings +1",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Spell interruption rate down-10%',}},
@@ -302,6 +302,11 @@ function get_sets()
 		range="Compensator",
 	})
 	
+	sets.ja.fold = {
+		hands="Lanun Gants +3",
+	}
+	
+	
 	sets.ja.wildcard = {
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 	}
@@ -313,7 +318,6 @@ function get_sets()
 	sets.ja.waltz = {
 		legs="Desultor Tassets",
 	}
-
 	----------------------------------------------------------------------
 	--                           WEAPONSKILL SETS
 	----------------------------------------------------------------------
@@ -536,6 +540,8 @@ function precast(spell,action,spellMap,eventArgs)
 			equip(sets.ja.wildcard)
 		elseif spell.english == "Random Deal" then
 			equip(sets.ja.randomdeal)
+		elseif spell.english == "Fold" then
+			equip(sets.ja.fold)
 		end
 	elseif spell.type == "CorsairRoll" then
 		if player.status == "Engaged" then
