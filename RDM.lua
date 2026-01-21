@@ -78,9 +78,9 @@ function user_setup()
 	
 	send_command('bind numpad4 gs c ToggleMain')
 	send_command('bind numpad5 gs c ToggleSub')
-	send_command('bind numpad6 gs c ToggleLock')
-	send_command('bind numpad3 gs c ToggleBurst')
-	send_command('bind numpad1 gs c ToggleEnfeeble')
+	send_command('bind numpad2 gs c ToggleLock')
+	send_command('bind numpad6 gs c ToggleBurst')
+	send_command('bind numpad3 gs c ToggleEnfeeble')
 
 	send_command('bind ^numpad1 gs c cast Fire <t>')
 	send_command('bind ^numpad2 gs c cast Aero <t>')
