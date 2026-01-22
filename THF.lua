@@ -107,7 +107,7 @@ function get_sets()
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Trotter Boots",
-		neck="Sanctity Necklace",
+		neck="Bathy Choker +1",
 		waist="Engraved Belt",
 		left_ear="Genmei Earring",
 		right_ear="Odnowa Earring +1",
@@ -498,8 +498,6 @@ function midcast(spell)
 		equip(sets.midcast.Trust)
     elseif spell.english == "Holy Water" then
         equip(sets.special.HolyWater)
-	else
-		idle()
     end
 end
 
