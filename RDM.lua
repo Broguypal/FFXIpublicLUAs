@@ -394,7 +394,7 @@ function get_sets()
 
 	-- Paralyze/Slow/Addle/poison
 	sets.midcast.enfeeblePOTENCY = {
-		ammo="Hydrocera",
+		ammo="Regal Gem",
 		head="Leth. Chappel +3",
 		body="Lethargy Sayon +3",
 		hands="Leth. Ganth. +3",
@@ -460,6 +460,7 @@ function get_sets()
 		
 	--Dia/Inundation
 	sets.midcast.enfeebleINUNDIA = {
+		ammo="Regal Gem",
 		head="Leth. Chappel +3",
 		body="Lethargy Sayon +3",
 		hands="Leth. Ganth. +3",
@@ -684,7 +685,7 @@ function get_sets()
 		
 	---- HEALING MAGIC SETS ----
 	sets.midcast.healingCURE = {
-		ammo="Staunch Tathlum +1",
+		ammo="Regal Gem",
 		head={ name="Kaykaus Mitra +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}},
 		body="Bunzi's Robe",
 		hands={ name="Kaykaus Cuffs +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}},
