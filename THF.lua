@@ -27,7 +27,7 @@ Treasure_Modes = { "On", "Off" }
 
 
 gearswap_box = function()
-    local str = '           \\cs(165,100,40)THIEF\\cr\n'
+    local str = '           \\cs(255,245,105)THIEF\\cr\n'
     str = str..' Offense Mode:\\cs(255,150,100)   '..TP_Mode..'\\cr\n'
     str = str..' Treasure Hunter:\\cs(255,150,100)   '..Treasure_Mode..'\\cr\n'
     return str
@@ -113,7 +113,7 @@ function get_sets()
 		right_ear="Odnowa Earring +1",
 		left_ring="Defending Ring",
 		right_ring="Moonlight Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
     }
 
     -- DT idle set
@@ -130,7 +130,7 @@ function get_sets()
 		right_ear="Odnowa Earring +1",
 		left_ring="Defending Ring",
 		right_ring="Moonlight Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
     }
 
     ----------------------------------------------------------------------
@@ -180,10 +180,12 @@ function get_sets()
     ----------------------------------------------------------------------
 		sets.ja.SneakAttack = {
 		-- Empy gloves
+			back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 		}
 		
 		sets.ja.TrickAttack = {
 		--Empy Chest
+			back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 		}
 		
 		--accomplice/collaborator
@@ -254,7 +256,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Epaminondas's Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
     }
     
 	sets.ws.RudrasStorm = {
@@ -270,7 +272,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Epaminondas's Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.RuthlessStroke = {
@@ -286,7 +288,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Epaminondas's Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.MandalicStab = {
@@ -302,7 +304,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Epaminondas's Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.Evisceration = {
@@ -318,7 +320,7 @@ function get_sets()
 		right_ear={ name="Skulker's Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+7','Mag. Acc.+7',}},
 		left_ring="Begrudging Ring",
 		right_ring="Gere Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.MercyStroke = {
@@ -334,7 +336,7 @@ function get_sets()
 		right_ear={ name="Skulker's Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+7','Mag. Acc.+7',}},
 		left_ring="Sroda Ring",
 		right_ring="Gere Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.Extenerator = {
@@ -350,7 +352,7 @@ function get_sets()
 		right_ear={ name="Skulker's Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+7','Mag. Acc.+7',}},
 		left_ring="Ilabrat Ring",
 		right_ring="Gere Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.SharkBite = {
@@ -366,7 +368,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Epaminondas's Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.ws.SavageBlade = {
@@ -382,7 +384,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Sroda Ring",
 		right_ring="Epaminondas's Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	sets.ws.AeolianEdge = {
 		ammo="Seeth. Bomblet +1",
@@ -397,7 +399,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Begrudging Ring",
 		right_ring="Epaminondas's Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 end
