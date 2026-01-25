@@ -175,8 +175,86 @@ function get_sets()
     sets.midcast = {}               -- leave this empty    
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
-	sets.items = {}					-- Leave this empty.
+	sets.special = {}					-- Leave this empty.
 
+	----------------------------------------------------------------------
+	--                           Special Sets
+	----------------------------------------------------------------------
+	
+	--item sets
+	sets.special.holywater = {
+		neck="Nicander's Necklace",
+		left_ring="Purity Ring",
+		right_ring="Blenmot's Ring",
+	}
+
+	-- For casting trusts - want to have 119 gear in head,body,hands,legs,feet.
+	sets.special.trust = {
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+	}
+
+			----------------------------------------------------------------------
+			--                           STANDARD DEFENSIVE SETS
+			----------------------------------------------------------------------
+	-- Standard defensive peices here (for Hybrid mode)
+	sets.special.defence = {
+		head="Malignance Chapeau",
+		body="Mpaca's Doublet",
+		hands="Malignance Gloves",
+		legs="Mpaca's Hose",
+		feet="Malignance Boots",
+	}
+
+	--Malignance Defence Pieces here (for malignance mode)
+	sets.special.malignance = {
+		head="Malignance Chapeau",
+		body="Malignance Tabard",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+	}
+	
+	-- Yonin swaps (counter pieces you always want equipped when you have yonin active and 0 shadows)
+	sets.special.yonin = {
+		neck={ name="Bathy Choker +1", augments={'Path: A',}},
+		legs="Hattori Hakama +2",
+		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
+	}
+	
+			----------------------------------------------------------------------
+			--                           HASTE SWAPS
+			----------------------------------------------------------------------
+	sets.special.haste35 = {
+		--need 12 DW
+		waist="Reiki Yotai",
+		left_ear="Suppanomimi",
+	}
+	sets.special.haste30 = {
+		-- need 21 DW
+		waist="Reiki Yotai",
+		left_ear="Suppanomimi",
+		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
+	}
+	sets.special.haste15 = {
+		--need 32DW
+		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		waist="Reiki Yotai",
+		left_ear="Suppanomimi",
+		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
+	}
+	sets.special.haste0 = {
+		--need 39DW
+		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		feet="Hiza. Sune-Ate +2",
+		waist="Reiki Yotai",
+		left_ear="Suppanomimi",
+		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
+	}
+	
 	----------------------------------------------------------------------
 	--                           IDLE SETS
 	----------------------------------------------------------------------
@@ -276,7 +354,10 @@ function get_sets()
 	----------------------------------------------------------------------
 	--                           ENGAGED SETS
 	----------------------------------------------------------------------
-	---- TANK Engaged Sets ----
+
+			----------------------------------------------------------------------
+			--                           TANK ENGAGED SETS
+			----------------------------------------------------------------------
 	sets.engaged.tank.normal = {
 		ammo="Date Shuriken",
 		head="Mpaca's Cap",
@@ -300,9 +381,7 @@ function get_sets()
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
 	})
 	-- 0 Shadows + Yonin Active
-	sets.engaged.tank.yonin = set_combine(sets.engaged.tank.counter,{
-		legs="Hattori Hakama +2",
-	})
+	sets.engaged.tank.yonin = set_combine(sets.engaged.tank.counter, sets.special.yonin)
 
 	----Evasion Engaged Sets ----
 	sets.engaged.evasion.normal = {
@@ -333,9 +412,7 @@ function get_sets()
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
 	})
 	-- 0 Shadows + Yonin Active
-	sets.engaged.evasion.yonin = set_combine(sets.engaged.evasion.counter,{
-		legs="Hattori Hakama +2",
-	})
+	sets.engaged.evasion.yonin = set_combine(sets.engaged.evasion.counter, sets.special.yonin)
 
 	---- Magic Evasion Engaged Set----
 	sets.engaged.evasion.magic = {
@@ -353,9 +430,10 @@ function get_sets()
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back="Null Shawl",
 	}
-	
-	----Hybrid / Malignance / DPS engaged sets ----
-	---- Capped Haste (need 1 DW - negligible) ----
+
+			----------------------------------------------------------------------
+			--                           HYBRID ENGAGED SETS
+			----------------------------------------------------------------------
 	sets.engaged.hybrid.hastecap = {
 		ammo="Seki Shuriken",
 		head="Malignance Chapeau",
@@ -371,36 +449,38 @@ function get_sets()
 		right_ring="Fickblix's Ring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
 	}
-	-- Cap haste 0 shadows
-	sets.engaged.hybrid.hastecapdef = set_combine(sets.engaged.hybrid.hastecap,{
-		head="Malignance Chapeau",
-		body="Mpaca's Doublet",
-		hands="Malignance Gloves",
-		legs="Mpaca's Hose",
-		feet="Malignance Boots",
-	})
-	--yonin swap
-	sets.engaged.hybrid.hastecapyonin = set_combine(sets.engaged.hybrid.hastecapdef,{
-		neck={ name="Bathy Choker +1", augments={'Path: A',}},
-		legs="Hattori Hakama +2",
-		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-	})
-	---- Malignance ----
-	sets.engaged.malignance.hastecap = set_combine(sets.engaged.hybrid.hastecap,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	sets.engaged.malignance.hastecapdef = set_combine(sets.engaged.malignance.hastecap,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	---- DPS ----
+	sets.engaged.hybrid.hastecapdef = set_combine(sets.engaged.hybrid.hastecap, sets.special.defence)
+	sets.engaged.hybrid.hastecapyonin = set_combine(sets.engaged.hybrid.hastecapdef, sets.special.yonin)
+	sets.engaged.hybrid.haste35 = set_combine(sets.engaged.hybrid.hastecap, sets.special.haste35)
+	sets.engaged.hybrid.haste35def = set_combine(sets.engaged.hybrid.haste35, sets.special.defence)
+	sets.engaged.hybrid.haste35yonin = set_combine(sets.engaged.hybrid.haste35def, sets.special.yonin)
+	sets.engaged.hybrid.haste30 = set_combine(sets.engaged.hybrid.hastecap, sets.special.haste30)
+	sets.engaged.hybrid.haste30def = set_combine(sets.engaged.hybrid.haste30, sets.special.defence)
+	sets.engaged.hybrid.haste30yonin = set_combine(sets.engaged.hybrid.haste30def, sets.special.yonin)
+	sets.engaged.hybrid.haste15 = set_combine(sets.engaged.hybrid.hastecap,sets.special.haste15)
+	sets.engaged.hybrid.haste15def = set_combine(sets.engaged.hybrid.haste15, sets.special.defence)
+	sets.engaged.hybrid.haste15yonin = set_combine(sets.engaged.hybrid.haste15def, sets.special.yonin)
+	sets.engaged.hybrid.haste0 = set_combine(sets.engaged.hybrid.hastecap, sets.special.haste0)
+	sets.engaged.hybrid.haste0def = set_combine(sets.engaged.hybrid.haste0, sets.special.defence)
+	sets.engaged.hybrid.haste0yonin = set_combine(sets.engaged.hybrid.haste0def, sets.special.yonin})
+
+			----------------------------------------------------------------------
+			--                           MALIGNANCE ENGAGED SETS
+			----------------------------------------------------------------------
+	sets.engaged.malignance.hastecap = set_combine(sets.engaged.hybrid.hastecap, sets.special.malignance)
+	sets.engaged.malignance.hastecapdef = set_combine(sets.engaged.malignance.hastecap, sets.special.malignance)
+	sets.engaged.malignance.haste35 = set_combine(sets.engaged.hybrid.haste35, sets.special.malignance)
+	sets.engaged.malignance.haste35def = set_combine(sets.engaged.malignance.haste35, sets.special.malignance)
+	sets.engaged.malignance.haste30 = set_combine(sets.engaged.hybrid.haste30, sets.special.malignance)
+	sets.engaged.malignance.haste30def = set_combine(sets.engaged.malignance.haste30, sets.special.malignance)
+	sets.engaged.malignance.haste15 = set_combine(sets.engaged.hybrid.haste15, sets.special.malignance, sets.special.haste15)
+	sets.engaged.malignance.haste15def = set_combine(sets.engaged.malignance.haste15, sets.special.malignance)
+	sets.engaged.malignance.haste0 = set_combine(sets.engaged.hybrid.haste0, sets.special.malignance, sets.special.haste0)
+	sets.engaged.malignance.haste0def = set_combine(sets.engaged.malignance.haste0, sets.special.malignance)
+	
+			----------------------------------------------------------------------
+			--                           DPS ENGAGED SETS
+			----------------------------------------------------------------------
 	sets.engaged.DPS.hastecap = {
 		ammo="Seki Shuriken",
 		head="Ken. Jinpachi +1",
@@ -416,177 +496,10 @@ function get_sets()
 		right_ring="Fickblix's Ring",
 		back="Null Shawl",
 	}
-
-	---- 35 Haste (need 12 DW) ----
-	sets.engaged.hybrid.haste35 = set_combine(sets.engaged.hybrid.hastecap,{
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-	})
-	-- 35 haste 0 shadows
-	sets.engaged.hybrid.haste35def = set_combine(sets.engaged.hybrid.haste35,{
-		head="Malignance Chapeau",
-		body="Mpaca's Doublet",
-		hands="Malignance Gloves",
-		legs="Mpaca's Hose",
-		feet="Malignance Boots",
-	})
-	--yonin swap
-	sets.engaged.hybrid.haste35yonin = set_combine(sets.engaged.hybrid.haste35def,{
-		neck={ name="Bathy Choker +1", augments={'Path: A',}},
-		legs="Hattori Hakama +2",
-		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-	})
-	---- Malignance ----
-	sets.engaged.malignance.haste35 = set_combine(sets.engaged.hybrid.haste35,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	sets.engaged.malignance.haste35def = set_combine(sets.engaged.malignance.haste35,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	----DPS---- 	
-	sets.engaged.DPS.haste35 = set_combine(sets.engaged.DPS.hastecap,{
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-	})
-
-	---- 30 Haste (need 21 DW) ----
-		sets.engaged.hybrid.haste30 = set_combine(sets.engaged.hybrid.hastecap,{
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-	})
-	-- 30 haste 0 shadows
-	sets.engaged.hybrid.haste30def = set_combine(sets.engaged.hybrid.haste30,{
-		head="Malignance Chapeau",
-		body="Mpaca's Doublet",
-		hands="Malignance Gloves",
-		legs="Mpaca's Hose",
-		feet="Malignance Boots",
-	})
-	--yonin swap
-	sets.engaged.hybrid.haste30yonin = set_combine(sets.engaged.hybrid.haste30def,{
-		neck={ name="Bathy Choker +1", augments={'Path: A',}},
-		legs="Hattori Hakama +2",
-		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-	})
-	---- Malignance ----
-	sets.engaged.malignance.haste30 = set_combine(sets.engaged.hybrid.haste30,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	sets.engaged.malignance.haste30def = set_combine(sets.engaged.malignance.haste30,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	---- DPS ----
-	sets.engaged.DPS.haste30 = set_combine(sets.engaged.DPS.hastecap,{
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-	})
-
-	----- 15 Haste (need 32 DW) ----
-	sets.engaged.hybrid.haste15 = set_combine(sets.engaged.hybrid.hastecap,{
-		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-	})
-	-- 15 haste 0 shadows
-	sets.engaged.hybrid.haste15def = set_combine(sets.engaged.hybrid.haste15,{
-		head="Malignance Chapeau",
-		body="Mpaca's Doublet",
-		hands="Malignance Gloves",
-		legs="Mpaca's Hose",
-		feet="Malignance Boots",
-	})
-	--yonin swap
-	sets.engaged.hybrid.haste15yonin = set_combine(sets.engaged.hybrid.haste15def,{
-		neck={ name="Bathy Choker +1", augments={'Path: A',}},
-		legs="Hattori Hakama +2",
-		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-	})
-	---- Malignance ----
-	sets.engaged.malignance.haste15 = set_combine(sets.engaged.hybrid.haste15, {
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	sets.engaged.malignance.haste15def = set_combine(sets.engaged.malignance.haste15,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	---- DPS ----
-	sets.engaged.DPS.haste15 = set_combine(sets.engaged.DPS.hastecap,{
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-		right_ear="Eabani Earring",
-		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-	})
-	
-	------ 0 Haste (need 39 DW) -------------------
-	sets.engaged.hybrid.haste0 = set_combine(sets.engaged.hybrid.hastecap,{
-		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
-		feet="Hiza. Sune-Ate +2",
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-	})
-	-- 0 haste 0 shadows
-	sets.engaged.hybrid.haste0def = set_combine(sets.engaged.hybrid.haste0,{
-		head="Malignance Chapeau",
-		body="Mpaca's Doublet",
-		hands="Malignance Gloves",
-		legs="Mpaca's Hose",
-		feet="Malignance Boots",
-	})
-	--yonin swap
-	sets.engaged.hybrid.haste0yonin = set_combine(sets.engaged.hybrid.haste0def,{
-		neck={ name="Bathy Choker +1", augments={'Path: A',}},
-		legs="Hattori Hakama +2",
-		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
-	})
-	---- Malignance ----
-	sets.engaged.malignance.haste0 = set_combine(sets.engaged.hybrid.haste0, {
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-	})
-	sets.engaged.malignance.haste0def = set_combine(sets.engaged.malignance.haste0,{
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-	})
-	---- DPS ----
-	sets.engaged.DPS.haste0 = set_combine(sets.engaged.DPS.hastecap,{
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		feet="Hiza. Sune-Ate +2",
-		waist="Reiki Yotai",
-		left_ear="Suppanomimi",
-		right_ear="Eabani Earring",
-		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
-	})
+	sets.engaged.DPS.haste35 = set_combine(sets.engaged.DPS.hastecap, sets.special.haste35)
+	sets.engaged.DPS.haste30 = set_combine(sets.engaged.DPS.hastecap, sets.special.haste30)
+	sets.engaged.DPS.haste15 = set_combine(sets.engaged.DPS.hastecap, sets.special.haste15)
+	sets.engaged.DPS.haste0 = set_combine(sets.engaged.DPS.hastecap, sets.special.haste0)
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -692,15 +605,6 @@ function get_sets()
 		waist="Hachirin-no-Obi",
 	})
 	
-	-- Midcast for trusts - want to have 119 gear in head,body,hands,legs,feet.
-	sets.midcast.trust = {
-		head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-	}
-
 	----------------------------------------------------------------------
 	--                           WEAPONSKILL SETS
 	----------------------------------------------------------------------
@@ -904,15 +808,6 @@ function get_sets()
 		left_ring="Stikini Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back={ name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
-	}
-	
-	----------------------------------------------------------------------
-	--                           ITEM SETS
-	----------------------------------------------------------------------
-	sets.items.holywater = {
-		neck="Nicander's Necklace",
-		left_ring="Purity Ring",
-		right_ring="Blenmot's Ring",
 	}
 end
 
@@ -1288,7 +1183,7 @@ function precast(spell)
 			equip(sets.ws.normal)
 		end
 	elseif spell.english == "Holy Water" then
-		equip(sets.items.holywater)
+		equip(sets.special.holywater)
 	else
 		idle()
 	end
@@ -1366,9 +1261,9 @@ function midcast(spell)
 	elseif spell.english == "Provoke" or spell.english == "Foil" or spell.english == "Poisonga" or spell.english == "Stun" or spell.english == "Flash" or spell.english == "Jettatura" or spell.english == "Blank Gaze" then
 		equip(sets.precast.enmity)
 	elseif spell.type == "Trust" then
-		equip(sets.midcast.trust)
+		equip(sets.special.trust)
 	elseif spell.english == "Holy Water" then
-		equip(sets.items.holywater)
+		equip(sets.special.holywater)
 	end
 end
 
