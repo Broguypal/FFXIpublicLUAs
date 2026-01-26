@@ -175,7 +175,7 @@ function get_sets()
     sets.midcast = {}               -- leave this empty    
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
-	sets.special = {}					-- Leave this empty.
+	sets.special = {}				-- Leave this empty.
 
 	----------------------------------------------------------------------
 	--                           Special Sets
@@ -458,7 +458,7 @@ function get_sets()
 	sets.engaged.hybrid.haste15yonin = set_combine(sets.engaged.hybrid.haste15def, sets.special.yonin)
 	sets.engaged.hybrid.haste0 = set_combine(sets.engaged.hybrid.hastecap, sets.special.haste0)
 	sets.engaged.hybrid.haste0def = set_combine(sets.engaged.hybrid.haste0, sets.special.defence)
-	sets.engaged.hybrid.haste0yonin = set_combine(sets.engaged.hybrid.haste0def, sets.special.yonin})
+	sets.engaged.hybrid.haste0yonin = set_combine(sets.engaged.hybrid.haste0def, sets.special.yonin)
 
 			----------------------------------------------------------------------
 			--                           MALIGNANCE ENGAGED SETS
