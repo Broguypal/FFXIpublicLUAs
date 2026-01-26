@@ -200,7 +200,7 @@ function get_sets()
 			----------------------------------------------------------------------
 			--                           STANDARD DEFENSIVE SETS
 			----------------------------------------------------------------------
-	-- Standard defensive peices here (for Hybrid mode)
+	-- Standard defensive peices here (for Hybrid mode - head/body/hands/legs/feet only)
 	sets.special.defence = {
 		head="Malignance Chapeau",
 		body="Mpaca's Doublet",
@@ -209,7 +209,7 @@ function get_sets()
 		feet="Malignance Boots",
 	}
 
-	--Malignance Defence Pieces here (for malignance mode)
+	--Malignance Defence Pieces here (for malignance mode - head/body/hands/legs/feet only)
 	sets.special.malignance = {
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
@@ -228,26 +228,22 @@ function get_sets()
 			----------------------------------------------------------------------
 			--                           HASTE SWAPS
 			----------------------------------------------------------------------
-	sets.special.haste35 = {
-		--need 12 DW
+	sets.special.haste35 = { --need 12 DW
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 	}
-	sets.special.haste30 = {
-		-- need 21 DW
+	sets.special.haste30 = { -- need 21 DW
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	}
-	sets.special.haste15 = {
-		--need 32DW
+	sets.special.haste15 = { --need 32DW
 		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}},
 	}
-	sets.special.haste0 = {
-		--need 39DW
+	sets.special.haste0 = {	--need 39DW
 		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		feet="Hiza. Sune-Ate +2",
 		waist="Reiki Yotai",
