@@ -291,7 +291,7 @@ function get_sets()
 		hands="Aya. Manopolas +2",
 		legs="Malignance Tights",
 		feet="Leth. Houseaux +3",
-		neck="Anu Torque",
+		neck="Null Loop",
 		waist="Orpheus's Sash",
 		left_ear="Sherida Earring",
 		right_ear="Telos Earring",
