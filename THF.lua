@@ -231,7 +231,10 @@ function get_sets()
 	
 	-- Put your treasurehunter pieces here
 	sets.special.TreasureHunter = {
-	-- treasurehunter pieces here
+		ammo="Per. Lucky Egg",
+		body={ name="Herculean Vest", augments={'CHR+1','Attack+6','"Treasure Hunter"+2','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
+		legs={ name="Herculean Trousers", augments={'"Drain" and "Aspir" potency +1','Pet: Accuracy+27 Pet: Rng. Acc.+27','"Treasure Hunter"+2','Accuracy+12 Attack+12','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
+		feet={ name="Herculean Boots", augments={'Pet: Phys. dmg. taken -1%','STR+4','"Treasure Hunter"+2','Accuracy+18 Attack+18',}},
 	}
 	
 	-- Holywater
