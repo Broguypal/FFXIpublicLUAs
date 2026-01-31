@@ -289,7 +289,8 @@ function get_sets()
 		waist="Hachirin-no-Obi",
 	})
 
-	sets.ja.engagedroll = {
+	--Put all your roll gear here except your weapons.
+	sets.ja.roll = {
 		head={ name="Lanun Tricorne +1", augments={'Enhances "Winning Streak" effect',}},
 		hands="Chasseur's Gants +2",
 		legs="Desultor Tassets",
@@ -298,7 +299,8 @@ function get_sets()
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
 
-	sets.ja.roll = set_combine(sets.ja.engagedroll,{
+	--put your roll weapons here.
+	sets.ja.rollweapons = set_combine(sets.ja.roll,{
 		range="Compensator",
 	})
 	
@@ -532,9 +534,9 @@ function precast(spell,action,spellMap,eventArgs)
 	elseif spell.type == "JobAbility" then
 		if spell.english == "Double-Up" then
 			if player.status == "Engaged" then
-				equip(sets.ja.engagedroll)
-			else
 				equip(sets.ja.roll)
+			else
+				equip(sets.ja.rollweapons)
 			end
 		elseif spell.english == "Wild Card" then
 			equip(sets.ja.wildcard)
@@ -545,9 +547,9 @@ function precast(spell,action,spellMap,eventArgs)
 		end
 	elseif spell.type == "CorsairRoll" then
 		if player.status == "Engaged" then
-			equip(sets.ja.engagedroll)
-		else
 			equip(sets.ja.roll)
+		else
+			equip(sets.ja.rollweapons)
 		end
 	elseif spell.type == "CorsairShot" then
 		if spell.english == "Dark Shot" or spell.english == "Light Shot" then
