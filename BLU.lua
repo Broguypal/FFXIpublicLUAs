@@ -163,23 +163,6 @@ function get_sets()
 		sub={ name="Thibron", augments={'TP Bonus +1000',}},
 	})
 
-	--Treasure hunter engaged.
-	sets.engaged.treasure = {
-		ammo="Per. Lucky Egg",
-		head="Malignance Chapeau",
-		body={ name="Herculean Vest", augments={'CHR+1','Attack+6','"Treasure Hunter"+2','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
-		hands="Malignance Gloves",
-		legs={ name="Herculean Trousers", augments={'"Drain" and "Aspir" potency +1','Pet: Accuracy+27 Pet: Rng. Acc.+27','"Treasure Hunter"+2','Accuracy+12 Attack+12','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
-		feet={ name="Herculean Boots", augments={'Pet: Phys. dmg. taken -1%','STR+4','"Treasure Hunter"+2','Accuracy+18 Attack+18',}},
-		neck={ name="Mirage Stole +2", augments={'Path: A',}},
-		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		left_ear="Suppanomimi",
-		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
-		left_ring="Fickblix's Ring",
-		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
-	}
-
 	----HYBRID ENGAGED SETS ----
 	sets.engaged.hybrid.normal = {
 		ammo="Aurgelmir Orb",
@@ -200,6 +183,12 @@ function get_sets()
 	sets.engaged.hybrid.am3 = set_combine(sets.engaged.hybrid.normal,{
 		right_ear="Crep. Earring",
 		left_ring="Chirich Ring +1",
+	})
+	
+	--Treasure hunter swaps
+	sets.engaged.treasure = set_combine(sets.engaged.hybrid.normal, {
+		legs={ name="Herculean Trousers", augments={'"Drain" and "Aspir" potency +1','Pet: Accuracy+27 Pet: Rng. Acc.+27','"Treasure Hunter"+2','Accuracy+12 Attack+12','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
+		feet={ name="Herculean Boots", augments={'Pet: Phys. dmg. taken -1%','STR+4','"Treasure Hunter"+2','Accuracy+18 Attack+18',}},
 	})
 
 	----DUAL WIELD SETS ---- (Note: All sets assume DW3)
@@ -555,21 +544,10 @@ function get_sets()
 		back="Moonbeam Cape",
 	}
 	
-	sets.midcast.treasurehunter = {
-		ammo="Per. Lucky Egg",
-		head="Hashishin Kavuk +3",
+	sets.midcast.treasurehunter = set_combine(sets.midcast.bluemagic.Magical,{
 		body={ name="Herculean Vest", augments={'CHR+1','Attack+6','"Treasure Hunter"+2','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
-		hands="Hashi. Bazu. +3",
 		legs={ name="Herculean Trousers", augments={'"Drain" and "Aspir" potency +1','Pet: Accuracy+27 Pet: Rng. Acc.+27','"Treasure Hunter"+2','Accuracy+12 Attack+12','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
-		feet={ name="Herculean Boots", augments={'Pet: Phys. dmg. taken -1%','STR+4','"Treasure Hunter"+2','Accuracy+18 Attack+18',}},
-		neck="Sibyl Scarf",
-		waist="Eschan Stone",
-		left_ear="Friomisi Earring",
-		right_ear="Hecate's Earring",
-		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		right_ring="Shiva Ring +1",
-		back="Moonbeam Cape",
-	}
+	})
 	
 	sets.midcast.enhancing = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
