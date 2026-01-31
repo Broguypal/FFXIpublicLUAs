@@ -194,7 +194,7 @@ function get_sets()
 		}
 		
 		sets.ja.Flee = {
-		--AF Feet
+			feet="Pill. Poulaines +3",
 		}
 		
 		sets.ja.Hide = {
