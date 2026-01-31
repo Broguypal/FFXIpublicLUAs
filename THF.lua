@@ -106,7 +106,7 @@ function get_sets()
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
-		feet="Trotter Boots",
+		feet="Pill. Poulaines +3",
 		neck="Bathy Choker +1",
 		waist="Engraved Belt",
 		left_ear="Genmei Earring",
@@ -203,9 +203,10 @@ function get_sets()
 		
 		--steal/mug
 		sets.ja.Steal = {
+			ammo="Barathrum",
 		-- Relic Head
 		-- Relic Legs
-		-- AF Feet
+			feet="Pill. Poulaines +3",
 		}
 		
 		sets.ja.Despoil = {
