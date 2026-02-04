@@ -489,7 +489,7 @@ function precast(spell)
 		elseif spell.english == "Feint" then
 			equip(sets.ja.Feint)
 		end
-	elseif spell.type == "Walz" then
+	elseif spell.type == "Waltz" then
 		equip(sets.ja.Waltz)
 	elseif spell.english == "Holy Water" then
         equip(sets.special.HolyWater)
