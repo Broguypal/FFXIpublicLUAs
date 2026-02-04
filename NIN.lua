@@ -11,7 +11,7 @@
 ----------------------------------------------------------------------
 -- Summary:
 -- This lua relies on using the numberpad to change your mode/state which is tracked on the Job box. 
------ The numberpad is also used to cast the highest tier NIN spell available more easily (Timers may need to be adjusted based on your fastcast - see SPELL LOGIC near bottom)
+----- The numberpad is also used to cast the highest tier NIN spell available more easily
 -- To change the keybinds, please edit them in the Keybinds function below
 -- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
@@ -1317,39 +1317,43 @@ end
 --                           SPELL LOGIC
 ----------------------------------------------------------------------
 -- Note: ctrl or alt 1/2/3 on numpad automatically casts best tier spell available. 
--- Below are the timers which you may need to change based on your level of fastcast.
-local ninjutsu_custom_recasts = {
-    ["San"] = 45,
-    ["Ni"]  = 33,
-    ["Ichi"] = 22,
-}
+local res = require('resources')
 
-local ninjutsu_tiers = {"San", "Ni", "Ichi"}
+local ninjutsu_tiers = {"San", "Ni", "Ichi"} -- highest -> lowest
 
-last_ninjutsu_cast = last_ninjutsu_cast or {}
+local function can_cast_spell_by_name(spell_name)
+    local spell = res.spells:with('en', spell_name)
+    if not spell then return false end
 
-function capitalize(word)
-    return word:sub(1,1):upper() .. word:sub(2):lower()
+    local player = windower.ffxi.get_player()
+    if not player or not player.vitals or player.vitals.hp == 0 then return false end
+
+    -- Spell must be known/learned
+    local spells = windower.ffxi.get_spells()
+    if not spells or not spells[spell.id] then return false end
+
+    -- Recast check
+    local recasts = windower.ffxi.get_spell_recasts()
+    if not recasts then return false end
+
+    return (recasts[spell.id] or 0) == 0
 end
 
 function cast_best_ninjutsu(element)
-    local now = os.clock()
-    local element_cap = element  -- assuming you're skipping capitalize()
-    
+    local element_cap = element:sub(1,1):upper() .. element:sub(2):lower()
+
     for _, tier in ipairs(ninjutsu_tiers) do
         local spell_name = ("%s: %s"):format(element_cap, tier)
-        local last_cast = last_ninjutsu_cast[spell_name] or 0
-        local cooldown = ninjutsu_custom_recasts[tier]
-        local remaining = cooldown - (now - last_cast)
 
-        if remaining <= 0 then
+        if can_cast_spell_by_name(spell_name) then
             send_command('input /ma "' .. spell_name .. '" <t>')
             return
         end
     end
+
 end
 
-----------------------------------------------------------------------
+-----------------------------------------------------------------
 --                    WEAPON CYCLING & COMMANDS LOGIC
 ----------------------------------------------------------------------
 function cycle(list, current)
