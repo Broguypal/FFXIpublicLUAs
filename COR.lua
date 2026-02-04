@@ -318,7 +318,7 @@ function get_sets()
 	}
 	
 	sets.ja.waltz = {
-		legs="Desultor Tassets",
+		legs="Dashing Subligar",
 	}
 	----------------------------------------------------------------------
 	--                           WEAPONSKILL SETS

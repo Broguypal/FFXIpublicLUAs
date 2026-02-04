@@ -223,6 +223,7 @@ function get_sets()
 		}
 		
 		sets.ja.Waltz = {
+			legs="Dashing Subligar",
 		}
 		
 	----------------------------------------------------------------------
