@@ -66,11 +66,10 @@ function buff_change(buff, gain)
 end	
 
 function check_tool_count()
-	ctool = {'Shikanofuda',
-		'Shihei',
-		'Chonofuda',
-		'Inoshishinofuda'}
+	ctool = {'Shikanofuda', 'Shihei', 'Chonofuda', 'Inoshishinofuda'}
 	for t =1,4  do
+		local curCount = 0
+		
 		if not player.inventory[ctool[t]] then
 			curCount = 0
 		elseif player.inventory[ctool[t]].count then
@@ -173,7 +172,6 @@ function get_sets()
 		sets.engaged.evasion = {}		-- Leave this empty.
     sets.precast = {}               -- leave this empty    
     sets.midcast = {}               -- leave this empty    
-    sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.special = {}				-- Leave this empty.
 
@@ -1265,9 +1263,6 @@ end
 
 function aftercast(spell)
 	if spell.type == "Ninjutsu" then
-		if (spell.name:match('Katon') or spell.name:match('Suiton') or spell.name:match('Raiton') or spell.name:match('Doton') or spell.name:match('Huton') or spell.name:match('Hyoton')) and not spell.interrupted then
-			last_ninjutsu_cast[spell.name] = os.clock()
-		end
 		idle()
 		check_tool_count()
 		gearswap_jobbox:text(gearswap_box())		
