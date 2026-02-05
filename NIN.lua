@@ -66,47 +66,45 @@ function buff_change(buff, gain)
 end	
 
 function check_tool_count()
-	ctool = {'Shikanofuda', 'Shihei', 'Chonofuda', 'Inoshishinofuda'}
-	for t =1,4  do
-		local curCount = 0
-		
-		if not player.inventory[ctool[t]] then
-			curCount = 0
-		elseif player.inventory[ctool[t]].count then
-			curCount = player.inventory[ctool[t]].count
-		end
-		a = ''
-		cMax = 99
-		cColorR = 0
-		if curCount > cMax then
-			cColorR = 0
-			cColorG = 255
-		else
-			percent = (curCount/cMax * 100)
-			if percent >=50 then
-				cColorG = 255
-				cColorR =math.floor(5 * (100-percent))
-			else 
-				cColorR = 255
-				cColorG = 255-math.floor(5 * (50-percent))
-			end
-		end
-		if curCount == 0 then
-			a = "\\cs(255,0,0)" .. '0'
-		else 
-			a = "\\cs("..cColorR..","..cColorG..",0)" .. (curCount) 
-		end
+    local ctool = {'Shikanofuda', 'Shihei', 'Chonofuda', 'Inoshishinofuda'}
+    local cMax = 99
 
-		if t == 1 then
-			shika = a
-		elseif t == 2 then
-			shihei = a
-		elseif t == 3 then
-			chono = a 
-		elseif t == 4 then
-			inofu = a 
-		end
-	end
+    if not player or not player.inventory then return end
+
+    for t = 1, 4 do
+        local curCount = 0
+        local item = player.inventory[ctool[t]]
+        if item and item.count then
+            curCount = item.count
+        end
+
+        local cColorR, cColorG = 0, 0
+        if curCount > cMax then
+            cColorR, cColorG = 0, 255
+        else
+            local percent = (curCount / cMax) * 100
+            if percent >= 50 then
+                cColorG = 255
+                cColorR = math.floor(5 * (100 - percent))
+            else
+                cColorR = 255
+                cColorG = 255 - math.floor(5 * (50 - percent))
+            end
+        end
+
+        local a
+        if curCount == 0 then
+            a = "\\cs(255,0,0)0"
+        else
+            a = "\\cs(" .. cColorR .. "," .. cColorG .. ",0)" .. tostring(curCount)
+        end
+
+        if t == 1 then shika = a
+        elseif t == 2 then shihei = a
+        elseif t == 3 then chono = a
+        elseif t == 4 then inofu = a
+        end
+    end
 end
 
 ----------------------------------------------------------------------
