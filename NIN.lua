@@ -50,20 +50,21 @@ gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size
 gearswap_jobbox = texts.new(gearswap_box_config)
 
 function buff_change(buff, gain)
-	if buffactive['Copy Image'] then
-		utsubuff = "\\cs(255,127,0)1"	
-	elseif buffactive['Copy Image (2)'] then 
-		utsubuff = "\\cs(255,255,0)2"
-	elseif buffactive['Copy Image (3)'] then
-		utsubuff = "\\cs(127,255,0)3"
-	elseif buffactive['Copy Image (4+)'] then
-		utsubuff = "\\cs(0,255,0)4+"
-	else 
-		utsubuff = "\\cs(255,0,0)0" 
-	end
-	gearswap_jobbox:text(gearswap_box())
-	gearswap_jobbox:show()
-end	
+    if buffactive['Copy Image (4+)'] then
+        utsubuff = "\\cs(0,255,0)4+"
+    elseif buffactive['Copy Image (3)'] then
+        utsubuff = "\\cs(127,255,0)3"
+    elseif buffactive['Copy Image (2)'] then
+        utsubuff = "\\cs(255,255,0)2"
+    elseif buffactive['Copy Image'] then
+        utsubuff = "\\cs(255,127,0)1"
+    else
+        utsubuff = "\\cs(255,0,0)0"
+    end
+    gearswap_jobbox:text(gearswap_box())
+    gearswap_jobbox:show()
+end
+
 
 function check_tool_count()
     local ctool = {'Shikanofuda', 'Shihei', 'Chonofuda', 'Inoshishinofuda'}
