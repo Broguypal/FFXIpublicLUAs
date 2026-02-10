@@ -285,7 +285,7 @@ function get_sets()
 	sets.engaged.hybrid.zeroTPenspell = {
 		main="Qutrub Knife",
 		sub="Ethereal Dagger",
-		ammo="Coiste Bodhar",
+		range="Ullr",
 		head="Umuthi Hat",
 		body="Lethargy Sayon +3",
 		hands="Aya. Manopolas +2",
