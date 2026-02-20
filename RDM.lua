@@ -24,7 +24,7 @@ Enfeeble_Mode = "Normal"
 Lock_Mode = "Locked"
 
 Player_Modes = {'Melee','Enspell','ZeroTPEnspell','Tank','Caster'}
-Casting_Modes = {'Burst','Freecast'}
+Casting_Modes = {'Burst','Freecast','Occult'}
 Enfeeble_Modes = {'Normal','Accuracy'}
 Lock_Modes = {'Unlocked','Locked'}
 
@@ -312,7 +312,23 @@ function get_sets()
 		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
 		right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
 		waist="Plat. Mog. Belt",
+		back="Perimede Cape",
 	}
+	
+	sets.precast.impact = set_combine(sets.precast.fastcast,{
+		head=empty,
+		body="Twilight Cloak",
+		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
+		legs={ name="Lengo Pants", augments={'INT+8','Mag. Acc.+14','"Mag.Atk.Bns."+13',}},
+		feet={ name="Merlinic Crackows", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','Mag. Acc.+13',}},
+		neck="Voltsurge Torque",
+		waist="Witful Belt",
+		left_ear="Malignance Earring",
+		right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
+		left_ring="Lebeche Ring",
+		right_ring="Kishar Ring",
+		back="Perimede Cape",
+	})
 
 	----------------------------------------------------------------------
 	--                           MIDCAST SETS
@@ -323,6 +339,28 @@ function get_sets()
 		hands="Nyame Gauntlets",
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
+	}
+	
+	--occult acumen
+	sets.midcast.occult = {
+	    ammo="Aurgelmir Orb",
+		head="Leth. Chappel +3",
+		body={ name="Merlinic Jubbah", augments={'Mag. Acc.+5','"Occult Acumen"+11','CHR+1',}},
+		hands={ name="Merlinic Dastanas", augments={'Mag. Acc.+29','"Occult Acumen"+11','CHR+3','"Mag.Atk.Bns."+12',}},
+		legs="Perdition Slops",
+		feet={ name="Merlinic Crackows", augments={'Mag. Acc.+6 "Mag.Atk.Bns."+6','"Occult Acumen"+11','INT+5','Mag. Acc.+1',}},
+		neck="Null Loop",
+		waist="Oneiros Rope",
+		left_ear="Crep. Earring",
+		right_ear="Telos Earring",
+		left_ring="Crepuscular Ring",
+		right_ring="Chirich Ring +1",
+		back="Null Shawl",
+	}
+
+	sets.midcast.impact = {
+		head=empty,
+		body="Twilight Cloak",
 	}
 
 	---- ENFEEBLE SETS ----
@@ -353,7 +391,7 @@ function get_sets()
 		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Lethargy Sayon +3",
 		hands="Leth. Ganth. +3",
-		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
+		legs="Leth. Fuseau +3",
 		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Luminary Sash",
@@ -370,8 +408,9 @@ function get_sets()
 		range="Ullr",
 	})
 
-	--gravity/dispel
-	sets.midcast.enfeebleGRAVDISP = {
+	-- Gravity
+	sets.midcast.enfeebleGRAVITY = {
+		ammo="Regal Gem",
 		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Lethargy Sayon +3",
 		hands="Leth. Ganth. +3",
@@ -386,7 +425,28 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
-	sets.midcast.enfeebleGRAVDISPweapons = set_combine(sets.midcast.enfeebleGRAVDISP,{
+	sets.midcast.enfeebleGRAVITYweapons = set_combine(sets.midcast.enfeebleGRAVITY,{
+		main={ name="Crocea Mors", augments={'Path: C',}},
+		sub="Ammurapi Shield",
+	})
+	
+	--Dispel
+	sets.midcast.enfeebleDISPEL = {
+		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
+		body="Lethargy Sayon +3",
+		hands="Leth. Ganth. +3",
+		legs={ name="Chironic Hose", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','MND+6','Mag. Acc.+13',}},
+		feet={ name="Viti. Boots +4", augments={'Immunobreak Chance',}},
+		neck={ name="Dls. Torque +2", augments={'Path: A',}},
+		waist="Luminary Sash",
+		left_ear="Malignance Earring",
+		right_ear="Snotra Earring",
+		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Stikini Ring +1",
+		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
+	}
+	
+	sets.midcast.enfeebleDISPELweapons = set_combine(sets.midcast.enfeebleDISPEL,{
 		main={ name="Crocea Mors", augments={'Path: C',}},
 		sub="Ammurapi Shield",
 		range="Ullr",
@@ -944,7 +1004,7 @@ function get_sets()
 	
 	sets.ws.BlackHalo = {
 		ammo="Oshasha's Treatise",
-		head={ name="Nyame Helm", augments={'Path: B',}},
+		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -1034,7 +1094,11 @@ end
 
 function precast(spell)
 	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" or spell.type == "Trust" then 
-		equip(sets.precast.fastcast)
+		if spell.english == "Impact" then
+			equip(sets.precast.impact)
+		else
+			equip(sets.precast.fastcast)
+		end
 	elseif spell.type == "WeaponSkill" then 
 		if spell.english == "Savage Blade" then
 			equip(sets.ws.SavageBlade)
@@ -1173,9 +1237,13 @@ function midcast(spell)
 						equip(sets.midcast.elementalFREECASTweapons)
 					end
 				end
-			else
-				idle()
 			end
+		end
+		if Casting_Mode == "Occult" then
+			equip(sets.midcast.occult)
+		end
+		if spell.english == "Impact" then
+			equip(sets.midcast.impact)
 		end
 	elseif spell.skill == "Enfeebling Magic" then
 		if Enfeeble_Mode == "Accuracy" then
@@ -1211,11 +1279,17 @@ function midcast(spell)
 				else
 					equip(sets.midcast.enfeebleFRAZDISTweapons)
 				end
-			elseif spell.name:match('Gravity') or spell.name:match('Dispel') then
+			elseif spell.name:match('Gravity') then
 				if Player_Mode ~= "ZeroTPEnspell" and (player.status == "Engaged" or Lock_Mode == "Locked") then
-					equip(sets.midcast.enfeebleGRAVDISP)
+					equip(sets.midcast.enfeebleGRAVITY)
 				else
-					equip(sets.midcast.enfeebleGRAVDISPweapons)
+					equip(sets.midcast.enfeebleGRAVITYweapons)
+				end
+			elseif spell.name:match('Dispel') then
+				if Player_Mode ~= "ZeroTPEnspell" and (player.status == "Engaged" or Lock_Mode == "Locked") then
+					equip(sets.midcast.enfeebleDISPEL)
+				else
+					equip(sets.midcast.enfeebleDISPELweapons)
 				end
 			elseif spell.name:match('Blind') then
 				if Player_Mode ~= "ZeroTPEnspell" and (player.status == "Engaged" or Lock_Mode == "Locked") then
@@ -1566,6 +1640,8 @@ function self_command(command)
 		if Casting_Mode == "Burst" then
 			Casting_Mode = "Freecast"
 		elseif Casting_Mode == "Freecast" then
+			Casting_Mode = "Occult"
+		elseif Casting_Mode == "Occult" then
 			Casting_Mode = "Burst"
 		end
 	elseif command == "ToggleLock" then
