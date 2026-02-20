@@ -344,18 +344,18 @@ function get_sets()
 	--occult acumen
 	sets.midcast.occult = {
 	    ammo="Aurgelmir Orb",
-		head="Leth. Chappel +3",
+		head="Malignance Chapeau",
 		body={ name="Merlinic Jubbah", augments={'Mag. Acc.+5','"Occult Acumen"+11','CHR+1',}},
 		hands={ name="Merlinic Dastanas", augments={'Mag. Acc.+29','"Occult Acumen"+11','CHR+3','"Mag.Atk.Bns."+12',}},
 		legs="Perdition Slops",
 		feet={ name="Merlinic Crackows", augments={'Mag. Acc.+6 "Mag.Atk.Bns."+6','"Occult Acumen"+11','INT+5','Mag. Acc.+1',}},
-		neck="Null Loop",
+		neck="Null Loop", -- put store tp neck.
 		waist="Oneiros Rope",
 		left_ear="Crep. Earring",
 		right_ear="Telos Earring",
 		left_ring="Crepuscular Ring",
 		right_ring="Chirich Ring +1",
-		back="Null Shawl",
+		back="Null Shawl", -- put storetp back here
 	}
 
 	sets.midcast.impact = {
@@ -1237,6 +1237,8 @@ function midcast(spell)
 						equip(sets.midcast.elementalFREECASTweapons)
 					end
 				end
+			elseif Casting_Mode == "Occult" then
+				equip(sets.midcast.occult)
 			end
 		end
 		if Casting_Mode == "Occult" then
