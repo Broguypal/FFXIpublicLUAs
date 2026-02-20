@@ -114,7 +114,7 @@ end
         },
 
         Caster = {
-            main = { "Crocea Mors", "Bunzi's Rod", "Daybreak", "Maxentius" },
+            main = { "Crocea Mors", "Bunzi's Rod", "Daybreak", "Maxentius", "Tauret"},
             sub  = { "Archduke's Shield", "Ammurapi Shield" },
         },
 
@@ -1241,11 +1241,12 @@ function midcast(spell)
 				equip(sets.midcast.occult)
 			end
 		end
-		if Casting_Mode == "Occult" then
-			equip(sets.midcast.occult)
-		end
 		if spell.english == "Impact" then
-			equip(sets.midcast.impact)
+			if Casting_Mode == "Occult" then
+				equip(set_combine(sets.midcast.occult, sets.midcast.impact))
+			else
+				equip(set_combine(sets.midcast.enfeebleACCURACY, sets.midcast.impact))
+			end
 		end
 	elseif spell.skill == "Enfeebling Magic" then
 		if Enfeeble_Mode == "Accuracy" then
