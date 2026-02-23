@@ -1003,13 +1003,13 @@ function get_sets()
 	}
 	
 	sets.ws.BlackHalo = {
-		ammo="Oshasha's Treatise",
+		ammo="Crepuscular Pebble",
 		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Atro. Gloves +4",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet="Leth. Houseaux +3",
-		neck="Rep. Plat. Medal",
+		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Malignance Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
