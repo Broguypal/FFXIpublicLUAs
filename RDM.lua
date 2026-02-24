@@ -37,8 +37,8 @@ gearswap_box = function()
   str = str..' Enfeeble Mode:\\cs(0,153,51)   '..Enfeeble_Mode..'\\cr\n'
   str = str..' Weapon Lock:\\cs(128,128,128)   '..Lock_Mode..'\\cr\n'
   str = str..' Shihei Amount: '..shihei..'\n'
-  str = str..' crl: \\cs(255,64,64)[FIR]\\cr   \\cs(0,255,0)[WND]\\cr   \\cs(180,0,255)[THD]\\cr\n'
-  str = str..' alt: \\cs(128,255,255)[ICE]\\cr   \\cs(165,100,40)[STN]\\cr   \\cs(64,128,255)[WTR]\\cr\n'
+  str = str..' crl: \\cs(255,255,255)[DIA]\\cr \\cs(255,64,64)[FIR]\\cr \\cs(0,255,0)[WND]\\cr \\cs(180,0,255)[THD]\\cr\n'
+  str = str..' alt: \\cs(80,60,100)[IMP]\\cr \\cs(128,255,255)[ICE]\\cr \\cs(165,100,40)[STN]\\cr \\cs(64,128,255)[WTR]\\cr\n'
     return str
 end
 
@@ -88,6 +88,9 @@ function user_setup()
 	send_command('bind !numpad1 gs c cast Blizzard <t>')
 	send_command('bind !numpad2 gs c cast Stone <t>')
 	send_command('bind !numpad3 gs c cast Water <t>')
+	
+	send_command('bind ^numpad0 input /ma "Dia III" <t>')
+	send_command('bind !numpad0 input /ma "Impact" <t>')
 
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
@@ -1695,6 +1698,7 @@ function file_unload()
 	send_command('unbind ^numpad3')
 	send_command('unbind ^numpad2')
 	send_command('unbind ^numpad1')
+	send_command('unbind ^numpad0')
 	send_command('unbind !numpad9')
 	send_command('unbind !numpad8')
 	send_command('unbind !numpad7')
@@ -1704,6 +1708,7 @@ function file_unload()
 	send_command('unbind !numpad3')
 	send_command('unbind !numpad2')
 	send_command('unbind !numpad1')
+	send_command('unbind !numpad0')
 	send_command('unbind f9')
 	send_command('unbind f10')
 	send_command('unbind f11')
