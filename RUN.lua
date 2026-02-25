@@ -353,7 +353,7 @@ function get_sets()
 	sets.midcast.temper = set_combine(sets.midcast.SIR,{
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
-		neck="Incanter's Torque",
+		neck="Hoxne Torque",
 		waist="Olympus Sash",
 		left_ear="Mimir Earring",
 		left_ring="Stikini Ring +1",

@@ -535,7 +535,7 @@ function get_sets()
 		hands={ name="Taeon Gloves", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		legs={ name="Taeon Tights", augments={'Spell interruption rate down -10%','Phalanx +3',}},
 		feet={ name="Taeon Boots", augments={'Spell interruption rate down -10%','Phalanx +3',}},
-		neck={ name="Mirage Stole +2", augments={'Path: A',}},
+		neck="Hoxne Torque",
 		waist="Plat. Mog. Belt",
 		left_ear="Genmei Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},

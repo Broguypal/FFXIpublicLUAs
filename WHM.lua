@@ -265,7 +265,7 @@ function get_sets()			--leave this empty
 		legs={ name="Telchine Braconi", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		--Piety legs
 		feet="Ebers Duckbills +2",
-		neck="Incanter's Torque",
+		neck="Hoxne Torque",
 		waist="Olympus Sash",
 		left_ear="Mimir Earring",
 		right_ear="Malignance Earring",
@@ -294,7 +294,7 @@ function get_sets()			--leave this empty
 	sets.midcast.Aquaveil = set_combine(sets.midcast.EnhanceSkill,{
 		--chironic hat
 		body={ name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}},
-		neck="Incanter's Torque",
+		neck="Hoxne Torque",
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
 		back="Mending Cape",
@@ -309,7 +309,7 @@ function get_sets()			--leave this empty
 		legs="Ebers Pant. +2",
 		--piety pants
 		feet="Ebers Duckbills +2",
-		neck="Incanter's Torque",
+		neck="Hoxne Torque",
 		--andoaa earring
 		left_ear="Mimir Earring",
 		left_ring="Stikini Ring +1",
