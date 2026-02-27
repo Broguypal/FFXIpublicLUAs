@@ -1,5 +1,5 @@
 -- CastStill.lua — GearSwap include file
--- Version: 5.1
+-- Version: 1.0
 --
 -- SETUP:
 --   1. Place in 'addons/GearSwap/libs/'  or 'addons/Gearswap/data/'
@@ -183,4 +183,4 @@ windower.raw_register_event('prerender', function()
     end
 end)
 
-windower.add_to_chat(8, 'CastStill v5.1 loaded.')
+windower.add_to_chat(8, 'CastStill v1.0 loaded.')
