@@ -1,6 +1,13 @@
+------------------------------------------------------------
 -- CastStill.lua — GearSwap include file
 -- Version: 1.0
---
+------------------------------------------------------------
+-- CastStill is a GearSwap-side movement gate that hooks precast and monitors 
+-- client position sampling to detect recent movement. When a cast is initiated 
+-- during active or recent movement, the library temporarily suppresses the 
+-- action and re-sends it once a configurable stillness threshold and server 
+-- delay window are satisfied, reducing false movement interruptions while casting.
+------------------------------------------------------------
 -- SETUP:
 --   1. Place in 'addons/GearSwap/libs/'  or 'addons/Gearswap/data/'
 --   2. Add to your job lua: include('CastStill.lua')
