@@ -18,6 +18,7 @@
 -- Its highly recommended that the native windower Addon "Cancel" is installed for the utsusemi logic to work best.
 -- This lua, along with any other Ninja Lua, works best with the addon 'Dressup' to stop blinking (Command to stop blinking "//du blinking self combat on")
 
+include('CastStill.lua') -- Note, this is not necessary for this lua unless you want CastStill to apply. This is located in the Libs folder.
 ----------------------------------------------------------------------
 --                           MODES / UI TEXT BOX
 ----------------------------------------------------------------------
