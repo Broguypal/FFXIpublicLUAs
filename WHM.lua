@@ -134,7 +134,7 @@ function get_sets()			--leave this empty
 		left_ear="Telos Earring",
 		right_ear="Crep. Earring",
 		left_ring="Ilabrat Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Chirich Ring +1",
 		back="Null Shawl",
 	}
 	sets.idle.EngagedWeapons = set_combine(sets.idle.Engaged,sets.weapons.Engaged)
@@ -416,7 +416,7 @@ function get_sets()			--leave this empty
 		left_ear="Moonshade Earring",
 		right_ear="Ishvara Earring",
 		left_ring="Epaminondas's Ring",
-		right_ring="Metamor. Ring +1",
+		right_ring="Ephramad's Ring",
 		back="Aurist's Cape +1",
 	}
 	sets.ws.HexaStrike = {
@@ -431,7 +431,7 @@ function get_sets()			--leave this empty
 		left_ear="Moonshade Earring",
 		right_ear="Brutal Earring",
 		left_ring="Begrudging Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Ephramad's Ring",
 		back="Null Shawl",
 	}
 	sets.ws.MysticBoon = {
@@ -461,7 +461,7 @@ function get_sets()			--leave this empty
 		left_ear="Moonshade Earring",
 		right_ear="Ishvara Earring",
 		left_ring="Epaminondas's Ring",
-		right_ring="Metamor. Ring +1",
+		right_ring="Ephramad's Ring",
 		back="Aurist's Cape +1",
 	}
 	sets.ws.Realmrazer = {
@@ -492,7 +492,7 @@ function get_sets()			--leave this empty
 		left_ear="Telos Earring",
 		right_ear="Ishvara Earring",
 		left_ring="Epaminondas's Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Ephramad's Ring",
 		back="Null Shawl",
 	}
 	sets.ws.FlashNova = {

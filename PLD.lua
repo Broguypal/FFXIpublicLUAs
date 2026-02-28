@@ -221,7 +221,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Telos Earring",
 		right_ear="Crep. Earring",
-		left_ring="Fickblix's Ring",
+		left_ring="Chirich Ring +1",
 		right_ring="Moonlight Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
@@ -467,7 +467,7 @@ function get_sets()
 		left_ear="Brutal Earring",
 		right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
 		left_ring="Begrudging Ring",
-		right_ring="Apate Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Chance of successful block +5',}},
 	}
 	

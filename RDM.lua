@@ -232,7 +232,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Sherida Earring",
 		right_ear="Crep. Earring",
-		left_ring="Fickblix's Ring",
+		left_ring="Petrov Ring",
 		right_ring="Ilabrat Ring",
 		back="Null Shawl",
 	}
@@ -249,7 +249,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Sherida Earring",
 		right_ear="Telos Earring",
-		left_ring="Fickblix's Ring",
+		left_ring="Petrov Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
@@ -275,7 +275,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Sherida Earring",
 		right_ear="Telos Earring",
-		left_ring="Fickblix's Ring",
+		left_ring="Petrov Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
@@ -300,7 +300,7 @@ function get_sets()
 		waist="Orpheus's Sash",
 		left_ear="Sherida Earring",
 		right_ear="Telos Earring",
-		left_ring="Fickblix's Ring",
+		left_ring="Petrov Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
@@ -310,7 +310,7 @@ function get_sets()
 	----------------------------------------------------------------------
 	--Fastcast Set
     sets.precast.fastcast = {
-		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
+		head="Atrophy Chapeau +3",
 		body={ name="Merlinic Jubbah", augments={'Mag. Acc.+26','"Fast Cast"+6','MND+6',}},
 		legs={ name="Lengo Pants", augments={'INT+8','Mag. Acc.+14','"Mag.Atk.Bns."+13',}},
 		feet={ name="Merlinic Crackows", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','Mag. Acc.+13',}},
@@ -391,6 +391,28 @@ function get_sets()
 		range="Ullr",
 	})
 
+	--Absorb TP
+	sets.midcast.absorbTP = {
+		ammo="Regal Gem",
+		head="Atrophy Chapeau +3",
+		body="Viti. Tabard +3",
+		hands="Leth. Ganth. +3",
+		legs="Leth. Fuseau +3",
+		feet="Leth. Houseaux +3",
+		neck="Null Loop",
+		waist="Null Belt",
+		left_ear="Malignance Earring",
+		right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
+		left_ring="Kishar Ring",
+		right_ring="Stikini Ring +1",
+		back="Null Shawl",
+	}
+	
+	sets.midcast.absorbTPweapons = set_combine(sets.midcast.absorbTP,{
+		main={ name="Crocea Mors", augments={'Path: C',}},
+		sub="Ammurapi Shield",
+	})
+	
 	--Frazzle or distract
 	sets.midcast.enfeebleFRAZDIST = {
 		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
@@ -875,7 +897,7 @@ function get_sets()
 		left_ear="Ishvara Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
@@ -891,7 +913,7 @@ function get_sets()
 		left_ear="Sherida Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
@@ -907,7 +929,7 @@ function get_sets()
 		left_ear="Mache Earring +1",
 		right_ear="Sherida Earring",
 		left_ring="Begrudging Ring",
-		right_ring="Ilabrat Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
@@ -923,7 +945,7 @@ function get_sets()
 		left_ear="Sherida Earring",
 		right_ear="Malignance Earring",
 		left_ring="Sroda Ring",
-		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Ephramad's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
@@ -939,7 +961,7 @@ function get_sets()
 		left_ear="Malignance Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Sroda Ring",
-		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Ephramad's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
@@ -1003,7 +1025,7 @@ function get_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Sherida Earring",
 		left_ring="Begrudging Ring",
-		right_ring="Ilabrat Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
@@ -1019,7 +1041,7 @@ function get_sets()
 		left_ear="Malignance Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 
@@ -1336,9 +1358,17 @@ function midcast(spell)
 			end
 		elseif spell.name:match('Stun') or spell.name:match('Absorb') then
 			if Player_Mode ~= "ZeroTPEnspell" and (player.status == "Engaged" or Lock_Mode == "Locked") then
-				equip(sets.midcast.enfeebleACCURACY)
+				if spell.english == "Absorb-TP" then
+					equip (sets.midcast.absorbTP)
+				else
+					equip(sets.midcast.enfeebleACCURACY)
+				end
 			else
-				equip(sets.midcast.enfeebleACCURACYweapons)
+				if spell.english == "Absorb-TP" then
+					equip (sets.midcast.absorbTPweapons)
+				else
+					equip(sets.midcast.enfeebleACCURACYweapons)
+				end
 			end
 		end
 	elseif spell.skill == "Enhancing Magic" then

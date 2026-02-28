@@ -176,7 +176,7 @@ function get_sets()
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
-		left_ring="Fickblix's Ring",
+		left_ring="Chirich Ring +1",
 		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
@@ -216,7 +216,7 @@ function get_sets()
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		right_ear="Telos Earring",
-		left_ring="Fickblix's Ring",
+		left_ring="Chirich Ring +1",
 		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
@@ -313,7 +313,7 @@ function get_sets()
 		left_ear="Mache Earring +1",
 		right_ear="Telos Earring",
 		left_ring="Ilabrat Ring",
-		right_ring="Apate Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
@@ -324,6 +324,7 @@ function get_sets()
 		waist="Null Belt",
 		left_ear="Mache Earring +1",
 		right_ear="Telos Earring",
+		right_ring="Ephramad's Ring",
 		back="Null Shawl",
 	})
 	
@@ -331,7 +332,8 @@ function get_sets()
 		ammo="Aurgelmir Orb",
 		neck={ name="Mirage Stole +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		right_ring="Sroda Ring",
+		left_ring="Sroda Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	})
 	
@@ -341,7 +343,7 @@ function get_sets()
 		waist="Null Belt",
 		left_ear="Mache Earring +1",
 		left_ring="Ilabrat Ring",
-		right_ring="Apate Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	})
 	
@@ -357,6 +359,7 @@ function get_sets()
 		waist="Svelt. Gouriz +1",
 		right_ear="Infused Earring",
 		left_ring="Ilabrat Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	})
 	
@@ -699,7 +702,7 @@ function get_sets()
 		left_ear="Ishvara Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Sroda Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
@@ -715,7 +718,7 @@ function get_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
@@ -731,7 +734,7 @@ function get_sets()
 		left_ear="Mache Earring +1",
 		right_ear="Odr Earring",
 		left_ring="Begrudging Ring",
-		right_ring="Epona's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 	
@@ -746,7 +749,7 @@ function get_sets()
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
-		left_ring="Persis Ring",
+		left_ring="Ephramad's Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
@@ -763,7 +766,7 @@ function get_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
@@ -794,8 +797,8 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
-		left_ring="Epaminondas's Ring",
-		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		left_ring="Sroda Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	

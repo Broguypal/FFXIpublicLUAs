@@ -224,7 +224,7 @@ function get_sets()
 		left_ear="Moonshade Earring",
 		right_ear="Thrud Earring",
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 
@@ -239,7 +239,7 @@ function get_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
 		right_ear="Thrud Earring",
-		left_ring="Epaminondas's Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
@@ -255,7 +255,7 @@ function get_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
 		right_ear="Thrud Earring",
-		left_ring="Epaminondas's Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
@@ -430,7 +430,7 @@ function get_sets()
 		left_ear="Moonshade Earring",
 		right_ear="Thrud Earring",
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	sets.ws.emp_arrow   = {
@@ -444,7 +444,7 @@ function get_sets()
 		left_ear="Moonshade Earring",
 		right_ear="Thrud Earring",
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	

@@ -188,7 +188,7 @@ function get_sets()
 		left_ear="Suppanomimi",
 		right_ear="Eabani Earring",
 		left_ring="Defending Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Chirich Ring +1",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
@@ -334,7 +334,7 @@ function get_sets()
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
-		left_ring="Epaminondas's Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
@@ -366,7 +366,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
-		left_ring="Epaminondas's Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
@@ -382,8 +382,8 @@ function get_sets()
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Mache Earring +1",
-		left_ring="Apate Ring",
-		right_ring="Ilabrat Ring",
+		left_ring="Begrudging Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	

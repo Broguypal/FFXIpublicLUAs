@@ -275,7 +275,7 @@ function get_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Moonshade Earring",
-		left_ring="Ilabrat Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
@@ -291,7 +291,7 @@ function get_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Moonshade Earring",
-		left_ring="Ilabrat Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
@@ -307,7 +307,7 @@ function get_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Moonshade Earring",
-		left_ring="Ilabrat Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
@@ -323,7 +323,7 @@ function get_sets()
 		waist="Fotia Belt",
 		left_ear="Sherida Earring",
 		right_ear={ name="Skulker's Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+7','Mag. Acc.+7',}},
-		left_ring="Begrudging Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Gere Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
@@ -371,7 +371,7 @@ function get_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Moonshade Earring",
-		left_ring="Ilabrat Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
@@ -388,7 +388,7 @@ function get_sets()
 		left_ear="Sherida Earring",
 		right_ear="Moonshade Earring",
 		left_ring="Sroda Ring",
-		right_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	sets.ws.AeolianEdge = {
@@ -402,7 +402,7 @@ function get_sets()
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
 		right_ear="Moonshade Earring",
-		left_ring="Begrudging Ring",
+		left_ring="Dingir Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}

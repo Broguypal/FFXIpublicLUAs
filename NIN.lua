@@ -440,7 +440,7 @@ function get_sets()
 		left_ear="Telos Earring",
 		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Chirich Ring +1",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
 	}
 	sets.engaged.hybrid.hastecapdef = set_combine(sets.engaged.hybrid.hastecap, sets.special.defence)
@@ -487,7 +487,7 @@ function get_sets()
 		left_ear="Brutal Earring",
 		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Chirich Ring +1",
 		back="Null Shawl",
 	}
 	sets.engaged.DPS.haste35 = set_combine(sets.engaged.DPS.hastecap, sets.special.haste35)
@@ -631,7 +631,7 @@ function get_sets()
 		left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
 		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
 	}
 
@@ -662,7 +662,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
-		left_ring="Epaminondas's Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
@@ -679,7 +679,7 @@ function get_sets()
 		left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
 		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
 		left_ring="Gere Ring",
-		right_ring="Fickblix's Ring",
+		right_ring="Ephramad's Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
@@ -784,7 +784,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear={ name="Hattori Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','DEX+9 AGI+9',}},
-		left_ring="Epaminondas's Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Sroda Ring",
 		back={ name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%','Damage taken-5%',}},
 	}
