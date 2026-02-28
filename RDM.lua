@@ -134,8 +134,8 @@ end
         },
 
         Tank = {
-            main   = { "Sakpata's Sword" },
-            sub    = { "Genmei Shield" },
+            main   = { "Maxentius", "Tauret", "Sakpata's Sword" },
+            sub    = { "Ammurapi Shield", "Genmei Shield" },
         },
     }
 
