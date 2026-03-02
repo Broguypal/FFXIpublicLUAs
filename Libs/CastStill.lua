@@ -10,7 +10,7 @@
 -- delay window are satisfied, reducing false movement interruptions while casting.
 ------------------------------------------------------------
 -- SETUP:
---   1. Place in 'addons/GearSwap/libs/'  or 'addons/Gearswap/data/'
+--   1. Place in 'addons/GearSwap/libs/'  or 'addons/GearSwap/data/'
 --   2. Add to your job lua: include('CastStill.lua')
 
 ------------------------------------------------------------
