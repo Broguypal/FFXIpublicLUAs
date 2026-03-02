@@ -90,7 +90,7 @@ local gated_prefixes = {
 }
 
 ------------------------------------------------------------
--- The gate check — called from our precast wrapper
+-- The gate check — called from precast wrapper
 ------------------------------------------------------------
 local function caststill_check(spell)
     dbg('precast check: ' .. spell.name .. ' | moving=' .. tostring(recently_moving()) .. ' settled=' .. tostring(cs.is_settled))
