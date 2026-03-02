@@ -1,5 +1,6 @@
 ------------------------------------------------------------
 -- CastStill.lua — GearSwap include file
+-- Author: Broguypal
 -- Version: 1.0
 ------------------------------------------------------------
 -- CastStill is a GearSwap-side movement gate that hooks precast and monitors 
