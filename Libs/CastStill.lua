@@ -87,6 +87,7 @@ local gated_prefixes = {
     ['/song']     = true,
     ['/trust']    = true,
     ['/item']     = true,
+	['/range']     = true,
 }
 
 ------------------------------------------------------------
@@ -114,7 +115,11 @@ local function caststill_check(spell)
     end
 
     dbg('Gate: ' .. spell.name .. ' (moving, checking if you stop...)')
-    cs.pending_cmd = spell.prefix .. ' "' .. spell.name .. '" ' .. spell.target.raw
+    if spell.prefix == '/range' then
+        cs.pending_cmd = spell.prefix .. ' ' .. spell.target.raw
+    else
+        cs.pending_cmd = spell.prefix .. ' "' .. spell.name .. '" ' .. spell.target.raw
+    end
     cs.pending_time = os.clock()
     cs.settle_start = nil
     return true
