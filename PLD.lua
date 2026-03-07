@@ -75,7 +75,7 @@ end
 --Note: Place in order you want to cycle weapons.
 	Weapons = {
 		Main   = { "Burtgang","Malignance Sword","Naegling"},
-		Sub    = { "Aegis","Ochain","Duban","Blurred Shield +1" },
+		Sub    = { "Duban","Aegis","Ochain","Blurred Shield +1" },
 	}
 
 ----------------------------------------------------------------------
