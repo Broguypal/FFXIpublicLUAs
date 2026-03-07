@@ -544,7 +544,7 @@ function get_sets()
 	
 	--Migawari midcast
 	sets.midcast.migawari = set_combine(sets.precast.fastcast,{
-		feet={ name="Mochi. Kyahan +3", augments={'Enh. Ninj. Mag. Acc/Cast Time Red.',}},
+		feet="Mochi. Kyahan +4",
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
@@ -574,7 +574,7 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Mochi. Kyahan +3", augments={'Enh. Ninj. Mag. Acc/Cast Time Red.',}},
+		feet="Mochi. Kyahan +4",
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
 		left_ear="Crematio Earring",
