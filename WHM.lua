@@ -112,7 +112,7 @@ function get_sets()			--leave this empty
 		neck="Sibyl Scarf",
 		waist="Carrier's Sash",
 		left_ear="Etiolation Earring",
-		right_ear={ name="Ebers Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
+		right_ear={ name="Ebers Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Damage taken-7%','STR+11 MND+11',}},
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
 		back={ name="Alaunus's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity-10','Damage taken-5%',}},
@@ -155,7 +155,7 @@ function get_sets()			--leave this empty
 		neck="Sibyl Scarf",
 		waist="Carrier's Sash",
 		left_ear="Etiolation Earring",
-		right_ear={ name="Ebers Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
+		right_ear={ name="Ebers Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Damage taken-7%','STR+11 MND+11',}},
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
 		back={ name="Alaunus's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity-10','Damage taken-5%',}},
@@ -250,7 +250,7 @@ function get_sets()			--leave this empty
 		--Deblis medalian (neck)
 		--Bishops Sash 
 		--Meili earring
-		right_ear={ name="Ebers Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
+		right_ear={ name="Ebers Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Damage taken-7%','STR+11 MND+11',}},
 		left_ring="Haoma's Ring",
 		right_ring="Menelaus's Ring",
 		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Spell interruption rate down-10%',}},
@@ -338,7 +338,7 @@ function get_sets()			--leave this empty
 		neck="Null Loop",
 		waist="Obstin. Sash",
 		left_ear="Malignance Earring",
-		right_ear={ name="Ebers Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
+		right_ear={ name="Ebers Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Damage taken-7%','STR+11 MND+11',}},
 		left_ring="Kishar Ring",
 		right_ring="Stikini Ring +1",
 		back="Aurist's Cape +1",

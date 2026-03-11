@@ -381,7 +381,7 @@ function get_sets()
 		head="Rune. Bandeau +1",
 		neck="Sacro Gorget",
 		waist="Sroda Belt",
-		right_ear={ name="Erilaz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
+		right_ear={ name="Erilaz Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Damage taken-5%',}},
 	})
 	
 	sets.midcast.trust = {
