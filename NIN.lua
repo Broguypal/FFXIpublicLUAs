@@ -156,6 +156,7 @@ end
 
 	Special = {
 		{ main="Hachimonji", sub="Bloodrain Strap" },
+		{ main="Karambit" },
 		{ main="Tauret", sub="Gleti's Knife" },
 	}
 
