@@ -21,7 +21,7 @@ caststill.stop_window     = caststill.stop_window     or 0.35
 caststill.server_delay    = caststill.server_delay    or 0.12
 caststill.sample_interval = caststill.sample_interval or 0.10
 caststill.move_threshold  = caststill.move_threshold  or 0.20
-caststill.still_required  = caststill.still_required  or 2
+caststill.still_required  = caststill.still_required  or 3
 caststill.recent_window   = caststill.recent_window   or 1.25
 if caststill.debug == nil then caststill.debug = false end
 
