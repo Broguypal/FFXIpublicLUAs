@@ -96,6 +96,7 @@ function user_setup()
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
 	send_command('bind f11 input /item "Holy Water" <me>')
+	send_command('bind f12 input /item "Frontier Soda" <me>')
 	send_command('bind ^f12 input /item "Icarus Wing" <me>')
 
 	----------------------------------------------------------------------
@@ -135,7 +136,7 @@ end
 
         Tank = {
             main   = { "Maxentius", "Tauret", "Sakpata's Sword" },
-            sub    = { "Ammurapi Shield", "Genmei Shield" },
+            sub    = { "Archduke's Shield", "Ammurapi Shield", "Genmei Shield" },
         },
     }
 
@@ -152,7 +153,60 @@ function get_sets()
     sets.aftercast = {}             -- leave this empty
 	sets.ws = {}					-- Leave this empty
 	sets.items = {}
-	 
+	sets.weapons = {}
+
+	----------------------------------------------------------------------
+	--                           Spellcast Weapon Sets
+	----------------------------------------------------------------------
+	sets.weapons.magicACCURACYmax = {
+		main={ name="Crocea Mors", augments={'Path: C',}},
+		sub="Ammurapi Shield",
+		range="Ullr",
+	}
+	
+	sets.weapons.magicACCURACY = {
+		main={ name="Crocea Mors", augments={'Path: C',}},
+		sub="Ammurapi Shield",
+	}
+	
+	sets.weapons.diaHEALING = {
+		main="Daybreak",
+		sub="Ammurapi Shield",
+	}
+	
+	sets.weapons.enhanceSKILL = {
+		main="Secespita",
+		sub={ name="Pukulatmuj +1", augments={'Path: A',}},	
+	}
+	
+	sets.weapons.enhanceDURATION = {
+		sub="Ammurapi Shield",
+	}
+	
+	sets.weapons.phalanx = {
+		main="Sakpata's Sword",
+		sub="Egeking",
+	}
+	
+	sets.weapons.elemental = {
+		main="Bunzi's Rod",
+		sub="Ammurapi Shield",
+	}
+	
+	sets.weapons.dispelga = {
+		main="Daybreak",
+	}
+	
+	sets.weapons.enspellDAMAGE = {
+		main={ name="Crocea Mors", augments={'Path: C',}},
+		sub={ name="Pukulatmuj +1", augments={'Path: A',}},
+	}
+	
+	sets.weapons.ZeroTP = {
+		main="Qutrub Knife",
+		sub="Ethereal Dagger",
+	}
+	
 	----------------------------------------------------------------------
 	--                           IDLE SETS
 	----------------------------------------------------------------------
@@ -208,15 +262,9 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
-	sets.idle.enspell = set_combine(sets.idle.hybrid,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub={ name="Pukulatmuj +1", augments={'Path: A',}},
-	})
+	sets.idle.enspell = set_combine(sets.idle.hybrid,sets.weapons.enspellDAMAGE)
 	
-	sets.idle.ZeroTPEnspell = set_combine(sets.idle.hybrid,{
-		main="Qutrub Knife",
-		sub="Ethereal Dagger",
-	})
+	sets.idle.ZeroTPEnspell = set_combine(sets.idle.hybrid, sets.weapons.ZeroTP)
 		
 	----------------------------------------------------------------------
 	--                           ENGAGED SETS
@@ -262,9 +310,7 @@ function get_sets()
 	})
 
 	-- Enspell mode
-	sets.engaged.hybrid.enspell = {
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub={ name="Pukulatmuj +1", augments={'Path: A',}},
+	sets.engaged.hybrid.enspell = set_combine(sets.weapons.enspellDAMAGE,{
 		ammo="Coiste Bodhar",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
@@ -278,7 +324,7 @@ function get_sets()
 		left_ring="Petrov Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
-	}
+	})
 
 	-- Enspell mode + shadows up
 	sets.engaged.hybrid.enspellshadows = set_combine(sets.engaged.hybrid.enspell,{
@@ -287,9 +333,7 @@ function get_sets()
 		waist="Orpheus's Sash",
 	})
 
-	sets.engaged.hybrid.zeroTPenspell = {
-		main="Qutrub Knife",
-		sub="Ethereal Dagger",
+	sets.engaged.hybrid.zeroTPenspell = set_combine(sets.weapons.ZeroTP,{
 		range="Ullr",
 		head="Umuthi Hat",
 		body="Lethargy Sayon +3",
@@ -303,7 +347,7 @@ function get_sets()
 		left_ring="Petrov Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
-	}
+	})
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -385,11 +429,7 @@ function get_sets()
 		back={ name="Aurist's Cape +1", augments={'Path: A',}},
 	}
 
-	sets.midcast.enfeebleACCURACYweapons = set_combine(sets.midcast.enfeebleACCURACY,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-		range="Ullr",
-	})
+	sets.midcast.enfeebleACCURACYweapons = set_combine(sets.midcast.enfeebleACCURACY, sets.weapons.magicACCURACYmax)
 
 	--Absorb TP
 	sets.midcast.absorbTP = {
@@ -408,10 +448,7 @@ function get_sets()
 		back="Null Shawl",
 	}
 	
-	sets.midcast.absorbTPweapons = set_combine(sets.midcast.absorbTP,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.absorbTPweapons = set_combine(sets.midcast.absorbTP, sets.weapons.magicACCURACY)
 	
 	--Frazzle or distract
 	sets.midcast.enfeebleFRAZDIST = {
@@ -429,11 +466,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	} 
 
-	sets.midcast.enfeebleFRAZDISTweapons = set_combine(sets.midcast.enfeebleFRAZDIST,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-		range="Ullr",
-	})
+	sets.midcast.enfeebleFRAZDISTweapons = set_combine(sets.midcast.enfeebleFRAZDIST, sets.weapons.magicACCURACYmax)
 
 	-- Gravity
 	sets.midcast.enfeebleGRAVITY = {
@@ -452,10 +485,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
-	sets.midcast.enfeebleGRAVITYweapons = set_combine(sets.midcast.enfeebleGRAVITY,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enfeebleGRAVITYweapons = set_combine(sets.midcast.enfeebleGRAVITY, sets.weapons.magicACCURACY)
 	
 	--Dispel
 	sets.midcast.enfeebleDISPEL = {
@@ -473,11 +503,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
-	sets.midcast.enfeebleDISPELweapons = set_combine(sets.midcast.enfeebleDISPEL,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-		range="Ullr",
-	})
+	sets.midcast.enfeebleDISPELweapons = set_combine(sets.midcast.enfeebleDISPEL, sets.weapons.magicACCURACYmax)
 
 	-- Paralyze/Slow/Addle/poison
 	sets.midcast.enfeeblePOTENCY = {
@@ -496,10 +522,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
-	sets.midcast.enfeeblePOTENCYweapons = set_combine(sets.midcast.enfeeblePOTENCY,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enfeeblePOTENCYweapons = set_combine(sets.midcast.enfeeblePOTENCY, sets.weapons.magicACCURACY)
 
 	-- Silence/Sleep/Break/Bind
 	sets.midcast.enfeebleDURATION = {
@@ -517,11 +540,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 	
-	sets.midcast.enfeebleDURATIONweapons = set_combine(sets.midcast.enfeebleDURATION,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-		range="Ullr",
-	})
+	sets.midcast.enfeebleDURATIONweapons = set_combine(sets.midcast.enfeebleDURATION, sets.weapons.magicACCURACYmax)
 
 	--Blind (int based)
 	sets.midcast.enfeebleBLIND = {
@@ -540,10 +559,7 @@ function get_sets()
 		back={ name="Aurist's Cape +1", augments={'Path: A',}},
 	}
 
-	sets.midcast.enfeebleBLINDweapons = set_combine(sets.midcast.enfeebleBLIND,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enfeebleBLINDweapons = set_combine(sets.midcast.enfeebleBLIND, sets.weapons.magicACCURACY)
 		
 	--Dia/Inundation
 	sets.midcast.enfeebleINUNDIA = {
@@ -561,10 +577,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 
-	sets.midcast.enfeebleINUNDIAweapons = set_combine(sets.midcast.enfeebleINUNDIA,{
-		main="Daybreak",
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enfeebleINUNDIAweapons = set_combine(sets.midcast.enfeebleINUNDIA, sets.weapons.diaHEALING)
 
 	---- DARK MAGIC SETS ----
 	--Bio
@@ -583,11 +596,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 
-	sets.midcast.darkBIOweapons = set_combine(sets.midcast.darkBIO,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-		range="Ullr",
-	})
+	sets.midcast.darkBIOweapons = set_combine(sets.midcast.darkBIO, sets.weapons.magicACCURACYmax)
 
 	--Aspir / Drain
 	sets.midcast.darkASPIRDRAIN = {
@@ -605,11 +614,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 
-	sets.midcast.darkASPIRDRAINweapons = set_combine(sets.midcast.darkASPIRDRAIN,{
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
-		range="Ullr",
-	})
+	sets.midcast.darkASPIRDRAINweapons = set_combine(sets.midcast.darkASPIRDRAIN, sets.weapons.magicACCURACYmax)
 
 	---- ENHANCING SETS ----
 	--Enspells / Temper
@@ -629,10 +634,7 @@ function get_sets()
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
 	}
 
-	sets.midcast.enhanceSKILLweapons = set_combine(sets.midcast.enhanceSKILL,{
-		main="Secespita",
-		sub={ name="Pukulatmuj +1", augments={'Path: A',}},	
-	})
+	sets.midcast.enhanceSKILLweapons = set_combine(sets.midcast.enhanceSKILL, sets.weapons.enhanceSKILL)
 
 	--Haste/Flurry/Protect/Shell/Blink/Barspells (SELF)
 	sets.midcast.enhanceDURATION = {
@@ -651,9 +653,7 @@ function get_sets()
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
 	}
 
-	sets.midcast.enhanceDURATIONweapons = set_combine(sets.midcast.enhanceDURATION,{
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enhanceDURATIONweapons = set_combine(sets.midcast.enhanceDURATION, sets.weapons.enhanceDURATION)
 
 	sets.midcast.enhanceOTHERS = {
 		ammo="Staunch Tathlum +1",
@@ -671,18 +671,14 @@ function get_sets()
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
 	}
 
-	sets.midcast.enhanceOTHERSweapons = set_combine(sets.midcast.enhanceOTHERS,{
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enhanceOTHERSweapons = set_combine(sets.midcast.enhanceOTHERS, sets.weapons.enhanceDURATION)
 
 	--Gain spells
 	sets.midcast.enhanceGAIN = set_combine(sets.midcast.enhanceDURATION,{
 		hands={ name="Viti. Gloves +3", augments={'Enhancing Magic duration',}},
 	})
 
-	sets.midcast.enhanceGAINweapons = set_combine(sets.midcast.enhanceGAIN,{
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enhanceGAINweapons = set_combine(sets.midcast.enhanceGAIN, sets.weapons.enhanceDURATION)
 
 	--Aquaveil
 	sets.midcast.enhanceAQUAVEIL = {
@@ -701,9 +697,7 @@ function get_sets()
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
 	}
 	
-	sets.midcast.enhanceAQUAVEILweapons = set_combine(sets.midcast.enhanceAQUAVEIL,{
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enhanceAQUAVEILweapons = set_combine(sets.midcast.enhanceAQUAVEIL, sets.weapons.enhanceDURATION)
 	
 	--Refresh
 	sets.midcast.enhanceREFRESH = {
@@ -722,10 +716,7 @@ function get_sets()
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
 	}
 
-	sets.midcast.enhanceREFRESHweapons = set_combine(sets.midcast.enhanceREFRESH,{
-		main="Daybreak",
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enhanceREFRESHweapons = set_combine(sets.midcast.enhanceREFRESH, sets.weapons.diaHEALING)
 	
 	--Stoneskin
 	sets.midcast.enhanceSTONESKIN = {
@@ -744,9 +735,7 @@ function get_sets()
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
 	}
 
-	sets.midcast.enhanceSTONESKINweapons = set_combine(sets.midcast.enhanceSTONESKIN,{
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.enhanceSTONESKINweapons = set_combine(sets.midcast.enhanceSTONESKIN, sets.weapons.enhanceDURATION)
 
 	--self phalanx enhancements
 	sets.midcast.enhancePHALANXSELF = {
@@ -765,10 +754,7 @@ function get_sets()
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
 	}
 
-	sets.midcast.enhancePHALANXSELFweapons = set_combine(sets.midcast.enhancePHALANXSELF,{
-		main="Sakpata's Sword",
-		sub="Egeking",
-	})
+	sets.midcast.enhancePHALANXSELFweapons = set_combine(sets.midcast.enhancePHALANXSELF, sets.weapons.phalanx)
 		
 	---- HEALING MAGIC SETS ----
 	sets.midcast.healingCURE = {
@@ -787,10 +773,7 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Spell interruption rate down-10%',}},
 	}
 
-	sets.midcast.healingCUREweapons = set_combine(sets.midcast.healingCURE,{
-		main="Daybreak",
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.healingCUREweapons = set_combine(sets.midcast.healingCURE, sets.weapons.diaHEALING)
 
 	sets.midcast.healingCURSNA = {
 		body="Atrophy Tabard +3",
@@ -816,19 +799,11 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 
-	sets.midcast.elementalFREECASTweapons = set_combine(sets.midcast.elementalFREECAST,{
-		main="Bunzi's Rod",
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.elementalFREECASTweapons = set_combine(sets.midcast.elementalFREECAST, sets.weapons.elemental)
 
-	sets.midcast.elementalFREECASTOBI = set_combine(sets.midcast.elementalFREECAST,{
-		waist="Hachirin-no-Obi",
-	})
+	sets.midcast.elementalFREECASTOBI = set_combine(sets.midcast.elementalFREECAST,{waist="Hachirin-no-Obi",})
 
-	sets.midcast.elementalFREECASTOBIweapons = set_combine(sets.midcast.elementalFREECASTOBI,{
-		main="Bunzi's Rod",
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.elementalFREECASTOBIweapons = set_combine(sets.midcast.elementalFREECASTOBI, sets.weapons.elemental)
 
 	sets.midcast.elementalBURST = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
@@ -846,19 +821,11 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}
 
-	sets.midcast.elementalBURSTweapons = set_combine(sets.midcast.elementalBURST,{
-		main="Bunzi's Rod",
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.elementalBURSTweapons = set_combine(sets.midcast.elementalBURST, sets.weapons.elemental)
 
-	sets.midcast.elementalBURSTOBI = set_combine(sets.midcast.elementalBURST,{
-		waist="Hachirin-no-Obi",
-	})
+	sets.midcast.elementalBURSTOBI = set_combine(sets.midcast.elementalBURST,{waist="Hachirin-no-Obi",})
 
-	sets.midcast.elementalBURSTOBIweapons = set_combine(sets.midcast.elementalBURSTOBI,{
-		main="Bunzi's Rod",
-		sub="Ammurapi Shield",
-	})
+	sets.midcast.elementalBURSTOBIweapons = set_combine(sets.midcast.elementalBURSTOBI, sets.weapons.elemental)
 
 	---- OTHER MIDCAST ----
 	--invisible/sneak/deodorize/raise
@@ -1123,6 +1090,8 @@ function precast(spell)
 	if spell.type == "BlueMagic" or spell.type == "BlackMagic" or spell.type == "WhiteMagic" or spell.type == "Ninjutsu" or spell.type == "Trust" then 
 		if spell.english == "Impact" then
 			equip(sets.precast.impact)
+		elseif spell.english == "Dispelga" then
+			equip(set_combine(sets.precast.fastcast, sets.weapons.dispelga))
 		else
 			equip(sets.precast.fastcast)
 		end
@@ -1321,6 +1290,8 @@ function midcast(spell)
 				else
 					equip(sets.midcast.enfeebleDISPELweapons)
 				end
+			elseif spell.name:match('Dispelga') then
+				equip(set_combine(sets.midcast.enfeebleDISPELweapons, sets.weapons.dispelga))
 			elseif spell.name:match('Blind') then
 				if Player_Mode ~= "ZeroTPEnspell" and (player.status == "Engaged" or Lock_Mode == "Locked") then
 					equip(sets.midcast.enfeebleBLIND)
@@ -1745,6 +1716,7 @@ function file_unload()
 	send_command('unbind f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
+	send_command('unbind ^f12')
 	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
 end
 
