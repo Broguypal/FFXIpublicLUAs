@@ -23,7 +23,6 @@ caststill.sample_interval = caststill.sample_interval or 0.10
 caststill.move_threshold  = caststill.move_threshold  or 0.20
 caststill.still_required  = caststill.still_required  or 3
 caststill.recent_window   = caststill.recent_window   or 1.25
-if caststill.debug == nil then caststill.debug = false end
 
 ------------------------------------------------------------
 -- Internal state
@@ -49,12 +48,6 @@ local cs = {
 ------------------------------------------------------------
 -- Helpers
 ------------------------------------------------------------
-local function dbg(msg)
-    if caststill.debug then
-        windower.add_to_chat(8, 'CastStill: ' .. msg)
-    end
-end
-
 local function get_pos()
     local info = windower.ffxi.get_info()
     if not info or not info.logged_in or info.loading then return nil end
@@ -87,17 +80,14 @@ local gated_prefixes = {
     ['/song']     = true,
     ['/trust']    = true,
     ['/item']     = true,
-	['/range']     = true,
+    ['/range']    = true,
 }
 
 ------------------------------------------------------------
 -- The gate check — called from precast wrapper
 ------------------------------------------------------------
 local function caststill_check(spell)
-    dbg('precast check: ' .. spell.name .. ' | moving=' .. tostring(recently_moving()) .. ' settled=' .. tostring(cs.is_settled))
-
     if os.clock() < cs.bypass_until then
-        dbg('Bypass: ' .. spell.name)
         return false
     end
 
@@ -110,11 +100,9 @@ local function caststill_check(spell)
     end
 
     if cs.pending_cmd then
-        dbg('Blocked (already gating): ' .. spell.name)
         return true
     end
 
-    dbg('Gate: ' .. spell.name .. ' (moving, checking if you stop...)')
     if spell.prefix == '/range' then
         cs.pending_cmd = spell.prefix .. ' ' .. spell.target.raw
     else
@@ -142,7 +130,6 @@ windower.raw_register_event('prerender', function()
             end
             return orig_precast(spell)
         end
-        dbg('precast wrapped.')
     end
 
     ---- Movement tracker (throttled) ----
@@ -173,10 +160,8 @@ windower.raw_register_event('prerender', function()
     if cs.is_settled then
         if not cs.settle_start then
             cs.settle_start = t
-            dbg('Client settled. Waiting for server...')
         end
         if (t - cs.settle_start) >= caststill.server_delay then
-            dbg('Server delay done. Re-sending: ' .. cs.pending_cmd)
             cs.bypass_until = t + 0.50
             local cmd = cs.pending_cmd
             cs.pending_cmd = nil
@@ -186,7 +171,6 @@ windower.raw_register_event('prerender', function()
     else
         cs.settle_start = nil
         if elapsed >= caststill.stop_window then
-            dbg('Still moving after window. Sending anyway.')
             cs.bypass_until = t + 0.50
             local cmd = cs.pending_cmd
             cs.pending_cmd = nil
