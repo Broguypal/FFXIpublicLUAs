@@ -1,48 +1,43 @@
 ------------------------------------------------------------
 -- CastStill.lua — GearSwap include file
 -- Author: Broguypal
--- Version: 1.0
+-- Version: 1.1
 ------------------------------------------------------------
--- CastStill is a GearSwap-side movement gate that hooks precast and monitors 
--- client position sampling to detect recent movement. When a cast is initiated 
--- during active or recent movement, the library temporarily suppresses the 
--- action and re-sends it once a configurable stillness threshold and server 
--- delay window are satisfied, reducing false movement interruptions while casting.
+-- CastStill is a GearSwap-side movement gate that hooks precast and monitors
+-- outgoing 0x15 position packets to determine when the server knows the player
+-- has stopped moving. When a cast is initiated during or shortly after movement,
+-- the library suppresses the action and re-sends it once two consecutive 0x15
+-- packets confirm the same position, eliminating false movement interruptions.
 ------------------------------------------------------------
 -- SETUP:
---   1. Place in 'addons/GearSwap/libs/'  or 'addons/GearSwap/data/'
+--   1. Place in 'addons/GearSwap/libs/' or 'addons/GearSwap/data/'
 --   2. Add to your job lua: include('CastStill.lua')
 
 ------------------------------------------------------------
 -- Config
 ------------------------------------------------------------
 caststill = caststill or {}
-caststill.stop_window     = caststill.stop_window     or 0.35
-caststill.server_delay    = caststill.server_delay    or 0.12
-caststill.sample_interval = caststill.sample_interval or 0.10
-caststill.move_threshold  = caststill.move_threshold  or 0.20
-caststill.still_required  = caststill.still_required  or 3
-caststill.recent_window   = caststill.recent_window   or 1.25
+caststill.recent_window = caststill.recent_window or 1.25
+caststill.stop_window   = caststill.stop_window   or 0.35
 
 ------------------------------------------------------------
 -- Internal state
 ------------------------------------------------------------
 local cs = {
-    -- Movement tracker
-    last_check_time = 0,
-    last_sample_pos = nil,
-    last_move_time  = -999,
-    still_samples   = 0,
-    is_settled      = true,
+    -- 0x15 tracking
+    last_reported    = nil, 
+    prev_reported    = nil,   
+    last_report_time = 0,
+    last_move_time   = -999, 
+    is_settled       = true, 
 
     -- Gate state
-    pending_cmd     = nil,
-    pending_time    = 0,
-    settle_start    = nil,
-    bypass_until    = 0,
+    pending_cmd      = nil,
+    pending_time     = 0,
+    bypass_until     = 0,
 
     -- Hook state
-    hooked          = false,
+    hooked           = false,
 }
 
 ------------------------------------------------------------
@@ -60,16 +55,53 @@ local function get_pos()
     return nil
 end
 
-local function dist(p1, p2)
-    if not p1 or not p2 then return 999 end
-    local dx = p1.x - p2.x
-    local dy = p1.y - p2.y
-    return math.sqrt(dx * dx + dy * dy)
+local function same_pos(p1, p2)
+    if not p1 or not p2 then return false end
+    return p1.x == p2.x and p1.y == p2.y
 end
 
 local function recently_moving()
     return (os.clock() - cs.last_move_time) <= caststill.recent_window
 end
+
+local function server_knows_pos()
+    if not cs.last_reported then return false end
+    local pos = get_pos()
+    return same_pos(pos, cs.last_reported)
+end
+
+local function fire_pending()
+    cs.bypass_until = os.clock() + 0.50
+    local cmd = cs.pending_cmd
+    cs.pending_cmd = nil
+    windower.send_command('input ' .. cmd)
+end
+
+------------------------------------------------------------
+-- Outgoing 0x15 hook 
+------------------------------------------------------------
+windower.raw_register_event('outgoing chunk', function(id, data)
+    if id ~= 0x015 then return end
+
+    local now = os.clock()
+    local x = data:unpack('f', 5)
+    local y = data:unpack('f', 13)
+
+    local new_pos = { x = x, y = y }
+
+    if cs.last_reported then
+        if same_pos(cs.last_reported, new_pos) then
+            cs.is_settled = true
+        else
+            cs.last_move_time = now
+            cs.is_settled = false
+        end
+    end
+
+    cs.prev_reported    = cs.last_reported
+    cs.last_reported    = new_pos
+    cs.last_report_time = now
+end)
 
 ------------------------------------------------------------
 -- Spell prefixes interrupted by movement
@@ -109,17 +141,14 @@ local function caststill_check(spell)
         cs.pending_cmd = spell.prefix .. ' "' .. spell.name .. '" ' .. spell.target.raw
     end
     cs.pending_time = os.clock()
-    cs.settle_start = nil
     return true
 end
 
 ------------------------------------------------------------
--- Prerender: movement tracking + gate timing + hook
+-- Prerender: hook precast + flush pending cast when safe
 ------------------------------------------------------------
 windower.raw_register_event('prerender', function()
-    local t = os.clock()
-
-    ---- hook: wrap precast after job lua defines it ----
+    ---- Hook: wrap precast after job lua defines it ----
     if not cs.hooked and precast then
         cs.hooked = true
         local orig_precast = precast
@@ -132,52 +161,19 @@ windower.raw_register_event('prerender', function()
         end
     end
 
-    ---- Movement tracker (throttled) ----
-    if (t - cs.last_check_time) >= caststill.sample_interval then
-        cs.last_check_time = t
-
-        local pos = get_pos()
-        if pos and cs.last_sample_pos then
-            if dist(cs.last_sample_pos, pos) >= caststill.move_threshold then
-                cs.last_move_time = t
-                cs.still_samples = 0
-                cs.is_settled = false
-            else
-                cs.still_samples = cs.still_samples + 1
-                if cs.still_samples >= caststill.still_required then
-                    cs.is_settled = true
-                end
-            end
-        end
-        if pos then cs.last_sample_pos = pos end
-    end
-
-    ---- Gate: re-send pending cast when ready ----
+    ---- Flush pending cast ----
     if not cs.pending_cmd then return end
 
-    local elapsed = t - cs.pending_time
+    -- FAST PATH: 0x15 confirms server knows our stopped position
+    if cs.is_settled and server_knows_pos() then
+        fire_pending()
+        return
+    end
 
-    if cs.is_settled then
-        if not cs.settle_start then
-            cs.settle_start = t
-        end
-        if (t - cs.settle_start) >= caststill.server_delay then
-            cs.bypass_until = t + 0.50
-            local cmd = cs.pending_cmd
-            cs.pending_cmd = nil
-            cs.settle_start = nil
-            windower.send_command('input ' .. cmd)
-        end
-    else
-        cs.settle_start = nil
-        if elapsed >= caststill.stop_window then
-            cs.bypass_until = t + 0.50
-            local cmd = cs.pending_cmd
-            cs.pending_cmd = nil
-            cs.settle_start = nil
-            windower.send_command('input ' .. cmd)
-        end
+    -- SAFETY FALLBACK: fire anyway after stop_window 
+    if (os.clock() - cs.pending_time) >= caststill.stop_window then
+        fire_pending()
     end
 end)
 
-windower.add_to_chat(8, 'CastStill v1.0 loaded.')
+windower.add_to_chat(8, 'CastStill v1.1 loaded.')
