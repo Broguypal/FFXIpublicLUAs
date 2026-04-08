@@ -75,7 +75,7 @@ function user_setup()
 	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleMelee')
 	send_command('bind numpad8 gs c ToggleTank')
-	send_command('bind numpad7 gs c ToggleCaster')
+	send_command('bind numpad7 gs c ToggleSpecial')
 	
 	send_command('bind numpad4 gs c ToggleMain')
 	send_command('bind numpad5 gs c ToggleSub')
@@ -116,11 +116,11 @@ end
         Melee = {
             main   = { "Crocea Mors", "Maxentius", "Naegling", "Tauret" },
             sub_dw = { "Daybreak", "Thibron", "Bunzi's Rod" },
-            sub_1h = { "Ammurapi Shield", "Genmei Shield" },
+            sub_1h = { "Ammurapi Shield", "Archduke's Shield" },
         },
 
         Caster = {
-            main = { "Crocea Mors", "Bunzi's Rod", "Daybreak", "Maxentius", "Tauret"},
+            main = { "Bunzi's Rod", "Crocea Mors", "Daybreak", "Maxentius", "Tauret"},
             sub  = { "Archduke's Shield", "Ammurapi Shield" },
         },
 
@@ -197,14 +197,24 @@ function get_sets()
 		main="Daybreak",
 	}
 	
-	sets.weapons.enspellDAMAGE = {
+	sets.weapons.EnspellDAMAGEdw = {
 		main={ name="Crocea Mors", augments={'Path: C',}},
 		sub={ name="Pukulatmuj +1", augments={'Path: A',}},
 	}
 	
-	sets.weapons.ZeroTP = {
+	sets.weapons.EnspellDAMAGE = {
+		main={ name="Crocea Mors", augments={'Path: C',}},
+		sub="Ammurapi Shield",
+	}
+	
+	sets.weapons.ZeroTPdw = {
 		main="Qutrub Knife",
 		sub="Ethereal Dagger",
+	}
+	
+	sets.weapons.ZeroTP = {
+		main="Qutrub Knife",
+		sub="Genmei Shield",
 	}
 	
 	----------------------------------------------------------------------
@@ -262,9 +272,10 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
-	sets.idle.enspell = set_combine(sets.idle.hybrid,sets.weapons.enspellDAMAGE)
-	
+	sets.idle.Enspell = set_combine(sets.idle.hybrid,sets.weapons.EnspellDAMAGE)
 	sets.idle.ZeroTPEnspell = set_combine(sets.idle.hybrid, sets.weapons.ZeroTP)
+	sets.idle.EnspellDW = set_combine(sets.idle.hybrid,sets.weapons.EnspellDAMAGEdw)
+	sets.idle.ZeroTPEnspellDW = set_combine(sets.idle.hybrid, sets.weapons.ZeroTPdw)
 		
 	----------------------------------------------------------------------
 	--                           ENGAGED SETS
@@ -303,14 +314,14 @@ function get_sets()
 	}
 
 	-- Normal Hybrid set dual wield + shadows up
-	sets.engaged.hybrid.dualwieldenspellshadows = set_combine(sets.engaged.hybrid.dualwield,{
+	sets.engaged.hybrid.dualwieldEnspellshadows = set_combine(sets.engaged.hybrid.dualwield,{
 		head="Umuthi Hat",
 		hands="Aya. Manopolas +2",
 		waist="Orpheus's Sash",
 	})
 
 	-- Enspell mode
-	sets.engaged.hybrid.enspell = set_combine(sets.weapons.enspellDAMAGE,{
+	sets.engaged.hybrid.Enspell = set_combine(sets.weapons.EnspellDAMAGE,{
 		ammo="Coiste Bodhar",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
@@ -325,15 +336,17 @@ function get_sets()
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	})
+	
+	sets.engaged.hybrid.EnspellDW = set_combine(sets.engaged.hybrid.Enspell, sets.weapons.EnspellDAMAGEdw)
 
 	-- Enspell mode + shadows up
-	sets.engaged.hybrid.enspellshadows = set_combine(sets.engaged.hybrid.enspell,{
+	sets.engaged.hybrid.Enspellshadows = set_combine(sets.engaged.hybrid.Enspell,{
 		head="Umuthi Hat",
 		hands="Aya. Manopolas +2",
 		waist="Orpheus's Sash",
 	})
 
-	sets.engaged.hybrid.zeroTPenspell = set_combine(sets.weapons.ZeroTP,{
+	sets.engaged.hybrid.zeroTPEnspell = set_combine(sets.weapons.ZeroTP,{
 		range="Ullr",
 		head="Umuthi Hat",
 		body="Lethargy Sayon +3",
@@ -348,6 +361,9 @@ function get_sets()
 		right_ring="Chirich Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	})
+	
+	sets.engaged.hybrid.zeroTPEnspellDW = set_combine(sets.engaged.hybrid.zeroTPEnspell, sets.weapons.ZeroTPdw)
+	
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -1049,15 +1065,15 @@ function idle()
 				buffactive["Enfire II"] or buffactive["Enblizzard II"] or buffactive["Enaero II"] or buffactive["Enstone II"] or buffactive["Enthunder II"] or buffactive["Enwater II"] then
 					if buffactive['Copy Image'] or buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
 						if Player_Mode == "Melee" then
-							equip(sets.engaged.hybrid.dualwieldenspellshadows)
+							equip(sets.engaged.hybrid.dualwieldEnspellshadows)
 						elseif Player_Mode == "Enspell" then
-							equip(sets.engaged.hybrid.enspellshadows)
+							equip(sets.engaged.hybrid.Enspellshadows)
 						end
 					else
 						if Player_Mode == "Melee" then
 							equip(sets.engaged.hybrid.dualwield)
 						elseif Player_Mode == "Enspell" then
-							equip(sets.engaged.hybrid.enspell)
+							equip(sets.engaged.hybrid.Enspell)
 						end
 					end
 				else 
@@ -1070,14 +1086,26 @@ function idle()
 			if Player_Mode == "Melee" then
 				equip(sets.idle.hybrid)
 			elseif Player_Mode == "Enspell" then
-				equip(sets.idle.enspell)
+				if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+					equip(sets.idle.EnspellDW)
+				else
+					equip(sets.idle.Enspell)
+				end
 			end
 		end
 	elseif Player_Mode == "ZeroTPEnspell" then
 		if player.status == "Engaged" then
-			equip(sets.engaged.hybrid.zeroTPenspell)
+			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+				equip(sets.engaged.hybrid.zeroTPEnspellDW)
+			else
+				equip(sets.engaged.hybrid.zeroTPEnspell)
+			end
 		else
-			equip(sets.idle.ZeroTPEnspell)
+			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+				equip(sets.idle.ZeroTPEnspellDW)
+			else	
+				equip(sets.idle.ZeroTPEnspell)
+			end
 		end
 	elseif Player_Mode == "Tank" then
 		equip(sets.idle.tank)
@@ -1597,10 +1625,19 @@ function self_command(command)
 
 			idle()
 		elseif Player_Mode == "Melee" then
-			Player_Mode = "Enspell"
-			idle()
-		elseif Player_Mode == "Enspell" then
-			Player_Mode = "ZeroTPEnspell"
+			Player_Mode = "Caster"
+
+			local new_main = Weapons.Caster.main[1]
+			local new_sub  = Weapons.Caster.sub[1]
+
+			equip({ main = new_main, sub = new_sub })
+
+			last_real_main = new_main
+			last_real_sub  = new_sub
+
+			main_mode = new_main
+			sub_mode  = new_sub
+
 			idle()
 		end
 	elseif command == "ToggleTank" then
@@ -1612,7 +1649,6 @@ function self_command(command)
 
 			equip({ main = new_main, sub = new_sub })
 
-			-- FIX: keep cycle index synced
 			last_real_main = new_main
 			last_real_sub  = new_sub
 
@@ -1621,22 +1657,12 @@ function self_command(command)
 
 			idle()
 		end
-	elseif command == "ToggleCaster" then
-		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Enspell" or Player_Mode == "Tank" then
-			Player_Mode = "Caster"
-
-			local new_main = Weapons.Caster.main[1]
-			local new_sub  = Weapons.Caster.sub[1]
-
-			equip({ main = new_main, sub = new_sub })
-
-			-- FIX: keep cycle index synced
-			last_real_main = new_main
-			last_real_sub  = new_sub
-
-			main_mode = new_main
-			sub_mode  = new_sub
-
+	elseif command == "ToggleSpecial" then
+		if Player_Mode == "Melee" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" or Player_Mode == "Tank" then
+			Player_Mode = "Enspell"
+			idle()
+		elseif Player_Mode == "Enspell" then
+			Player_Mode = "ZeroTPEnspell"
 			idle()
 		end
 	elseif command == "ToggleEnfeeble" then
