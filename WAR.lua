@@ -32,8 +32,8 @@ gearswap_box = function()
   str = str..' Weapon Mode:\\cs(255,150,100)   '..Weapon_Mode..'\\cr\n'
   str = str..' Buff Level:\\cs(255,150,100)   '..Buff_Mode..'\\cr\n'
   str = str..' Tomahawks: '..tomahawk_count..'\n'
-  str = str..' ctrl: \\cs(255,165,0)[BSRK]\\cr \\cs(255,255,0)[CRY]\\cr \\cs(128,255,255)[VOKE]\\cr\n'
-  str = str..' alt:  \\cs(0,204,102)[RETAL]\\cr \\cs(204,153,255)[RESTR]\\cr\n'
+  str = str..' ctrl: \\cs(255,165,0)[BSRK]\\cr \\cs(255,255,0)[CRY]\\cr \\cs(255,128,0)[AGGR]\\cr\n'
+  str = str..' alt:  \\cs(0,204,102)[RETAL]\\cr \\cs(204,153,255)[RESTR]\\cr \\cs(128,255,255)[VOKE]\\cr\n'
     return str
 end
 
@@ -83,9 +83,10 @@ function user_setup()
 
 	send_command('bind ^numpad1 input /ja "Berserk" <me>')   -- [BSRK]
 	send_command('bind ^numpad2 input /ja "Warcry" <me>')    -- [CRY]
-	send_command('bind ^numpad3 input /ja "Provoke" <t>')    -- [VOKE]
+	send_command('bind ^numpad3 input /ja "Aggressor" <me>')    -- [AGGR]
 	send_command('bind !numpad1 input /ja "Retaliation" <me>')  -- [RETAL]
 	send_command('bind !numpad2 input /ja "Restraint" <me>')    -- [RESTR]
+	send_command('bind !numpad3 input /ja "Provoke" <t>')    -- [VOKE]
 
 	send_command('bind f9 input /item "Remedy" <me>')
 	send_command('bind f10 input /item "Panacea" <me>')
@@ -356,9 +357,8 @@ function idle()
 	end
 end
 
-----------------------------------------------------------------------
---               WEAPONSKILL SET PICKER (handles Buff_Mode)
-----------------------------------------------------------------------
+
+-- WEAPONSKILL SET PICKER (handles Buff_Mode)
 function get_ws_set(base_name)
 	if Buff_Mode == "High" then
 		local high_set = sets.ws[base_name.."_high"]
@@ -369,7 +369,6 @@ end
 
 function precast(spell)
 	if spell.type == "WeaponSkill" then
-		-- Great Axe WS
 		if spell.english == "Upheaval" then
 			equip(get_ws_set("upheaval"))
 		elseif spell.english == "King's Justice" then
@@ -382,24 +381,16 @@ function precast(spell)
 			equip(get_ws_set("disaster"))
 		elseif spell.english == "Metatron Torment" then
 			equip(get_ws_set("metatron"))
-
-		-- Sword WS
 		elseif spell.english == "Savage Blade" then
 			equip(get_ws_set("savage_blade"))
-
-		-- Axe WS
 		elseif spell.english == "Decimation" or spell.english == "Ruinator" then
 			equip(get_ws_set("decimation"))
 		elseif spell.english == "Mistral Axe" or spell.english == "Calamity" then
 			equip(get_ws_set("mistral_axe"))
 		elseif spell.english == "Cloudsplitter" then
 			equip(get_ws_set("cloudsplitter"))
-
-		-- Club WS
 		elseif spell.english == "Judgment" or spell.english == "Black Halo" then
 			equip(get_ws_set("judgment"))
-
-		-- Great Sword WS
 		elseif spell.english == "Fimbulvetr" then
 			equip(get_ws_set("fimbulvetr"))
 		elseif spell.english == "Scourge" then
@@ -408,14 +399,10 @@ function precast(spell)
 			equip(get_ws_set("resolution"))
 		elseif spell.english == "Shockwave" then
 			equip(get_ws_set("normal"))
-
-		-- Polearm WS
 		elseif spell.english == "Impulse Drive" then
 			equip(get_ws_set("impulse_drive"))
 		elseif spell.english == "Stardiver" then
 			equip(get_ws_set("stardiver"))
-
-		-- Fallback
 		else 
 			equip(get_ws_set("normal"))
 		end
@@ -473,7 +460,11 @@ end
 --                           KEY EVENTS
 ----------------------------------------------------------------------
 function status_change(new, old)
-	idle()
+	if new == "Engaged" then
+		idle()
+	else
+		idle()
+	end
 end
 
 ----------------------------------------------------------------------
