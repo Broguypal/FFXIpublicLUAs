@@ -168,13 +168,21 @@ function get_sets()
 	----------------------------------------------------------------------
 	--                           ENGAGED SETS
 	----------------------------------------------------------------------
-	sets.engaged.hybrid       = {
-		-- Fill in your hybrid TP set (balanced DPS + DT)
+	-- HYBRID 
+	sets.engaged.hybrid_2h    = { 
+	}
+	sets.engaged.hybrid_1h    = { 
+	}
+	sets.engaged.hybrid_dw    = { 
 	}
 
-	sets.engaged.dps          = {
-		-- Fill in your full DPS TP set (max damage, minimal DT)
-	}
+	-- DPS (Glass Cannon)
+	sets.engaged.dps_2h       = set_combine(sets.engaged.hybrid_2h, { 
+	})
+	sets.engaged.dps_1h       = set_combine(sets.engaged.hybrid_1h, { 
+	})
+	sets.engaged.dps_dw       = set_combine(sets.engaged.hybrid_dw, { 
+	})
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -340,21 +348,33 @@ end
 --                           GENERAL LOGIC
 ----------------------------------------------------------------------
 function idle()
-	if TP_Mode == "Hybrid" then
-		if player.status == "Engaged" then
-			equip(sets.engaged.hybrid)
-		else
-			equip(sets.idle.normal)
-		end
-	elseif TP_Mode == "DPS" then
-		if player.status == "Engaged" then
-			equip(sets.engaged.dps)
-		else
-			equip(sets.idle.normal)
-		end
-	elseif TP_Mode == "Tank" then
-		equip(sets.idle.tank)
-	end
+    if TP_Mode == "Hybrid" then
+        if player.status == "Engaged" then
+            if Weapon_Mode == "2H" then
+                equip(sets.engaged.hybrid_2h)
+            elseif player.sub_job == "NIN" or player.sub_job == "DNC" then
+                equip(sets.engaged.hybrid_dw)
+            else
+                equip(sets.engaged.hybrid_1h)
+            end
+        else
+            equip(sets.idle.normal)
+        end
+    elseif TP_Mode == "DPS" then
+        if player.status == "Engaged" then
+            if Weapon_Mode == "2H" then
+                equip(sets.engaged.dps_2h)
+            elseif player.sub_job == "NIN" or player.sub_job == "DNC" then
+                equip(sets.engaged.dps_dw)
+            else
+                equip(sets.engaged.dps_1h)
+            end
+        else
+            equip(sets.idle.normal)
+        end
+    elseif TP_Mode == "Tank" then
+        equip(sets.idle.tank)
+    end
 end
 
 
