@@ -18,12 +18,15 @@
 --                           MODES / UI TEXT BOX
 ----------------------------------------------------------------------
 TP_Mode = "Hybrid"
+Buff_Mode = "High"
 
 TP_Modes = {'Hybrid','Counter','Defence'}
+Buff_Modes = {'High','Low'}
 
 gearswap_box = function()
   str = '           \\cs(165,100,40)MONK\\cr\n'
   str = str..' Offense Mode:\\cs(255,150,100)   '..TP_Mode..'\\cr\n'
+  str = str..' Buff Mode:\\cs(255,150,100)   '..Buff_Mode..'\\cr\n'
     return str
 end
 
@@ -41,7 +44,7 @@ function user_setup()
 	send_command('bind numpad9 gs c ToggleHybrid')
 	send_command('bind numpad8 gs c ToggleCounter')
 	send_command('bind numpad7 gs c ToggleDefence')
-
+	send_command('bind numpad6 gs c ToggleBuff')
 	send_command('bind numpad4 gs c ToggleWeapon')
 	send_command('bind numpad5 gs c ToggleSpecial')
 
@@ -100,7 +103,7 @@ function get_sets()
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Defending Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
 	--DT set
@@ -117,13 +120,13 @@ function get_sets()
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Defending Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
 	--Counter set
 	sets.idle.counter = {
 		ammo="Amar Cluster",
-		head="Bhikku Crown +2",
+		head="Bhikku Crown +3",
 		body="Mpaca's Doublet",
 		hands={ name="Rao Kote +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
 		legs="Anch. Hose +2",
@@ -141,88 +144,27 @@ function get_sets()
 	--                           ENGAGED SETS
 	----------------------------------------------------------------------
 	--Normal TP Set
-	sets.idle.tp = {
+		sets.idle.tp = {
 		ammo="Coiste Bodhar",
-		head="Bhikku Crown +2",
+		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		body="Mpaca's Doublet",
-		hands="Mpaca's Gloves",
-		legs="Bhikku Hose +2",
+		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		legs="Bhikku Hose +3",
 		feet="Mpaca's Boots",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
+		left_ear="Sherida Earring",
+		right_ear={ name="Bhikku Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','"Store TP"+5',}},
 		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		right_ring="Defending Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
-	
-	sets.idle.tp.godhands = set_combine(sets.idle.tp,{
-		left_ear="Mache Earring +1",
-	})
-
-	-- TP Set impetus up
-	sets.idle.tpimpetus = {
-		ammo="Coiste Bodhar",
-		head="Bhikku Crown +2",
-		body="Bhikku Cyclas +2",
-		hands="Mpaca's Gloves",
-		legs="Bhikku Hose +2",
-		feet="Mpaca's Boots",
-		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
-		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-	}
-
-	sets.idle.tpimpetus.godhands = set_combine(sets.idle.tpimpetus,{
-		left_ear="Mache Earring +1",
-	})
 
 	-- TP Set footwork up
-	sets.idle.tpfootwork = {
-		ammo="Coiste Bodhar",
-		head="Bhikku Crown +2",
-		body="Mpaca's Doublet",
-		hands="Mpaca's Gloves",
-		legs="Bhikku Hose +2",
+	sets.idle.tpfootwork = set_combine(sets.idle.tp, {
 		feet="Anch. Gaiters +3",
-		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
-		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-	}
-	
-	sets.idle.tpfootwork.godhands = set_combine(sets.idle.tpfootwork,{
-		left_ear="Mache Earring +1",
 	})
 
-	-- TP Set Impetus + Footwork up
-	sets.idle.tpimpetusfootwork = {
-		ammo="Coiste Bodhar",
-		head="Bhikku Crown +2",
-		body="Bhikku Cyclas +2",
-		hands="Mpaca's Gloves",
-		legs="Bhikku Hose +2",
-		feet="Anch. Gaiters +3",
-		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
-		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-	}
-
-	sets.idle.tpimpetusfootwork.godhands = set_combine(sets.idle.tpimpetusfootwork,{
-		left_ear="Mache Earring +1",
-	})
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -272,7 +214,11 @@ function get_sets()
 	}
 
 	sets.ja.footwork = {
-		feet="Shukuyu Sune-Ate",
+		feet="Anch. Gaiters +3",
+	}
+	
+	sets.ja.impetus = {
+		body="Bhikku Cyclas +3",
 	}
 
 	sets.ja.mantra = {
@@ -297,12 +243,14 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Sherida Earring",
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
+	
+	sets.ws.weaponskillBUFF = {}
 	
 	--Victory Smite
 	sets.ws.victorysmite = {
@@ -314,29 +262,33 @@ function get_sets()
 		feet="Ken. Sune-Ate +1",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
+	
+	sets.ws.victorysmiteBUFF = set_combine(sets.ws.victorysmite, {})
 
 	--Victory Smite (impetus up)
 	sets.ws.victorysmiteimpetus = {
 	    ammo="Coiste Bodhar",
 		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
-		body="Bhikku Cyclas +2",
+		body="Bhikku Cyclas +3",
 		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
 		legs="Mpaca's Hose",
 		feet="Ken. Sune-Ate +1",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
+	
+	sets.ws.victorysmiteimpetusBUFF = set_combine(sets.ws.victorysmiteimpetus,{})
 	
 	-- Raging Fists
 	sets.ws.ragingfists = {
@@ -348,12 +300,13 @@ function get_sets()
 		feet="Ken. Sune-Ate +1",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Sherida Earring",
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
+	sets.ws.ragingfistsBUFF = set_combine(sets.ws.ragingfists,{})
 
 	-- Shijin Spiral
 	sets.ws.shijinspiral = {
@@ -365,12 +318,13 @@ function get_sets()
 		feet="Malignance Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear="Mache Earring +1",
-		right_ear="Sherida Earring",
+		right_ear="Mache Earring +1",
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
+	sets.ws.shijinspiralBUFF = set_combine(sets.ws.shijinspiral,{})
 
 	-- Howling Fist
 	sets.ws.howlingfist = {
@@ -382,29 +336,31 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Sherida Earring",
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
+	sets.ws.howlingfistBUFF = set_combine(sets.ws.howlingfist,{})
 
 	--Tornado Kick
 	sets.ws.tornadokick = {
 	    ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
-		body="Bhikku Cyclas +2",
+		body="Bhikku Cyclas +3",
 		hands="Mpaca's Gloves",
-		legs="Bhikku Hose +2",
+		legs="Bhikku Hose +3",
 		feet="Anch. Gaiters +3",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Sherida Earring",
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
+	sets.ws.tornadokickBUFF = set_combine(sets.ws.tornadokick,{})
 
 	--Final Heaven
 	sets.ws.finalheaven = {
@@ -416,20 +372,21 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear="Ishvara Earring",
-		right_ear="Sherida Earring",
+		right_ear="Ishvara Earring",
+		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
+	sets.ws.finalheavenBUFF = set_combine(sets.ws.finalheaven,{})
 
 	--Shell Crusher
 	sets.ws.shellcrusher = {
 		ammo="Pemphredo Tathlum",
-		head="Bhikku Crown +2",
-		body="Bhikku Cyclas +2",
+		head="Bhikku Crown +3",
+		body="Bhikku Cyclas +3",
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs="Bhikku Hose +2",
+		legs="Bhikku Hose +3",
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Null Loop",
 		waist="Null Belt",
@@ -450,8 +407,8 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Friomisi Earring",
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ear="Friomisi Earring",
 		left_ring="Archon Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
@@ -467,8 +424,8 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Friomisi Earring",
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ear="Friomisi Earring",
 		left_ring="Shiva Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
@@ -498,30 +455,10 @@ function idle()
 		end
 	elseif TP_Mode == "Hybrid" then
 		if player.status == "Engaged" then	
-			if player.equipment.main == "Godhands" then
-				if buffactive["Impetus"] then
-					if buffactive["Footwork"] then
-						equip(sets.idle.tpimpetusfootwork.godhands)
-					else
-						equip(sets.idle.tpimpetus.godhands) 
-					end
-				elseif buffactive["Footwork"] then
-					equip(sets.idle.tpfootwork.godhands)
-				else
-					equip(sets.idle.tp.godhands) 
-				end
+			if buffactive["Footwork"] then
+				equip(sets.idle.tpfootwork)
 			else
-				if buffactive["Impetus"] then
-					if buffactive["Footwork"] then							
-						equip(sets.idle.tpimpetusfootwork)
-					else
-						equip(sets.idle.tpimpetus) 
-					end
-				elseif buffactive["Footwork"] then
-					equip(sets.idle.tpfootwork)
-				else
-					equip(sets.idle.tp) 
-				end
+				equip(sets.idle.tp) 
 			end
 		else
 			equip(sets.idle.normal)
@@ -533,20 +470,48 @@ function precast(spell)
 	if spell.type == "WeaponSkill" then
 		if spell.english == "Victory Smite" then
 			if buffactive["Impetus"] then
-				equip(sets.ws.victorysmiteimpetus) 
+				if Buff_Mode == "High" then
+					equip(sets.ws.victorysmiteimpetusBUFF)
+				else
+					equip(sets.ws.victorysmiteimpetus)
+				end
 			else
-				equip(sets.ws.victorysmite) 
+				if Buff_Mode == "High" then
+					equip(sets.ws.victorysmiteBUFF)
+				else
+					equip(sets.ws.victorysmite)
+				end
 			end
 		elseif spell.english == "Raging Fists" then
-			equip(sets.ws.ragingfists)
+			if Buff_Mode == "High" then
+				equip(sets.ws.ragingfistsBUFF)
+			else
+				equip(sets.ws.ragingfists)
+			end
 		elseif spell.english == "Shijin Spiral" then
-			equip(sets.ws.shijinspiral)
+			if Buff_Mode == "High" then
+				equip(sets.ws.shijinspiralBUFF)
+			else
+				equip(sets.ws.shijinspiral)
+			end
 		elseif spell.english == "Howling Fist" then
-			equip(sets.ws.howlingfist)
+			if Buff_Mode == "High" then
+				equip(sets.ws.howlingfistBUFF)
+			else
+				equip(sets.ws.howlingfist)
+			end
 		elseif spell.english == "Tornado Kick" then
-			equip(sets.ws.tornadokick)
+			if Buff_Mode == "High" then
+				equip(sets.ws.tornadokickBUFF)
+			else
+				equip(sets.ws.tornadokick)
+			end
 		elseif spell.english == "Final Heaven" then
-			equip(sets.ws.finalheaven)
+			if Buff_Mode == "High" then
+				equip(sets.ws.finalheavenBUFF)
+			else
+				equip(sets.ws.finalheaven)
+			end
 		elseif spell.english == "Shell Crusher" or spell.english == "Shattersoul" then
 			equip(sets.ws.shellcrusher)
 		elseif spell.english == "Cataclysm" then
@@ -554,7 +519,11 @@ function precast(spell)
 		elseif spell.english == "Rock Crusher" or spell.english == "Earth Crusher" or spell.english == "Starburst" or spell.english == "Sunburst" then
 			equip(sets.ws.staffele)
 		else
-			equip(sets.ws.weaponskill)
+			if Buff_Mode == "High" then
+				equip(sets.ws.weaponskillBUFF)
+			else
+				equip(sets.ws.weaponskill)
+			end	
 		end
 	elseif spell.type == "JobAbility" then
 		if spell.english == "Hundred Fists" then
@@ -579,6 +548,8 @@ function precast(spell)
 			equip(sets.ja.formlessstrikes)
 		elseif spell.english == "Perfect Counter" then
 			equip(sets.ja.perfectcounter)
+		elseif spell.english == "Impetus" then
+			equip(sets.ja.impetus)
 		else 
 			idle()
 		end
@@ -602,34 +573,8 @@ end
 function aftercast(spell)
 	if spell.english == "Boost" then
 		equip(sets.ja.boost)
-	elseif spell.english == "Impetus" then
-		if buffactive["Footwork"] then
-			if player.equipment.main == "Godhands" then
-				equip(sets.idle.tpimpetusfootwork.godhands)
-			else
-				equip(sets.idle.tpimpetusfootwork)
-			end
-		else
-			if player.equipment.main == "Godhands" then
-				equip(sets.idle.tpimpetus.godhands)
-			else
-				equip(sets.idle.tpimpetus)
-			end
-		end
 	elseif spell.english == "Footwork" then
-		if buffactive["Impetus"] then
-			if player.equipment.main == "Godhands" then
-				equip(sets.idle.tpimpetusfootwork.godhands)
-			else
-				equip(sets.idle.tpimpetusfootwork)
-			end
-		else
-			if player.equipment.main == "Godhands" then
-				equip(sets.idle.tpfootwork.godhands) 
-			else
-				equip(sets.idle.tpfootwork) 
-			end
-		end
+		equip(sets.idle.tpfootwork) 
 	else
 		idle()
 	end
@@ -690,6 +635,12 @@ function self_command(command)
 			idle()
 		elseif TP_Mode == "Defence" then
 			idle()
+		end
+	elseif command == "ToggleBuff" then
+		if Buff_Mode == "High" then
+			Buff_Mode = "Low"
+		else
+			Buff_Mode = "High"
 		end
 	elseif command == "ToggleWeapon" then
 		main_mode = cycle(Weapons.Main, main_mode)
