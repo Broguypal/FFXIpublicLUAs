@@ -725,9 +725,9 @@ function get_sets()
 	
 	sets.ws.chantducygne = {
 		ammo="Coiste Bodhar",
-		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		body="Gleti's Cuirass",
-		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Gleti's Breeches",
 		feet="Thereoid Greaves",
 		neck={ name="Mirage Stole +2", augments={'Path: A',}},

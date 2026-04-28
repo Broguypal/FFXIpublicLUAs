@@ -20,7 +20,7 @@
 TP_Mode = "Hybrid"
 Buff_Mode = "High"
 
-TP_Modes = {'Hybrid','Counter','Defence'}
+TP_Modes = {'Hybrid','DPS','SubtleBlow','Counter','Defence'}
 Buff_Modes = {'High','Low'}
 
 gearswap_box = function()
@@ -42,8 +42,9 @@ function user_setup()
 	--                           KEYBINDS
 	----------------------------------------------------------------------
 	send_command('bind numpad9 gs c ToggleHybrid')
-	send_command('bind numpad8 gs c ToggleCounter')
-	send_command('bind numpad7 gs c ToggleDefence')
+	send_command('bind numpad8 gs c ToggleDefence')
+	send_command('bind numpad7 gs c ToggleSubtleBlow')
+	
 	send_command('bind numpad6 gs c ToggleBuff')
 	send_command('bind numpad4 gs c ToggleWeapon')
 	send_command('bind numpad5 gs c ToggleSpecial')
@@ -79,6 +80,7 @@ end
 ----------------------------------------------------------------------
 function get_sets() 
     sets.idle = {}                  -- Leave this empty.
+	sets.engaged = {}
     sets.precast = {}               -- leave this empty    
     sets.midcast = {}               -- leave this empty    
     sets.aftercast = {}             -- leave this empty
@@ -143,28 +145,61 @@ function get_sets()
 	----------------------------------------------------------------------
 	--                           ENGAGED SETS
 	----------------------------------------------------------------------
-	--Normal TP Set
-		sets.idle.tp = {
+	--Normal / DPS Set
+	sets.engaged.TP = {
 		ammo="Coiste Bodhar",
-		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
-		body="Mpaca's Doublet",
-		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		body="Ken. Samue +1",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Bhikku Hose +3",
-		feet="Mpaca's Boots",
+		feet="Anch. Gaiters +4",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
-		right_ear={ name="Bhikku Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','"Store TP"+5',}},
+		right_ear="Schere Earring",
 		left_ring="Gere Ring",
-		right_ring="Defending Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+	}
+	
+	-- Defensive TP Set
+	sets.engaged.HYBRID = {
+		ammo="Coiste Bodhar",
+		head="Bhikku Crown +3",
+		body="Mpaca's Doublet",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		legs="Bhikku Hose +3",
+		feet="Anch. Gaiters +4",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+	}
+	
+	-- Capped Subtle Blow
+	sets.engaged.subtleblow = {
+		ammo="Coiste Bodhar",
+		head="Bhikku Crown +3",
+		body="Ken. Samue +1",
+		hands="Malignance Gloves",
+		legs="Bhikku Hose +3",
+		feet="Anch. Gaiters +4",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
-	-- TP Set footwork up
-	sets.idle.tpfootwork = set_combine(sets.idle.tp, {
-		feet="Anch. Gaiters +3",
-	})
-
+	--Specific Equipment swaps you want equipped in your TP sets when you have certain buffs
+	sets.engaged.impetus = {body="Bhikku Cyclas +3",}
+	
+	sets.engaged.footwork = {feet="Anch. Gaiters +4",}
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -255,9 +290,9 @@ function get_sets()
 	--Victory Smite
 	sets.ws.victorysmite = {
 	    ammo="Knobkierrie",
-		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		body="Ken. Samue +1",
-		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Mpaca's Hose",
 		feet="Ken. Sune-Ate +1",
 		neck="Fotia Gorget",
@@ -274,9 +309,9 @@ function get_sets()
 	--Victory Smite (impetus up)
 	sets.ws.victorysmiteimpetus = {
 	    ammo="Coiste Bodhar",
-		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		body="Bhikku Cyclas +3",
-		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Mpaca's Hose",
 		feet="Ken. Sune-Ate +1",
 		neck="Fotia Gorget",
@@ -295,7 +330,7 @@ function get_sets()
 		ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Mpaca's Hose",
 		feet="Ken. Sune-Ate +1",
 		neck="Fotia Gorget",
@@ -453,12 +488,20 @@ function idle()
 		else
 			equip(sets.idle.DT)
 		end
-	elseif TP_Mode == "Hybrid" then
-		if player.status == "Engaged" then	
+	elseif TP_Mode == "Hybrid" or TP_Mode == "DPS" or TP_Mode == "SubtleBlow" then
+		if player.status == "Engaged" then
+			if TP_Mode == "Hybrid" then
+				equip(sets.engaged.HYBRID)
+			elseif TP_Mode == "DPS" then
+				equip(sets.engaged.TP)
+			elseif TP_Mode == "SubtleBlow" then
+				equip(sets.engaged.subtleblow)
+			end
+			if buffactive["Impetus"] then
+				equip(sets.engaged.impetus)
+			end
 			if buffactive["Footwork"] then
-				equip(sets.idle.tpfootwork)
-			else
-				equip(sets.idle.tp) 
+				equip(sets.engaged.footwork)
 			end
 		else
 			equip(sets.idle.normal)
@@ -573,8 +616,16 @@ end
 function aftercast(spell)
 	if spell.english == "Boost" then
 		equip(sets.ja.boost)
+	elseif spell.english == "Impetus" then
+		idle()
+		if player.status == "Engaged" then
+			equip(sets.engaged.impetus)
+		end
 	elseif spell.english == "Footwork" then
-		equip(sets.idle.tpfootwork) 
+		idle()
+		if player.status == "Engaged" then
+			equip(sets.engaged.footwork)
+		end
 	else
 		idle()
 	end
@@ -616,24 +667,22 @@ end
 
 function self_command(command)
 	if command == "ToggleHybrid" then
-		if TP_Mode == "Counter" or TP_Mode == "Defence" then
+		if TP_Mode == "Counter" or TP_Mode == "Defence" or TP_Mode == "SubtleBlow" or TP_Mode == "DPS" then
 			TP_Mode = "Hybrid"
 			idle()
 		elseif TP_Mode == "Hybrid" then
+			TP_Mode = "DPS"
 			idle()
 		end
-	elseif command == "ToggleCounter" then
-		if TP_Mode == "Hybrid" or TP_Mode == "Defence" then
-			TP_Mode = "Counter"
-			idle()
-		elseif TP_Mode == "Counter" then
-			idle()
-		end
+	elseif command == "ToggleSubtleBlow" then
+		TP_Mode = "SubtleBlow"
+		idle()
 	elseif command == "ToggleDefence" then
-		if TP_Mode == "Hybrid" or TP_Mode == "Counter" then
+		if TP_Mode == "Hybrid" or TP_Mode == "DPS" or TP_Mode == "SubtleBlow" or TP_Mode == "Counter" then
 			TP_Mode = "Defence"
 			idle()
 		elseif TP_Mode == "Defence" then
+			TP_Mode = "Counter"
 			idle()
 		end
 	elseif command == "ToggleBuff" then
