@@ -148,9 +148,9 @@ function get_sets()
 	--Normal / DPS Set
 	sets.engaged.TP = {
 		ammo="Coiste Bodhar",
-		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		head="Bhikku Crown +3",
 		body="Ken. Samue +1",
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		hands="Tatena. Gote +1",
 		legs="Bhikku Hose +3",
 		feet="Anch. Gaiters +4",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
@@ -159,7 +159,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+1','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	
 	-- Defensive TP Set
@@ -167,7 +167,7 @@ function get_sets()
 		ammo="Coiste Bodhar",
 		head="Bhikku Crown +3",
 		body="Mpaca's Doublet",
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		hands="Tatena. Gote +1",
 		legs="Bhikku Hose +3",
 		feet="Anch. Gaiters +4",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
@@ -269,79 +269,99 @@ function get_sets()
 	--                           WEAPONSKILL SETS
 	----------------------------------------------------------------------
 	--Undefined weaponskills
-	sets.ws.weaponskill = {
-	    ammo="Knobkierrie",
-		head="Mpaca's Cap",
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Fotia Gorget",
-		waist="Moonbow Belt +1",
-		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
-	}
+	sets.ws.weaponskill = {}
 	
 	sets.ws.weaponskillBUFF = {}
 	
 	--Victory Smite
 	sets.ws.victorysmite = {
-	    ammo="Knobkierrie",
-		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		body="Ken. Samue +1",
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		ammo="Coiste Bodhar",
+		head="Mpaca's Cap",
+		body="Mpaca's Doublet",
+		hands="Ken. Tekko +1",
 		legs="Mpaca's Hose",
-		feet="Ken. Sune-Ate +1",
+		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
+		left_ear="Odr Earring",
 		right_ear="Schere Earring",
-		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
+		left_ring="Ephramad's Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 	
-	sets.ws.victorysmiteBUFF = set_combine(sets.ws.victorysmite, {})
+	sets.ws.victorysmiteBUFF = set_combine(sets.ws.victorysmite, {
+		ammo="Coiste Bodhar",
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		body="Ken. Samue +1",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Ken. Sune-Ate +1",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Odr Earring",
+		left_ring="Ephramad's Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	})
 
 	--Victory Smite (impetus up)
 	sets.ws.victorysmiteimpetus = {
-	    ammo="Coiste Bodhar",
+		ammo="Coiste Bodhar",
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		body="Bhikku Cyclas +3",
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		hands="Bhikku Gloves +3",
 		legs="Mpaca's Hose",
 		feet="Ken. Sune-Ate +1",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		right_ear="Schere Earring",
 		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
+		right_ear="Odr Earring",
+		left_ring="Ephramad's Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 	
-	sets.ws.victorysmiteimpetusBUFF = set_combine(sets.ws.victorysmiteimpetus,{})
+	sets.ws.victorysmiteimpetusBUFF = set_combine(sets.ws.victorysmiteimpetus,{
+		ammo="Coiste Bodhar",
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		body="Bhikku Cyclas +3",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Ken. Sune-Ate +1",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Mache Earring +1",
+		right_ear="Odr Earring",
+		left_ring="Ephramad's Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	})
 	
 	-- Raging Fists
 	sets.ws.ragingfists = {
 		ammo="Coiste Bodhar",
 		head="Mpaca's Cap",
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		legs="Mpaca's Hose",
-		feet="Ken. Sune-Ate +1",
+		body="Bhikku Cyclas +3",
+		hands="Bhikku Gloves +3",
+		legs="Nyame Flanchard",
+		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Ephramad's Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
-	sets.ws.ragingfistsBUFF = set_combine(sets.ws.ragingfists,{})
+	sets.ws.ragingfistsBUFF = set_combine(sets.ws.ragingfists,{
+		body="Malignance Tabard",
+		hands="Bhikku Gloves +3",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+	})
+
+------------------- RESTART FROM HERE
 
 	-- Shijin Spiral
 	sets.ws.shijinspiral = {
@@ -357,7 +377,7 @@ function get_sets()
 		left_ear="Sherida Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+1','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	sets.ws.shijinspiralBUFF = set_combine(sets.ws.shijinspiral,{})
 
