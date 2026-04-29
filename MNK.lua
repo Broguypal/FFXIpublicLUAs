@@ -148,34 +148,34 @@ function get_sets()
 	--Normal / DPS Set
 	sets.engaged.TP = {
 		ammo="Coiste Bodhar",
-		head="Bhikku Crown +3",
-		body="Ken. Samue +1",
+		head="Ryuo Somen +1",
+		body="Mpaca's Doublet",
 		hands="Tatena. Gote +1",
 		legs="Bhikku Hose +3",
-		feet="Anch. Gaiters +4",
+		feet="Tatena. Sune. +1",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Schere Earring",
 		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+1','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		right_ring="Epona's Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
 	-- Defensive TP Set
 	sets.engaged.HYBRID = {
 		ammo="Coiste Bodhar",
-		head="Bhikku Crown +3",
+		head="Ryuo Somen +1",
 		body="Mpaca's Doublet",
 		hands="Tatena. Gote +1",
 		legs="Bhikku Hose +3",
-		feet="Anch. Gaiters +4",
+		feet="Tatena. Sune. +1",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Schere Earring",
 		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
+		right_ring="Defending Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
@@ -186,7 +186,7 @@ function get_sets()
 		body="Ken. Samue +1",
 		hands="Malignance Gloves",
 		legs="Bhikku Hose +3",
-		feet="Anch. Gaiters +4",
+		feet="Malignance Boots",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
@@ -197,9 +197,13 @@ function get_sets()
 	}
 
 	--Specific Equipment swaps you want equipped in your TP sets when you have certain buffs
-	sets.engaged.impetus = {body="Bhikku Cyclas +3",}
+	sets.engaged.impetus = {
+		body="Bhikku Cyclas +3",
+	}
 	
-	sets.engaged.footwork = {feet="Anch. Gaiters +4",}
+	sets.engaged.footwork = {
+		--feet="Anch. Gaiters +4",
+	}
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -269,9 +273,36 @@ function get_sets()
 	--                           WEAPONSKILL SETS
 	----------------------------------------------------------------------
 	--Undefined weaponskills
-	sets.ws.weaponskill = {}
-	
-	sets.ws.weaponskillBUFF = {}
+	sets.ws.weaponskill = {
+		ammo="Knobkierrie",
+		head="Mpaca's Cap",
+		body="Bhikku Cyclas +3",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Rep. Plat. Medal",
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Ephramad's Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: need to swap this to STR/WSD cape once obtained
+	}	
+	sets.ws.weaponskillBUFF = {
+		ammo="Knobkierrie",
+		head="Mpaca's Cap",
+		body="Bhikku Cyclas +3",
+		hands="Bhikku Gloves +3",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Moonshade Earring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: Need to swap this to STR/WSD cape
+	}
 	
 	--Victory Smite
 	sets.ws.victorysmite = {
@@ -285,11 +316,10 @@ function get_sets()
 		waist="Moonbow Belt +1",
 		left_ear="Odr Earring",
 		right_ear="Schere Earring",
-		left_ring="Ephramad's Ring",
+		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
-	
 	sets.ws.victorysmiteBUFF = set_combine(sets.ws.victorysmite, {
 		ammo="Coiste Bodhar",
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -318,11 +348,10 @@ function get_sets()
 		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Odr Earring",
-		left_ring="Ephramad's Ring",
+		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
-	
 	sets.ws.victorysmiteimpetusBUFF = set_combine(sets.ws.victorysmiteimpetus,{
 		ammo="Coiste Bodhar",
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -337,6 +366,275 @@ function get_sets()
 		left_ring="Ephramad's Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	})
+
+	--Ascetic's Fury
+	sets.ws.asceticsfury = {
+		ammo="Crepuscular Pebble",
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Nyame Sollerets",
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+	}
+	sets.ws.asceticsfuryBUFF = set_combine(sets.ws.asceticsfury, {
+		left_ring="Ephramad's Ring",
+	})
+	
+	--Ascetic's Fury (impetus up)
+	sets.ws.asceticsfuryimpetus = {
+		ammo="Crepuscular Pebble",
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		body="Bhikku Cyclas +3",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Ken. Sune-Ate +1",
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Ephramad's Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	}
+	sets.ws.asceticsfuryimpetusBUFF = set_combine(sets.ws.asceticsfuryimpetus,{})
+	
+	--Maru Kala
+	sets.ws.marukala = {
+		ammo="Knobkierrie",
+		head="Mpaca's Cap",
+		body="Bhikku Cyclas +3",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Rep. Plat. Medal",
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Ephramad's Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: need to swap this to STR/WSD cape once obtained
+	}
+	sets.ws.marukalaBUFF = set_combine(sets.ws.marukala,{
+		ammo="Knobkierrie",
+		head="Mpaca's Cap",
+		body="Bhikku Cyclas +3",
+		hands="Bhikku Gloves +3",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Moonshade Earring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Ephramad's Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: Need to swap this to STR/WSD cape
+	})
+
+	-- Shijin Spiral
+	sets.ws.shijinspiral = {
+		ammo="Coiste Bodhar",
+		head="Mpaca's Cap",
+		body="Bhikku Cyclas +3",
+		hands="Mpaca's Gloves",
+		legs="Mpaca's Hose",
+		feet="Mpaca's Boots",
+		neck="Fotia Gorget",
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+1','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	}
+	sets.ws.shijinspiralBUFF = set_combine(sets.ws.shijinspiral,{
+		ammo="Coiste Bodhar",
+		head="Ken. Jinpachi +1",
+		body="Malignance Tabard",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Ken. Sune-Ate +1",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Mache Earring +1",
+		left_ring="Ephramad's Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+1','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	})
+
+	--Final Heaven
+	sets.ws.finalheaven = {
+		ammo="Knobkierrie",
+		head="Nyame Helm",
+		body="Bhikku Cyclas +3",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Null Loop",
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}}, -- Note: Need vit/WSD cape
+	}
+	sets.ws.finalheavenBUFF = set_combine(sets.ws.finalheaven,{
+		ammo="Knobkierrie",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Nyame Sollerets",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Sroda Ring",
+		right_ring="Ephramad's Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}}, -- Note: need vit/WSD cape
+	})
+
+	-- Howling Fist
+	sets.ws.howlingfist = {
+		ammo="Coiste Bodhar",
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Nyame Sollerets",
+		neck="Rep. Plat. Medal",
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+	}
+	sets.ws.howlingfistBUFF = set_combine(sets.ws.howlingfist,{
+		ammo="Crepuscular Pebble",
+		hands="Bhikku Gloves +3",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		left_ring="Ephramad's Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}}, -- Note: needs to be VIT/DA cape
+	})
+	
+	--Asuran Fists
+	sets.ws.asuranfists = {
+		ammo="Coiste Bodhar",
+		head="Nyame Helm",
+		body="Bhikku Cyclas +3",
+		hands="Bhikku Gloves +3",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Sroda Ring",
+		right_ring="Ephramad's Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: Need str/WSD cape
+	}
+	sets.ws.asuranfistsBUFF = set_combine(sets.ws.asuranfists,{
+		ammo="Crepuscular Pebble",
+		head="Nyame Helm",
+		body="Malignance Tabard",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Nyame Sollerets",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Fotia Belt",
+		left_ear="Sherida Earring",
+		right_ear="Schere Earring",
+		left_ring="Sroda Ring",
+		right_ring="Ephramad's Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: need str/WSD cape
+	})
+	
+	--Dragon Kick (+ Footwork)
+	sets.ws.dragonkick = {
+		ammo="Coiste Bodhar",
+		head="Mpaca's Cap",
+		body="Bhikku Cyclas +3",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Fotia Gorget",
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+	}
+	sets.ws.dragonkickfootwork = set_combine(sets.ws.dragonkick,{
+		body="Nyame Mail",
+		feet="Anch. Gaiters +4",
+	})
+	sets.ws.dragonkickBUFF = {
+		ammo="Crepuscular Pebble",
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Nyame Sollerets",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Ephramad's Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+	}
+	sets.ws.dragonkickfootworkBUFF = set_combine(sets.ws.dragonkickBUFF,{
+		feet="Anch. Gaiters +4",
+	})
+	
+	--Tornado Kick (+footwork)
+	sets.ws.tornadokick = {
+		ammo="Coiste Bodhar",
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Bhikku Gloves +3",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Fotia Gorget",
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+	}
+	sets.ws.tornadokickfootwork = set_combine(sets.ws.tornadokick,{
+		hands="Nyame Gauntlets",
+		feet="Anch. Gaiters +4",
+	})
+	sets.ws.tornadokickBUFF = {
+		ammo="Crepuscular Pebble",
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Bhikku Gloves +3",
+		legs="Mpaca's Hose",
+		feet="Nyame Sollerets",
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Ephramad's Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+	}
+	sets.ws.tornadokickfootworkBUFF = set_combine(sets.ws.tornadokickBUFF,{
+		feet="Anch. Gaiters +4",
 	})
 	
 	-- Raging Fists
@@ -360,80 +658,6 @@ function get_sets()
 		hands="Bhikku Gloves +3",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 	})
-
-------------------- RESTART FROM HERE
-
-	-- Shijin Spiral
-	sets.ws.shijinspiral = {
-	    ammo="Aurgelmir Orb",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-		neck="Fotia Gorget",
-		waist="Moonbow Belt +1",
-		right_ear="Mache Earring +1",
-		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+1','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-	}
-	sets.ws.shijinspiralBUFF = set_combine(sets.ws.shijinspiral,{})
-
-	-- Howling Fist
-	sets.ws.howlingfist = {
-	    ammo="Knobkierrie",
-		head="Mpaca's Cap",
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Fotia Gorget",
-		waist="Moonbow Belt +1",
-		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
-	}
-	sets.ws.howlingfistBUFF = set_combine(sets.ws.howlingfist,{})
-
-	--Tornado Kick
-	sets.ws.tornadokick = {
-	    ammo="Coiste Bodhar",
-		head="Mpaca's Cap",
-		body="Bhikku Cyclas +3",
-		hands="Mpaca's Gloves",
-		legs="Bhikku Hose +3",
-		feet="Anch. Gaiters +3",
-		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
-		waist="Moonbow Belt +1",
-		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
-	}
-	sets.ws.tornadokickBUFF = set_combine(sets.ws.tornadokick,{})
-
-	--Final Heaven
-	sets.ws.finalheaven = {
-	    ammo="Knobkierrie",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Fotia Gorget",
-		waist="Moonbow Belt +1",
-		right_ear="Ishvara Earring",
-		left_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
-	}
-	sets.ws.finalheavenBUFF = set_combine(sets.ws.finalheaven,{})
 
 	--Shell Crusher
 	sets.ws.shellcrusher = {
@@ -545,11 +769,25 @@ function precast(spell)
 					equip(sets.ws.victorysmite)
 				end
 			end
-		elseif spell.english == "Raging Fists" then
-			if Buff_Mode == "High" then
-				equip(sets.ws.ragingfistsBUFF)
+		elseif spell.english == "Ascetic's Fury" then
+			if buffactive["Impetus"] then
+				if Buff_Mode == "High" then
+					equip(sets.ws.asceticsfuryimpetusBUFF)
+				else
+					equip(sets.ws.asceticsfuryimpetus)
+				end
 			else
-				equip(sets.ws.ragingfists)
+				if Buff_Mode == "High" then
+					equip(sets.ws.asceticsfuryBUFF)
+				else
+					equip(sets.ws.asceticsfury)
+				end
+			end
+		elseif spell.english == "Maru Kala" then
+			if Buff_Mode == "High" then
+				equip(sets.ws.marukalaBUFF)
+			else
+				equip(sets.ws.marukala)
 			end
 		elseif spell.english == "Shijin Spiral" then
 			if Buff_Mode == "High" then
@@ -557,23 +795,57 @@ function precast(spell)
 			else
 				equip(sets.ws.shijinspiral)
 			end
+		elseif spell.english == "Final Heaven" then
+			if Buff_Mode == "High" then
+				equip(sets.ws.finalheavenBUFF)
+			else
+				equip(sets.ws.finalheaven)
+			end
 		elseif spell.english == "Howling Fist" then
 			if Buff_Mode == "High" then
 				equip(sets.ws.howlingfistBUFF)
 			else
 				equip(sets.ws.howlingfist)
 			end
-		elseif spell.english == "Tornado Kick" then
+		elseif spell.english == "Asuran Fists" then
 			if Buff_Mode == "High" then
-				equip(sets.ws.tornadokickBUFF)
+				equip(sets.ws.asuranfistsBUFF)
 			else
-				equip(sets.ws.tornadokick)
+				equip(sets.ws.asuranfists)
 			end
-		elseif spell.english == "Final Heaven" then
-			if Buff_Mode == "High" then
-				equip(sets.ws.finalheavenBUFF)
+		elseif spell.english == "Dragon Kick" then
+			if buffactive["Footwork"] then
+				if Buff_Mode == "High" then
+					equip(sets.ws.dragonkickfootworkBUFF)
+				else
+					equip(sets.ws.dragonkickfootwork)
+				end
 			else
-				equip(sets.ws.finalheaven)
+				if Buff_Mode == "High" then
+					equip(sets.ws.dragonkickBUFF)
+				else
+					equip(sets.ws.dragonkick)
+				end
+			end
+		elseif spell.english == "Tornado Kick" then
+			if buffactive["Footwork"] then
+				if Buff_Mode == "High" then
+					equip(sets.ws.tornadokickfootworkBUFF)
+				else
+					equip(sets.ws.tornadokickfootwork)
+				end
+			else
+				if Buff_Mode == "High" then
+					equip(sets.ws.tornadokickBUFF)
+				else
+					equip(sets.ws.tornadokick)
+				end
+			end
+		elseif spell.english == "Raging Fists" then
+			if Buff_Mode == "High" then
+				equip(sets.ws.ragingfistsBUFF)
+			else
+				equip(sets.ws.ragingfists)
 			end
 		elseif spell.english == "Shell Crusher" or spell.english == "Shattersoul" then
 			equip(sets.ws.shellcrusher)
