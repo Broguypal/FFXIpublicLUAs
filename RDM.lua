@@ -162,6 +162,7 @@ function get_sets()
 		main={ name="Crocea Mors", augments={'Path: C',}},
 		sub="Ammurapi Shield",
 		range="Ullr",
+		ammo=empty,
 	}
 	
 	sets.weapons.magicACCURACY = {
@@ -431,6 +432,7 @@ function get_sets()
 	---- ENFEEBLE SETS ----
 	-- Max Accuracy
 	sets.midcast.enfeebleACCURACY = {
+		ammo="Regal Gem",
 		head={ name="Viti. Chapeau +4", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Atrophy Tabard +3",
 		hands="Leth. Ganth. +3",
@@ -445,7 +447,7 @@ function get_sets()
 		back={ name="Aurist's Cape +1", augments={'Path: A',}},
 	}
 
-	sets.midcast.enfeebleACCURACYweapons = set_combine(sets.midcast.enfeebleACCURACY, sets.weapons.magicACCURACYmax)
+	sets.midcast.enfeebleACCURACYweapons = set_combine(s, sets.weapons.magicACCURACYmax)
 
 	--Absorb TP
 	sets.midcast.absorbTP = {
