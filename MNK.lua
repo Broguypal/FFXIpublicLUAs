@@ -68,7 +68,7 @@ end
 ----------------------------------------------------------------------
 --Note: Place in order you want to cycle weapons.
 	Weapons = {
-		Main  	= { "Godhands", "Verethragna" },
+		Main  	= { "Varga Purnikawa", "Godhands", "Verethragna" },
 	}
 	
 	Special = {
@@ -150,7 +150,7 @@ function get_sets()
 		ammo="Coiste Bodhar",
 		head="Ryuo Somen +1",
 		body="Mpaca's Doublet",
-		hands="Tatena. Gote +1",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Bhikku Hose +3",
 		feet="Tatena. Sune. +1",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
@@ -167,7 +167,7 @@ function get_sets()
 		ammo="Coiste Bodhar",
 		head="Ryuo Somen +1",
 		body="Mpaca's Doublet",
-		hands="Tatena. Gote +1",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Bhikku Hose +3",
 		feet="Tatena. Sune. +1",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
