@@ -286,7 +286,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Gere Ring",
 		right_ring="Ephramad's Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: need to swap this to STR/WSD cape once obtained
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}	
 	sets.ws.weaponskillBUFF = {
 		ammo="Knobkierrie",
@@ -301,7 +301,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Ephramad's Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: Need to swap this to STR/WSD cape
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
 	--Victory Smite
@@ -420,7 +420,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Gere Ring",
 		right_ring="Ephramad's Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: need to swap this to STR/WSD cape once obtained
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	sets.ws.marukalaBUFF = set_combine(sets.ws.marukala,{
 		ammo="Knobkierrie",
@@ -435,7 +435,7 @@ function get_sets()
 		right_ear="Moonshade Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Ephramad's Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: Need to swap this to STR/WSD cape
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	})
 
 	-- Shijin Spiral
@@ -484,7 +484,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}}, -- Note: Need vit/WSD cape
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	sets.ws.finalheavenBUFF = set_combine(sets.ws.finalheaven,{
 		ammo="Knobkierrie",
@@ -499,7 +499,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Sroda Ring",
 		right_ring="Ephramad's Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}}, -- Note: need vit/WSD cape
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	})
 
 	-- Howling Fist
@@ -541,7 +541,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Sroda Ring",
 		right_ring="Ephramad's Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: Need str/WSD cape
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	sets.ws.asuranfistsBUFF = set_combine(sets.ws.asuranfists,{
 		ammo="Crepuscular Pebble",
@@ -556,7 +556,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Sroda Ring",
 		right_ring="Ephramad's Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}, -- Note: need str/WSD cape
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	})
 	
 	--Dragon Kick (+ Footwork)
@@ -673,7 +673,7 @@ function get_sets()
 		right_ear="Crep. Earring",
 		left_ring="Stikini Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 
 	--Cataclysm
@@ -690,7 +690,7 @@ function get_sets()
 		left_ear="Friomisi Earring",
 		left_ring="Archon Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 
 	--elemental staff Weaponskills
@@ -707,7 +707,7 @@ function get_sets()
 		left_ear="Friomisi Earring",
 		left_ring="Shiva Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 
 	----------------------------------------------------------------------
