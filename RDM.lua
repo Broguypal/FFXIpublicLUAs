@@ -209,12 +209,12 @@ function get_sets()
 	}
 	
 	sets.weapons.ZeroTPdw = {
-		main="Qutrub Knife",
+		main="Hedron Dagger",
 		sub="Ethereal Dagger",
 	}
 	
 	sets.weapons.ZeroTP = {
-		main="Qutrub Knife",
+		main="Hedron Dagger",
 		sub="Genmei Shield",
 	}
 	
