@@ -273,7 +273,7 @@ function get_sets()
 		neck="Warder's Charm +1",
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ear="Alabaster Earring",
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		right_ring="Moonlight Ring",
 		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
