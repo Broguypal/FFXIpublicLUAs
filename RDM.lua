@@ -232,7 +232,7 @@ function get_sets()
 		neck="Sibyl Scarf",
 		waist="Carrier's Sash",
 		left_ear="Etiolation Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ear="Alabaster Earring",
 		left_ring="Defending Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
@@ -249,7 +249,7 @@ function get_sets()
 		neck="Sibyl Scarf",
 		waist="Flume Belt +1",
 		left_ear="Etiolation Earring",
-		right_ear="Odnowa Earring +1",
+		right_ear="Alabaster Earring",
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
@@ -267,7 +267,7 @@ function get_sets()
 		neck="Sibyl Scarf",
 		waist="Carrier's Sash",
 		left_ear="Etiolation Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ear="Alabaster Earring",
 		left_ring="Defending Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
@@ -427,6 +427,23 @@ function get_sets()
 	sets.midcast.impact = {
 		head=empty,
 		body="Twilight Cloak",
+	}
+
+	-- no MAB accuracy -- (needed for impact in some sets)
+	sets.midcast.noMABaccuracy = {
+		ammo="Regal Gem",
+		head="Atrophy Chapeau +3",
+		body="Atrophy Tabard +3",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck={ name="Dls. Torque +2", augments={'Path: A',}},
+		waist="Null Belt",
+		left_ear="Snotra Earring",
+		right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
+		left_ring="Metamor. Ring +1",
+		right_ring="Stikini Ring +1",
+		back="Aurist's Cape +1",
 	}
 
 	---- ENFEEBLE SETS ----
@@ -1271,7 +1288,7 @@ function midcast(spell)
 			if Casting_Mode == "Occult" then
 				equip(set_combine(sets.midcast.occult, sets.midcast.impact))
 			else
-				equip(set_combine(sets.midcast.enfeebleACCURACY, sets.midcast.impact))
+				equip(set_combine(sets.midcast.noMABaccuracy, sets.midcast.impact))
 			end
 		end
 	elseif spell.skill == "Enfeebling Magic" then
