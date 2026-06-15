@@ -112,12 +112,13 @@ function get_sets()
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Carrier's Sash",
 		left_ear="Etiolation Earring",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ear="Alabaster Earring",
 		left_ring="Shadow Ring",
 		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
 	}
 	
+	-- for omen aoe Evasion tanking
 	sets.idle.tank = {
 		ammo="Amar Cluster",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -153,7 +154,7 @@ function get_sets()
 		neck={ name="Bathy Choker +1", augments={'Path: A',}},
 		waist="Reiki Yotai",
 		left_ear="Eabani Earring",
-		right_ear="Infused Earring",
+		right_ear="Alabaster Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Defending Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
