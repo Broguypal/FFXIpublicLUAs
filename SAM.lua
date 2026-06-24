@@ -117,7 +117,7 @@ function get_sets()
 		left_ear="Alabaster Earring",
 		right_ear="Odnowa Earring +1",
 		left_ring="Fortified Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Damage taken-5%',}},
 	}
 	
@@ -134,7 +134,7 @@ function get_sets()
 		left_ear="Alabaster Earring",
 		right_ear="Odnowa Earring +1",
 		left_ring="Fortified Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Damage taken-5%',}},
 	}
 	
@@ -154,7 +154,7 @@ function get_sets()
 		left_ear="Telos Earring",
 		right_ear={ name="Kasuga Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','Weapon skill damage +4%','STR+9 DEX+9',}},
 		left_ring="Niqmaddu Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Damage taken-5%',}},
 	}
 	sets.engaged.hybrid_hasso = set_combine(sets.engaged.hybrid, {

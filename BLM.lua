@@ -138,7 +138,7 @@ function get_sets()
 		left_ear="Etiolation Earring",
 		right_ear="Hearty Earring",
 		left_ring="Shadow Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Taranus's Cape", augments={'MP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
     }
 	
@@ -160,7 +160,7 @@ function get_sets()
 		left_ear="Etiolation Earring",
 		right_ear="Hearty Earring",
 		left_ring="Shadow Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Taranus's Cape", augments={'MP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
     }
 	

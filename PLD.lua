@@ -20,7 +20,7 @@ include('CastStill.lua') -- Note, this is not necessary for this lua unless you 
 ----------------------------------------------------------------------
 tp_mode = 'Hybrid'
 spell_mode = 'Normal'
-lock_mode = 'Unlocked'
+lock_mode = 'Locked'
 
 tp_modes = {'Hybrid','DPS','AoETank','BlockTank','SingleTank','MagicEva','MPAbsorb'}
 spell_modes = {'Normal','SIR'}
@@ -317,7 +317,7 @@ function get_sets()
 		waist="Audumbla Sash",
 		left_ear="Knightly Earring",
 		right_ear="Magnetic Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 	}  
 	

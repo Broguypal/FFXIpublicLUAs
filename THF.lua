@@ -111,7 +111,7 @@ function get_sets()
 		waist="Engraved Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Odnowa Earring +1",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
     }
@@ -128,7 +128,7 @@ function get_sets()
 		waist="Engraved Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Odnowa Earring +1",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
     }

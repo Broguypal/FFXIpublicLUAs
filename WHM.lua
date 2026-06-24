@@ -114,7 +114,7 @@ function get_sets()			--leave this empty
 		left_ear="Etiolation Earring",
 		right_ear={ name="Ebers Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Damage taken-7%','STR+11 MND+11',}},
 		left_ring="Shadow Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Alaunus's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity-10','Damage taken-5%',}},
 	}
 	sets.idle.NormalWeapons = set_combine(sets.idle.Normal, sets.weapons.Idle)
@@ -157,7 +157,7 @@ function get_sets()			--leave this empty
 		left_ear="Etiolation Earring",
 		right_ear={ name="Ebers Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Damage taken-7%','STR+11 MND+11',}},
 		left_ring="Shadow Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Alaunus's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity-10','Damage taken-5%',}},
 	}
 	sets.idle.TankWeapons = set_combine(sets.idle.Tank, sets.weapons.Idle)
@@ -374,7 +374,7 @@ function get_sets()			--leave this empty
 		left_ear="Halasz Earring",
 		right_ear="Magnetic Earring",
 		left_ring="Evanescence Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Spell interruption rate down-10%',}},
 		--Note SIR is currently only 74% with weapons. will need to improve later.
 	}

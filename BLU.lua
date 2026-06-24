@@ -114,7 +114,7 @@ function get_sets()
 		left_ear="Etiolation Earring",
 		right_ear="Alabaster Earring",
 		left_ring="Shadow Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},	
 	}
 	
@@ -131,7 +131,7 @@ function get_sets()
 		left_ear="Eabani Earring",
 		right_ear="Infused Earring",
 		left_ring="Ilabrat Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 	
@@ -156,7 +156,7 @@ function get_sets()
 		left_ear="Eabani Earring",
 		right_ear="Alabaster Earring",
 		left_ring="Ilabrat Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Rosmerta's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Evasion+15',}},
 	}
 	
@@ -178,7 +178,7 @@ function get_sets()
 		left_ear="Suppanomimi",
 		right_ear={ name="Hashi. Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+16','Mag. Acc.+16','"Dbl.Atk."+6','STR+7 INT+7',}},
 		left_ring="Chirich Ring +1",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
@@ -218,7 +218,7 @@ function get_sets()
 		left_ear="Suppanomimi",
 		right_ear="Telos Earring",
 		left_ring="Chirich Ring +1",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
@@ -488,7 +488,7 @@ function get_sets()
 		left_ear="Genmei Earring",
 		right_ear="Odnowa Earring +1",
 		left_ring="Gelatinous Ring +1",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 		}
 	
@@ -584,7 +584,7 @@ function get_sets()
 		left_ear="Genmei Earring",
 		right_ear="Odnowa Earring +1",
 		left_ring="Gelatinous Ring +1",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 	
@@ -637,7 +637,7 @@ function get_sets()
 		waist="Plat. Mog. Belt",
 		left_ear="Magnetic Earring",
 		right_ear="Etiolation Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Evanescence Ring",
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +10','"Mag.Atk.Bns."+10','Spell interruption rate down-10%',}},
 	}

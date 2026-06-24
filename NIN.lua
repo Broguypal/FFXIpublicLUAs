@@ -266,7 +266,7 @@ function get_sets()
 		left_ear="Alabaster Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
 	}
 	--Night Idle set w/ movement speed
@@ -308,7 +308,7 @@ function get_sets()
 		left_ear="Alabaster Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
 	}
 
@@ -341,7 +341,7 @@ function get_sets()
 		waist="Engraved Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Eabani Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
 	}
@@ -365,7 +365,7 @@ function get_sets()
 		left_ear="Alabaster Earring",
 		right_ear="Eabani Earring",
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','Evasion+15',}},
 	}
 	-- 0 shadows
@@ -403,7 +403,7 @@ function get_sets()
 		waist="Cornelia's Belt",
 		left_ear="Genmei Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Store TP"+10','System: 1 ID: 640 Val: 4',}},
 	})
 	-- 0 Shadows + Yonin Active
@@ -421,7 +421,7 @@ function get_sets()
 		waist="Engraved Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Eabani Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back="Null Shawl",
 	}

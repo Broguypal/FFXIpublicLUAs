@@ -372,7 +372,7 @@ function get_sets()
 		waist="Flume Belt +1",
 		left_ear="Genmei Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back="Moonbeam Cape",
 	}

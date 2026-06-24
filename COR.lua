@@ -155,7 +155,7 @@ function get_sets()
 		waist="Plat. Mog. Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Eabani Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Warden's Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
@@ -170,7 +170,7 @@ function get_sets()
 		waist="Plat. Mog. Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Eabani Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Warden's Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
@@ -188,7 +188,7 @@ function get_sets()
 		waist="Reiki Yotai",
 		left_ear="Suppanomimi",
 		right_ear="Eabani Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}

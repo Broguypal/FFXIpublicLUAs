@@ -193,7 +193,7 @@ function get_sets()
 		left_ear="Alabaster Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="C. Palug Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
@@ -226,7 +226,7 @@ function get_sets()
 		left_ear="Alabaster Earring",
 		right_ear={ name="Kara. Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','STR+9 DEX+9',}},
 		left_ring="C. Palug Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	}
 
@@ -268,7 +268,7 @@ function get_sets()
 		left_ear="Crep. Earring",
 		right_ear={ name="Kara. Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','STR+9 DEX+9',}},
 		left_ring="C. Palug Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','Pet: Haste+10','Pet: Phys. dmg. taken-10%',}},
 	}
 	

@@ -103,7 +103,7 @@ function get_sets()
 		waist="Moonbow Belt +1",
 		left_ear="Alabaster Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
@@ -120,7 +120,7 @@ function get_sets()
 		waist="Moonbow Belt +1",
 		left_ear="Alabaster Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
@@ -137,7 +137,7 @@ function get_sets()
 		waist="Moonbow Belt +1",
 		left_ear="Genmei Earring",
 		right_ear={ name="Bhikku Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','"Store TP"+5',}},
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}},
 	}
@@ -165,20 +165,21 @@ function get_sets()
 	-- Defensive TP Set
 	sets.engaged.HYBRID = {
 		ammo="Coiste Bodhar",
-		--head="Ryuo Somen +1",
-		head={ name="Mpaca's Cap", augments={'Path: A',}},
+		head="Ryuo Somen +1",
+		--head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body="Mpaca's Doublet",
-		--hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		hands="Malignance Gloves",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		--hands="Malignance Gloves",
 		legs="Bhikku Hose +3",
-		--feet="Tatena. Sune. +1",
-		feet="Malignance Boots",
+		feet="Tatena. Sune. +1",
+		--feet="Malignance Boots",
 		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
-		right_ear="Schere Earring",
+		--right_ear="Schere Earring",
+		right_ear={ name="Bhikku Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','"Store TP"+5',}},
 		left_ring="Gere Ring",
-		right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
