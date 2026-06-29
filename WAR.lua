@@ -20,17 +20,20 @@
 TP_Mode  = "Hybrid"
 Buff_Mode = "Low"
 Weapon_Mode = "2H"
+Acc_Mode = "Normal"
 tomahawk_count = 0
 
 TP_Modes = { "Hybrid", "DPS", "Tank" }
 Buff_Modes = { "High", "Low" }
 Weapon_Modes = { "2H", "1H" }
+Acc_Modes = { "Normal", "High" }
 
 gearswap_box = function()
   str = '           \\cs(165,100,40)WARRIOR\\cr\n'
   str = str..' Offense Mode:\\cs(255,150,100)   '..TP_Mode..'\\cr\n'
   str = str..' Weapon Mode:\\cs(255,150,100)   '..Weapon_Mode..'\\cr\n'
   str = str..' Buff Level:\\cs(255,150,100)   '..Buff_Mode..'\\cr\n'
+  str = str..' ACC:\\cs(255,150,100)   '..Acc_Mode..'\\cr\n'
   str = str..' Tomahawks: '..tomahawk_count..'\n'
   str = str..' ctrl: \\cs(255,165,0)[BSRK]\\cr \\cs(255,255,0)[CRY]\\cr \\cs(255,128,0)[AGGR]\\cr\n'
   str = str..' alt:  \\cs(0,204,102)[RETAL]\\cr \\cs(204,153,255)[RESTR]\\cr \\cs(128,255,255)[VOKE]\\cr\n'
@@ -74,6 +77,7 @@ function user_setup()
 	
 	send_command('bind numpad7 gs c ToggleWeaponMode') -- 2H ↔ 1H
 	send_command('bind numpad6 gs c ToggleBuff')     -- High ↔ Low
+	send_command('bind ^numpad6 gs c ToggleAccuracy') -- Normal ↔ High
 	
 
 	send_command('bind numpad4 gs c ToggleWeapon')   -- Cycle main weapons
@@ -183,6 +187,10 @@ function get_sets()
 	})
 	sets.engaged.dps_dw       = set_combine(sets.engaged.hybrid_dw, { 
 	})
+	
+	-- Accuracy Swaps
+	sets.engaged.accuracy = {
+	}
 
 	----------------------------------------------------------------------
 	--                           PRECAST SETS
@@ -334,6 +342,9 @@ function get_sets()
 	sets.ws.normal_high = set_combine(sets.ws.normal, {
 	})
 
+	-- Put your accuracy swap items here
+	sets.ws.accuracy = {
+	}
 	----------------------------------------------------------------------
 	--                           ITEM SETS
 	----------------------------------------------------------------------
@@ -357,6 +368,9 @@ function idle()
             else
                 equip(sets.engaged.hybrid_1h)
             end
+			if Acc_Mode == "High" then
+				equip(sets.engaged.accuracy)
+			end
         else
             equip(sets.idle.normal)
         end
@@ -369,6 +383,9 @@ function idle()
             else
                 equip(sets.engaged.dps_1h)
             end
+			if Acc_Mode == "High" then
+				equip(sets.engaged.accuracy)
+			end
         else
             equip(sets.idle.normal)
         end
@@ -426,7 +443,9 @@ function precast(spell)
 		else 
 			equip(get_ws_set("normal"))
 		end
-
+		if Acc_Mode == "High" then
+			equip(sets.ws.accuracy)
+		end
 	elseif spell.type == "JobAbility" then
 		if spell.english == "Berserk" then 
 			equip(sets.ja.berserk)
@@ -524,6 +543,12 @@ function self_command(command)
 			Buff_Mode = "Low"
 		else
 			Buff_Mode = "High"
+		end
+	elseif command == "ToggleAccuracy" then
+		if Acc_Mode == "Normal" then
+			Acc_Mode = "High"
+		else
+			Acc_Mode = "Normal"
 		end
 	elseif command == "ToggleWeaponMode" then
 		if Weapon_Mode == "2H" then
