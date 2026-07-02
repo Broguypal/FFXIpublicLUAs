@@ -257,7 +257,7 @@ function get_sets()
 	}
 
 	sets.ja.footwork = {
-		feet="Anch. Gaiters +3",
+		feet="Anch. Gaiters +4",
 	}
 	
 	sets.ja.impetus = {
