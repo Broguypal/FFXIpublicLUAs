@@ -653,17 +653,17 @@ function get_sets()
 
 	---- ENHANCING SETS ----
 	--Enspells / Temper
-	sets.midcast.enhanceSKILL = {
+		sets.midcast.enhanceSKILL = {
 		ammo="Staunch Tathlum +1",
 		head="Befouled Crown",
-		body={ name="Viti. Tabard +4", augments={'Enhances "Chainspell" effect',}},
-		hands={ name="Viti. Gloves +3", augments={'Enhancing Magic duration',}},
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+		body="Viti. Tabard +4",
+		hands="Viti. Gloves +3",
+		legs="Atro. Tights +4",
 		feet="Leth. Houseaux +3",
 		neck="Hoxne Torque",
 		waist="Olympus Sash",
 		left_ear="Mimir Earring",
-		right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
+		right_ear="Andoaa Earring",
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
 		back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +10','Enha.mag. skill +10','Mag. Acc.+5','Enh. Mag. eff. dur. +17',}},
