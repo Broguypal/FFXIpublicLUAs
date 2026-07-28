@@ -15,7 +15,6 @@
 -- To change the keybinds, please edit them in the Keybinds function below
 -- To change your default Job box position, please change the "x" and "y" positions in then gearswap_box_config settings below
 
-include('CastStill.lua') -- Note, this is not necessary for this lua unless you want CastStill to apply. This is located in the Libs folder.
 ----------------------------------------------------------------------
 --                           MODES / UI TEXT BOX
 ----------------------------------------------------------------------
@@ -280,7 +279,7 @@ function get_sets()
 		neck="Sanctity Necklace",
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
-		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
+		right_ear={ name="Chas. Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 AGI+11',}},
 		left_ring="Stikini Ring +1",
 		right_ring="Stikini Ring +1",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
