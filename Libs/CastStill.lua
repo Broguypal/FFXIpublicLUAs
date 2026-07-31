@@ -26,8 +26,6 @@ caststill.stop_window   = caststill.stop_window   or 0.35
 local cs = {
     -- 0x15 tracking
     last_reported    = nil, 
-    prev_reported    = nil,   
-    last_report_time = 0,
     last_move_time   = -999, 
     is_settled       = true, 
 
@@ -98,9 +96,7 @@ windower.raw_register_event('outgoing chunk', function(id, data)
         end
     end
 
-    cs.prev_reported    = cs.last_reported
-    cs.last_reported    = new_pos
-    cs.last_report_time = now
+    cs.last_reported = new_pos
 end)
 
 ------------------------------------------------------------
