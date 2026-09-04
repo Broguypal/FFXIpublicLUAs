@@ -131,14 +131,14 @@ end
 ----------------------------------------------------------------------
 --Note: Place in order you want to cycle weapons based on modes.
 	Weapons = {
-		Hybrid 			= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
-		HybridDEF 		= {"Kenkonken", "Xiucoatl", "Godhands", "Verethragna", "Ohtas"},
-		Master     		= {"Godhands", "Verethragna", "Kenkonken"},
-		MasterDEF  		= {"Godhands", "Verethragna", "Kenkonken"},
-		Emergency  		= {"Godhands", "Verethragna", "Kenkonken"},
-		Overdrive  		= {"Xiucoatl", "Kenkonken"},
-		OverdriveDEF	= {"Xiucoatl", "Kenkonken"},
-		Pet        		= {"Xiucoatl", "Sakpata's Fists", "Ohtas"},
+		Hybrid 			= {"Varga Purnikawa", "Kenkonken", "Xiucoatl", "Godhands", "Verethragna"},
+		HybridDEF 		= {"Varga Purnikawa", "Kenkonken", "Xiucoatl", "Godhands", "Verethragna"},
+		Master     		= {"Varga Purnikawa", "Godhands", "Verethragna", "Kenkonken"},
+		MasterDEF  		= {"Varga Purnikawa", "Godhands", "Verethragna", "Kenkonken"},
+		Emergency  		= {"Varga Purnikawa", "Godhands", "Verethragna", "Kenkonken"},
+		Overdrive  		= {"Xiucoatl", "Kenkonken", "Varga Purnikawa"},
+		OverdriveDEF	= {"Xiucoatl", "Kenkonken", "Varga Purnikawa"},
+		Pet        		= {"Xiucoatl", "Sakpata's Fists", "Ohtas", "Varga Purnikawa"},
 		PetDEF     		= {"Gnafron's Adargas", "Ohtas"}
 	}
 
@@ -590,13 +590,13 @@ function get_sets()
 	
 	sets.ja.overdrive = {body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},}
 	
-	sets.ja.finetuning = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	sets.ja.finetuning = {hands={ name="Pitre Dastanas +4", augments={'Enhances "Fine-Tuning" effect',}},}
 	
-	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},}
+	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +4", augments={'Enhances "Fine-Tuning" effect',}},}
 	
-	sets.ja.rolereversal = {feet={ name="Pitre Babouches +3", augments={'Enhances "Role Reversal" effect',}},}
+	sets.ja.rolereversal = {feet={ name="Pitre Babouches +4", augments={'Enhances "Role Reversal" effect',}},}
 	
-	sets.ja.tacticalswitch = {feet="Karagoz Scarpe +2",}
+	sets.ja.tacticalswitch = {feet="Karagoz Scarpe +3",}
 	
 	sets.ja.repair = {
 	    left_ear="Guignol Earring",
@@ -629,7 +629,7 @@ function get_sets()
 		body="Mpaca's Doublet",
 		hands="Mpaca's Gloves",
 		legs="Mpaca's Hose",
-		feet="Mpaca's Boots",
+		feet="Karagoz Scarpe +3",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear="Schere Earring",
@@ -638,6 +638,21 @@ function get_sets()
 		right_ring="Gere Ring",
 		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 		}
+	
+	sets.ws.master.marukala = {
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Pitre Dastanas +4",
+		legs="Nyame Flanchard",
+		feet="Karagoz Scarpe +3",
+		neck="Rep. Plat. Medal",
+		waist="Moonbow Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear={ name="Kara. Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+17','Mag. Acc.+17','"Store TP"+6','STR+9 DEX+9',}},
+		left_ring="Ephramad's Ring",
+		right_ring="Epaminondas's Ring",
+		back={ name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
+	}
 	
 	sets.ws.master.victorysmite = {
 		head="Mpaca's Cap",
@@ -657,7 +672,7 @@ function get_sets()
 	sets.ws.master.shijinspiral = {
 		head="Mpaca's Cap",
 		body="Mpaca's Doublet",
-		hands="Mpaca's Gloves",
+		hands="Pitre Dastanas +4",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
@@ -702,9 +717,9 @@ function get_sets()
 	sets.ws.master.asuranfists = {
 		head="Kara. Cappello +3",
 		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		hands="Pitre Dastanas +4",
 		legs="Mpaca's Hose",
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Karagoz Scarpe +3",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear="Schere Earring",
@@ -886,6 +901,8 @@ function precast(spell)
 	elseif spell.type == "WeaponSkill" then 
 		if spell.english == "Stringing Pummel" then
 			equip(sets.ws.master.stringingpummel)
+		elseif spell.english == "Maru Kala" then
+			equip(sets.ws.master.marukala)
 		elseif spell.english == "Victory Smite" then
 			equip(sets.ws.master.victorysmite)
 		elseif spell.english == "Shijin Spiral" or spell.english == "Evisceration" then
