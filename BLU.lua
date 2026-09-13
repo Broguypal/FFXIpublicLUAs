@@ -514,7 +514,7 @@ function get_sets()
 	sets.midcast.bluemagic.BuffSkillBased = set_combine(sets.midcast.bluemagic.Magical,{
 		ammo="Staunch Tathlum +1",
 		head={ name="Telchine Cap", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		body="Assim. Jubbah +3",
+		body="Assim. Jubbah +4",
 		hands="Rawhide Gloves",
 		legs="Hashishin Tayt +3",
 		feet={ name="Luhlaza Charuqs +3", augments={'Enhances "Diffusion" effect',}},
