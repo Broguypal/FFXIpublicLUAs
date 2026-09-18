@@ -594,7 +594,7 @@ function get_sets()
 	
 	sets.ja.ventriloquy = {hands={ name="Pitre Dastanas +4", augments={'Enhances "Fine-Tuning" effect',}},}
 	
-	sets.ja.rolereversal = {feet={ name="Pitre Babouches +4", augments={'Enhances "Role Reversal" effect',}},}
+	sets.ja.rolereversal = {feet={ name="Pitre Babouches +3", augments={'Enhances "Role Reversal" effect',}},}
 	
 	sets.ja.tacticalswitch = {feet="Karagoz Scarpe +3",}
 	
