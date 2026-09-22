@@ -22,11 +22,13 @@ Player_Mode = "Melee"
 Casting_Mode = "Burst"
 Enfeeble_Mode = "Normal"
 Lock_Mode = "Locked"
+Hoxne_Mode = "Off"
 
 Player_Modes = {'Melee','Enspell','ZeroTPEnspell','Tank','Caster'}
 Casting_Modes = {'Burst','Freecast','Occult'}
 Enfeeble_Modes = {'Normal','Accuracy'}
 Lock_Modes = {'Unlocked','Locked'}
+Hoxne_Modes = {'On','Off'}
 
 shihei = 0
 
@@ -36,7 +38,10 @@ gearswap_box = function()
   str = str..' Casting Mode:\\cs(255,0,102)   '..Casting_Mode..'\\cr\n'
   str = str..' Enfeeble Mode:\\cs(0,153,51)   '..Enfeeble_Mode..'\\cr\n'
   str = str..' Weapon Lock:\\cs(128,128,128)   '..Lock_Mode..'\\cr\n'
-  str = str..' Shihei Amount: '..shihei..'\n'
+  str = str..' Hoxne Mode:\\cs(255,150,100)   '..Hoxne_Mode..'\\cr\n'
+  if player.sub_job == 'NIN' then
+    str = str..' Shihei Amount: '..shihei..'\n'
+  end
   str = str..' crl: \\cs(255,255,255)[DIA]\\cr \\cs(255,64,64)[FIR]\\cr \\cs(0,255,0)[WND]\\cr \\cs(180,0,255)[THD]\\cr\n'
   str = str..' alt: \\cs(80,60,100)[IMP]\\cr \\cs(128,255,255)[ICE]\\cr \\cs(165,100,40)[STN]\\cr \\cs(64,128,255)[WTR]\\cr\n'
     return str
@@ -75,6 +80,8 @@ function user_setup()
 	send_command('bind numpad9 gs c ToggleMelee')
 	send_command('bind numpad8 gs c ToggleTank')
 	send_command('bind numpad7 gs c ToggleSpecial')
+	
+	send_command('bind ^numpad9 gs c ToggleHoxne')
 	
 	send_command('bind numpad4 gs c ToggleMain')
 	send_command('bind numpad5 gs c ToggleSub')
@@ -1515,6 +1522,11 @@ function status_change(new,old)
 	end
 end
 
+function sub_job_change(new, old)
+	check_shihei()
+	gearswap_jobbox:text(gearswap_box())
+	gearswap_jobbox:show()
+end
 
 ----------------------------------------------------------------------
 --                   BEST SPELL SELECTION LOGIC 
@@ -1621,7 +1633,7 @@ function self_command(command)
         local target = args[3] or 't'
         cast_highest_tier(args[2], target)
 	elseif command == "ToggleMelee" then
-		if Player_Mode == "Tank" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" then
+		if Player_Mode == "Tank" or Player_Mode == "ZeroTPEnspell" or Player_Mode == "Caster" or Player_Mode == "Enspell" or Player_Mode == "ZeroTPEnspell" then
 			Player_Mode = "Melee"
 
 			local new_main, new_sub
@@ -1716,6 +1728,16 @@ function self_command(command)
 			sub_mode = cycle(cycle_list, sub_mode)
 			equip({ sub = sub_mode })
 			last_real_sub = sub_mode
+		end
+	elseif command == "ToggleHoxne" then
+		if Hoxne_Mode == "Off" then
+			Hoxne_Mode = "On"
+			equip({ammo="Hoxne Ampulla"})
+			send_command('gs disable ammo; wait 6; input /item "Hoxne Ampulla" <me>')
+		else
+			Hoxne_Mode = "Off"
+			send_command('gs enable ammo')
+			idle()
 		end
 	end
 	check_shihei()
