@@ -19,14 +19,17 @@
 ----------------------------------------------------------------------
 TP_Mode = "Hybrid"
 Buff_Mode = "High"
+Hoxne_Mode = "Off"
 
 TP_Modes = {'Hybrid','DPS','SubtleBlow','Counter','Defence'}
 Buff_Modes = {'High','Low'}
+Hoxne_Modes = {'On', 'Off'}
 
 gearswap_box = function()
   str = '           \\cs(165,100,40)MONK\\cr\n'
   str = str..' Offense Mode:\\cs(255,150,100)   '..TP_Mode..'\\cr\n'
   str = str..' Buff Mode:\\cs(255,150,100)   '..Buff_Mode..'\\cr\n'
+  str = str..' Hoxne Mode:\\cs(255,150,100)   '..Hoxne_Mode..'\\cr\n'
     return str
 end
 
@@ -44,6 +47,8 @@ function user_setup()
 	send_command('bind numpad9 gs c ToggleHybrid')
 	send_command('bind numpad8 gs c ToggleDefence')
 	send_command('bind numpad7 gs c ToggleSubtleBlow')
+	
+	send_command('bind ^numpad9 gs c ToggleHoxne')
 	
 	send_command('bind numpad6 gs c ToggleBuff')
 	send_command('bind numpad4 gs c ToggleWeapon')
@@ -996,6 +1001,16 @@ function self_command(command)
 		special_mode = cycle(Special, special_mode)
 		equip(special_mode)
 		main_mode = nil
+	elseif command == "ToggleHoxne" then
+		if Hoxne_Mode == "Off" then
+			Hoxne_Mode = "On"
+			equip({ammo="Hoxne Ampulla"})
+			send_command('input //gs disable ammo; wait 6; input /item "Hoxne Ampulla" <me>')
+		else
+			Hoxne_Mode = "Off"
+			send_command('gs enable ammo')
+			idle()
+		end
 	end
 	gearswap_jobbox:text(gearswap_box())		
 	gearswap_jobbox:show()
