@@ -38,7 +38,9 @@ gearswap_box = function()
   str = str..' Casting Mode:\\cs(255,0,102)   '..Casting_Mode..'\\cr\n'
   str = str..' Enfeeble Mode:\\cs(0,153,51)   '..Enfeeble_Mode..'\\cr\n'
   str = str..' Weapon Lock:\\cs(128,128,128)   '..Lock_Mode..'\\cr\n'
-  str = str..' Hoxne Mode:\\cs(255,150,100)   '..Hoxne_Mode..'\\cr\n'
+  if has_hoxne() or Hoxne_Mode == "On" then
+    str = str..' Hoxne Mode:\\cs(255,150,100)   '..Hoxne_Mode..'\\cr\n'
+  end
   if player.sub_job == 'NIN' then
     str = str..' Shihei Amount: '..shihei..'\n'
   end
@@ -68,6 +70,17 @@ function check_shihei()
         color = "\\cs(0,255,0)"
     end
     shihei = color .. tostring(count) .. "\\cr"
+end
+
+function has_hoxne()
+    local bags = {'inventory','wardrobe','wardrobe2','wardrobe3','wardrobe4',
+                  'wardrobe5','wardrobe6','wardrobe7','wardrobe8'}
+    for _, bag in ipairs(bags) do
+        if player[bag] and player[bag]['Hoxne Ampulla'] then
+            return true
+        end
+    end
+    return false
 end
 
 ----------------------------------------------------------------------
@@ -1731,9 +1744,11 @@ function self_command(command)
 		end
 	elseif command == "ToggleHoxne" then
 		if Hoxne_Mode == "Off" then
-			Hoxne_Mode = "On"
-			equip({ammo="Hoxne Ampulla"})
-			send_command('gs disable ammo; wait 6; input /item "Hoxne Ampulla" <me>')
+			if has_hoxne() then
+				Hoxne_Mode = "On"
+				equip({ammo="Hoxne Ampulla"})
+				send_command('gs disable ammo; wait 6; input /item "Hoxne Ampulla" <me>')
+			end
 		else
 			Hoxne_Mode = "Off"
 			send_command('gs enable ammo')

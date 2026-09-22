@@ -29,13 +29,26 @@ gearswap_box = function()
   str = '           \\cs(165,100,40)MONK\\cr\n'
   str = str..' Offense Mode:\\cs(255,150,100)   '..TP_Mode..'\\cr\n'
   str = str..' Buff Mode:\\cs(255,150,100)   '..Buff_Mode..'\\cr\n'
-  str = str..' Hoxne Mode:\\cs(255,150,100)   '..Hoxne_Mode..'\\cr\n'
+  if has_hoxne() or Hoxne_Mode == "On" then
+    str = str..' Hoxne Mode:\\cs(255,150,100)   '..Hoxne_Mode..'\\cr\n'
+  end
     return str
 end
 
 -- Edit the "x" and "y" positions below to change the default position of the job box.
 gearswap_box_config = {pos={x=1320,y=550},padding=8,text={font='sans-serif',size=10,stroke={width=2,alpha=255},Fonts={'sans-serif'},},bg={alpha=0},flags={}}
 gearswap_jobbox = texts.new(gearswap_box_config)
+
+function has_hoxne()
+    local bags = {'inventory','wardrobe','wardrobe2','wardrobe3','wardrobe4',
+                  'wardrobe5','wardrobe6','wardrobe7','wardrobe8'}
+    for _, bag in ipairs(bags) do
+        if player[bag] and player[bag]['Hoxne Ampulla'] then
+            return true
+        end
+    end
+    return false
+end
 
 ----------------------------------------------------------------------
 --                           USER SETUP
@@ -1003,9 +1016,11 @@ function self_command(command)
 		main_mode = nil
 	elseif command == "ToggleHoxne" then
 		if Hoxne_Mode == "Off" then
-			Hoxne_Mode = "On"
-			equip({ammo="Hoxne Ampulla"})
-			send_command('input //gs disable ammo; wait 6; input /item "Hoxne Ampulla" <me>')
+			if has_hoxne() then
+				Hoxne_Mode = "On"
+				equip({ammo="Hoxne Ampulla"})
+				send_command('gs disable ammo; wait 6; input /item "Hoxne Ampulla" <me>')
+			end
 		else
 			Hoxne_Mode = "Off"
 			send_command('gs enable ammo')
